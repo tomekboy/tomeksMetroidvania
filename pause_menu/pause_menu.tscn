@@ -1,10 +1,28 @@
 [gd_scene format=3 uid="uid://c2310raq4htli"]
 
 [ext_resource type="Script" uid="uid://hjb6vqoti27h" path="res://pause_menu/scripts/pause_menu.gd" id="1_5hbt6"]
+[ext_resource type="Script" uid="uid://dbk0pse1plg2h" path="res://pause_menu/scripts/ability_display.gd" id="2_b4s0c"]
 [ext_resource type="PackedScene" uid="uid://c2lm7qqyqmovl" path="res://pause_menu/map_node.tscn" id="2_rd7dy"]
+[ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://player/sprites/abilities.png" id="2_uwtdo"]
 
 [sub_resource type="FontVariation" id="FontVariation_5hbt6"]
 spacing_glyph = 6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4s0c"]
+atlas = ExtResource("2_uwtdo")
+region = Rect2(95, 33.5, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwtdo"]
+atlas = ExtResource("2_uwtdo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1glv"]
+atlas = ExtResource("2_uwtdo")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn31l"]
+atlas = ExtResource("2_uwtdo")
+region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="Gradient" id="Gradient_rd7dy"]
 offsets = PackedFloat32Array(0, 0.53614455, 1)
@@ -153,6 +171,42 @@ anchor_bottom = 1.0
 offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AbilityDisplay" type="VBoxContainer" parent="Control/PauseScreen" unique_id=2123789897]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 61.0
+offset_right = 140.0
+offset_bottom = -60.0
+grow_vertical = 2
+script = ExtResource("2_b4s0c")
+
+[node name="AbilityDoubleJump" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1863112169]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_b4s0c")
+stretch_mode = 3
+
+[node name="AbilityDash" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1717529333]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_uwtdo")
+stretch_mode = 3
+
+[node name="AbilitySlam" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=2101041452]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_s1glv")
+stretch_mode = 3
+
+[node name="AbilityRoll" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=407154104]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_wn31l")
+stretch_mode = 3
 
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
 anchors_preset = 0

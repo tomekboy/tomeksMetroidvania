@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cbdfv5wlgti5s" path="res://general/scripts/level_bounds.gd" id="1_4bqqs"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="1_o00ia"]
 [ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="1_rupst"]
+[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="1_te8jg"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="2_wt17y"]
 [ext_resource type="PackedScene" uid="uid://b7p7lf5dujcfj" path="res://general/props/test_dummy/test_dummy.tscn" id="7_ynsuh"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="8_pi42a"]
@@ -116,6 +117,10 @@ fill_to = Vector2(0, 1)
 size = Vector2(64, 64)
 
 [node name="Playground" type="Node2D" unique_id=1709527757]
+
+[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("1_te8jg")]
+position = Vector2(794, 280)
+type = 1
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=586289070]
 z_index = 256
@@ -237,4 +242,4 @@ position = Vector2(989, 271)
 position = Vector2(695, 320)
 
 [node name="Player" parent="." unique_id=1981200209 instance=ExtResource("1_rupst")]
-position = Vector2(641, 400)
+position = Vector2(554, 210)

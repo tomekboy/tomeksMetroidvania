@@ -46,13 +46,13 @@ var max_hp : float = 20 :
 		max_hp = value
 		MessageManager.player_health_changed.emit( hp, max_hp )
 
-var dash : bool = true
+var dash : bool = false
 var dash_count : int = 0
-var double_jump : bool = true
+var double_jump : bool = false
 var jump_count : int = 0
-var ground_slam : bool = true
-var morph_roll : bool = true
-
+var ground_slam : bool = false
+var morph_roll : bool = false
+var can_interact : bool = false
 #endregion
 
 #region /// standard variables
