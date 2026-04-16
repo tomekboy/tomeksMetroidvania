@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bb5jfuv4kvrqi"]
+
+[ext_resource type="Script" uid="uid://k8vb3oir8xw" path="res://00_global/audio_manager/audio_manager.gd" id="1_pm86a"]
+[ext_resource type="AudioStream" uid="uid://hbl82a3lurst" path="res://assets/ui_audio/ui_bloop_audio.wav" id="2_bkuuj"]
+[ext_resource type="AudioStream" uid="uid://dyoyy3b0vkjg8" path="res://assets/ui_audio/Windows Background.wav" id="3_vhmkk"]
+[ext_resource type="AudioStream" uid="uid://cil3uwbp1dmem" path="res://assets/ui_audio/Windows Message Nudge.wav" id="4_bkuuj"]
+[ext_resource type="AudioStream" uid="uid://cc62d6l0dtbr7" path="res://assets/ui_audio/Windows Foreground.wav" id="5_ws7li"]
+[ext_resource type="AudioStream" uid="uid://ckfbh4wbq4h6q" path="res://assets/ui_audio/Windows Error.wav" id="6_vmwnd"]
+[ext_resource type="AudioStream" uid="uid://cft88ib2qlry0" path="res://assets/ui_audio/Windows Logoff Sound.wav" id="7_bkuuj"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_x5cln"]
+polyphony = 16
+
+[node name="AudioManager" type="Node" unique_id=1443171761]
+process_mode = 3
+script = ExtResource("1_pm86a")
+ui_focus_audio = ExtResource("2_bkuuj")
+ui_select_audio = ExtResource("3_vhmkk")
+ui_cancel_audio = ExtResource("4_bkuuj")
+ui_success_audio = ExtResource("5_ws7li")
+ui_error_audio = ExtResource("6_vmwnd")
+ui_quit_audio = ExtResource("7_bkuuj")
+
+[node name="Music1" type="AudioStreamPlayer" parent="." unique_id=1873255821]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="Music2" type="AudioStreamPlayer" parent="." unique_id=2020808024]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="UI" type="AudioStreamPlayer" parent="." unique_id=955563773]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamPolyphonic_x5cln")
+bus = &"UI"

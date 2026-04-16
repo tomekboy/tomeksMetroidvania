@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://dllwhbjy5a17i"]
+
+[ext_resource type="Texture2D" uid="uid://s0pthgmb2tl7" path="res://00_global/player_hud/images/healthBar.png" id="1_hv14i"]
+[ext_resource type="Script" uid="uid://cfuktqeut36m" path="res://00_global/player_hud/player_hud.gd" id="1_vb1bs"]
+[ext_resource type="AudioStream" uid="uid://c65oyokpxs3kf" path="res://assets/sfx/gameOver.mp3" id="2_4jtec"]
+[ext_resource type="Resource" uid="uid://g4hhr6wj22tf" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_blue.tres" id="3_26715"]
+[ext_resource type="Texture2D" uid="uid://c8r4nf1j0pwgg" path="res://00_global/player_hud/images/game04.png" id="4_tdgrf"]
+
+[sub_resource type="Gradient" id="Gradient_vb1bs"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_26715"]
+gradient = SubResource("Gradient_vb1bs")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_tdgrf"]
+offsets = PackedFloat32Array(0, 0.9935065)
+colors = PackedColorArray(0.8627451, 0.34117648, 0.34117648, 1, 0.9019608, 0.49803922, 0.49803922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4jtec"]
+gradient = SubResource("Gradient_tdgrf")
+
+[sub_resource type="GDScript" id="GDScript_vb1bs"]
+script/source = "extends Button
+
+@export var particle_settings : HitParticleSettings
+
+func _ready() -> void:
+	pressed.connect( _on_pressed )
+	pass
+
+func _on_pressed() -> void:
+	var player : Player = get_tree().get_first_node_in_group( \"Player\" )
+	#var pos : Vector2 = get_tree().get_first_node_in_group( \"Player\" ).global_position
+	#VisualEffects.hit_particles( pos - Vector2( 0, 48), Vector2( 0, -1), particle_settings )
+	#PlayerHud.show_game_over_screen()
+	#player.dash = !player.dash
+	player.ground_slam = !player.ground_slam
+	pass
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26715"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tdgrf"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 0.6039216)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jtec"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_maesk"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="PlayerHud" type="CanvasLayer" unique_id=515714694]
+process_mode = 3
+layer = 2
+script = ExtResource("1_vb1bs")
+audio = ExtResource("2_4jtec")
+
+[node name="Control" type="Control" parent="." unique_id=586873305]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HPMarginContainer" type="MarginContainer" parent="Control" unique_id=659120761]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(255, 77)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 265.0
+offset_bottom = 87.0
+scale = Vector2(0.5, 0.5)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/HPMarginContainer" unique_id=414980846]
+layout_mode = 2
+texture = ExtResource("1_hv14i")
+patch_margin_left = 75
+patch_margin_right = 33
+
+[node name="HPBar" type="TextureProgressBar" parent="Control/HPMarginContainer/NinePatchRect" unique_id=919464160]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = -15.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+rounded = true
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_26715")
+texture_progress = SubResource("GradientTexture2D_4jtec")
+
+[node name="Button" type="Button" parent="Control" unique_id=1097107952]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -172.0
+offset_top = 10.0
+offset_right = -8.0
+offset_bottom = 66.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "toggle slam"
+script = SubResource("GDScript_vb1bs")
+particle_settings = ExtResource("3_26715")
+
+[node name="GameOver" type="Control" parent="Control" unique_id=1683530314]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/GameOver" unique_id=155967379]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7882353)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/GameOver" unique_id=772123548]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -171.0
+offset_right = 115.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Game Over[/rainbow][/outline_size][/outline_color]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/GameOver" unique_id=1472257607]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = 144.0
+offset_right = 202.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=3573310]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_26715")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tdgrf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4jtec")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maesk")
+text = "nochmal...
+"
+
+[node name="TitleScreenButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=1755607940]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_26715")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tdgrf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4jtec")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maesk")
+text = "Hauptmenu
+"
+
+[node name="Game04" type="Sprite2D" parent="Control/GameOver" unique_id=628942192]
+position = Vector2(513, 328)
+texture = ExtResource("4_tdgrf")

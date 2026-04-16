@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://doresjk60xsm1"]
+
+[ext_resource type="Texture2D" uid="uid://dug1up2xnvgkf" path="res://app/images/polo.png" id="1_2y6re"]
+[ext_resource type="Script" uid="uid://bp155isupijxb" path="res://general/player_spawn/player_spawn.gd" id="1_h1cw5"]
+
+[node name="PlayerSpawn" type="Node2D" unique_id=673890801]
+z_index = 256
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_h1cw5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1249820349]
+modulate = Color(0, 1.8247963, 0.8884792, 1)
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2y6re")

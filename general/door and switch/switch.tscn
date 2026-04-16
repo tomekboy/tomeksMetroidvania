@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://66o4m7u0cs07"]
+
+[ext_resource type="Script" uid="uid://b7pvrk5iyre3i" path="res://general/door and switch/switch.gd" id="1_5jsxh"]
+[ext_resource type="Texture2D" uid="uid://t7j1bw2wbrsp" path="res://general/door and switch/images/door_and_switch.png" id="1_s60c8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s60c8"]
+size = Vector2(32, 26)
+
+[node name="Switch" type="Node2D" unique_id=619698125]
+z_index = -2
+script = ExtResource("1_5jsxh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2119056606]
+position = Vector2(0, -16)
+texture = ExtResource("1_s60c8")
+vframes = 3
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1734776611]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=476200646]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_s60c8")

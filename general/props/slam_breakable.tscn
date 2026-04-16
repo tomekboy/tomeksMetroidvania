@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cv4qipiafa80g"]
+
+[ext_resource type="Texture2D" uid="uid://bf5kcy6eyt2ge" path="res://levels/00_wonderland/tilesets/sprites/platformTreeBridge.png" id="1_6fyfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqmc0"]
+size = Vector2(128, 22)
+
+[node name="SlamBreakable" type="StaticBody2D" unique_id=527055245]
+collision_layer = 129
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=816645928]
+texture = ExtResource("1_6fyfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=192689409]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_gqmc0")

@@ -1,0 +1,420 @@
+[gd_scene format=3 uid="uid://c2310raq4htli"]
+
+[ext_resource type="Script" uid="uid://hjb6vqoti27h" path="res://pause_menu/scripts/pause_menu.gd" id="1_5hbt6"]
+[ext_resource type="PackedScene" uid="uid://c2lm7qqyqmovl" path="res://pause_menu/map_node.tscn" id="2_rd7dy"]
+
+[sub_resource type="FontVariation" id="FontVariation_5hbt6"]
+spacing_glyph = 6
+
+[sub_resource type="Gradient" id="Gradient_rd7dy"]
+offsets = PackedFloat32Array(0, 0.53614455, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.11764706, 0.7137255, 1, 1, 0, 0.039215688, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uwtdo"]
+gradient = SubResource("Gradient_rd7dy")
+width = 5
+height = 5
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_b4s0c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s1glv"]
+resource_name = "default"
+length = 0.7
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.5058824, 0.5882353, 1, 0.64705884)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wn31l"]
+_data = {
+&"RESET": SubResource("Animation_b4s0c"),
+&"default": SubResource("Animation_s1glv")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd7dy"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwtdo"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 0.6039216)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4s0c"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1glv"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wn31l"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0obc"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cux0y"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teyq6"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6csp"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1525454800]
+process_mode = 3
+script = ExtResource("1_5hbt6")
+
+[node name="Control" type="Control" parent="." unique_id=1989738142]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=495389767]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11372549, 0.11372549, 0.11372549, 1)
+
+[node name="Header" type="ColorRect" parent="Control" unique_id=1750033738]
+modulate = Color(1, 1, 1, 0.5019608)
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0.11372549, 0.11372549, 0.11372549, 1)
+
+[node name="Label" type="Label" parent="Control/Header" unique_id=1402522752]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 16.0
+offset_bottom = 35.0
+grow_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_5hbt6")
+text = "pausiert"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
+anchors_preset = 0
+offset_left = 243.0
+offset_top = 61.0
+offset_right = 999.0
+offset_bottom = 540.0
+
+[node name="MapNode" parent="Control/PauseScreen/MapDisplay" unique_id=153464035 instance=ExtResource("2_rd7dy")]
+modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 184.0
+offset_right = 155.0
+offset_bottom = 216.0
+linked_scene = "uid://cfiuv8loi78a5"
+entrances_right = Array[float]([7.3999996])
+
+[node name="MapNode2" parent="Control/PauseScreen/MapDisplay" unique_id=949127578 instance=ExtResource("2_rd7dy")]
+modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
+layout_mode = 0
+offset_left = 161.0
+offset_top = 184.0
+offset_right = 314.0
+offset_bottom = 216.0
+linked_scene = "uid://bb7n5hh1ojdiy"
+entrances_bottom = Array[float]([19.35])
+entrances_left = Array[float]([7.3999996])
+
+[node name="MapNode3" parent="Control/PauseScreen/MapDisplay" unique_id=629937613 instance=ExtResource("2_rd7dy")]
+modulate = Color(0.4862745, 0.7607843, 0.25882354, 1)
+layout_mode = 0
+offset_left = 161.0
+offset_top = 222.0
+offset_right = 314.0
+offset_bottom = 254.0
+linked_scene = "uid://bk7purnia7v6"
+entrances_top = Array[float]([19.35])
+
+[node name="MapNode4" parent="Control/PauseScreen/MapDisplay" unique_id=580727397 instance=ExtResource("2_rd7dy")]
+modulate = Color(1, 0.45490196, 0.6156863, 1)
+layout_mode = 0
+offset_left = 323.0
+offset_top = 186.0
+offset_right = 374.0
+offset_bottom = 218.0
+
+[node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = -50.0
+offset_top = 15.0
+offset_right = -50.0
+offset_bottom = 15.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/PauseScreen/MapDisplay/PlayerIndicator" unique_id=1501680612]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+texture = SubResource("GradientTexture2D_uwtdo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PauseScreen/MapDisplay/PlayerIndicator" unique_id=319789417]
+libraries/ = SubResource("AnimationLibrary_wn31l")
+autoplay = &"default"
+
+[node name="Abilities" type="Label" parent="Control/PauseScreen" unique_id=1339802049]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 142.0
+offset_bottom = 38.0
+text = "Fähigkeiten"
+
+[node name="Map" type="Label" parent="Control/PauseScreen" unique_id=1345469492]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 19.0
+offset_right = 306.0
+offset_bottom = 38.0
+text = "Karte"
+
+[node name="SystemMenuButton" type="Button" parent="Control/PauseScreen" unique_id=566045041]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -44.0
+offset_right = 86.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rd7dy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uwtdo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b4s0c")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s1glv")
+text = "einstellungen
+"
+
+[node name="System" type="Control" parent="Control" unique_id=1702171481]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/System" unique_id=2035861148]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_top = 38.0
+offset_right = 232.0
+offset_bottom = 275.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=2139237831]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer" unique_id=2047050648]
+layout_mode = 2
+text = "Audio Einstellungen"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1859064738]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=1349991116]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Musik"
+
+[node name="MusicSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=481886964]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_wn31l")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1067224522]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1013073353]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1872143650]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_b0obc")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1558510231]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=159493668]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI"
+
+[node name="UISlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=732673105]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_cux0y")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="BackToMapButton" type="Button" parent="Control/System" unique_id=1196651334]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 30)
+layout_mode = 0
+offset_left = 45.0
+offset_top = 540.0
+offset_right = 508.0
+offset_bottom = 570.0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rd7dy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uwtdo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b4s0c")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s1glv")
+text = "karte
+"
+
+[node name="BackToTitleButton" type="Button" parent="Control/System" unique_id=612174572]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 30)
+layout_mode = 0
+offset_left = 523.0
+offset_top = 540.0
+offset_right = 986.0
+offset_bottom = 570.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rd7dy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uwtdo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b4s0c")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s1glv")
+text = "Hauptmenu
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/System" unique_id=1862095341]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_top = 256.0
+offset_right = 232.0
+offset_bottom = 493.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=1316199235]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer2" unique_id=442490487]
+layout_mode = 2
+text = "Bildschirm Einstellungen"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=1314997242]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=236150288]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Vollbild"
+
+[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=1945236953]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")

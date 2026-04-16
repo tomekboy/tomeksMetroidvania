@@ -1,0 +1,33 @@
+class_name PlayerCamera extends Camera2D
+
+var shake_strength : float = 0.0
+@export var shake_decay_rate : float = 5.0
+@export var max_shake_offset : float = 20.0
+
+func _ready() -> void:
+	VisualEffects.camera_shook.connect( _apply_shake )
+	pass
+
+
+func _process( delta: float ) -> void:
+	offset = Vector2(
+		randf_range( -shake_strength, shake_strength ),
+		randf_range( -shake_strength, shake_strength )
+		)
+	shake_strength = lerp( shake_strength, 0.0, shake_decay_rate * delta )
+	pass
+
+
+func _input( event: InputEvent ) -> void:
+	if event.is_action_pressed("zoom"):
+		set_zoom(Vector2(1,1))
+		return
+	if event.is_action_released("zoom"):
+		set_zoom(Vector2(2,2))
+		return
+	pass
+
+
+func  _apply_shake( strength : float ) -> void:
+	shake_strength = min( strength, max_shake_offset )
+	pass

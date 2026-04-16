@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3827l5dr6wwd"
+path="res://.godot/imported/fun-time-incredibox-without- FunComputer-sprunki-mix-385336.mp3-7f73c8a259c68ef74bb630ff2baf0ba4.mp3str"
+
+[deps]
+
+source_file="res://assets/music/fun-time-incredibox-without- FunComputer-sprunki-mix-385336.mp3"
+dest_files=["res://.godot/imported/fun-time-incredibox-without- FunComputer-sprunki-mix-385336.mp3-7f73c8a259c68ef74bb630ff2baf0ba4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

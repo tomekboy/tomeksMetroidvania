@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ywmtgf5rdf2"]
+
+[ext_resource type="Script" uid="uid://bidwccuhjkat6" path="res://general/scripts/breakables.gd" id="1_l03ws"]
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_iif6g"]
+[ext_resource type="Resource" uid="uid://bnfjc1g7xt1fo" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_medium.tres" id="3_5co5j"]
+[ext_resource type="Resource" uid="uid://d7nm8pwi1pv4" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_small.tres" id="4_xxcap"]
+[ext_resource type="Resource" uid="uid://dwosvte46udf7" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_large.tres" id="5_bwi3l"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="6_jrj6j"]
+[ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="7_5p137"]
+[ext_resource type="Texture2D" uid="uid://cflgw64n5ybd7" path="res://general/props/images/box.png" id="8_f48es"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pio1y"]
+size = Vector2(48, 45.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhkg8"]
+size = Vector2(57, 55)
+
+[node name="Crate" type="Node2D" unique_id=1026468228]
+script = ExtResource("1_l03ws")
+hit_particles = Array[ExtResource("2_iif6g")]([ExtResource("3_5co5j")])
+destroy_particles = Array[ExtResource("2_iif6g")]([ExtResource("4_xxcap"), ExtResource("3_5co5j"), ExtResource("5_bwi3l")])
+metadata/_custom_type_script = "uid://bidwccuhjkat6"
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1277863239]
+position = Vector2(0, 4)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("6_jrj6j")
+audio = ExtResource("7_5p137")
+metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1960897022]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_pio1y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1886438040]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_f48es")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=96383599]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1122016790]
+position = Vector2(-0.5, 8.5)
+shape = SubResource("RectangleShape2D_lhkg8")

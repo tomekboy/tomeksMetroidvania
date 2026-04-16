@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HitParticleSettings" format=3 uid="uid://d7nm8pwi1pv4"]
+
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="1_tu82e"]
+[ext_resource type="Texture2D" uid="uid://bk6j2t4w12nrk" path="res://general/sprites/props_destructible.png" id="2_d1apa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po6ul"]
+atlas = ExtResource("2_d1apa")
+region = Rect2(120, 6, 4, 4)
+
+[resource]
+script = ExtResource("1_tu82e")
+count = 16
+texture = SubResource("AtlasTexture_po6ul")
+metadata/_custom_type_script = "uid://sxomxrc0lhoq"

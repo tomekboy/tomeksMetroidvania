@@ -1,0 +1,370 @@
+[gd_scene format=3 uid="uid://d12hmou2bfva3"]
+
+[ext_resource type="Texture2D" uid="uid://cewgc0ir0u384" path="res://title_screen/images/background.png" id="1_g2mvh"]
+[ext_resource type="Script" uid="uid://cjwn1okwk872v" path="res://title_screen/scripts/title_screen.gd" id="1_vbjqi"]
+[ext_resource type="FontFile" uid="uid://bir3r13v7fsx3" path="res://app/fonts/DroidSans.ttf" id="2_dxpbd"]
+[ext_resource type="VideoStream" uid="uid://dr1g44dr21hv0" path="res://title_screen/video/mrFun.ogv" id="3_2dq6q"]
+[ext_resource type="Texture2D" uid="uid://ddclp3ynop3jc" path="res://title_screen/images/game01.png" id="5_0m3ch"]
+[ext_resource type="Texture2D" uid="uid://v2apmn5doib0" path="res://title_screen/images/game03.png" id="6_oqrgu"]
+[ext_resource type="Texture2D" uid="uid://caivj6kiwhfjj" path="res://title_screen/images/game02.png" id="7_fv0o7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g2mvh"]
+texture = ExtResource("1_g2mvh")
+modulate_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbjqi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m3ch"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 0.6039216)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk0fn"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqrgu"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv0o7"]
+bg_color = Color(0, 0, 0, 0.627451)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oos5"]
+bg_color = Color(0, 0, 0, 0.64705884)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TitleScreen" type="CanvasLayer" unique_id=1844108372]
+script = ExtResource("1_vbjqi")
+
+[node name="Background" type="Panel" parent="." unique_id=403866575]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_g2mvh")
+
+[node name="Visuals" type="Control" parent="." unique_id=1554866062]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Title" type="RichTextLabel" parent="Visuals" unique_id=401155899]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 102.0
+offset_right = 812.0
+offset_bottom = 130.0
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Polo 'n Friends[/rainbow][/outline_size][/outline_color]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Subtitle" type="RichTextLabel" parent="Visuals" unique_id=1713198718]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 135.0
+offset_right = 793.0
+offset_bottom = 152.0
+theme_override_font_sizes/normal_font_size = 11
+text = "die Wiedervereinigung"
+horizontal_alignment = 1
+
+[node name="broughtBy" type="RichTextLabel" parent="Visuals" unique_id=1013762329]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 616.0
+offset_right = 1016.5
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_dxpbd")
+text = "\"Sprunki\" created by 'NyankoBfLol' | \"Sprunki\" trademark of ShinStar LLC | \"Sprunki\" characters  on https://incredibox-sprunki.fandom.com/"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Visuals" unique_id=386834796]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 353.0
+offset_right = 498.0
+offset_bottom = 639.0
+scale = Vector2(0.25, 0.25)
+stream = ExtResource("3_2dq6q")
+volume_db = -20.0
+autoplay = true
+loop = true
+
+[node name="MainMenu" type="VBoxContainer" parent="." unique_id=2103405663]
+unique_name_in_owner = true
+offset_left = 616.0
+offset_top = 184.0
+offset_right = 775.0
+offset_bottom = 242.0
+
+[node name="NewGameButton" type="Button" parent="MainMenu" unique_id=169779968]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "neu
+"
+
+[node name="LoadGameButton" type="Button" parent="MainMenu" unique_id=1695071906]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "weiter
+"
+
+[node name="SettingsGameButton" type="Button" parent="MainMenu" unique_id=27827555]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "einstellungen
+"
+
+[node name="ExitGameButton" type="Button" parent="MainMenu" unique_id=664374787]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "ende
+"
+
+[node name="NewGameMenu" type="Panel" parent="." unique_id=2053982426]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -382.0
+offset_top = -256.0
+offset_right = 386.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fv0o7")
+
+[node name="NewGameMenu" type="VBoxContainer" parent="NewGameMenu" unique_id=572879962]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 311.0
+
+[node name="TextureRect" type="TextureRect" parent="NewGameMenu/NewGameMenu" unique_id=318988167]
+layout_mode = 2
+texture = ExtResource("5_0m3ch")
+
+[node name="NewSlot1" type="Button" parent="NewGameMenu/NewGameMenu" unique_id=1356953712]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "abenteuer 01
+"
+
+[node name="NewGameMenu2" type="VBoxContainer" parent="NewGameMenu" unique_id=688692073]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 88.0
+offset_right = 512.0
+offset_bottom = 402.0
+
+[node name="TextureRect" type="TextureRect" parent="NewGameMenu/NewGameMenu2" unique_id=2090766361]
+layout_mode = 2
+texture = ExtResource("7_fv0o7")
+
+[node name="NewSlot2" type="Button" parent="NewGameMenu/NewGameMenu2" unique_id=1593052110]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "abenteuer 02
+"
+
+[node name="NewGameMenu3" type="VBoxContainer" parent="NewGameMenu" unique_id=598090018]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 209.0
+offset_right = 768.0
+offset_bottom = 523.0
+
+[node name="TextureRect" type="TextureRect" parent="NewGameMenu/NewGameMenu3" unique_id=1570309837]
+layout_mode = 2
+texture = ExtResource("6_oqrgu")
+
+[node name="NewSlot3" type="Button" parent="NewGameMenu/NewGameMenu3" unique_id=800749711]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "abenteuer 03
+"
+
+[node name="LoadGameMenu" type="Panel" parent="." unique_id=406904649]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -382.0
+offset_top = -256.0
+offset_right = 386.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1oos5")
+
+[node name="LoadGame01" type="VBoxContainer" parent="LoadGameMenu" unique_id=1224138504]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 311.0
+
+[node name="TextureRect" type="TextureRect" parent="LoadGameMenu/LoadGame01" unique_id=1383856992]
+layout_mode = 2
+texture = ExtResource("5_0m3ch")
+
+[node name="LoadSlot1" type="Button" parent="LoadGameMenu/LoadGame01" unique_id=854186638]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "lade abenteuer 01
+"
+
+[node name="LoadGame02" type="VBoxContainer" parent="LoadGameMenu" unique_id=1948498901]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 88.0
+offset_right = 512.0
+offset_bottom = 402.0
+
+[node name="TextureRect" type="TextureRect" parent="LoadGameMenu/LoadGame02" unique_id=1694694973]
+layout_mode = 2
+texture = ExtResource("7_fv0o7")
+
+[node name="LoadSlot2" type="Button" parent="LoadGameMenu/LoadGame02" unique_id=1085136448]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "lade abenteuer 02
+"
+
+[node name="LoadGame03" type="VBoxContainer" parent="LoadGameMenu" unique_id=1469666543]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 209.0
+offset_right = 768.0
+offset_bottom = 523.0
+
+[node name="TextureRect" type="TextureRect" parent="LoadGameMenu/LoadGame03" unique_id=1990666462]
+layout_mode = 2
+texture = ExtResource("6_oqrgu")
+
+[node name="LoadSlot3" type="Button" parent="LoadGameMenu/LoadGame03" unique_id=574490782]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
+text = "lade abenteuer 03
+"

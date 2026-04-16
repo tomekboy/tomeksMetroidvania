@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c3yqy7notfn5c"]
+
+[ext_resource type="Script" uid="uid://bidwccuhjkat6" path="res://general/scripts/breakables.gd" id="1_rxcfk"]
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_hah4q"]
+[ext_resource type="Resource" uid="uid://bnfjc1g7xt1fo" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_medium.tres" id="3_vgj7x"]
+[ext_resource type="Resource" uid="uid://d7nm8pwi1pv4" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_small.tres" id="4_68nwx"]
+[ext_resource type="Resource" uid="uid://dwosvte46udf7" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_large.tres" id="5_fxjlx"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="6_yv756"]
+[ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="7_jewg8"]
+[ext_resource type="Texture2D" uid="uid://q4d45mnwrqbc" path="res://general/props/images/woodenBarrel.png" id="8_rxcfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pio1y"]
+size = Vector2(48, 45.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhkg8"]
+size = Vector2(48, 56)
+
+[node name="Barrel" type="Node2D" unique_id=1026468228]
+script = ExtResource("1_rxcfk")
+hit_particles = Array[ExtResource("2_hah4q")]([ExtResource("3_vgj7x")])
+destroy_particles = Array[ExtResource("2_hah4q")]([ExtResource("4_68nwx"), ExtResource("3_vgj7x"), ExtResource("5_fxjlx")])
+metadata/_custom_type_script = "uid://bidwccuhjkat6"
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1277863239]
+position = Vector2(0, 4)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("6_yv756")
+audio = ExtResource("7_jewg8")
+metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1960897022]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_pio1y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1886438040]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_rxcfk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=96383599]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1122016790]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_lhkg8")
