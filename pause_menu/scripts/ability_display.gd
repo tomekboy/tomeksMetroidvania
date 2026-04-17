@@ -2,6 +2,7 @@ extends Node
 
 @onready var ability_double_jump: TextureRect = %AbilityDoubleJump
 @onready var ability_dash: TextureRect = %AbilityDash
+
 @onready var ability_slam: TextureRect = %AbilitySlam
 @onready var ability_roll: TextureRect = %AbilityRoll
 

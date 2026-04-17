@@ -118,10 +118,6 @@ size = Vector2(64, 64)
 
 [node name="Playground" type="Node2D" unique_id=1709527757]
 
-[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("1_te8jg")]
-position = Vector2(794, 280)
-type = 1
-
 [node name="LevelBounds" type="Node2D" parent="." unique_id=586289070]
 z_index = 256
 script = ExtResource("1_4bqqs")
@@ -243,3 +239,6 @@ position = Vector2(695, 320)
 
 [node name="Player" parent="." unique_id=1981200209 instance=ExtResource("1_rupst")]
 position = Vector2(554, 210)
+
+[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("1_te8jg")]
+position = Vector2(802, 272)

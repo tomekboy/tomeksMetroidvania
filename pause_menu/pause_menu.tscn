@@ -10,19 +10,19 @@ spacing_glyph = 6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4s0c"]
 atlas = ExtResource("2_uwtdo")
-region = Rect2(95, 33.5, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uwtdo"]
-atlas = ExtResource("2_uwtdo")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1glv"]
 atlas = ExtResource("2_uwtdo")
-region = Rect2(32, 64, 32, 32)
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wn31l"]
 atlas = ExtResource("2_uwtdo")
-region = Rect2(32, 96, 32, 32)
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0obc"]
+atlas = ExtResource("2_uwtdo")
+region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="Gradient" id="Gradient_rd7dy"]
 offsets = PackedFloat32Array(0, 0.53614455, 1)
@@ -173,14 +173,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AbilityDisplay" type="VBoxContainer" parent="Control/PauseScreen" unique_id=2123789897]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 25.0
 offset_top = 61.0
-offset_right = 140.0
-offset_bottom = -60.0
+offset_right = 181.0
+offset_bottom = -76.0
 grow_vertical = 2
 script = ExtResource("2_b4s0c")
 
@@ -190,22 +190,24 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_b4s0c")
 stretch_mode = 3
 
-[node name="AbilityDash" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1717529333]
+[node name="AbilityDash" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1161395774]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_uwtdo")
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+texture = SubResource("AtlasTexture_s1glv")
 stretch_mode = 3
 
 [node name="AbilitySlam" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=2101041452]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_s1glv")
+texture = SubResource("AtlasTexture_wn31l")
 stretch_mode = 3
 
 [node name="AbilityRoll" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=407154104]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_wn31l")
+texture = SubResource("AtlasTexture_b0obc")
 stretch_mode = 3
 
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
