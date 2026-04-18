@@ -20,10 +20,10 @@ func _process( delta: float ) -> void:
 
 func _input( event: InputEvent ) -> void:
 	if event.is_action_pressed("zoom"):
-		set_zoom(Vector2(1,1))
+		set_zoom(Vector2( 1, 1) )
 		return
 	if event.is_action_released("zoom"):
-		set_zoom(Vector2(2,2))
+		set_zoom(Vector2( 1.5, 1.5 ) )
 		return
 	pass
 

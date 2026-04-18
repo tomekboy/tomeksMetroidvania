@@ -310,6 +310,7 @@ autoplay = &"dash"
 
 [node name="OrbSprite" type="Sprite2D" parent="." unique_id=1939604274]
 unique_name_in_owner = true
+modulate = Color(0.8156863, 0.98039216, 0.9764706, 1)
 texture = SubResource("AtlasTexture_q7t65")
 hframes = 5
 

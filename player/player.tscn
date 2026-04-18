@@ -1384,7 +1384,6 @@ hframes = 8
 frame = 4
 
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=1883793213]
-visible = false
 position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_2ieo8")
 debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
@@ -1419,6 +1418,7 @@ autoplay = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1219678630]
 process_mode = 3
+visible = false
 position = Vector2(0, -45)
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("12_kb6p2")
@@ -1486,6 +1486,7 @@ shape = SubResource("CapsuleShape2D_ebec5")
 debug_color = Color(0.63468015, 0.70196074, 0, 0.25490198)
 
 [node name="StatesAnimationAudio" type="Node2D" parent="." unique_id=1020730243]
+visible = false
 position = Vector2(0, -26)
 
 [node name="StatesSFX" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1059496684]
@@ -1500,6 +1501,7 @@ stream = ExtResource("28_rptt4")
 bus = &"States"
 
 [node name="RollRaycasts" type="Node2D" parent="." unique_id=247603277]
+visible = false
 
 [node name="RollTop" type="RayCast2D" parent="RollRaycasts" unique_id=596360466]
 unique_name_in_owner = true
