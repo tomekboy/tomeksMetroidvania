@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cbdfv5wlgti5s" path="res://general/scripts/level_bounds.gd" id="1_4bqqs"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="1_o00ia"]
-[ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="1_te8jg"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="2_wt17y"]
 [ext_resource type="PackedScene" uid="uid://b7p7lf5dujcfj" path="res://general/props/test_dummy/test_dummy.tscn" id="7_ynsuh"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cv4qipiafa80g" path="res://general/props/slam_breakable.tscn" id="11_pio1y"]
 [ext_resource type="PackedScene" uid="uid://c36kgros6www8" path="res://enemies/slime/slime.tscn" id="13_yjl7g"]
 [ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="14_f7pug"]
+[ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="14_jgc46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8u5f"]
 texture = ExtResource("2_wt17y")
@@ -225,9 +225,11 @@ one_way_collision = true
 
 [node name="Crate" parent="Probs" unique_id=1026468228 instance=ExtResource("8_v7dth")]
 position = Vector2(528, 561)
+scale = Vector2(0.5, 0.5)
 
 [node name="Barrel" parent="Probs" unique_id=1640605002 instance=ExtResource("9_pi42a")]
 position = Vector2(776, 565)
+scale = Vector2(0.5, 0.5)
 
 [node name="TestDummy" parent="Probs" unique_id=650663905 instance=ExtResource("7_ynsuh")]
 position = Vector2(600, 304)
@@ -239,12 +241,14 @@ position = Vector2(989, 271)
 [node name="SlamBreakable" parent="Probs" unique_id=527055245 instance=ExtResource("11_pio1y")]
 position = Vector2(695, 320)
 
-[node name="Player" parent="." unique_id=1981200209 instance=ExtResource("1_rupst")]
-position = Vector2(528, 230)
-
 [node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("1_te8jg")]
-position = Vector2(802, 272)
+position = Vector2(803, 272)
+scale = Vector2(0.5, 0.5)
 
 [node name="Slime" parent="." unique_id=286750866 instance=ExtResource("13_yjl7g")]
 position = Vector2(325, 403)
 death_sound = ExtResource("14_f7pug")
+
+[node name="Player" parent="." unique_id=1981200209 instance=ExtResource("14_jgc46")]
+position = Vector2(94, 435)
+wall_y_force = -300.0

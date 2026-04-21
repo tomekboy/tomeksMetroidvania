@@ -1,10 +1,6 @@
 class_name Player extends CharacterBody2D
 
-const DEBUG_JUMP_INDICATOR = preload("uid://738s7tmgei1c")
-
-#region /// signals
 signal damage_taken
-#endregion
 
 #region /// on ready variables
 @onready var sprite: PlayerSprite = $Sprite2D
@@ -17,13 +13,22 @@ signal damage_taken
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_area: AttackArea = %AttackArea
 @onready var damage_area: DamageArea = %DamageArea
-
+@onready var wall_climb_right_raycast: RayCast2D = %WallClimbRightRaycast
+@onready var wall_climb_left_raycast: RayCast2D = %WallClimbLeftRaycast
 #endregion
 
 #region /// export variables
+@export_category( "Movement" )
 @export var move_speed : float = 125.0
 @export var max_fall_velocity : float = 600.0
+#endregion
 
+#region /// climb variables
+@export_category( "Wall Jump / Climb" )
+@export var wall_slide_velocity : float = 10
+@export var wall_x_force : float = 350.0
+@export var wall_y_force : float = -220.0
+var is_wall_jumping = false
 #endregion
 
 #region /// state machine variables
@@ -32,20 +37,28 @@ var current_state : PlayerState :
 	get : return states.front()
 var previous_state : PlayerState :
 	get : return states[ 1 ]
-	
 #endregion
 
-#region /// player stats
-var hp : float = 20 :
+#region /// player stats 
+var hp : float = 25 :
 	set( value ):
 		hp = clampf( value, 0, max_hp )
 		MessageManager.player_health_changed.emit( hp, max_hp )
 
-var max_hp : float = 20 :
+var max_hp : float = 50 :
 	set( value ):
 		max_hp = value
 		MessageManager.player_health_changed.emit( hp, max_hp )
+#endregion
 
+#region /// standard variables
+var direction : Vector2 = Vector2.ZERO
+var gravity : float = 980
+var gravity_multiplier : float = 1.0
+var wall_direction : Vector2 = Vector2.ZERO
+#endregion
+
+#region /// abilities
 var dash : bool = false
 var dash_count : int = 0
 var double_jump : bool = false
@@ -55,12 +68,6 @@ var morph_roll : bool = false
 var can_interact : bool = false
 #endregion
 
-#region /// standard variables
-var direction : Vector2 = Vector2.ZERO
-var gravity : float = 980
-var gravity_multiplier : float = 1.0
-
-#endregion
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group( "Player" ) != self:
@@ -84,24 +91,6 @@ func _unhandled_input( event: InputEvent ) -> void:
 		var pause_menu : PauseMenu = load( "res://pause_menu/pause_menu.tscn" ).instantiate()
 		add_child( pause_menu )
 		return
-		
-	# DEBUG
-	if OS.is_debug_build():
-		#if event.is_action_pressed( "attack" ):
-			#attack_area.activate()
-			#return
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_MINUS:
-				if Input.is_key_pressed( KEY_SHIFT ):
-					max_hp -= 10
-				else:
-					hp -= 2
-			elif event.keycode == KEY_EQUAL:
-				if Input.is_key_pressed( KEY_SHIFT ):
-					max_hp += 10
-				else:
-					hp += 2
-	# end DEBUG
 		
 	change_state( current_state.handle_input( event ) )
 	pass
@@ -163,28 +152,20 @@ func update_direction() -> void:
 	# eliminate stick drift to happen
 	var x_axis = Input.get_axis( "left", "right" )
 	var y_axis = Input.get_axis( "up", "down" )
-	direction = Vector2( x_axis, y_axis )
-	
-	if prev_direction.x != direction.x:
-		attack_area.flip( direction.x )
-		if direction.x < 0: # left
-			sprite.flip_h = true
-			attack_sprite.flip_h = true
-			attack_sprite.position.x = -24
-		elif direction.x > 0:
-			sprite.flip_h = false
-			attack_sprite.flip_h = false
-			attack_sprite.position.x = 24
-	pass
-
-
-func add_debug_indicator( color : Color = Color.RED) -> void:
-	var d: Node2D = DEBUG_JUMP_INDICATOR.instantiate()
-	get_tree().root.add_child( d )
-	d.global_position = global_position
-	d.modulate = color
-	await get_tree().create_timer( 3.0 ).timeout	
-	d.queue_free()
+	print( "update direction: ", is_wall_jumping )
+	if is_wall_jumping == false:
+		direction = Vector2( x_axis, y_axis )
+		
+		if prev_direction.x != direction.x:
+			attack_area.flip( direction.x )
+			if direction.x < 0: # left
+				sprite.flip_h = true
+				attack_sprite.flip_h = true
+				attack_sprite.position.x = -24
+			elif direction.x > 0:
+				sprite.flip_h = false
+				attack_sprite.flip_h = false
+				attack_sprite.position.x = 24
 	pass
 
 

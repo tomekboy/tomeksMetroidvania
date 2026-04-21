@@ -16,6 +16,7 @@ var next_state : PlayerState
 @onready var dash: PlayerStateDash = %Dash
 @onready var slam: PlayerStateSlam = %Slam
 @onready var roll: PlayerStateRoll = %Roll
+@onready var climb: PlayerStateClimb = %Climb
 
 #endregion
 

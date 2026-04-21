@@ -15,7 +15,7 @@ var effect_timer : float = 0
 
 @onready var damage_area: DamageArea = %DamageArea
 @onready var ground_slam_attack_area: AttackArea = %GroundSlamAttackArea
-@onready var ground_slam_shape_raycast: ShapeCast2D = $"../../GroundSlamRaycast"
+@onready var ground_slam_shape_cast: ShapeCast2D = $"../../GroundSlamShapeCast"
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -69,12 +69,12 @@ func physics_process( delta: float ) -> PlayerState:
 
 
 func check_collisions( delta : float ) -> bool:
-	ground_slam_shape_raycast.target_position.y = velocity * delta
-	ground_slam_shape_raycast.force_shapecast_update()
-	if ground_slam_shape_raycast.is_colliding():
-		for i in ground_slam_shape_raycast.get_collision_count():
-			var c = ground_slam_shape_raycast.get_collider( i )
-			var pos : Vector2 = ground_slam_shape_raycast.get_collision_point( i )
+	ground_slam_shape_cast.target_position.y = velocity * delta
+	ground_slam_shape_cast.force_shapecast_update()
+	if ground_slam_shape_cast.is_colliding():
+		for i in ground_slam_shape_cast.get_collision_count():
+			var c = ground_slam_shape_cast.get_collider( i )
+			var pos : Vector2 = ground_slam_shape_cast.get_collision_point( i )
 			
 			# handle breakables
 			VisualEffects.hit_dust( pos )

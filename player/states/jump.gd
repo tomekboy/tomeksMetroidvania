@@ -1,7 +1,8 @@
 class_name PlayerStateJump extends PlayerState
 
 @export var jump_velocity : float = 550.0
-@export var audio : AudioStream
+
+const JUMP_SFX = preload("uid://b45traf8qjvk4")
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -16,7 +17,6 @@ func enter() -> void:
 		VisualEffects.hit_dust( player.global_position )
 	player.animation_player.play( "jump" )
 	player.animation_player.pause()
-	# player.add_debug_indicator( Color.LIME_GREEN )
 
 	do_jump()
 	
@@ -45,7 +45,7 @@ func handle_input( event : InputEvent) -> PlayerState:
 		return attack
 	if event.is_action_released( "jump" ):
 		return fall
-	if event.is_action_pressed( "action") and player.can_morph() and player.can_morph():
+	if event.is_action_pressed( "action") and player.can_morph():
 		return roll
 	return next_state
 
@@ -58,6 +58,8 @@ func process( _delta: float ) -> PlayerState:
 
 # what happens each physics process tick in this state?
 func physics_process( _delta: float ) -> PlayerState:
+	if can_wall_climb():
+		return climb
 	if player.is_on_floor():
 		return idle
 	elif player.velocity.y >= 0:
@@ -74,7 +76,7 @@ func do_jump() -> void:
 			return
 	player.jump_count += 1
 	player.velocity.y = -jump_velocity
-	AudioManager.play_spatial_sound( audio, player.global_position )
+	AudioManager.play_spatial_sound( JUMP_SFX, player.global_position )
 	pass
 
 
@@ -82,3 +84,6 @@ func set_jump_frame() -> void:
 	var frame : float = remap( player.velocity.y, -jump_velocity, 0.0, 0.0, 1.4 )
 	player.animation_player.seek( frame, true )
 	pass
+
+func can_wall_climb() -> bool:
+	return player.is_on_wall_only() and ( player.wall_climb_right_raycast.is_colliding() or player.wall_climb_left_raycast.is_colliding() )

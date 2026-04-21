@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://slq853tx5ppp" path="res://levels/00_wonderland/animations/plant_poison.png" id="12_dy0bl"]
 [ext_resource type="Texture2D" uid="uid://dxyuffjk08u8a" path="res://levels/00_wonderland/images/bush.png" id="13_l4mrs"]
 [ext_resource type="Material" uid="uid://d0mwxqwvs8f7i" path="res://assets/materials_and_shaders/fog_fade_material.tres" id="19_yyesb"]
+[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="23_17nne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wfn48"]
 texture = ExtResource("5_yyesb")
@@ -2138,7 +2139,6 @@ position = Vector2(0, 832)
 [node name="MusicAutoTrigger" type="Node" parent="." unique_id=709671600]
 script = ExtResource("4_sd75o")
 track = ExtResource("5_j5ssd")
-reverb = 2
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
 [node name="Forrest" parent="." unique_id=388100454 instance=ExtResource("3_or2f5")]
@@ -2659,3 +2659,6 @@ visibility_rect = Rect2(-1530, -200, 3060, 320)
 process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
 [node name="Decorations" type="Node" parent="." unique_id=1361011820]
+
+[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("23_17nne")]
+position = Vector2(217, 559)

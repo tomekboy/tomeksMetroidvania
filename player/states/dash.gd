@@ -31,7 +31,7 @@ func enter() -> void:
 	
 	player.dash_count += 1
 	
-	#player.sprite.tween_color( duration )
+	player.sprite.tween_color( duration )
 	pass
 
 

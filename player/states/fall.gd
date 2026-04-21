@@ -17,6 +17,8 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
+	if can_wall_climb():
+		return
 	player.animation_player.play( "fall" )
 	player.animation_player.pause()
 	player.gravity_multiplier = fall_gravity_multiplier
@@ -75,6 +77,8 @@ func process( delta: float ) -> PlayerState:
 
 # what happens each physics process tick in this state?
 func physics_process( _delta: float ) -> PlayerState:
+	if can_wall_climb():
+		return climb
 	if player.is_on_floor():
 		VisualEffects.land_dust( player.global_position )
 		land.play()
@@ -90,3 +94,7 @@ func set_jump_frame() -> void:
 	var frame : float = remap( player.velocity.y, 0.0, player.max_fall_velocity, 0.0, 0.75 )
 	player.animation_player.seek( frame, true )
 	pass
+
+
+func can_wall_climb() -> bool:
+	return player.is_on_wall_only() and ( player.wall_climb_right_raycast.is_colliding() or player.wall_climb_left_raycast.is_colliding() )
