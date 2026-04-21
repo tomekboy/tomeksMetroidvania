@@ -15,6 +15,7 @@ signal damage_taken
 @onready var damage_area: DamageArea = %DamageArea
 @onready var wall_climb_right_raycast: RayCast2D = %WallClimbRightRaycast
 @onready var wall_climb_left_raycast: RayCast2D = %WallClimbLeftRaycast
+@onready var wall_climb_timer: Timer = $WallClimbTimer
 #endregion
 
 #region /// export variables
@@ -26,8 +27,8 @@ signal damage_taken
 #region /// climb variables
 @export_category( "Wall Jump / Climb" )
 @export var wall_slide_velocity : float = 10
-@export var wall_x_force : float = 350.0
-@export var wall_y_force : float = -220.0
+@export var wall_x_force : float = 200.0
+@export var wall_y_force : float = -550.0
 var is_wall_jumping = false
 #endregion
 
@@ -152,7 +153,6 @@ func update_direction() -> void:
 	# eliminate stick drift to happen
 	var x_axis = Input.get_axis( "left", "right" )
 	var y_axis = Input.get_axis( "up", "down" )
-	print( "update direction: ", is_wall_jumping )
 	if is_wall_jumping == false:
 		direction = Vector2( x_axis, y_axis )
 		
@@ -193,3 +193,6 @@ func can_morph() -> bool:
 	if morph_roll == false:
 		return false
 	return true
+
+func can_wall_climb() -> bool:
+	return wall_climb_timer.is_stopped() and is_on_wall_only() and ( wall_climb_right_raycast.is_colliding() or wall_climb_left_raycast.is_colliding() )

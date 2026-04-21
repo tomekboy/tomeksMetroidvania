@@ -58,7 +58,7 @@ func process( _delta: float ) -> PlayerState:
 
 # what happens each physics process tick in this state?
 func physics_process( _delta: float ) -> PlayerState:
-	if can_wall_climb():
+	if player.can_wall_climb():
 		return climb
 	if player.is_on_floor():
 		return idle
@@ -84,6 +84,4 @@ func set_jump_frame() -> void:
 	var frame : float = remap( player.velocity.y, -jump_velocity, 0.0, 0.0, 1.4 )
 	player.animation_player.seek( frame, true )
 	pass
-
-func can_wall_climb() -> bool:
-	return player.is_on_wall_only() and ( player.wall_climb_right_raycast.is_colliding() or player.wall_climb_left_raycast.is_colliding() )
+	

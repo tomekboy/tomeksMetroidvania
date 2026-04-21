@@ -250,5 +250,5 @@ position = Vector2(325, 403)
 death_sound = ExtResource("14_f7pug")
 
 [node name="Player" parent="." unique_id=1981200209 instance=ExtResource("14_jgc46")]
-position = Vector2(94, 435)
+position = Vector2(75, 405)
 wall_y_force = -300.0
