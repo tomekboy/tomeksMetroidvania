@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8jeinjj104s2"
-path="res://.godot/imported/state.svg-2881e95c39d55ccc34a6dbebf7d97a59.ctex"
+path="res://.godot/imported/state.svg-92affc62d7ac8ee7f3e5bba605947b50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/states/state.svg"
-dest_files=["res://.godot/imported/state.svg-2881e95c39d55ccc34a6dbebf7d97a59.ctex"]
+source_file="res://general/icons/state.svg"
+dest_files=["res://.godot/imported/state.svg-92affc62d7ac8ee7f3e5bba605947b50.ctex"]
 
 [params]
 

@@ -1555,6 +1555,7 @@ script = ExtResource("16_2uvqg")
 
 [node name="AttackSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1354354306]
 unique_name_in_owner = true
+visible = false
 show_behind_parent = true
 position = Vector2(48, 7)
 texture = ExtResource("7_32hag")
@@ -1590,7 +1591,28 @@ max_results = 4
 collision_mask = 192
 collide_with_areas = true
 
+[node name="RollRaycasts" type="Node2D" parent="." unique_id=247603277]
+visible = false
+
+[node name="RollTop" type="RayCast2D" parent="RollRaycasts" unique_id=596360466]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, -52)
+hit_from_inside = true
+
+[node name="RollBottom" type="RayCast2D" parent="RollRaycasts" unique_id=1736445070]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, 6)
+collision_mask = 3
+hit_from_inside = true
+
 [node name="WallClimbRaycasts" type="Node2D" parent="." unique_id=1442993530]
+visible = false
 
 [node name="WallClimbRightRaycast" type="RayCast2D" parent="WallClimbRaycasts" unique_id=728338091]
 unique_name_in_owner = true
@@ -1601,6 +1623,10 @@ target_position = Vector2(15, 0)
 unique_name_in_owner = true
 position = Vector2(0, -25)
 target_position = Vector2(-15, 0)
+
+[node name="WallClimbTimer" type="Timer" parent="." unique_id=36111394]
+wait_time = 0.3
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1856354717]
 libraries/ = SubResource("AnimationLibrary_hg6s5")
@@ -1689,30 +1715,6 @@ unique_name_in_owner = true
 position = Vector2(0, 26)
 stream = ExtResource("28_rptt4")
 bus = &"States"
-
-[node name="RollRaycasts" type="Node2D" parent="." unique_id=247603277]
-visible = false
-
-[node name="RollTop" type="RayCast2D" parent="RollRaycasts" unique_id=596360466]
-unique_name_in_owner = true
-position = Vector2(0, -4)
-enabled = false
-exclude_parent = false
-target_position = Vector2(0, -52)
-hit_from_inside = true
-
-[node name="RollBottom" type="RayCast2D" parent="RollRaycasts" unique_id=1736445070]
-unique_name_in_owner = true
-position = Vector2(0, -1)
-enabled = false
-exclude_parent = false
-target_position = Vector2(0, 6)
-collision_mask = 3
-hit_from_inside = true
-
-[node name="WallClimbTimer" type="Timer" parent="." unique_id=36111394]
-wait_time = 0.3
-one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1845186501]
 bus = &"States"
