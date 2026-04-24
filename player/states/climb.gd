@@ -30,18 +30,14 @@ func process( _delta: float ) -> PlayerState:
 
 # what happens each physics process tick in this state?
 func physics_process( _delta: float ) -> PlayerState:
-	if not Input.is_action_pressed("left") and player.wall_climb_left_raycast.is_colliding():
-		return idle
-	if player.is_on_wall_only():
-		player.velocity.y = player.wall_slide_velocity
-		player.animation_player.play( "slide" )
+	if not Input.is_action_pressed("left") or not Input.is_action_pressed("right") and player.wall_climb_raycast.is_colliding():
+		if player.is_on_wall_only():
+			player.velocity.y = player.wall_slide_velocity
+			player.animation_player.play( "slide" )
+			if not player.wall_climb_raycast.is_colliding():
+				return fall
 		if Input.is_action_just_pressed( "jump" ):
-			if player.wall_climb_left_raycast.is_colliding():
+			if player.wall_climb_raycast.is_colliding():
 				player.velocity = Vector2( player.wall_x_force, player.wall_y_force )
-				player.sprite.flip_h = true
-				return jump
-			if player.wall_climb_right_raycast.is_colliding():
-				player.velocity = Vector2( -player.wall_x_force, player.wall_y_force )
-				player.sprite.flip_h = false
 				return jump
 	return next_state

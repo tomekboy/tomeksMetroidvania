@@ -1480,7 +1480,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32hag"]
-size = Vector2(42, 14)
+size = Vector2(55, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jd2rm"]
 size = Vector2(36, 79)
@@ -1557,7 +1557,7 @@ script = ExtResource("16_2uvqg")
 unique_name_in_owner = true
 visible = false
 show_behind_parent = true
-position = Vector2(48, 7)
+position = Vector2(74, 7)
 texture = ExtResource("7_32hag")
 hframes = 8
 frame = 4
@@ -1591,6 +1591,11 @@ max_results = 4
 collision_mask = 192
 collide_with_areas = true
 
+[node name="WallClimbRaycast" type="RayCast2D" parent="." unique_id=728338091]
+unique_name_in_owner = true
+position = Vector2(0, -25)
+target_position = Vector2(15, 0)
+
 [node name="RollRaycasts" type="Node2D" parent="." unique_id=247603277]
 visible = false
 
@@ -1610,19 +1615,6 @@ exclude_parent = false
 target_position = Vector2(0, 6)
 collision_mask = 3
 hit_from_inside = true
-
-[node name="WallClimbRaycasts" type="Node2D" parent="." unique_id=1442993530]
-visible = false
-
-[node name="WallClimbRightRaycast" type="RayCast2D" parent="WallClimbRaycasts" unique_id=728338091]
-unique_name_in_owner = true
-position = Vector2(0, -25)
-target_position = Vector2(15, 0)
-
-[node name="WallClimbLeftRaycast" type="RayCast2D" parent="WallClimbRaycasts" unique_id=1689703130]
-unique_name_in_owner = true
-position = Vector2(0, -25)
-target_position = Vector2(-15, 0)
 
 [node name="WallClimbTimer" type="Timer" parent="." unique_id=36111394]
 wait_time = 0.3
@@ -1652,7 +1644,6 @@ hframes = 20
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=991221293]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -26)
 collision_layer = 0
 collision_mask = 96
@@ -1660,7 +1651,8 @@ script = ExtResource("15_wodsf")
 metadata/_custom_type_script = "uid://251458nsi4iq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1211461706]
-position = Vector2(21, 4)
+visible = false
+position = Vector2(27.5, 4)
 shape = SubResource("RectangleShape2D_32hag")
 debug_color = Color(1, 0, 0.050980393, 0.41960785)
 
@@ -1702,7 +1694,6 @@ shape = SubResource("CapsuleShape2D_ebec5")
 debug_color = Color(0.63468015, 0.70196074, 0, 0.25490198)
 
 [node name="StatesAnimationAudio" type="Node2D" parent="." unique_id=1020730243]
-visible = false
 position = Vector2(0, -26)
 
 [node name="StatesSFX" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1059496684]

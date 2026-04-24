@@ -11,10 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://levels/probs/barrel_wooden.tscn" id="9_pi42a"]
 [ext_resource type="PackedScene" uid="uid://bf5kdupbjjnbc" path="res://general/props/test_dummy/spike_dummy.tscn" id="10_h1jm5"]
 [ext_resource type="PackedScene" uid="uid://cv4qipiafa80g" path="res://general/props/slam_breakable.tscn" id="11_pio1y"]
-[ext_resource type="PackedScene" uid="uid://c36kgros6www8" path="res://enemies/slime/slime.tscn" id="13_yjl7g"]
-[ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="14_f7pug"]
 [ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="14_jgc46"]
-[ext_resource type="PackedScene" uid="uid://cba4om5mtn6km" path="res://enemies/slime_2/slime2.tscn" id="15_jgc46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8u5f"]
 texture = ExtResource("2_wt17y")
@@ -247,12 +244,5 @@ position = Vector2(803, 272)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." unique_id=1981200209 instance=ExtResource("14_jgc46")]
-position = Vector2(172, 122)
+position = Vector2(1034, 414)
 wall_y_force = -300.0
-
-[node name="Slime" parent="." unique_id=286750866 instance=ExtResource("13_yjl7g")]
-position = Vector2(325, 403)
-death_sound = ExtResource("14_f7pug")
-
-[node name="Slime2" parent="." unique_id=1875886109 instance=ExtResource("15_jgc46")]
-position = Vector2(293, 179)

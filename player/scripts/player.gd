@@ -13,8 +13,7 @@ signal damage_taken
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_area: AttackArea = %AttackArea
 @onready var damage_area: DamageArea = %DamageArea
-@onready var wall_climb_right_raycast: RayCast2D = %WallClimbRightRaycast
-@onready var wall_climb_left_raycast: RayCast2D = %WallClimbLeftRaycast
+@onready var wall_climb_raycast: RayCast2D = %WallClimbRaycast
 @onready var wall_climb_timer: Timer = $WallClimbTimer
 #endregion
 
@@ -162,10 +161,12 @@ func update_direction() -> void:
 				sprite.flip_h = true
 				attack_sprite.flip_h = true
 				attack_sprite.position.x = -24
+				wall_climb_raycast.target_position.x = -15
 			elif direction.x > 0:
 				sprite.flip_h = false
 				attack_sprite.flip_h = false
 				attack_sprite.position.x = 24
+				wall_climb_raycast.target_position.x = 15
 	pass
 
 
@@ -195,4 +196,4 @@ func can_morph() -> bool:
 	return true
 
 func can_wall_climb() -> bool:
-	return wall_climb_timer.is_stopped() and is_on_wall_only() and ( wall_climb_right_raycast.is_colliding() or wall_climb_left_raycast.is_colliding() )
+	return wall_climb_timer.is_stopped() and is_on_wall_only() and ( wall_climb_raycast.is_colliding() )
