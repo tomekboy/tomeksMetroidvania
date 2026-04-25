@@ -3,12 +3,12 @@ class_name PlayerStateFall extends PlayerState
 @export var fall_gravity_multiplier : float = 1.165
 @export var coyote_time : float = 0.125
 @export var jump_buffer_time : float = 0.2
-@export var audio : AudioStream
-
-@onready var land: AudioStreamPlayer2D = %Land
 
 var coyote_timer : float = 0
 var buffer_timer : float = 0
+
+const FALL_SFX = preload("uid://dgfc5fy7w1ql2")
+const LAND_SFX = preload("uid://bxwdus3pl21so")
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -35,7 +35,7 @@ func enter() -> void:
 		player.jump_count = 1
 	else:
 		coyote_timer = coyote_time
-	AudioManager.play_spatial_sound( audio, player.global_position )
+	AudioManager.play_spatial_sound( FALL_SFX, player.global_position )
 	pass
 
 
@@ -81,7 +81,7 @@ func physics_process( _delta: float ) -> PlayerState:
 		return climb
 	if player.is_on_floor():
 		VisualEffects.land_dust( player.global_position )
-		land.play()
+		AudioManager.play_spatial_sound( LAND_SFX, player.global_position, false, true, 0.5 )
 		if buffer_timer > 0:
 			player.jump_count = 0
 			return jump

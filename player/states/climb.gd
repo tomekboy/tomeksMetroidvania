@@ -1,6 +1,7 @@
 class_name PlayerStateClimb extends PlayerState
 
-const HAMMER_SFX = preload("uid://25ei061s5ks5")
+const SLIDING_DOWN_ROCKS_SFX = preload("uid://y2mb03awdn3")
+const SLAM = preload("uid://jiuvhjuk7hyr")
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -10,7 +11,6 @@ func init() -> void:
 # what happens when we enter this state?
 func enter() -> void:
 	player.animation_player.play( "climb" )
-	AudioManager.play_spatial_sound( HAMMER_SFX, player.global_position )
 	pass
 
 # what happens when we exit this state?
@@ -31,11 +31,10 @@ func process( _delta: float ) -> PlayerState:
 # what happens each physics process tick in this state?
 func physics_process( _delta: float ) -> PlayerState:
 	if not Input.is_action_pressed("left") or not Input.is_action_pressed("right") and player.wall_climb_raycast.is_colliding():
-		if player.is_on_wall_only():
-			player.velocity.y = player.wall_slide_velocity
-			player.animation_player.play( "slide" )
-			if not player.wall_climb_raycast.is_colliding():
-				return fall
+		player.velocity.y = player.wall_slide_velocity
+		player.animation_player.play( "slide" )
+		if not player.wall_climb_raycast.is_colliding():
+			return fall
 		if Input.is_action_just_pressed( "jump" ):
 			if player.wall_climb_raycast.is_colliding():
 				player.velocity = Vector2( player.wall_x_force, player.wall_y_force )

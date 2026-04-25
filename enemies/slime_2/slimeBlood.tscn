@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="9_nuoea"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="10_ps2l6"]
 [ext_resource type="AudioStream" uid="uid://dvibfaw5tbft0" path="res://assets/sfx/death.mp3" id="11_ps2l6"]
+[ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="13_icn4k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwpfp"]
 radius = 4.0
@@ -458,6 +459,27 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfvo2"]
 size = Vector2(28, 40.5)
 
+[sub_resource type="GDScript" id="GDScript_icn4k"]
+script/source = "extends Label
+
+@onready var player_sensor: PlayerSensor = $\"../PlayerSensor\"
+@onready var slime_blood: Enemy = $\"..\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process( _delta: float ) -> void:
+	text = \"\"
+	text = \"target = \"
+	text += slime_blood.blackboard.target.name if slime_blood.blackboard.target else \"\"
+	text += \"\\n dist = \"
+	text += str( slime_blood.blackboard.distance_to_target )
+	pass
+"
+
 [node name="SlimeBlood" type="CharacterBody2D" unique_id=1875886109]
 collision_layer = 0
 collision_mask = 3
@@ -531,3 +553,18 @@ position = Vector2(2, 0)
 target_position = Vector2(0, 5)
 script = ExtResource("3_ps2l6")
 metadata/_custom_type_script = "uid://bba5yv81fsrgv"
+
+[node name="PlayerSensor" type="Area2D" parent="." unique_id=1163191582]
+position = Vector2(0, -13)
+script = ExtResource("13_icn4k")
+metadata/_custom_type_script = "uid://cfui2lani3y65"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=1016008641]
+polygon = PackedVector2Array(0, 0, 256, -128, 256, 128)
+
+[node name="Label" type="Label" parent="." unique_id=1960664849]
+offset_left = -21.0
+offset_top = -51.0
+offset_right = 19.0
+offset_bottom = -32.0
+script = SubResource("GDScript_icn4k")

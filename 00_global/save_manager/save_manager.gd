@@ -170,8 +170,6 @@ func load_configuration() -> void:
 	AudioServer.set_bus_volume_linear( 2, config.get_value( "audio", "music", 0.8 ) )
 	AudioServer.set_bus_volume_linear( 3, config.get_value( "audio", "sfx", 1.0 ) )
 	AudioServer.set_bus_volume_linear( 4, config.get_value( "audio", "ui", 1.0 ) )
-	AudioServer.set_bus_volume_linear( 5, config.get_value( "audio", "states", 1.0 ) )
-	
 	pass
 
 #endregion

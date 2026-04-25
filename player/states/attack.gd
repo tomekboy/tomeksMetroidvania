@@ -62,7 +62,7 @@ func do_attack() -> void:
 		anim_name = "attack_2"
 	player.animation_player.play( anim_name )
 	player.attack_area.activate()
-	AudioManager.play_spatial_sound( SFX_ATTACK, player.global_position )
+	AudioManager.play_spatial_sound( SFX_ATTACK, player.global_position, false, true, 0.25 )
 	pass
 
 

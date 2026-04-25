@@ -26,7 +26,7 @@ func init() -> void:
 func enter() -> void:
 	player.animation_player.play( "slam" )
 	player.sprite.tween_color()
-	AudioManager.play_spatial_sound( SLAM01_SFX, player.global_position )
+	AudioManager.play_spatial_sound( SLAM01_SFX, player.global_position, false, true, 0.75 )
 	damage_area.start_invulnerable()
 	ground_slam_attack_area.set_active()
 	pass
@@ -37,7 +37,7 @@ func exit() -> void:
 	VisualEffects.camera_shake( 10.0)
 	VisualEffects.land_dust( player.global_position )
 	VisualEffects.hit_dust( player.global_position )
-	AudioManager.play_spatial_sound( SLAM02_SFX, player.global_position )
+	AudioManager.play_spatial_sound( SLAM02_SFX, player.global_position, false, true, 1.0 )
 	damage_area.end_invulnerable()
 	ground_slam_attack_area.set_active( false )
 	pass
@@ -83,7 +83,7 @@ func check_collisions( delta : float ) -> bool:
 			if c.get_parent() is Breakable:
 				var b : Breakable = c.get_parent()
 				b.queue_free()
-				AudioManager.play_spatial_sound( b.destroy_audio, pos )
+				AudioManager.play_spatial_sound( b.destroy_audio, pos, false, true, 0.75 )
 				for p in b.destroy_particles:
 					VisualEffects.hit_particles( pos, Vector2.DOWN, p )
 			else:
@@ -91,6 +91,6 @@ func check_collisions( delta : float ) -> bool:
 				VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_LARGE )
 				VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_MEDIUM )
 				VisualEffects.hit_particles( pos, Vector2.UP, HIT_WOOD_SMALL )
-				AudioManager.play_spatial_sound( WOOD_SMASH_SFX, pos )
+				AudioManager.play_spatial_sound( WOOD_SMASH_SFX, pos, false, true, 0.75 )
 		return true
 	return false

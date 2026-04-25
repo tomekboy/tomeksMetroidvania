@@ -25,7 +25,7 @@ signal damage_taken
 
 #region /// climb variables
 @export_category( "Wall Jump / Climb" )
-@export var wall_slide_velocity : float = 10
+@export var wall_slide_velocity : float = 20
 @export var wall_x_force : float = 200.0
 @export var wall_y_force : float = -550.0
 var is_wall_jumping = false
@@ -67,7 +67,6 @@ var ground_slam : bool = false
 var morph_roll : bool = false
 var can_interact : bool = false
 #endregion
-
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group( "Player" ) != self:
@@ -160,12 +159,12 @@ func update_direction() -> void:
 			if direction.x < 0: # left
 				sprite.flip_h = true
 				attack_sprite.flip_h = true
-				attack_sprite.position.x = -24
+				attack_sprite.position.x = -74
 				wall_climb_raycast.target_position.x = -15
 			elif direction.x > 0:
 				sprite.flip_h = false
 				attack_sprite.flip_h = false
-				attack_sprite.position.x = 24
+				attack_sprite.position.x = 74
 				wall_climb_raycast.target_position.x = 15
 	pass
 
@@ -196,4 +195,4 @@ func can_morph() -> bool:
 	return true
 
 func can_wall_climb() -> bool:
-	return wall_climb_timer.is_stopped() and is_on_wall_only() and ( wall_climb_raycast.is_colliding() )
+	return wall_climb_timer.is_stopped() and is_on_wall_only() and wall_climb_raycast.is_colliding()

@@ -29,7 +29,7 @@ func enter() -> void:
 	player.da_stand.position.y = -16
 	
 	player.velocity.y -= 100
-	AudioManager.play_spatial_sound( MORPH_SFX, player.global_position )
+	AudioManager.play_spatial_sound( MORPH_SFX, player.global_position, false, true, 0.5 )
 	
 	pass
 
@@ -46,7 +46,7 @@ func exit() -> void:
 	
 	player.velocity.y -= 100
 	
-	AudioManager.play_spatial_sound( MORPH_OUT_SFX, player.global_position )
+	AudioManager.play_spatial_sound( MORPH_OUT_SFX, player.global_position, false, true, 0.5 )
 	pass
 
 
@@ -65,7 +65,7 @@ func handle_input( event : InputEvent) -> PlayerState:
 					player.position.y += 10
 					return null
 			player.velocity.y -= jump_velocity
-			AudioManager.play_spatial_sound( JUMP_SFX, player.global_position )
+			AudioManager.play_spatial_sound( JUMP_SFX, player.global_position, false, true, 0.5 )
 			VisualEffects.jump_dust( player.global_position )
 	return null
 
@@ -90,7 +90,7 @@ func physics_process( _delta: float ) -> PlayerState:
 		if player.is_on_floor():
 			on_floor = true
 			VisualEffects.land_dust( player.global_position )
-			AudioManager.play_spatial_sound( LAND_SFX, player.global_position )
+			AudioManager.play_spatial_sound( LAND_SFX, player.global_position, false, true, 0.5 )
 	return next_state
 
 func _can_stand() -> bool:

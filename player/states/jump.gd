@@ -3,6 +3,7 @@ class_name PlayerStateJump extends PlayerState
 @export var jump_velocity : float = 550.0
 
 const JUMP_SFX = preload("uid://b45traf8qjvk4")
+const HAMMER_SFX = preload("uid://bpfu165gewfhv")
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -11,6 +12,8 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
+	if player.wall_climb_raycast.is_colliding():
+		AudioManager.play_spatial_sound( HAMMER_SFX, player.global_position, false, true, 0.25 )
 	if player.is_on_floor():
 		VisualEffects.jump_dust( player.global_position )
 	else:
@@ -76,7 +79,7 @@ func do_jump() -> void:
 			return
 	player.jump_count += 1
 	player.velocity.y = -jump_velocity
-	AudioManager.play_spatial_sound( JUMP_SFX, player.global_position )
+	AudioManager.play_spatial_sound( JUMP_SFX, player.global_position, false, true, 0.25 )
 	pass
 
 

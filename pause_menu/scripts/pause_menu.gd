@@ -100,7 +100,6 @@ func _on_music_slider_changed( v : float ) -> void:
 
 func _on_sfx_slider_changed( v : float ) -> void:
 	AudioServer.set_bus_volume_linear( 3, v )
-	AudioServer.set_bus_volume_linear( 5, v )
 	AudioManager.play_spatial_sound( TEST_SOUND, player_position )
 	# save to settings
 	SaveManager.save_configuration()

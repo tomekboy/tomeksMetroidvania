@@ -23,7 +23,7 @@ func enter() -> void:
 	# make invulnerable
 	damage_area.make_invulnerable( invulnerable_duration )
 	# play audio
-	AudioManager.play_spatial_sound( audio, player.global_position )
+	AudioManager.play_spatial_sound( audio, player.global_position, false, true, 0.5 )
 	# screen shake
 	VisualEffects.camera_shake( 2.0 )
 	pass
