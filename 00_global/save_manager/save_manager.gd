@@ -145,7 +145,6 @@ func save_configuration() -> void:
 	config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
 	config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
 	config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
-	config.set_value( "audio", "states", AudioServer.get_bus_volume_linear( 5 ) )
 	config.save( "user://settings_0"  + str(current_slot + 1) + ".cfg" )
 	pass
 
@@ -156,14 +155,12 @@ func load_configuration() -> void:
 
 	if err != OK:
 		AudioServer.set_bus_volume_linear( 2, 0.099999994 )
-		AudioServer.set_bus_volume_linear( 3, 0.29999998 )
+		AudioServer.set_bus_volume_linear( 3, 0.65 )
 		AudioServer.set_bus_volume_linear( 4, 0.29999998 )
-		AudioServer.set_bus_volume_linear( 5, 0.29999998 )
 		# save settings as default
 		config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
 		config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
 		config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
-		config.set_value( "audio", "states", AudioServer.get_bus_volume_linear( 5 ) )
 		config.save( "user://settings_00.cfg" )
 		return
 	

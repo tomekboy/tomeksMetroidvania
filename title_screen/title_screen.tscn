@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddclp3ynop3jc" path="res://title_screen/images/game01.png" id="5_0m3ch"]
 [ext_resource type="Texture2D" uid="uid://v2apmn5doib0" path="res://title_screen/images/game03.png" id="6_oqrgu"]
 [ext_resource type="Texture2D" uid="uid://caivj6kiwhfjj" path="res://title_screen/images/game02.png" id="7_fv0o7"]
+[ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="8_fv0o7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g2mvh"]
 texture = ExtResource("1_g2mvh")
@@ -54,8 +55,34 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7x7j"]
+bg_color = Color(0, 0, 0, 0.64705884)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fh6ay"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jabur"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uiiip"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3d3o2"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47vnn"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
 [node name="TitleScreen" type="CanvasLayer" unique_id=1844108372]
 script = ExtResource("1_vbjqi")
+
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=1229317183]
+script = ExtResource("8_fv0o7")
+metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
 [node name="Background" type="Panel" parent="." unique_id=403866575]
 anchors_preset = 15
@@ -106,7 +133,8 @@ grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("2_dxpbd")
 text = "\"Sprunki\" created by 'NyankoBfLol' | \"Sprunki\" trademark of ShinStar LLC | \"Sprunki\" characters  on https://incredibox-sprunki.fandom.com/"
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Visuals" unique_id=386834796]
+[node name="Hello" type="VideoStreamPlayer" parent="Visuals" unique_id=386834796]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 212.0
 offset_top = 353.0
@@ -114,12 +142,12 @@ offset_right = 498.0
 offset_bottom = 639.0
 scale = Vector2(0.25, 0.25)
 stream = ExtResource("3_2dq6q")
-volume_db = -20.0
-autoplay = true
 loop = true
+bus = &"Music"
 
 [node name="MainMenu" type="VBoxContainer" parent="." unique_id=2103405663]
 unique_name_in_owner = true
+visible = false
 offset_left = 616.0
 offset_top = 184.0
 offset_right = 775.0
@@ -200,17 +228,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fv0o7")
 
-[node name="NewGameMenu" type="VBoxContainer" parent="NewGameMenu" unique_id=572879962]
+[node name="NewGameMenu1" type="VBoxContainer" parent="NewGameMenu" unique_id=572879962]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 311.0
 
-[node name="TextureRect" type="TextureRect" parent="NewGameMenu/NewGameMenu" unique_id=318988167]
+[node name="TextureRect" type="TextureRect" parent="NewGameMenu/NewGameMenu1" unique_id=318988167]
 layout_mode = 2
 texture = ExtResource("5_0m3ch")
 
-[node name="NewSlot1" type="Button" parent="NewGameMenu/NewGameMenu" unique_id=1356953712]
+[node name="NewSlot1" type="Button" parent="NewGameMenu/NewGameMenu1" unique_id=1356953712]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -368,3 +396,123 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "lade abenteuer 03
 "
+
+[node name="SettingsGameMenu" type="Panel" parent="." unique_id=347234956]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = -124.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7x7j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsGameMenu" unique_id=1991636357]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_top = 38.0
+offset_right = 232.0
+offset_bottom = 275.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsGameMenu/VBoxContainer" unique_id=1521780933]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="SettingsGameMenu/VBoxContainer" unique_id=1188451004]
+layout_mode = 2
+text = "Audio Einstellungen"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsGameMenu/VBoxContainer" unique_id=894045887]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsGameMenu/VBoxContainer/HBoxContainer2" unique_id=1251597902]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Musik"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsGameMenu/VBoxContainer/HBoxContainer2" unique_id=820726181]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_fh6ay")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsGameMenu/VBoxContainer" unique_id=643185980]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsGameMenu/VBoxContainer/HBoxContainer3" unique_id=942340394]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsGameMenu/VBoxContainer/HBoxContainer3" unique_id=508367704]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_jabur")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsGameMenu/VBoxContainer" unique_id=1673452300]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsGameMenu/VBoxContainer/HBoxContainer4" unique_id=2030699900]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI"
+
+[node name="UISlider" type="HSlider" parent="SettingsGameMenu/VBoxContainer/HBoxContainer4" unique_id=1131609524]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_uiiip")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SettingsGameMenu" unique_id=379999463]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_top = 256.0
+offset_right = 232.0
+offset_bottom = 493.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsGameMenu/VBoxContainer2" unique_id=1393567371]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="SettingsGameMenu/VBoxContainer2" unique_id=27925209]
+layout_mode = 2
+text = "Bildschirm Einstellungen"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsGameMenu/VBoxContainer2" unique_id=366172029]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsGameMenu/VBoxContainer2/HBoxContainer2" unique_id=422117455]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Vollbild"
+
+[node name="ScreenCheckButton" type="CheckButton" parent="SettingsGameMenu/VBoxContainer2/HBoxContainer2" unique_id=1216092421]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_3d3o2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_47vnn")

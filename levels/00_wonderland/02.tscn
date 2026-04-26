@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://8th1nnnnbott" path="res://levels/00_wonderland/images/apple.png" id="9_uwpqi"]
 [ext_resource type="Texture2D" uid="uid://bw5wrupp4ept8" path="res://levels/00_wonderland/images/pear_1.png" id="11_lral5"]
 [ext_resource type="Texture2D" uid="uid://7y4o4jpcm2jx" path="res://levels/00_wonderland/images/pear_2.png" id="12_tqj0h"]
-[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="17_hbhr5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lral5"]
 texture = ExtResource("5_lral5")
@@ -218,6 +217,3 @@ texture = ExtResource("11_lral5")
 position = Vector2(488.00012, 482.19998)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_tqj0h")
-
-[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("17_hbhr5")]
-position = Vector2(2704, 403)

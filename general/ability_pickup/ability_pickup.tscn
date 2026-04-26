@@ -294,6 +294,7 @@ radius = 20.0
 
 [node name="AbilityPickup" type="Node2D" unique_id=403504781]
 z_index = 1
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_xxigd")
 
 [node name="AbilitySprite" type="Sprite2D" parent="." unique_id=461503925]

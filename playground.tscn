@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://elqeu474ao8p"]
 
 [ext_resource type="Script" uid="uid://cbdfv5wlgti5s" path="res://general/scripts/level_bounds.gd" id="1_4bqqs"]
-[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="1_te8jg"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="2_wt17y"]
 [ext_resource type="PackedScene" uid="uid://b7p7lf5dujcfj" path="res://general/props/test_dummy/test_dummy.tscn" id="7_ynsuh"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="8_pi42a"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cba4om5mtn6km" path="res://enemies/slime_2/slimeBlood.tscn" id="14_dk0co"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="14_f7pug"]
 [ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="14_jgc46"]
+[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="14_pactg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8u5f"]
 texture = ExtResource("2_wt17y")
@@ -125,6 +125,10 @@ z_index = 256
 script = ExtResource("1_4bqqs")
 width = 1148
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
+
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=2091035184]
+script = ExtResource("14_f7pug")
+metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
 [node name="Visuals" type="Node" parent="." unique_id=1297486393]
 
@@ -240,10 +244,6 @@ position = Vector2(989, 271)
 [node name="SlamBreakable" parent="Probs" unique_id=527055245 instance=ExtResource("11_pio1y")]
 position = Vector2(695, 320)
 
-[node name="AbilityPickup" parent="Probs" unique_id=403504781 instance=ExtResource("1_te8jg")]
-position = Vector2(803, 272)
-scale = Vector2(0.5, 0.5)
-
 [node name="Player" parent="." unique_id=1981200209 instance=ExtResource("14_jgc46")]
 position = Vector2(803, 499)
 wall_y_force = -300.0
@@ -254,6 +254,5 @@ position = Vector2(638, 580)
 [node name="SlimeBlood" parent="." unique_id=1875886109 instance=ExtResource("14_dk0co")]
 position = Vector2(558, 256)
 
-[node name="MusicAutoTrigger" type="Node" parent="." unique_id=2091035184]
-script = ExtResource("14_f7pug")
-metadata/_custom_type_script = "uid://dtbxdmecqneq1"
+[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("14_pactg")]
+position = Vector2(897, 382)

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cdmtc1ie4jbb7" path="res://boot/images/logoGodotVertical.png" id="3_c1b2v"]
 [ext_resource type="Texture2D" uid="uid://c127a5x3rn1v0" path="res://boot/images/earth.jpg" id="4_1jm56"]
 [ext_resource type="FontFile" uid="uid://w0um22pmrx43" path="res://app/fonts/SuperBrain.ttf" id="5_1m4sd"]
+[ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="6_08udm"]
 [ext_resource type="AudioStream" uid="uid://beeoj4kv73rjr" path="res://assets/music/deepSpace.mp3" id="6_mk6el"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6uqi0"]
@@ -80,6 +81,11 @@ _data = {
 [node name="bootSplash" type="Node2D" unique_id=481733720]
 script = ExtResource("1_xa0cs")
 
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=77146260]
+script = ExtResource("6_08udm")
+track = ExtResource("6_mk6el")
+metadata/_custom_type_script = "uid://dtbxdmecqneq1"
+
 [node name="Background" type="ColorRect" parent="." unique_id=1630248356]
 material = SubResource("ShaderMaterial_ppyta")
 anchors_preset = 15
@@ -116,11 +122,6 @@ theme_override_font_sizes/font_size = 32
 text = "Imagination is just the limit"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="deepSpace" type="AudioStreamPlayer2D" parent="." unique_id=984228859]
-stream = ExtResource("6_mk6el")
-autoplay = true
-bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="." unique_id=1591828336]
 wait_time = 3.0

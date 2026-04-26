@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var main_menu: VBoxContainer = %MainMenu
 @onready var new_game_menu: Panel = $NewGameMenu
 @onready var load_game_menu: Panel = $LoadGameMenu
+@onready var settings_game_menu: Control = %SettingsGameMenu
 
 # buttons
 @onready var new_game_button: Button = %NewGameButton
@@ -19,7 +20,17 @@ extends CanvasLayer
 @onready var load_slot_2: Button = %LoadSlot2
 @onready var load_slot_3: Button = %LoadSlot3
 
+# slider
+@onready var music_slider: HSlider = %MusicSlider
+@onready var sfx_slider: HSlider = %SFXSlider
+@onready var ui_slider: HSlider = %UISlider
+
+@onready var screen_check_button: CheckButton = %ScreenCheckButton
+
+@onready var hello: VideoStreamPlayer = %Hello
 #endregion
+
+const TEST_SOUND = preload("uid://c2s8ms1y15lvw") # freesound_community-positive-response-81640
 
 func _ready() -> void:
 	# connect to button signals
@@ -36,11 +47,30 @@ func _ready() -> void:
 	load_slot_2.pressed.connect( _on_load_game_pressed.bind( 1 ) )
 	load_slot_3.pressed.connect( _on_load_game_pressed.bind( 2 ) )
 	
+	music_slider.value = AudioServer.get_bus_volume_linear( 2 )
+	sfx_slider.value = AudioServer.get_bus_volume_linear( 3 )
+	ui_slider.value = AudioServer.get_bus_volume_linear( 4 )
+	
+	music_slider.value_changed.connect( _on_music_slider_changed )
+	sfx_slider.value_changed.connect( _on_sfx_slider_changed )
+	ui_slider.value_changed.connect( _on_ui_slider_changed )
+	screen_check_button.toggled.connect( _on_screen_check_button_changed )
+		
 	# add audio
 	AudioManager.setup_button_audio( self )
 	
+	# set display slider
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		screen_check_button.button_pressed = true
+	else:
+		screen_check_button.button_pressed = false
+	pass
+	
 	# show main menu
 	show_main_menu()
+	
+	# play welcome video
+	hello.play()
 	pass
 
 
@@ -48,6 +78,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed( "ui_cancel" ):
 		if main_menu.visible == false:
 			#audio
+			AudioManager.ui_cancel()
 			show_main_menu()
 	pass
 
@@ -56,6 +87,7 @@ func show_main_menu() -> void:
 	main_menu.visible = true
 	new_game_menu.visible = false
 	load_game_menu.visible = false
+	settings_game_menu.visible = false
 	# focus
 	new_game_button.grab_focus()
 	pass
@@ -65,7 +97,7 @@ func show_new_game_menu() -> void:
 	main_menu.visible = false
 	new_game_menu.visible = true
 	load_game_menu.visible = false
-	#focus
+	# focus
 	new_slot_1.grab_focus()
 	
 	if SaveManager.save_file_exists( 0 ):
@@ -108,17 +140,45 @@ func _on_load_game_pressed( slot : int ) -> void:
 
 
 func show_settings_game_menu() -> void:
-	print( "show settings menu" )
-	get_tree().paused = true
-	var pause_menu : PauseMenu = load( "res://pause_menu/pause_menu.tscn" ).instantiate()
-	add_child( pause_menu )
-	
-	pause_menu.pause_screen.visible = false
-	pause_menu.system.visible = true
+	main_menu.visible = false
+	settings_game_menu.visible = true
+	pass
+
+
+func _on_music_slider_changed( v : float ) -> void:
+	AudioServer.set_bus_volume_linear( 2, v )
+	# save to settings
+	SaveManager.save_configuration()
+	pass
+
+
+func _on_sfx_slider_changed( v : float ) -> void:
+	AudioServer.set_bus_volume_linear( 3, v )
+	AudioManager.play_spatial_sound( TEST_SOUND, Vector2.ZERO )
+	# save to settings
+	SaveManager.save_configuration()
+	pass
+
+
+func _on_ui_slider_changed( v : float ) -> void:
+	AudioServer.set_bus_volume_linear( 4, v )
+	AudioManager.play_ui_audio( TEST_SOUND )
+	# save to settings
+	SaveManager.save_configuration()
+	pass
+
+
+func _on_screen_check_button_changed( toggled_on : bool ) -> void:
+	print( "display toggle" )
+	if toggled_on == true:
+		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	pass
 
 
 func exit_game() -> void:
 	AudioManager.ui_quit()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
+	pass

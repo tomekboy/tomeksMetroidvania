@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="11_2a31v"]
 [ext_resource type="PackedScene" uid="uid://dt1yqgk8guu51" path="res://general/door and switch/door.tscn" id="12_1j6qr"]
 [ext_resource type="PackedScene" uid="uid://66o4m7u0cs07" path="res://general/door and switch/switch.tscn" id="13_f127l"]
-[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="16_l741y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a31v"]
 texture = ExtResource("6_2fxpy")
@@ -184,6 +183,3 @@ position = Vector2(2263, 496)
 
 [node name="Switch" parent="Door" unique_id=619698125 instance=ExtResource("13_f127l")]
 position = Vector2(310, 97)
-
-[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("16_l741y")]
-position = Vector2(2513, 565)
