@@ -47,6 +47,10 @@ window/size/window_width_override=1020
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/localization_with_google_sheet/plugin.cfg")
+
 [global_group]
 
 Player=""
@@ -137,6 +141,10 @@ pause={
 ]
 }
 
+[internationalization]
+
+locale/translations=["res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.en.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.de.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.fr.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.it.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.es.translation"]
+
 [layer_names]
 
 2d_physics/layer_1="Ground"
@@ -145,6 +153,13 @@ pause={
 2d_physics/layer_6="Enemy"
 2d_physics/layer_7="Breakable"
 2d_physics/layer_8="SlamBreakable"
+
+[localization_with_google_sheet]
+
+workspaces=[{
+"name": "Polo 'n Friends",
+"url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5ZGaUqjZ2rkDuUHsS4BMp6O13fE0e2sT2laC0B2mUPGQOnaz_O2ghzDRQLyRfPJMSlLVWEtRBzpMW/pub?output=csv"
+}]
 
 [physics]
 

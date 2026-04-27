@@ -13,8 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cfwstgbiljsi5" path="res://levels/00_wonderland/images/Cloud-02.png" id="7_6ywwc"]
 [ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="8_6ywwc"]
 [ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="11_2a31v"]
-[ext_resource type="PackedScene" uid="uid://dt1yqgk8guu51" path="res://general/door and switch/door.tscn" id="12_1j6qr"]
-[ext_resource type="PackedScene" uid="uid://66o4m7u0cs07" path="res://general/door and switch/switch.tscn" id="13_f127l"]
+[ext_resource type="Texture2D" uid="uid://cd3ll62aydp0j" path="res://levels/00_wonderland/images/signQuestionMark.png" id="14_l741y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a31v"]
 texture = ExtResource("6_2fxpy")
@@ -106,19 +105,19 @@ script = ExtResource("1_pqvlw")
 width = 3060
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
-[node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(2722, 494)
-
-[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("8_6ywwc")]
-position = Vector2(2850, 527)
-
-[node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("4_wvxnh")]
-position = Vector2(8, 712)
-
 [node name="MusicAutoTrigger" type="Node" parent="." unique_id=1370219319]
 script = ExtResource("5_c810p")
 track = ExtResource("6_c810p")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
+
+[node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("4_wvxnh")]
+position = Vector2(8, 712)
+
+[node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
+position = Vector2(1859, 497)
+
+[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("8_6ywwc")]
+position = Vector2(2850, 527)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)
@@ -161,6 +160,7 @@ z_index = -1
 scroll_scale = Vector2(0.5, 0.5)
 scroll_offset = Vector2(-8, 248)
 repeat_size = Vector2(1020, 0)
+autoscroll = Vector2(-8, 0)
 
 [node name="CloudLarge" type="Sprite2D" parent="Visuals/SkyClouds" unique_id=1892752020]
 position = Vector2(432, 94)
@@ -177,9 +177,7 @@ position = Vector2(3039, 193)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("11_2a31v")
 
-[node name="Door" parent="." unique_id=1068206045 instance=ExtResource("12_1j6qr")]
-z_index = 3
-position = Vector2(2263, 496)
-
-[node name="Switch" parent="Door" unique_id=619698125 instance=ExtResource("13_f127l")]
-position = Vector2(310, 97)
+[node name="questionMark" type="Sprite2D" parent="Decorations" unique_id=933580480]
+position = Vector2(21, 194)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_l741y")

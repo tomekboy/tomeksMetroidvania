@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c3xw8w2a8ud07"
+
+[deps]
+
+files=["res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.en.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.de.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.fr.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.it.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.es.translation"]
+
+source_file="res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.csv"
+dest_files=["res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.en.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.de.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.fr.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.it.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.es.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

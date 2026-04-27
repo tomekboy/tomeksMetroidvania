@@ -192,6 +192,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(0, -25)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StatesAnimationAudio/Walking:stream")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_knn7v")]
+}
 
 [sub_resource type="Animation" id="Animation_tqiix"]
 resource_name = "attack"
@@ -1267,7 +1279,7 @@ tracks/5/keys = {
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("StatesAnimationAudio/Slide")
+tracks/6/path = NodePath("StatesAnimationAudio/Sliding")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1413,51 +1425,62 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("StatesAnimationAudio/Bored:stream")
+tracks/4/path = NodePath("Sprite2D:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("20_knn7v")]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("StatesAnimationAudio/Bored:playing")
+tracks/5/path = NodePath("Sprite2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, true, true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -25)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StatesAnimationAudio/Walking:stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_knn7v")]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("StatesAnimationAudio/Walking")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_knn7v")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_knn7v")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_knn7v")
+}],
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hg6s5"]
 _data = {
@@ -1628,11 +1651,22 @@ unique_name_in_owner = true
 position = Vector2(0, 26)
 stream = ExtResource("14_g4c7l")
 volume_db = 4.0
+max_distance = 10000.0
 bus = &"SFX"
 
-[node name="Slide" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1995182506]
+[node name="Walking" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=963938178]
 unique_name_in_owner = true
 position = Vector2(0, 26)
+stream = ExtResource("20_knn7v")
+volume_db = 4.0
+max_distance = 10000.0
+bus = &"SFX"
+
+[node name="Sliding" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1995182506]
+unique_name_in_owner = true
+position = Vector2(0, 26)
+max_distance = 10000.0
+max_polyphony = 8
 bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1219678630]

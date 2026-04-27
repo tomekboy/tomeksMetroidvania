@@ -70,7 +70,7 @@ func _ready() -> void:
 	show_main_menu()
 	
 	# play welcome video
-	hello.play()
+	hello.paused = false
 	pass
 
 

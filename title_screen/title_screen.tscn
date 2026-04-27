@@ -116,7 +116,7 @@ offset_top = 135.0
 offset_right = 793.0
 offset_bottom = 152.0
 theme_override_font_sizes/normal_font_size = 11
-text = "die Wiedervereinigung"
+text = "titleScreenSubtitle"
 horizontal_alignment = 1
 
 [node name="broughtBy" type="RichTextLabel" parent="Visuals" unique_id=1013762329]
@@ -131,7 +131,15 @@ offset_bottom = 640.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("2_dxpbd")
-text = "\"Sprunki\" created by 'NyankoBfLol' | \"Sprunki\" trademark of ShinStar LLC | \"Sprunki\" characters  on https://incredibox-sprunki.fandom.com/"
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "titleScreenBroughtBy"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="Hello" type="VideoStreamPlayer" parent="Visuals" unique_id=386834796]
 unique_name_in_owner = true
@@ -142,18 +150,19 @@ offset_right = 498.0
 offset_bottom = 639.0
 scale = Vector2(0.25, 0.25)
 stream = ExtResource("3_2dq6q")
+autoplay = true
+paused = true
 loop = true
 bus = &"Music"
 
 [node name="MainMenu" type="VBoxContainer" parent="." unique_id=2103405663]
 unique_name_in_owner = true
-visible = false
 offset_left = 616.0
 offset_top = 184.0
 offset_right = 775.0
 offset_bottom = 242.0
 
-[node name="NewGameButton" type="Button" parent="MainMenu" unique_id=169779968]
+[node name="NewGameButton" type="Button" parent="MainMenu" unique_id=664374787]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -165,10 +174,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
-text = "neu
-"
+text = "mainMenuNew"
 
-[node name="LoadGameButton" type="Button" parent="MainMenu" unique_id=1695071906]
+[node name="LoadGameButton" type="Button" parent="MainMenu" unique_id=1204482095]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -180,10 +188,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
-text = "weiter
-"
+text = "mainMenuLoad"
 
-[node name="SettingsGameButton" type="Button" parent="MainMenu" unique_id=27827555]
+[node name="SettingsGameButton" type="Button" parent="MainMenu" unique_id=168923725]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -195,10 +202,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
-text = "einstellungen
-"
+text = "mainMenuSettings"
 
-[node name="ExitGameButton" type="Button" parent="MainMenu" unique_id=664374787]
+[node name="ExitGameButton" type="Button" parent="MainMenu" unique_id=1503970743]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -210,8 +216,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vbjqi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
-text = "ende
-"
+text = "mainMenuExit"
 
 [node name="NewGameMenu" type="Panel" parent="." unique_id=2053982426]
 visible = false

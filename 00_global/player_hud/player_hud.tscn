@@ -134,7 +134,6 @@ particle_settings = ExtResource("3_26715")
 
 [node name="GameOver" type="Control" parent="Control" unique_id=1683530314]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
