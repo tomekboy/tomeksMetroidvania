@@ -6,3 +6,45 @@ mainMenuNew,New,Neu,Nouveau,Nuovo,Nuevo
 mainMenuLoad,Continue,Weiter,Plus loin,Ulteriore,Más lomo
 mainMenuSettings,Settings,Einstellungen,Paramètres,Impostazioni,Parámetros
 mainMenuExit,Quit,Ende,Fin,FINE,Aleta
+newSlot01,Adventure 01,Abenteuer 01,Aventure 01,Avventura 01,Aventura 01
+newSlot02,Adventure 02,Abenteuer 02,Aventure 02,Avventura 02,Aventura 02
+newSlot03,Adventure 03,Abenteuer 03,Aventure 03,Avventura 03,Aventura 03
+replaceSlot01,replace Game 01,ersetze Spiel 01,remplacer le jeu 01,sostituire il gioco 01,reemplazar el juego 01
+replaceSlot02,replace Game 02,ersetze Spiel 02,remplacer le jeu 02,sostituire il gioco 02,reemplazar el juego 02
+replaceSlot03,replace Game 03,ersetze Spiel 03,remplacer le jeu 03,sostituire il gioco 03,reemplazar el juego 03
+loadSlot01,load Adventure 01,lade Abenteuer 01,Télécharger Aventure 01,Scarica Avventura 01,Descargar Aventura 01
+loadSlot02,load Adventure 02,lade Abenteuer 02,Télécharger Aventure 02,Scarica Adventure 02,Descargar Aventura 02
+loadSlot03,load Adventure 03,lade Abenteuer 03,Télécharger Aventure 03,Scarica Avventura 03,Descargar Aventura 03
+settingsHeader01,Audio Settings,Audio Einstellungen,Paramètres audio,Impostazioni audio,Parámetros de audio
+audioMusic,Music,Musik,Musique,Musica,Música
+audioSFX,SFX,SFX,SFX,SFX,SFX
+audioUI,UI,UI,UI,UI,UI
+miscHeader,Miscellaneous settings,sonstige Einstellungen,autres paramètres,altre impostazioni,otros parámetros
+fullscreenTitle,Fullscreen,Vollbild,Plein écran,A schermo intero,Pantalla completa
+languageTitle,Language,Sprache,Langue,Lingua,Idioma
+backButton,back,zurück,dos,Indietro,DOS
+pauseHeader,paused,pausiert,pause,pausa,pausa
+abilitiesTitle,Abilities,Fähigkeiten,compétences,competenze,competencias
+mapTitle,Map,Karte,Carte,Mappa,Mapa
+pauseSettingsButton,Settings,Einstellungen,Paramètres,Impostazioni,Parámetros
+pauseBackToTitle,Main Menu,Hauptmenu,Menu principal,Menù principale,Menú principal
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!
+,,,#VALUE!,#VALUE!,#VALUE!

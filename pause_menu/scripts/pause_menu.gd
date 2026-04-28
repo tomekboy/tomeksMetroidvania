@@ -4,7 +4,7 @@ class_name PauseMenu extends CanvasLayer
 @onready var pause_screen: Control = %PauseScreen
 @onready var system: Control = %System
 
-@onready var system_menu_button: Button = %SystemMenuButton
+@onready var system_menu_button: Button = %SettingsMenuButton
 
 @onready var back_to_map_button: Button = %BackToMapButton
 @onready var back_to_title_button: Button = %BackToTitleButton
@@ -84,7 +84,7 @@ func setup_system_menu() -> void:
 
 
 func  _on_back_to_title_pressed() -> void:
-	SceneManager.transition_scene( "res://title_screen/title_screen.tscn", "", Vector2.ZERO, "up" )
+	SceneManager.transition_scene( "res://title_screen/title_screen.tscn", "", Vector2.ZERO, "down" )
 	get_tree().paused = false
 	MessageManager.back_to_title_screen.emit()
 	queue_free()

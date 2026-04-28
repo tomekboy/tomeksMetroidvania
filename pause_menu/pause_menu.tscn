@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dbk0pse1plg2h" path="res://pause_menu/scripts/ability_display.gd" id="2_b4s0c"]
 [ext_resource type="PackedScene" uid="uid://c2lm7qqyqmovl" path="res://pause_menu/map_node.tscn" id="2_rd7dy"]
 [ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://player/sprites/abilities.png" id="2_uwtdo"]
+[ext_resource type="Script" uid="uid://dsw35oh17dxad" path="res://addons/localization_with_google_sheet/ui/menu_language_option_button.gd" id="5_s1glv"]
 
 [sub_resource type="FontVariation" id="FontVariation_5hbt6"]
 spacing_glyph = 6
@@ -18,11 +19,11 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wn31l"]
 atlas = ExtResource("2_uwtdo")
-region = Rect2(640, 0, 64, 64)
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0obc"]
 atlas = ExtResource("2_uwtdo")
-region = Rect2(576, 0, 64, 64)
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="Gradient" id="Gradient_rd7dy"]
 offsets = PackedFloat32Array(0, 0.53614455, 1)
@@ -75,28 +76,28 @@ _data = {
 &"default": SubResource("Animation_s1glv")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd7dy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nv8k"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwtdo"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi88y"]
 bg_color = Color(0.77254903, 0.45490196, 0.9882353, 0.6039216)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4s0c"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ja1mc"]
 bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1glv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2oqmc"]
 bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -117,6 +118,34 @@ bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6csp"]
 bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1glv"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp6kg"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 0.6039216)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aj446"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6n36"]
+bg_color = Color(0.77254903, 0.45490196, 0.9882353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1525454800]
 process_mode = 3
@@ -148,7 +177,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 color = Color(0.11372549, 0.11372549, 0.11372549, 1)
 
-[node name="Label" type="Label" parent="Control/Header" unique_id=1402522752]
+[node name="pauseHeader" type="Label" parent="Control/Header" unique_id=1402522752]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -158,12 +187,13 @@ offset_top = 16.0
 offset_bottom = 35.0
 grow_horizontal = 0
 theme_override_fonts/font = SubResource("FontVariation_5hbt6")
-text = "pausiert"
+text = "pauseHeader"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -277,51 +307,49 @@ texture = SubResource("GradientTexture2D_uwtdo")
 libraries/ = SubResource("AnimationLibrary_wn31l")
 autoplay = &"default"
 
-[node name="Abilities" type="Label" parent="Control/PauseScreen" unique_id=1339802049]
+[node name="AbilitiesTitle" type="Label" parent="Control/PauseScreen" unique_id=1339802049]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 19.0
 offset_right = 142.0
 offset_bottom = 38.0
-text = "Fähigkeiten"
+text = "abilitiesTitle"
 
-[node name="Map" type="Label" parent="Control/PauseScreen" unique_id=1345469492]
+[node name="MapTitle" type="Label" parent="Control/PauseScreen" unique_id=1345469492]
 layout_mode = 0
 offset_left = 243.0
 offset_top = 19.0
 offset_right = 306.0
 offset_bottom = 38.0
-text = "Karte"
+text = "mapTitle"
 
-[node name="SystemMenuButton" type="Button" parent="Control/PauseScreen" unique_id=566045041]
+[node name="SettingsMenuButton" type="Button" parent="Control/PauseScreen" unique_id=914943227]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 30)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -44.0
-offset_right = 86.0
-offset_bottom = -14.0
+offset_left = -113.5
+offset_top = -40.0
+offset_right = 113.5
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_rd7dy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_uwtdo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b4s0c")
-theme_override_styles/focus = SubResource("StyleBoxFlat_s1glv")
-text = "einstellungen
-"
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nv8k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi88y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
+text = "pauseSettingsButton"
 
 [node name="System" type="Control" parent="Control" unique_id=1702171481]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -330,7 +358,7 @@ offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/System" unique_id=2035861148]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/System" unique_id=1446913980]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -342,23 +370,23 @@ offset_bottom = 275.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=2139237831]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1645336934]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="Control/System/VBoxContainer" unique_id=2047050648]
+[node name="Header01" type="Label" parent="Control/System/VBoxContainer" unique_id=1050272366]
 layout_mode = 2
-text = "Audio Einstellungen"
+text = "settingsHeader01"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1859064738]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1866273204]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=1349991116]
+[node name="AudioMusic" type="Label" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=779385703]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Musik"
+text = "audioMusic"
 
-[node name="MusicSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=481886964]
+[node name="MusicSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=1494730097]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -367,15 +395,15 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1067224522]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=539681630]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1013073353]
+[node name="AudioSFX" type="Label" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1476186134]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "SFX"
+text = "audioSFX"
 
-[node name="SFXSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1872143650]
+[node name="SFXSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=918782780]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -384,15 +412,15 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1558510231]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=101654611]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=159493668]
+[node name="AudioUI" type="Label" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=1400655549]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "UI"
+text = "audioUI"
 
-[node name="UISlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=732673105]
+[node name="UISlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=865515632]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -401,46 +429,7 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="BackToMapButton" type="Button" parent="Control/System" unique_id=1196651334]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 30)
-layout_mode = 0
-offset_left = 45.0
-offset_top = 540.0
-offset_right = 508.0
-offset_bottom = 570.0
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_rd7dy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_uwtdo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b4s0c")
-theme_override_styles/focus = SubResource("StyleBoxFlat_s1glv")
-text = "karte
-"
-
-[node name="BackToTitleButton" type="Button" parent="Control/System" unique_id=612174572]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 30)
-layout_mode = 0
-offset_left = 523.0
-offset_top = 540.0
-offset_right = 986.0
-offset_bottom = 570.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_rd7dy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_uwtdo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b4s0c")
-theme_override_styles/focus = SubResource("StyleBoxFlat_s1glv")
-text = "Hauptmenu
-"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/System" unique_id=1862095341]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/System" unique_id=2059776309]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -448,29 +437,101 @@ anchor_right = 0.5
 offset_left = -231.0
 offset_top = 256.0
 offset_right = 232.0
-offset_bottom = 493.0
+offset_bottom = 371.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=1316199235]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=1733004313]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="Control/System/VBoxContainer2" unique_id=442490487]
+[node name="miscHeader" type="Label" parent="Control/System/VBoxContainer2" unique_id=1188497496]
 layout_mode = 2
-text = "Bildschirm Einstellungen"
+text = "miscHeader"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=1314997242]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=667884325]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=236150288]
+[node name="FullscreenTitle" type="Label" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=1372185725]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Vollbild"
+text = "fullscreenTitle"
 
-[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=1945236953]
+[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=561815959]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
+
+[node name="LanguageTitle" type="Label" parent="Control/System" unique_id=1875479886]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 278.0
+offset_top = 375.0
+offset_right = 445.0
+offset_bottom = 394.0
+text = "languageTitle"
+
+[node name="LanguageOptionButton" type="OptionButton" parent="Control/System" unique_id=1125872548]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 0
+offset_left = 389.0
+offset_top = 371.0
+offset_right = 439.0
+offset_bottom = 391.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
+alignment = 2
+allow_reselect = true
+script = ExtResource("5_s1glv")
+
+[node name="BackToMapButton" type="Button" parent="Control/System" unique_id=1767098203]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.5
+offset_top = -40.0
+offset_right = -38.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_s1glv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sp6kg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aj446")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y6n36")
+text = "mapTitle"
+
+[node name="BackToTitleButton" type="Button" parent="Control/System" unique_id=2004295943]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.5
+offset_top = -40.0
+offset_right = 171.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_s1glv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sp6kg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aj446")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y6n36")
+text = "pauseBackToTitle"

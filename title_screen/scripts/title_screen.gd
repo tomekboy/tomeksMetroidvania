@@ -26,6 +26,9 @@ extends CanvasLayer
 @onready var ui_slider: HSlider = %UISlider
 
 @onready var screen_check_button: CheckButton = %ScreenCheckButton
+@onready var back_button01: Button = %BackButton
+@onready var back_button02: Button = $NewGameMenu/BackButton
+@onready var back_button03: Button = $LoadGameMenu/BackButton
 
 @onready var hello: VideoStreamPlayer = %Hello
 #endregion
@@ -55,7 +58,11 @@ func _ready() -> void:
 	sfx_slider.value_changed.connect( _on_sfx_slider_changed )
 	ui_slider.value_changed.connect( _on_ui_slider_changed )
 	screen_check_button.toggled.connect( _on_screen_check_button_changed )
-		
+	
+	back_button01.pressed.connect( _on_back_button_pressed )
+	back_button02.pressed.connect( _on_back_button_pressed )
+	back_button03.pressed.connect( _on_back_button_pressed )
+	
 	# add audio
 	AudioManager.setup_button_audio( self )
 	
@@ -101,13 +108,13 @@ func show_new_game_menu() -> void:
 	new_slot_1.grab_focus()
 	
 	if SaveManager.save_file_exists( 0 ):
-		new_slot_1.text = "ersetze Spiel 01"
+		new_slot_1.text = tr("replaceSlot01")
 		
 	if SaveManager.save_file_exists( 1 ):
-		new_slot_2.text = "ersetze Spiel 02"
+		new_slot_2.text = tr("replaceSlot02")
 		
 	if SaveManager.save_file_exists( 2 ):
-		new_slot_3.text = "ersetze Spiel 03"
+		new_slot_3.text = tr("replaceSlot03")
 	pass
 
 
@@ -142,6 +149,7 @@ func _on_load_game_pressed( slot : int ) -> void:
 func show_settings_game_menu() -> void:
 	main_menu.visible = false
 	settings_game_menu.visible = true
+	back_button01.grab_focus()
 	pass
 
 
@@ -169,7 +177,6 @@ func _on_ui_slider_changed( v : float ) -> void:
 
 
 func _on_screen_check_button_changed( toggled_on : bool ) -> void:
-	print( "display toggle" )
 	if toggled_on == true:
 		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -181,4 +188,9 @@ func exit_game() -> void:
 	AudioManager.ui_quit()
 	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
+	pass
+
+
+func _on_back_button_pressed() -> void:
+	show_main_menu()
 	pass

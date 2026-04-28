@@ -95,5 +95,4 @@ func _on_language_selected(index: int):
 		# Optionally persist
 		# ProjectSettings.set_setting("application/config/locale", lang)
 		# ProjectSettings.save()
-		SceneManager.transition_scene( "uid://d12hmou2bfva3", "", Vector2.ZERO, "right" )
-	
+	pass
