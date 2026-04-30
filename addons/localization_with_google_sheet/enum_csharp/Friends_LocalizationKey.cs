@@ -29,6 +29,7 @@ namespace Localization {
 		mapTitle,
 		pauseSettingsButton,
 		pauseBackToTitle,
-		VALUE,
+		hudTitle,
+		hudAgain,
 	}
 }

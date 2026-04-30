@@ -28,23 +28,5 @@ abilitiesTitle,Abilities,Fähigkeiten,compétences,competenze,competencias
 mapTitle,Map,Karte,Carte,Mappa,Mapa
 pauseSettingsButton,Settings,Einstellungen,Paramètres,Impostazioni,Parámetros
 pauseBackToTitle,Main Menu,Hauptmenu,Menu principal,Menù principale,Menú principal
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
-,,,#VALUE!,#VALUE!,#VALUE!
+hudTitle,[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]too bad[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Schade[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Dommage[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Peccato[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Daño[/rainbow][/outline_size][/outline_color]
+hudAgain,again ...,nochmal ...,encore ...,Ancora ...,bis...

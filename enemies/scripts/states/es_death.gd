@@ -1,5 +1,4 @@
-class_name ESDeath
-extends EnemyState
+class_name ESDeath extends EnemyState
 
 # EnemyState class will inherit the following variables:
 # @export var animation_name : String = "idle"
@@ -11,8 +10,6 @@ extends EnemyState
 var vel_x : float = 0
 var duration : float = 0
 var timer : float = 0
-
-
 
 func enter() -> void:
 	enemy.play_animation( animation_name if animation_name else "die" )

@@ -23,7 +23,7 @@ func _ready() -> void:
 	for c in get_children():
 		if c is DamageArea:
 			c.damage_taken.connect( _on_damage_taken )
-	pass # Replace with function body.
+	pass
 
 
 func _on_damage_taken( attack_area : AttackArea ) -> void:

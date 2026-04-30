@@ -4,18 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="2_wt17y"]
 [ext_resource type="PackedScene" uid="uid://b7p7lf5dujcfj" path="res://general/props/test_dummy/test_dummy.tscn" id="7_ynsuh"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="8_pi42a"]
-[ext_resource type="PackedScene" uid="uid://ywmtgf5rdf2" path="res://levels/probs/crate_wooden.tscn" id="8_v7dth"]
 [ext_resource type="Resource" uid="uid://bnfjc1g7xt1fo" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_medium.tres" id="9_h1jm5"]
-[ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://levels/probs/barrel_wooden.tscn" id="9_pi42a"]
 [ext_resource type="PackedScene" uid="uid://bf5kdupbjjnbc" path="res://general/props/test_dummy/spike_dummy.tscn" id="10_h1jm5"]
 [ext_resource type="PackedScene" uid="uid://cv4qipiafa80g" path="res://general/props/slam_breakable.tscn" id="11_pio1y"]
-[ext_resource type="PackedScene" uid="uid://c36kgros6www8" path="res://enemies/slime/slimeWater.tscn" id="13_f7pug"]
-[ext_resource type="PackedScene" uid="uid://cba4om5mtn6km" path="res://enemies/slime_2/slimeBlood.tscn" id="14_dk0co"]
+[ext_resource type="PackedScene" uid="uid://ywmtgf5rdf2" path="res://levels/probs/crate_wooden.tscn" id="12_yjl7g"]
+[ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://levels/probs/barrel_wooden.tscn" id="13_f7pug"]
+[ext_resource type="PackedScene" uid="uid://cba4om5mtn6km" path="res://enemies/slime/slimeBlood.tscn" id="14_dk0co"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="14_f7pug"]
 [ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="14_jgc46"]
 [ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="14_pactg"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8u5f"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jgc46"]
 texture = ExtResource("2_wt17y")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -72,7 +71,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = ""
 custom_data_layer_0/type = 0
-sources/0 = SubResource("TileSetAtlasSource_m8u5f")
+sources/0 = SubResource("TileSetAtlasSource_jgc46")
 
 [sub_resource type="Gradient" id="Gradient_edjgo"]
 offsets = PackedFloat32Array(0, 0.9879518)
@@ -126,7 +125,7 @@ script = ExtResource("1_4bqqs")
 width = 1148
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
-[node name="MusicAutoTrigger" type="Node" parent="." unique_id=2091035184]
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=733965235]
 script = ExtResource("14_f7pug")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
@@ -226,14 +225,6 @@ shape = SubResource("RectangleShape2D_wt17y")
 
 [node name="Probs" type="Node" parent="." unique_id=510607658]
 
-[node name="Crate" parent="Probs" unique_id=1026468228 instance=ExtResource("8_v7dth")]
-position = Vector2(528, 561)
-scale = Vector2(0.5, 0.5)
-
-[node name="Barrel" parent="Probs" unique_id=1640605002 instance=ExtResource("9_pi42a")]
-position = Vector2(776, 565)
-scale = Vector2(0.5, 0.5)
-
 [node name="TestDummy" parent="Probs" unique_id=650663905 instance=ExtResource("7_ynsuh")]
 position = Vector2(600, 304)
 particles = Array[ExtResource("8_pi42a")]([ExtResource("9_h1jm5"), ExtResource("9_h1jm5")])
@@ -244,15 +235,18 @@ position = Vector2(989, 271)
 [node name="SlamBreakable" parent="Probs" unique_id=527055245 instance=ExtResource("11_pio1y")]
 position = Vector2(695, 320)
 
+[node name="Crate" parent="Probs" unique_id=1026468228 instance=ExtResource("12_yjl7g")]
+position = Vector2(555, 564)
+
+[node name="Barrel" parent="Probs" unique_id=3586284 instance=ExtResource("13_f7pug")]
+position = Vector2(777, 564)
+
 [node name="Player" parent="." unique_id=1981200209 instance=ExtResource("14_jgc46")]
-position = Vector2(803, 499)
+position = Vector2(300, 422)
 wall_y_force = -300.0
 
-[node name="SlimeWater" parent="." unique_id=286750866 instance=ExtResource("13_f7pug")]
-position = Vector2(638, 580)
-
 [node name="SlimeBlood" parent="." unique_id=1875886109 instance=ExtResource("14_dk0co")]
-position = Vector2(558, 256)
+position = Vector2(303, 194)
 
 [node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("14_pactg")]
 position = Vector2(897, 382)

@@ -1,16 +1,9 @@
-class_name ESStun
-extends EnemyState
+class_name ESStun extends EnemyState
 
-# EnemyState class will inherit the following variables:
-# @export var animation_name : String = "idle"
-# var state_machine : EnemyStateMachine
-# var enemy : Enemy
-# var blackboard : Blackboard
 @export var knockback_strength : float = 100
 var vel_x : float = 0
 var duration : float = 0
 var timer : float = 0
-
 
 func start() -> void:
 	var anim : String = animation_name if animation_name else "hurt_right"

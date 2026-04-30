@@ -31,5 +31,6 @@ enum Friends_localization_key {
 	mapTitle,
 	pauseSettingsButton,
 	pauseBackToTitle,
-	VALUE,
+	hudTitle,
+	hudAgain,
 }

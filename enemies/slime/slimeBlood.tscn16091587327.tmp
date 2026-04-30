@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_nwpfp"]
 [ext_resource type="Texture2D" uid="uid://bhfpki6ibnc7p" path="res://enemies/slime/animation/blood.png" id="2_s3mjm"]
+[ext_resource type="AudioStream" uid="uid://bqji2d4hy27pm" path="res://assets/sfx/slimeWalk.mp3" id="3_c5vlf"]
 [ext_resource type="Script" uid="uid://bq0ccyrwdhh07" path="res://enemies/scripts/sensors/edge_sensor.gd" id="3_ps2l6"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_wxicw"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="4_ignc3"]
@@ -9,10 +10,13 @@
 [ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="7_ignc3"]
 [ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="8_b80er"]
 [ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="8_ol882"]
+[ext_resource type="Script" uid="uid://bf8lnk8x0j7uk" path="res://enemies/scripts/states/es_attack.gd" id="9_7qjln"]
 [ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="9_nuoea"]
+[ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="10_0fjg0"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="10_ps2l6"]
-[ext_resource type="AudioStream" uid="uid://dvibfaw5tbft0" path="res://assets/sfx/death.mp3" id="11_ps2l6"]
 [ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="13_icn4k"]
+[ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="14_r4nj7"]
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="15_0fjg0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwpfp"]
 radius = 4.0
@@ -393,6 +397,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [223, 224, 225, 226, 227, 228, 229, 230, 231, 232]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_c5vlf")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_s3bgs"]
 resource_name = "shrink_to_floor"
@@ -459,26 +478,35 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfvo2"]
 size = Vector2(28, 40.5)
 
-[sub_resource type="GDScript" id="GDScript_icn4k"]
-script/source = "extends Label
+[sub_resource type="Gradient" id="Gradient_2axkv"]
+offsets = PackedFloat32Array(0.56684494, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-@onready var player_sensor: PlayerSensor = $\"../PlayerSensor\"
-@onready var slime_blood: Enemy = $\"..\"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7qjln"]
+gradient = SubResource("Gradient_2axkv")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+[sub_resource type="Resource" id="Resource_vnm3b"]
+script = ExtResource("15_0fjg0")
+count = 12
+color = Color(0.8392157, 0, 0, 1)
+texture = SubResource("GradientTexture2D_7qjln")
+metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
+[sub_resource type="Resource" id="Resource_qxoth"]
+script = ExtResource("15_0fjg0")
+count = 24
+color = Color(0.8392157, 0, 0, 1)
+metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process( _delta: float ) -> void:
-	text = \"\"
-	text = \"target = \"
-	text += slime_blood.blackboard.target.name if slime_blood.blackboard.target else \"\"
-	text += \"\\n dist = \"
-	text += str( slime_blood.blackboard.distance_to_target )
-	pass
-"
+[sub_resource type="Resource" id="Resource_b0hyt"]
+script = ExtResource("15_0fjg0")
+metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
 [node name="SlimeBlood" type="CharacterBody2D" unique_id=1875886109]
 collision_layer = 0
@@ -495,6 +523,12 @@ frame = 223
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785474761]
 position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_nwpfp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=584881535]
+libraries/ = SubResource("AnimationLibrary_wxicw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1617726887]
+bus = &"SFX"
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=441931279]
 script = ExtResource("7_ignc3")
@@ -513,28 +547,39 @@ metadata/_custom_type_script = "uid://dhttlbv130mal"
 [node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=1697934031]
 unique_name_in_owner = true
 script = ExtResource("10_ps2l6")
-death_audio = ExtResource("11_ps2l6")
+knockback_strength = null
+death_audio = ExtResource("5_ol882")
+animation_name = null
+metadata/_custom_type_script = "uid://dox0omjiybs3j"
+
+[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=2021137526]
+unique_name_in_owner = true
+script = ExtResource("9_7qjln")
 metadata/_custom_type_script = "uid://dox0omjiybs3j"
 
 [node name="DecisionEngineBasic" type="Node" parent="." unique_id=1567059583]
 script = ExtResource("8_ol882")
 metadata/_custom_type_script = "uid://bgk7nljgu1123"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=584881535]
-libraries/ = SubResource("AnimationLibrary_wxicw")
-
 [node name="DamageArea" type="Area2D" parent="." unique_id=1056318396]
 visible = false
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("4_ignc3")
-audio = ExtResource("5_ol882")
+audio = ExtResource("10_0fjg0")
 metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DamageArea" unique_id=2082642562]
 visible = false
 position = Vector2(-3, -21.75)
 shape = SubResource("RectangleShape2D_gfvo2")
+
+[node name="EnemyHitParticles" type="Marker2D" parent="." unique_id=125676582]
+position = Vector2(0, -13)
+script = ExtResource("14_r4nj7")
+hit_particles = Array[ExtResource("15_0fjg0")]([SubResource("Resource_vnm3b")])
+death_particles = Array[ExtResource("15_0fjg0")]([SubResource("Resource_qxoth"), SubResource("Resource_b0hyt")])
+metadata/_custom_type_script = "uid://bbswshx0f0q7o"
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=1046751141]
 visible = false
@@ -561,10 +606,3 @@ metadata/_custom_type_script = "uid://cfui2lani3y65"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=1016008641]
 polygon = PackedVector2Array(0, 0, 256, -128, 256, 128)
-
-[node name="Label" type="Label" parent="." unique_id=1960664849]
-offset_left = -21.0
-offset_top = -51.0
-offset_right = 19.0
-offset_bottom = -32.0
-script = SubResource("GDScript_icn4k")

@@ -1,10 +1,10 @@
-class_name ESWalk extends EnemyState
+class_name ESAttack extends EnemyState
 
-@export var walk_speed : float = 50
+@export var walk_speed : float = 100
 
 func enter() -> void:
 	# What happens when we enter this state?
-	var anim : String = animation_name if animation_name else "move_right"
+	var anim : String = animation_name if animation_name else "attack_right"
 	enemy.play_animation( anim )
 	pass
 

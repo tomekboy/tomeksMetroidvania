@@ -40,12 +40,12 @@ var previous_state : PlayerState :
 #endregion
 
 #region /// player stats 
-var hp : float = 25 :
+var hp : float = 20 :
 	set( value ):
 		hp = clampf( value, 0, max_hp )
 		MessageManager.player_health_changed.emit( hp, max_hp )
 
-var max_hp : float = 50 :
+var max_hp : float = 20 :
 	set( value ):
 		max_hp = value
 		MessageManager.player_health_changed.emit( hp, max_hp )
@@ -61,7 +61,7 @@ var wall_direction : Vector2 = Vector2.ZERO
 #region /// abilities
 var dash : bool = false
 var dash_count : int = 0
-var double_jump : bool = true
+var double_jump : bool = false
 var jump_count : int = 0
 var ground_slam : bool = false
 var morph_roll : bool = false
