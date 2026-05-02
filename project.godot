@@ -42,7 +42,6 @@ VisualEffects="*uid://bc5jq4e6l7pfi"
 
 window/size/viewport_width=1020
 window/size/viewport_height=640
-window/size/mode=1
 window/size/window_width_override=1020
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"

@@ -42,19 +42,6 @@ shader = ExtResource("10_bjvpn")
 shader_parameter/progress = 0.0
 shader_parameter/block_size = 1.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
-radius = 7.0
-height = 56.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebec5"]
-radius = 3.5
-height = 7.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q28gw"]
-size = Vector2(16, 3)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ejfk"]
-
 [sub_resource type="Animation" id="Animation_e7oew"]
 resource_name = "RESET"
 length = 1.4
@@ -1501,6 +1488,19 @@ _data = {
 &"walk": SubResource("Animation_hg6s5")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
+radius = 7.0
+height = 56.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebec5"]
+radius = 3.5
+height = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q28gw"]
+size = Vector2(16, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ejfk"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32hag"]
 size = Vector2(55, 14)
 
@@ -1513,6 +1513,27 @@ collision_layer = 16
 collision_mask = 3
 safe_margin = 0.14
 script = ExtResource("1_oul6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1654504326]
+material = SubResource("ShaderMaterial_bjvpn")
+position = Vector2(0, -25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_wodsf")
+hframes = 27
+vframes = 2
+script = ExtResource("16_2uvqg")
+
+[node name="AttackSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1354354306]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(74, 7)
+texture = ExtResource("7_32hag")
+hframes = 8
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1856354717]
+libraries/ = SubResource("AnimationLibrary_hg6s5")
+autoplay = &"idle"
 
 [node name="States" type="Node" parent="." unique_id=1523396037]
 
@@ -1565,22 +1586,30 @@ script = ExtResource("15_jd2rm")
 unique_name_in_owner = true
 script = ExtResource("15_pnw6m")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1654504326]
-material = SubResource("ShaderMaterial_bjvpn")
-position = Vector2(0, -25)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_wodsf")
-hframes = 27
-vframes = 2
-script = ExtResource("16_2uvqg")
+[node name="StatesAnimationAudio" type="Node" parent="." unique_id=819063165]
 
-[node name="AttackSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1354354306]
+[node name="Bored" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1059496684]
 unique_name_in_owner = true
-show_behind_parent = true
-position = Vector2(74, 7)
-texture = ExtResource("7_32hag")
-hframes = 8
-frame = 4
+position = Vector2(0, -26)
+stream = ExtResource("14_g4c7l")
+volume_db = 4.0
+max_distance = 10000.0
+bus = &"SFX"
+
+[node name="Walking" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=963938178]
+unique_name_in_owner = true
+position = Vector2(0, -26)
+stream = ExtResource("20_knn7v")
+volume_db = 4.0
+max_distance = 10000.0
+bus = &"SFX"
+
+[node name="Sliding" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1995182506]
+unique_name_in_owner = true
+position = Vector2(0, -26)
+max_distance = 10000.0
+max_polyphony = 8
+bus = &"SFX"
 
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=1883793213]
 position = Vector2(0, -26)
@@ -1613,6 +1642,7 @@ collide_with_areas = true
 
 [node name="WallClimbRaycast" type="RayCast2D" parent="." unique_id=728338091]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -25)
 target_position = Vector2(15, 0)
 
@@ -1639,35 +1669,6 @@ hit_from_inside = true
 [node name="WallClimbTimer" type="Timer" parent="." unique_id=36111394]
 wait_time = 0.3
 one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1856354717]
-libraries/ = SubResource("AnimationLibrary_hg6s5")
-autoplay = &"idle"
-
-[node name="StatesAnimationAudio" type="Node" parent="." unique_id=819063165]
-
-[node name="Bored" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1059496684]
-unique_name_in_owner = true
-position = Vector2(0, 26)
-stream = ExtResource("14_g4c7l")
-volume_db = 4.0
-max_distance = 10000.0
-bus = &"SFX"
-
-[node name="Walking" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=963938178]
-unique_name_in_owner = true
-position = Vector2(0, 26)
-stream = ExtResource("20_knn7v")
-volume_db = 4.0
-max_distance = 10000.0
-bus = &"SFX"
-
-[node name="Sliding" type="AudioStreamPlayer2D" parent="StatesAnimationAudio" unique_id=1995182506]
-unique_name_in_owner = true
-position = Vector2(0, 26)
-max_distance = 10000.0
-max_polyphony = 8
-bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1219678630]
 process_mode = 3

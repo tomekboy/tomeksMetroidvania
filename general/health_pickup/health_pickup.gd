@@ -1,8 +1,9 @@
+@icon( "res://general/icons/heart.svg" )
 class_name HealthPickup extends CharacterBody2D
 
 const HEALTH_UP_SFX = preload("uid://bg41rjrsf1hn8")
 
-@export var heal_amount : float = 5
+@export var heal_amount : float = 1
 
 var bounce_count : int = 8
 

@@ -1,9 +1,8 @@
 class_name DecisionEngineBasic extends DecisionEngine
 
-@onready var es_walk: ESWalk = %ESWalk
-@onready var es_stun: ESStun = %ESStun
-@onready var es_death: ESDeath = %ESDeath
-@onready var es_attack: ESAttack = %ESAttack
+@onready var es_walk: ESWalk = $"../EnemyStateMachine/ESWalk"
+@onready var es_stun: ESStun = $"../EnemyStateMachine/ESStun"
+@onready var es_death: ESDeath = $"../EnemyStateMachine/ESDeath"
 
 # Included in DecisionEngine:
 # var enemy : Enemy
@@ -23,8 +22,6 @@ func decide() -> EnemyState:
 			return es_death
 		else:
 			return es_stun
-	if blackboard.target:
-		return es_attack
 		
 	if current_state is ESDeath or not blackboard.can_decide:
 		return null

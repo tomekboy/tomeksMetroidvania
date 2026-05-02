@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="11_2a31v"]
 [ext_resource type="Texture2D" uid="uid://cd3ll62aydp0j" path="res://levels/00_wonderland/images/signQuestionMark.png" id="14_l741y"]
 [ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="15_c810p"]
+[ext_resource type="PackedScene" uid="uid://pqp4pqxuxkmu" path="res://enemies/slime/slimeBlood.tscn" id="15_l741y"]
+[ext_resource type="PackedScene" uid="uid://bccya1y0waa32" path="res://enemies/slime/slimeDark.tscn" id="17_opi1y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l741y"]
 texture = ExtResource("6_2fxpy")
@@ -101,7 +103,7 @@ metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 position = Vector2(8, 712)
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(477, 239)
+position = Vector2(755, 274)
 
 [node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("8_6ywwc")]
 position = Vector2(2850, 527)
@@ -167,4 +169,12 @@ position = Vector2(19, 97)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("14_l741y")
 
+[node name="Probs" type="Node" parent="." unique_id=106196231]
+
 [node name="Enemies" type="Node" parent="." unique_id=1333283937]
+
+[node name="SlimeBlood" parent="Enemies" unique_id=634296537 instance=ExtResource("15_l741y")]
+position = Vector2(564, 288)
+
+[node name="SlimeDark" parent="Enemies" unique_id=1470401610 instance=ExtResource("17_opi1y")]
+position = Vector2(792, 184)

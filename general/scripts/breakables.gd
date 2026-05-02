@@ -17,6 +17,9 @@ signal damage_taken
 @export var hit_audio : AudioStream = preload("uid://c2j3bi6tdyq4m")
 @export var destroy_audio : AudioStream = preload("uid://dgfp2twlqj24") # woodSmash
 
+var velocity = Vector2.ZERO
+var gravity = 980
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return

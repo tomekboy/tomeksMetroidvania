@@ -1,23 +1,23 @@
-[gd_scene format=3 uid="uid://pqp4pqxuxkmu"]
+[gd_scene format=3 uid="uid://bwkm7jftr10y"]
 
-[ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_xe51p"]
-[ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="1_y6wwg"]
-[ext_resource type="Texture2D" uid="uid://bhfpki6ibnc7p" path="res://enemies/slime/animation/blood.png" id="2_6oiw0"]
-[ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="2_xe51p"]
-[ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="3_4y4rx"]
-[ext_resource type="AudioStream" uid="uid://crv4o3mmt7yik" path="res://assets/sfx/slurp.mp3" id="3_fkhe1"]
-[ext_resource type="AudioStream" uid="uid://bqji2d4hy27pm" path="res://assets/sfx/slimeWalk.mp3" id="3_yu0w3"]
-[ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="4_ktkn8"]
-[ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="5_6oiw0"]
-[ext_resource type="Script" uid="uid://bq0ccyrwdhh07" path="res://enemies/scripts/sensors/edge_sensor.gd" id="6_26jtq"]
-[ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="7_26jtq"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="8_ktkn8"]
-[ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="9_6oiw0"]
-[ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="10_m2vt8"]
-[ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="15_lwidv"]
-[ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="16_7qjln"]
-[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="17_vnm3b"]
-[ext_resource type="Resource" uid="uid://bhvlwe34vj0xe" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_red.tres" id="18_vnm3b"]
+[ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_2n46n"]
+[ext_resource type="Texture2D" uid="uid://dclvn3sgo5k03" path="res://enemies/slime/animation/pink.png" id="2_2n46n"]
+[ext_resource type="AudioStream" uid="uid://crv4o3mmt7yik" path="res://assets/sfx/slurp.mp3" id="3_kpy0k"]
+[ext_resource type="AudioStream" uid="uid://bqji2d4hy27pm" path="res://assets/sfx/slimeWalk.mp3" id="4_ist32"]
+[ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="5_ys7kx"]
+[ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="6_1mwvi"]
+[ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="7_p61mp"]
+[ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="8_m60yk"]
+[ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="9_fo2m0"]
+[ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="10_8ta78"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="11_x17wl"]
+[ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="12_o4onl"]
+[ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="13_8314a"]
+[ext_resource type="Script" uid="uid://bq0ccyrwdhh07" path="res://enemies/scripts/sensors/edge_sensor.gd" id="14_1isn1"]
+[ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="15_hkyp8"]
+[ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="16_1ckf7"]
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="17_pnuj6"]
+[ext_resource type="Resource" uid="uid://l5vh3pyocqu8" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_pink.tres" id="18_2n46n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2c1x"]
 radius = 7.0
@@ -113,7 +113,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("3_fkhe1")
+"stream": ExtResource("3_kpy0k")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -391,7 +391,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("3_yu0w3")
+"stream": ExtResource("4_ist32")
 }],
 "times": PackedFloat32Array(0.06666666)
 }
@@ -460,15 +460,15 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6oiw0"]
 
 [sub_resource type="Resource" id="Resource_b68gs"]
-script = ExtResource("17_vnm3b")
+script = ExtResource("17_pnuj6")
 metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
-[node name="SlimeBlood" type="CharacterBody2D" unique_id=634296537]
-script = ExtResource("1_xe51p")
+[node name="SlimePink" type="CharacterBody2D" unique_id=634296537]
+script = ExtResource("1_2n46n")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196]
 position = Vector2(4, -14)
-texture = ExtResource("2_6oiw0")
+texture = ExtResource("2_2n46n")
 hframes = 8
 vframes = 31
 frame = 88
@@ -488,32 +488,32 @@ volume_db = -3.0
 bus = &"SFX"
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=2020379810]
-script = ExtResource("1_y6wwg")
+script = ExtResource("5_ys7kx")
 metadata/_custom_type_script = "uid://2dityed23bsq"
 
 [node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
-script = ExtResource("2_xe51p")
+script = ExtResource("6_1mwvi")
 metadata/_custom_type_script = "uid://vgbg018s6yet"
 
 [node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
-script = ExtResource("3_4y4rx")
+script = ExtResource("7_p61mp")
 metadata/_custom_type_script = "uid://dhttlbv130mal"
 
 [node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=83238501]
-script = ExtResource("4_ktkn8")
-death_audio = ExtResource("7_26jtq")
+script = ExtResource("8_m60yk")
+death_audio = ExtResource("9_fo2m0")
 metadata/_custom_type_script = "uid://dox0omjiybs3j"
 
 [node name="DecisionEngineBasic" type="Node" parent="." unique_id=1990243804]
-script = ExtResource("5_6oiw0")
+script = ExtResource("10_8ta78")
 metadata/_custom_type_script = "uid://bgk7nljgu1123"
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1118480072]
 visible = false
 collision_layer = 32
 collision_mask = 0
-script = ExtResource("8_ktkn8")
-audio = ExtResource("10_m2vt8")
+script = ExtResource("11_x17wl")
+audio = ExtResource("12_o4onl")
 metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1619679852]
@@ -524,7 +524,7 @@ shape = SubResource("CapsuleShape2D_6oiw0")
 visible = false
 collision_layer = 0
 collision_mask = 16
-script = ExtResource("9_6oiw0")
+script = ExtResource("13_8314a")
 metadata/_custom_type_script = "uid://davkcy554f7pn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=1001908221]
@@ -534,11 +534,11 @@ shape = SubResource("CapsuleShape2D_6oiw0")
 [node name="EdgeSensor" type="RayCast2D" parent="." unique_id=306613586]
 position = Vector2(2, 0)
 target_position = Vector2(0, 8)
-script = ExtResource("6_26jtq")
+script = ExtResource("14_1isn1")
 metadata/_custom_type_script = "uid://bq0ccyrwdhh07"
 
 [node name="PlayerSensor" type="Area2D" parent="." unique_id=434396934]
-script = ExtResource("15_lwidv")
+script = ExtResource("15_hkyp8")
 metadata/_custom_type_script = "uid://cfui2lani3y65"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=642785591]
@@ -546,7 +546,7 @@ position = Vector2(2, -12.999998)
 polygon = PackedVector2Array(0, 0, 150, -64, 150, 64)
 
 [node name="EnemyHitParticles" type="Marker2D" parent="." unique_id=1594474827]
-script = ExtResource("16_7qjln")
-hit_particles = Array[ExtResource("17_vnm3b")]([ExtResource("18_vnm3b")])
-death_particles = Array[ExtResource("17_vnm3b")]([SubResource("Resource_b68gs")])
+script = ExtResource("16_1ckf7")
+hit_particles = Array[ExtResource("17_pnuj6")]([ExtResource("18_2n46n")])
+death_particles = Array[ExtResource("17_pnuj6")]([SubResource("Resource_b68gs")])
 metadata/_custom_type_script = "uid://bbswshx0f0q7o"

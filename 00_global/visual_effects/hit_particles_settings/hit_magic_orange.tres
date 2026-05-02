@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HitParticleSettings" format=3 uid="uid://mk3wawgc41bk"]
+
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="1_0bfdp"]
+
+[resource]
+script = ExtResource("1_0bfdp")
+count = 25
+color = Color(1, 0.54509807, 0, 1)
+metadata/_custom_type_script = "uid://sxomxrc0lhoq"

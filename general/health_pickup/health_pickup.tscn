@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d15uniaf1tmpx"]
 
 [ext_resource type="Script" uid="uid://bo6nkt1gcfgol" path="res://general/health_pickup/health_pickup.gd" id="1_4tdop"]
-[ext_resource type="Texture2D" uid="uid://drkj4oxp13ix7" path="res://general/health_pickup/sprites/heart.png" id="1_oswdi"]
+[ext_resource type="Texture2D" uid="uid://b1ph2g8kf4arm" path="res://general/health_pickup/sprites/healthPickup.png" id="2_4tdop"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4tdop"]
 radius = 7.071068
@@ -23,8 +23,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_66wk7"]
 resource_name = "default"
-length = 0.95
-loop_mode = 1
+length = 0.275
+loop_mode = 2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -33,10 +33,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+"values": [0, 1, 2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ndoxy"]
@@ -56,8 +56,8 @@ shape = SubResource("CircleShape2D_4tdop")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=499454476]
-texture = ExtResource("1_oswdi")
-hframes = 10
+texture = ExtResource("2_4tdop")
+hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=752266651]
 libraries/ = SubResource("AnimationLibrary_ndoxy")

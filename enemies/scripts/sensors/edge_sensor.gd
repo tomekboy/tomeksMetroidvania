@@ -27,7 +27,7 @@ func _physics_process( _delta: float ) -> void:
 	
 	if colliding != _is_colliding:
 		colliding = _is_colliding
-		if colliding:
+		if not colliding:
 			enemy.blackboard.edge_detected = true
 			edge_detected.emit()
 		else:
