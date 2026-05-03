@@ -31,5 +31,9 @@ namespace Localization {
 		pauseBackToTitle,
 		hudTitle,
 		hudAgain,
+		abilityDoubleJump,
+		abilityDash,
+		abilitySlam,
+		abilityRoll,
 	}
 }

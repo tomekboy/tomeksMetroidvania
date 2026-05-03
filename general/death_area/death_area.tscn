@@ -6,6 +6,7 @@
 size = Vector2(4096, 64)
 
 [node name="DeathArea" type="Node2D" unique_id=22993606]
+modulate = Color(1, 0, 0, 1)
 script = ExtResource("1_rj6fa")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=703818378]

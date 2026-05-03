@@ -193,7 +193,6 @@ vertical_alignment = 1
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -209,8 +208,8 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 25.0
 offset_top = 61.0
-offset_right = 181.0
-offset_bottom = -76.0
+offset_right = 234.0
+offset_bottom = -60.0
 grow_vertical = 2
 script = ExtResource("2_b4s0c")
 
@@ -220,6 +219,14 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_b4s0c")
 stretch_mode = 3
 
+[node name="DoubleJump" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilityDoubleJump" unique_id=1552167908]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 209.0
+offset_bottom = 87.0
+text = "abilityDoubleJump"
+horizontal_alignment = 1
+
 [node name="AbilityDash" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1161395774]
 unique_name_in_owner = true
 layout_mode = 2
@@ -228,17 +235,44 @@ size_flags_stretch_ratio = 0.0
 texture = SubResource("AtlasTexture_s1glv")
 stretch_mode = 3
 
+[node name="Dash" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilityDash" unique_id=575161524]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 209.0
+offset_bottom = 109.0
+text = "abilityDash
+"
+horizontal_alignment = 1
+
 [node name="AbilitySlam" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=2101041452]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_wn31l")
 stretch_mode = 3
 
+[node name="Slam" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilitySlam" unique_id=2007642130]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 209.0
+offset_bottom = 109.0
+text = "abilitySlam
+"
+horizontal_alignment = 1
+
 [node name="AbilityRoll" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=407154104]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_b0obc")
 stretch_mode = 3
+
+[node name="Roll" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilityRoll" unique_id=991390482]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 209.0
+offset_bottom = 109.0
+text = "abilityRoll
+"
+horizontal_alignment = 1
 
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
 anchors_preset = 0
@@ -256,6 +290,7 @@ offset_right = 155.0
 offset_bottom = 216.0
 linked_scene = "uid://cfiuv8loi78a5"
 entrances_right = Array[float]([7.3999996])
+entrances_bottom = Array[float]([138.0])
 
 [node name="MapNode2" parent="Control/PauseScreen/MapDisplay" unique_id=949127578 instance=ExtResource("2_rd7dy")]
 modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
@@ -272,35 +307,31 @@ entrances_left = Array[float]([7.3999996])
 modulate = Color(0.4862745, 0.7607843, 0.25882354, 1)
 layout_mode = 0
 offset_left = 161.0
-offset_top = 222.0
+offset_top = 219.0
 offset_right = 314.0
-offset_bottom = 254.0
+offset_bottom = 251.0
 linked_scene = "uid://bk7purnia7v6"
 entrances_top = Array[float]([19.35])
 
 [node name="MapNode4" parent="Control/PauseScreen/MapDisplay" unique_id=580727397 instance=ExtResource("2_rd7dy")]
 modulate = Color(1, 0.45490196, 0.6156863, 1)
 layout_mode = 0
-offset_left = 323.0
-offset_top = 186.0
-offset_right = 374.0
-offset_bottom = 218.0
+offset_left = 99.0
+offset_top = 218.0
+offset_right = 150.0
+offset_bottom = 250.0
+linked_scene = "uid://dqrxb6w6r6ewe"
+entrances_top = Array[float]([41.05])
 
 [node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 0
-offset_left = -50.0
-offset_top = 15.0
-offset_right = -50.0
-offset_bottom = 15.0
 
 [node name="TextureRect" type="TextureRect" parent="Control/PauseScreen/MapDisplay/PlayerIndicator" unique_id=1501680612]
 layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 3.0
-offset_bottom = 3.0
+offset_right = 6.0
+offset_bottom = 6.0
 texture = SubResource("GradientTexture2D_uwtdo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PauseScreen/MapDisplay/PlayerIndicator" unique_id=319789417]
@@ -311,17 +342,19 @@ autoplay = &"default"
 layout_mode = 0
 offset_left = 22.0
 offset_top = 19.0
-offset_right = 142.0
+offset_right = 231.0
 offset_bottom = 38.0
 text = "abilitiesTitle"
+horizontal_alignment = 1
 
 [node name="MapTitle" type="Label" parent="Control/PauseScreen" unique_id=1345469492]
 layout_mode = 0
 offset_left = 243.0
 offset_top = 19.0
-offset_right = 306.0
-offset_bottom = 38.0
+offset_right = 976.0
+offset_bottom = 41.436172
 text = "mapTitle"
+horizontal_alignment = 1
 
 [node name="SettingsMenuButton" type="Button" parent="Control/PauseScreen" unique_id=914943227]
 unique_name_in_owner = true
@@ -350,6 +383,7 @@ text = "pauseSettingsButton"
 
 [node name="System" type="Control" parent="Control" unique_id=1702171481]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

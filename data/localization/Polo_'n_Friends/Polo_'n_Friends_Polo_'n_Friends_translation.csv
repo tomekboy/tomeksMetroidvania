@@ -30,3 +30,7 @@ pauseSettingsButton,Settings,Einstellungen,Paramètres,Impostazioni,Parámetros
 pauseBackToTitle,Main Menu,Hauptmenu,Menu principal,Menù principale,Menú principal
 hudTitle,[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]too bad[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Schade[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Dommage[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Peccato[/rainbow][/outline_size][/outline_color],[outline_color=white][outline_size=8][rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Daño[/rainbow][/outline_size][/outline_color]
 hudAgain,again ...,nochmal ...,encore ...,Ancora ...,bis...
+abilityDoubleJump,Double Jump,Doppelsprung,double saut,doppio salto,salteado doble
+abilityDash,Dash,sprinten,sprint,sprint,sprint
+abilitySlam,Ground Slam,Bodenstampfer,sabotage au sol,compattatore di terreno,sabotaje al sol
+abilityRoll,Roll,rollen,rouler,rotolo,ruleta

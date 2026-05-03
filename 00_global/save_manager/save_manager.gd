@@ -40,7 +40,7 @@ func create_new_game_save( slot : int ) -> void:
 		"scene_path" : new_game_scene,
 		"x" : 1360,
 		"y" : 120,
-		"hp" : 20,
+		"hp" : 5,
 		"max_hp" : 20,
 		"dash" : false,
 		"double_jump" : false,

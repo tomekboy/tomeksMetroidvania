@@ -33,4 +33,8 @@ enum Friends_localization_key {
 	pauseBackToTitle,
 	hudTitle,
 	hudAgain,
+	abilityDoubleJump,
+	abilityDash,
+	abilitySlam,
+	abilityRoll,
 }

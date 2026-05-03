@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://duywqnpy2e1uo"
-path="res://.godot/imported/save_pont.png-570cbadf8bd206d9fb14ae02584e4159.ctex"
+path="res://.godot/imported/save_point.png-cf4f7dd4d217d857bf3f46fd99e9edff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://general/save_point/save_pont.png"
-dest_files=["res://.godot/imported/save_pont.png-570cbadf8bd206d9fb14ae02584e4159.ctex"]
+source_file="res://general/save_point/save_point.png"
+dest_files=["res://.godot/imported/save_point.png-cf4f7dd4d217d857bf3f46fd99e9edff.ctex"]
 
 [params]
 

@@ -13,7 +13,6 @@ func _ready() -> void:
 
 
 func _on_player_entered( player : CharacterBody2D ) -> void:
-	#SceneManager.transition_scene( SceneManager.current_scene_uid, "", Vector2.ZERO, "up" )
 	AudioManager.play_spatial_sound( SCREAM_SFX, player.global_position )
 	player.global_position = player_spawn.global_position
 	pass

@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cfiuv8loi78a5"]
 
+[ext_resource type="Material" uid="uid://d0mwxqwvs8f7i" path="res://assets/materials_and_shaders/fog_fade_material.tres" id="1_opi1y"]
 [ext_resource type="Script" uid="uid://cbdfv5wlgti5s" path="res://general/scripts/level_bounds.gd" id="1_pqvlw"]
 [ext_resource type="PackedScene" uid="uid://doresjk60xsm1" path="res://general/player_spawn/player_spawn.tscn" id="2_ogtcl"]
 [ext_resource type="PackedScene" uid="uid://c7inn7kul5kd5" path="res://general/level_transition/level_transiton.tscn" id="4_ogtcl"]
@@ -10,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://cbwv605glx4um" path="res://levels/00_wonderland/images/Cloud-01.png" id="6_duuwg"]
 [ext_resource type="Texture2D" uid="uid://bw8xqes37ikow" path="res://levels/00_wonderland/images/Cloud-00.png" id="6_p32jg"]
 [ext_resource type="Texture2D" uid="uid://cfwstgbiljsi5" path="res://levels/00_wonderland/images/Cloud-02.png" id="7_6ywwc"]
-[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="8_6ywwc"]
 [ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="11_2a31v"]
+[ext_resource type="Texture2D" uid="uid://dn5rp4p1u44yb" path="res://levels/00_wonderland/tilesets/sprites/abiltyPlatform.png" id="11_jy5vy"]
+[ext_resource type="Shader" uid="uid://c0dmimgtrttg8" path="res://assets/materials_and_shaders/fog.gdshader" id="14_236hw"]
 [ext_resource type="Texture2D" uid="uid://cd3ll62aydp0j" path="res://levels/00_wonderland/images/signQuestionMark.png" id="14_l741y"]
-[ext_resource type="PackedScene" uid="uid://domlydylyeco8" path="res://general/ability_pickup/ability_pickup.tscn" id="15_c810p"]
 [ext_resource type="PackedScene" uid="uid://pqp4pqxuxkmu" path="res://enemies/slime/slimeBlood.tscn" id="15_l741y"]
 [ext_resource type="PackedScene" uid="uid://bccya1y0waa32" path="res://enemies/slime/slimeDark.tscn" id="17_opi1y"]
 
@@ -76,6 +77,19 @@ custom_data_layer_0/name = ""
 custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_l741y")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ilro"]
+texture = ExtResource("11_jy5vy")
+texture_region_size = Vector2i(46, 41)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23, -20.5, 23, -20.5, 23, 20.5, -1.1289444, 20.5)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23, -20.5, 23, -20.5, 14.676323, -3.3868446, 6.7736893, -1.1289482, -23, 14.111847)
+
+[sub_resource type="TileSet" id="TileSet_awe2q"]
+tile_size = Vector2i(46, 41)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_0ilro")
+
 [sub_resource type="Gradient" id="Gradient_3liq1"]
 colors = PackedColorArray(0.31764707, 0.79607844, 0.92941177, 1, 1, 1, 1, 1)
 
@@ -86,7 +100,31 @@ height = 640
 fill_from = Vector2(0.49130434, 0)
 fill_to = Vector2(0.5043478, 0.8086957)
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rxn4f"]
+seamless = true
+seamless_blend_skirt = 0.113
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jy5vy"]
+shader = ExtResource("14_236hw")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_rxn4f")
+shader_parameter/smoke_color = Color(1.0586779, 1.0586779, 1.0586779, 1)
+shader_parameter/distortion_speed = 0.1730000082175
+shader_parameter/density = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_krb6n"]
+frequency = 0.0034
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ilro"]
+width = 160
+height = 90
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_krb6n")
+seamless = true
+normalize = false
+seamless_blend_skirt = 1.0
+
 [node name="01" type="Node2D" unique_id=1770382212]
+material = ExtResource("1_opi1y")
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=1070011468]
 z_index = 256
@@ -100,13 +138,10 @@ track = ExtResource("6_c810p")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("4_wvxnh")]
-position = Vector2(8, 712)
+position = Vector2(8, 646)
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(755, 274)
-
-[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("8_6ywwc")]
-position = Vector2(2850, 527)
+position = Vector2(2663, 496)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)
@@ -115,17 +150,25 @@ location = 1
 target_level = "uid://bb7n5hh1ojdiy"
 target_area_name = "Town"
 
-[node name="AbilityPickup" parent="." unique_id=403504781 instance=ExtResource("15_c810p")]
-position = Vector2(696, 291)
+[node name="Cave" parent="." unique_id=320618429 instance=ExtResource("4_ogtcl")]
+position = Vector2(2760, 640)
+location = 3
+target_level = "uid://dqrxb6w6r6ewe"
+target_area_name = "Cave"
 
 [node name="Visuals" type="Node" parent="." unique_id=2057046067]
 
 [node name="Platform" type="TileMapLayer" parent="Visuals" unique_id=140626279]
 z_index = 1
-position = Vector2(-3337, -848)
-tile_map_data = PackedByteArray("AABwACIAAAAKAAAAAABxACIAAAAGAAAAAAByACIAAAAGAAAAAABzACIAAAARAAAAAAB0ACMAAAANAAAAAAB1ACMAAAARAAAAAAB2ACQAAAARAAAAAAB3ACQAAAAAAAAAAAB3ACUAAAANAAAAAAB4ACUAAAAGAAAAAAB5ACUAAAAGAAAAAAB6ACUAAAAGAAAAAAB7ACUAAAAHAAAAAABwACEAAAAJAAAAAABxACEAAAABAAAAAAB0ACEAAAAPAAAAAAB0ACIAAAAOAAAAAAB1ACIAAAAQAAAAAAB2ACIAAAAPAAAAAAB2ACMAAAAOAAAAAAB3ACMAAAAQAAAAAAB4ACMAAAAPAAAAAAB4ACQAAAAOAAAAAAB5ACQAAAABAAAAAAB6ACQAAAABAAAAAAB7ACQAAAABAAAAAACBACUAAAAGAAAAAACCACQAAAABAAAAAACCACUAAAAHAAAAAACDACQAAAAFAAAAAACEACQAAAAGAAAAAACFACMAAAABAAAAAACFACQAAAAGAAAAAACGACMAAAABAAAAAACGACQAAAAGAAAAAACHACMAAAABAAAAAACHACQAAAAHAAAAAACIACMAAAAMAAAAAAB/ACUAAAAKAAAAAACAACQAAAABAAAAAACAACUAAAAGAAAAAACBACQAAAABAAAAAACDACMAAAAEAAAAAACEACMAAAACAAAAAAB/ACQAAAAJAAAAAAB8ACQAAAAMAAAAAABzACEAAAAQAAAAAAByACEAAAABAAAAAABxACUAAAAMAAAAAABwACUAAAABAAAAAABvACUAAAAJAAAAAABvACYAAAAKAAAAAABwACYAAAAHAAAAAABrACQAAAAGAAAAAQBrACUAAAAGAAAAAQBrACYAAAAGAAAAAQBrACcAAAAHAAAAAQBsACQAAAABAAAAAFBsACUAAAABAAAAAFBsACYAAAABAAAAAFBsACcAAAAQAAAAAFBoAB4AAAAJAAAAAABoAB8AAAAKAAAAAABpAB4AAAABAAAAAABpAB8AAAAGAAAAAABqAB4AAAABAAAAAABqAB8AAAAGAAAAAABrAB4AAAAQAAAAAABrAB8AAAARAAAAAABrACAAAAANAAAAAQBrACEAAAAGAAAAAQBrACIAAAAGAAAAAQBrACMAAAAGAAAAAQBsAB4AAAAPAAAAAABsAB8AAAABAAAAAFBsACAAAAABAAAAAFBsACEAAAABAAAAAFBsACIAAAABAAAAAFBsACMAAAABAAAAAFCAACEAAAALAAAAAACBACEAAAAIAAAAAAA=")
+position = Vector2(-3338, -848)
+tile_map_data = PackedByteArray("AABwACIAAAAKAAAAAABxACIAAAAGAAAAAAByACIAAAAGAAAAAABzACIAAAARAAAAAAB0ACMAAAANAAAAAAB1ACMAAAARAAAAAAB2ACQAAAARAAAAAAB3ACQAAAAAAAAAAAB3ACUAAAANAAAAAAB4ACUAAAAGAAAAAAB5ACUAAAAGAAAAAAB6ACUAAAAGAAAAAAB7ACUAAAAHAAAAAABwACEAAAAJAAAAAABxACEAAAABAAAAAAB0ACEAAAAPAAAAAAB0ACIAAAAOAAAAAAB1ACIAAAAQAAAAAAB2ACIAAAAPAAAAAAB2ACMAAAAOAAAAAAB3ACMAAAAQAAAAAAB4ACMAAAAPAAAAAAB4ACQAAAAOAAAAAAB5ACQAAAABAAAAAAB6ACQAAAABAAAAAAB7ACQAAAABAAAAAAB8ACQAAAAMAAAAAABzACEAAAAQAAAAAAByACEAAAABAAAAAABxACUAAAAMAAAAAABwACUAAAABAAAAAABvACUAAAAJAAAAAABvACYAAAAKAAAAAABwACYAAAAHAAAAAABrACQAAAAGAAAAAQBrACUAAAAGAAAAAQBrACYAAAAGAAAAAQBrACcAAAAHAAAAAQBsACQAAAABAAAAAFBsACUAAAABAAAAAFBsACYAAAABAAAAAFBsACcAAAAQAAAAAFBoAB4AAAAJAAAAAABoAB8AAAAKAAAAAABpAB4AAAABAAAAAABpAB8AAAAGAAAAAABqAB4AAAABAAAAAABqAB8AAAAGAAAAAABrAB4AAAAQAAAAAABrAB8AAAARAAAAAABrACAAAAANAAAAAQBrACEAAAAGAAAAAQBrACIAAAAGAAAAAQBrACMAAAAGAAAAAQBsAB4AAAAPAAAAAABsAB8AAAABAAAAAFBsACAAAAABAAAAAFBsACEAAAABAAAAAFBsACIAAAABAAAAAFBsACMAAAABAAAAAFC+ACIAAAACAAAAAAC+ACMAAAAGAAAAAAC/ACIAAAABAAAAAAC/ACMAAAAGAAAAAADAACIAAAABAAAAAADAACMAAAAGAAAAAADBACIAAAABAAAAAADBACMAAAAHAAAAAADCACEAAAAEAAAAAADCACIAAAAFAAAAAADDACEAAAACAAAAAADDACIAAAAGAAAAAADEACEAAAABAAAAAADEACIAAAAGAAAAAADFACEAAAABAAAAAADFACIAAAAGAAAAAADGACEAAAABAAAAAADGACIAAAAHAAAAAADHACEAAAAMAAAAAAC9ACIAAAAEAAAAAAC8ACMAAAACAAAAAAC7ACMAAAAEAAAAAAC6ACQAAAABAAAAAAC5ACQAAAABAAAAAAC7ACQAAAAFAAAAAAC9ACMAAAAFAAAAAAC8ACQAAAAHAAAAAAC6ACUAAAAHAAAAAAC5ACUAAAAGAAAAAACBACQAAAAJAAAAAACBACUAAAAKAAAAAACCACQAAAABAAAAAACCACUAAAAGAAAAAACDACQAAAABAAAAAACEACQAAAABAAAAAACFACMAAAAEAAAAAACFACQAAAAFAAAAAACGACMAAAACAAAAAACGACQAAAAGAAAAAACHACMAAAABAAAAAACHACQAAAAGAAAAAACIACMAAAABAAAAAACDACUAAAAGAAAAAACEACUAAAAHAAAAAACIACQAAAAGAAAAAACJACMAAAABAAAAAACJACQAAAAHAAAAAACKACMAAAAMAAAAAABtACoAAAALAAAAAABuACoAAAAIAAAAAAB6ACoAAAAIAAAAAAB5ACoAAAALAAAAAACQACoAAAAJAAAAAACQACsAAAAKAAAAAACRACoAAAABAAAAAACRACsAAAARAAAAAACSACoAAAAQAAAAAACSACsAAAAAAAAAAACTACoAAAAPAAAAAACTACsAAAAOAAAAAACTACwAAAAKAAAAAACUACsAAAAQAAAAAACUACwAAAARAAAAAACVACsAAAAPAAAAAACVACwAAAAOAAAAAACVAC0AAAARAAAAAACWACwAAAAQAAAAAACWAC0AAAAAAAAAAACWAC4AAAANAAAAAACXACwAAAAPAAAAAACXAC0AAAAOAAAAAACXAC4AAAAGAAAAAACYAC0AAAABAAAAAACYAC4AAAAGAAAAAACZAC0AAAABAAAAAACZAC4AAAAGAAAAAACaAC0AAAABAAAAAACaAC4AAAAGAAAAAACbAC0AAAABAAAAAACbAC4AAAAGAAAAAACcAC0AAAABAAAAAACcAC4AAAAGAAAAAACdAC0AAAABAAAAAACdAC4AAAAHAAAAAACeACwAAAAEAAAAAACeAC0AAAAFAAAAAACfACwAAAACAAAAAACfAC0AAAAHAAAAAACgACsAAAAEAAAAAACgACwAAAAFAAAAAAChACsAAAACAAAAAAChACwAAAAGAAAAAACiACsAAAABAAAAAACiACwAAAAGAAAAAACjACsAAAABAAAAAACjACwAAAAHAAAAAACkACsAAAAMAAAAAACAACAAAAALAAAAAACBACAAAAAIAAAAAACrACcAAAALAAAAAACsACcAAAAIAAAAAACwACYAAAALAAAAAACxACYAAAAIAAAAAAC1ACgAAAALAAAAAAC2ACgAAAAIAAAAAAC4ACQAAAAJAAAAAAC4ACUAAAAKAAAAAACTACIAAAALAAAAAACUACIAAAAIAAAAAACiACAAAAALAAAAAACjACAAAAAIAAAAAACwAB4AAAALAAAAAACxAB4AAAAIAAAAAADBACwAAAABAAAAAADBAC0AAAAGAAAAAADCACwAAAABAAAAAADCAC0AAAAGAAAAAADDACwAAAABAAAAAADDAC0AAAAGAAAAAADEACwAAAABAAAAAADEAC0AAAAHAAAAAADFACwAAAAMAAAAAAC5ACwAAAAJAAAAAAC6ACwAAAABAAAAAAC7ACwAAAABAAAAAAC8ACwAAAABAAAAAAC9ACwAAAABAAAAAAC5AC0AAAAKAAAAAAC6AC0AAAAGAAAAAAC7AC0AAAAGAAAAAAC8AC0AAAAGAAAAAADAACwAAAAJAAAAAADAAC0AAAAKAAAAAAC+ACwAAAAMAAAAAAC9AC0AAAAHAAAAAAA=")
 tile_set = SubResource("TileSet_opi1y")
 rendering_quadrant_size = 32
+
+[node name="mediumPlatform" type="TileMapLayer" parent="Visuals" unique_id=1378310244]
+z_index = 1
+tile_map_data = PackedByteArray("AAArAAoAAAAAAAAAAAAsAAoAAAABAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAABAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAABAAAAAAA=")
+tile_set = SubResource("TileSet_awe2q")
 
 [node name="Sky" type="Parallax2D" parent="Visuals" unique_id=1850290250]
 z_index = -1
@@ -157,12 +200,34 @@ texture = ExtResource("7_6ywwc")
 position = Vector2(717, 110)
 texture = ExtResource("6_duuwg")
 
+[node name="Ambiance" type="Node" parent="." unique_id=1097289358]
+
+[node name="Fog" type="TextureRect" parent="Ambiance" unique_id=1904951475]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_jy5vy")
+offset_right = 3060.0
+offset_bottom = 640.0
+scale = Vector2(1, 1.1599996)
+texture = SubResource("NoiseTexture2D_0ilro")
+
 [node name="Decorations" type="Node" parent="." unique_id=1269141266]
 
 [node name="arrowRight" type="Sprite2D" parent="Decorations" unique_id=249326330]
 position = Vector2(3039, 193)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("11_2a31v")
+
+[node name="arrowRight2" type="Sprite2D" parent="Decorations" unique_id=660781972]
+position = Vector2(2753, 545)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_2a31v")
+
+[node name="arrowLeft" type="Sprite2D" parent="Decorations" unique_id=461829818]
+position = Vector2(2825, 545)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_2a31v")
+flip_h = true
 
 [node name="questionMark" type="Sprite2D" parent="Decorations" unique_id=933580480]
 position = Vector2(19, 97)
@@ -177,4 +242,4 @@ texture = ExtResource("14_l741y")
 position = Vector2(564, 288)
 
 [node name="SlimeDark" parent="Enemies" unique_id=1470401610 instance=ExtResource("17_opi1y")]
-position = Vector2(792, 184)
+position = Vector2(2801, 192)
