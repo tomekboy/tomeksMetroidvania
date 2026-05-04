@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var load_button: Button = %LoadButton
 @onready var title_screen_button: Button = %TitleScreenButton
 
+@export var controller_rumble : bool = false
+
 func _ready() -> void:
 	# connect to message bus
 	MessageManager.player_health_changed.connect( update_health_bar )

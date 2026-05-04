@@ -47,6 +47,7 @@ func create_new_game_save( slot : int ) -> void:
 		"ground_slam" : false,
 		"morph_roll" : false,
 		"lang" : TranslationServer.get_locale(),
+		"vibration" : false,
 		"discovered_areas" : discovered_areas,
 		"persistent_data" : persistent_data,
 	}
@@ -71,6 +72,7 @@ func save_game() -> void:
 		"ground_slam" : player.ground_slam,
 		"morph_roll" : player.morph_roll,
 		"lang" : TranslationServer.get_locale(),
+		"vibration" : PlayerHud.controller_rumble,
 		"discovered_areas" : discovered_areas,
 		"persistent_data" : persistent_data,
 	}
@@ -97,6 +99,7 @@ func load_game( slot : int ) -> void:
 	setup_player()
 	PlayerHud.visible = true
 	TranslationServer.set_locale( save_data.get( "lang" ))
+	PlayerHud.controller_rumble = save_data.get( "vibration" )
 	pass
 
 
@@ -139,7 +142,6 @@ func _on_scene_entered( scene_uid : String ) -> void:
 	else:
 		discovered_areas.append( scene_uid )
 	pass
-
 
 #region /// configuration settings
 

@@ -37,4 +37,5 @@ enum Friends_localization_key {
 	abilityDash,
 	abilitySlam,
 	abilityRoll,
+	rumbleTitle,
 }

@@ -80,6 +80,7 @@ func physics_process( _delta: float ) -> PlayerState:
 	if player.can_wall_climb():
 		return climb
 	if player.is_on_floor():
+		# controller rumble
 		VisualEffects.land_dust( player.global_position )
 		AudioManager.play_spatial_sound( LAND_SFX, player.global_position, false, true, 0.5 )
 		if buffer_timer > 0:

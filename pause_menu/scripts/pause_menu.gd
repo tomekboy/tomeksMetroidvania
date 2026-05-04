@@ -13,7 +13,7 @@ class_name PauseMenu extends CanvasLayer
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var ui_slider: HSlider = %UISlider
 @onready var screen_check_button: CheckButton = %ScreenCheckButton
-
+@onready var rumble_check_button: CheckButton = $Control/System/MiscSettings/HBoxContainer3/RumbleCheckButton
 #endregion
 
 const TEST_SOUND = preload("uid://c2s8ms1y15lvw") # freesound_community-positive-response-81640
@@ -75,6 +75,12 @@ func setup_system_menu() -> void:
 	back_to_title_button.pressed.connect( _on_back_to_title_pressed )
 	back_to_map_button.pressed.connect( show_pause_screen )
 	screen_check_button.toggled.connect( _on_screen_check_button_changed )
+	rumble_check_button.toggled.connect( _on_rumble_check_button_changed )
+	
+	if PlayerHud.controller_rumble:
+		rumble_check_button.button_pressed = true
+	else:
+		screen_check_button.button_pressed = false
 	
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		screen_check_button.button_pressed = true
@@ -120,3 +126,11 @@ func _on_screen_check_button_changed( toggled_on : bool ) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	pass
+
+
+func _on_rumble_check_button_changed( toggled_on : bool ) -> void:
+	if toggled_on:
+		PlayerHud.controller_rumble = true
+	else:
+		PlayerHud.controller_rumble = false
+pass

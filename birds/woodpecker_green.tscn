@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://lqtfathuylnc"]
+
+[ext_resource type="Texture2D" uid="uid://b87uht3pw0pms" path="res://scenes/02_wonderLand/animations/birds/woodpeckerGreen.png" id="1_ikbxc"]
+[ext_resource type="Script" uid="uid://du66unj4ishp5" path="res://scenes/02_wonderLand/scripts/woodpecker.gd" id="2_fbsjk"]
+[ext_resource type="AudioStream" uid="uid://dy3s6lihu26xh" path="res://assets/sounds/woodpecker.mp3" id="3_qb3p8"]
+
+[sub_resource type="Animation" id="Animation_amjlr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [27]
+}
+
+[sub_resource type="Animation" id="Animation_b3qm0"]
+resource_name = "pecking"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 28, 30, 29, 18, 18]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_qb3p8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ue010"]
+_data = {
+&"RESET": SubResource("Animation_amjlr"),
+&"pecking": SubResource("Animation_b3qm0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceuga"]
+size = Vector2(128, 448)
+
+[node name="WoodpeckerGreen" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ikbxc")
+hframes = 12
+vframes = 3
+frame = 27
+script = ExtResource("2_fbsjk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ue010")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-60, 224)
+shape = SubResource("RectangleShape2D_ceuga")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

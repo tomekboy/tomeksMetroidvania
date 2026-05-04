@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://566yautd1jdh"]
+
+[ext_resource type="Script" uid="uid://o3k0dvaqpj8t" path="res://birds/scripts/green_bird.gd" id="1_k6cno"]
+[ext_resource type="Texture2D" uid="uid://d4kmkq5sn2qmn" path="res://birds/animations/blackBird.png" id="2_k6cno"]
+
+[sub_resource type="Curve2D" id="Curve2D_k6cno"]
+_data = {
+"points": PackedVector2Array(-55.733337, 69.37436, 55.733337, -69.37436, 234, -803, 0, 0, 0, 0, 136.133, -849.7052, 0, 0, 0, 0, 336, -960, 0, 0, 0, 0, 456, -1008, 0, 0, 0, 0, 672, -1008, 0, 0, 0, 0, 896, -1000, 0, 0, 0, 0, 1009, -904, 0, 0, 0, 0, 944, -824, 0, 0, 0, 0, 848, -760, 0, 0, 0, 0, 640, -736)
+}
+point_count = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txqos"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(0, 0, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcmjc"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(663, 0, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eikdj"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(1326, 0, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmv0n"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(1989, 0, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uluab"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(0, 637, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdmur"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(663, 637, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgf76"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(1326, 637, 663, 637)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72ra3"]
+atlas = ExtResource("2_k6cno")
+region = Rect2(1989, 637, 663, 637)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txqos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txqos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcmjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eikdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmv0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uluab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdmur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgf76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72ra3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BlackBird" type="Path2D" unique_id=1267585717 groups=["BirdGreen"]]
+curve = SubResource("Curve2D_k6cno")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=305831024]
+position = Vector2(192, -848)
+rotation = 3.050933
+rotates = false
+loop = false
+script = ExtResource("1_k6cno")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D" unique_id=543475732]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_txqos")
+autoplay = "default"
+flip_v = true

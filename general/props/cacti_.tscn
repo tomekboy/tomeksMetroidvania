@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://coehjncm627wr"]
+
+[ext_resource type="Script" uid="uid://csbox7indv60l" path="res://general/props/scripts/interact_probs.gd" id="1_sgpq2"]
+[ext_resource type="Texture2D" uid="uid://cbellrqw1utor" path="res://general/props/images/cacti_body.png" id="2_sgpq2"]
+[ext_resource type="Texture2D" uid="uid://dhcf021ctyxpk" path="res://general/props/images/cacti_root.png" id="3_6qpws"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="4_sh5bl"]
+[ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="5_tbw8y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b888s"]
+size = Vector2(18, 30)
+
+[node name="Cacti" type="Node2D" unique_id=650663905]
+script = ExtResource("1_sgpq2")
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=549874527]
+position = Vector2(1, -22)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_sgpq2")
+offset = Vector2(0, -19)
+
+[node name="BaseSprite" type="Sprite2D" parent="." unique_id=188257215]
+visible = false
+position = Vector2(0, -1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_6qpws")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=142525328]
+position = Vector2(1, -26)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("4_sh5bl")
+audio = ExtResource("5_tbw8y")
+metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=807894003]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_b888s")
+debug_color = Color(0, 0.6, 0.69803923, 0)

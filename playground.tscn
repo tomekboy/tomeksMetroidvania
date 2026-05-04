@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cbdfv5wlgti5s" path="res://general/scripts/level_bounds.gd" id="1_4bqqs"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="2_wt17y"]
 [ext_resource type="PackedScene" uid="uid://pqp4pqxuxkmu" path="res://enemies/slime/slimeBlood.tscn" id="5_o00ia"]
-[ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://levels/probs/barrel_wooden.tscn" id="6_4bqqs"]
-[ext_resource type="PackedScene" uid="uid://hic6hdf80ijt" path="res://levels/probs/crate_wooden.tscn" id="7_ynsuh"]
+[ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://general/props/barrel_wooden.tscn" id="6_4bqqs"]
+[ext_resource type="PackedScene" uid="uid://hic6hdf80ijt" path="res://general/props/crate_wooden.tscn" id="7_ynsuh"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="14_f7pug"]
 [ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="14_jgc46"]
 

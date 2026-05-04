@@ -35,5 +35,6 @@ namespace Localization {
 		abilityDash,
 		abilitySlam,
 		abilityRoll,
+		rumbleTitle,
 	}
 }

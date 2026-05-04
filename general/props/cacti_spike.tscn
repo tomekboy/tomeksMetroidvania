@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://d4j3ks1jxfkxi"]
+
+[ext_resource type="Script" uid="uid://csbox7indv60l" path="res://general/props/scripts/interact_probs.gd" id="1_r6h77"]
+[ext_resource type="Texture2D" uid="uid://ddk7jleqf0c55" path="res://general/props/images/cacti_spike_body.png" id="2_r6h77"]
+[ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_lqiee"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="5_4br1u"]
+[ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="6_fvr1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqy3v"]
+size = Vector2(66, 70.00001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b888s"]
+size = Vector2(33, 55)
+
+[node name="Cacti Spike" type="Node2D" unique_id=650663905]
+script = ExtResource("1_r6h77")
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=549874527]
+position = Vector2(0, -23)
+scale = Vector2(0.5, 0.50390625)
+texture = ExtResource("2_r6h77")
+offset = Vector2(0, -19)
+
+[node name="HazardArea" type="Area2D" parent="BodySprite" unique_id=1055525208]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_lqiee")
+damage = 2.0
+metadata/_custom_type_script = "uid://davkcy554f7pn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodySprite/HazardArea" unique_id=1841121488]
+position = Vector2(-1, -46)
+shape = SubResource("RectangleShape2D_dqy3v")
+debug_color = Color(1, 0, 0, 0.19607843)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=142525328]
+position = Vector2(0, -31)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("5_4br1u")
+audio = ExtResource("6_fvr1c")
+metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=807894003]
+shape = SubResource("RectangleShape2D_b888s")
+debug_color = Color(0, 0.6, 0.69803923, 0)

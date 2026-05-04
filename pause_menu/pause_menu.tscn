@@ -202,6 +202,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AbilityDisplay" type="VBoxContainer" parent="Control/PauseScreen" unique_id=2123789897]
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 9
@@ -275,6 +276,7 @@ text = "abilityRoll
 horizontal_alignment = 1
 
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
+visible = false
 anchors_preset = 0
 offset_left = 243.0
 offset_top = 61.0
@@ -383,7 +385,6 @@ text = "pauseSettingsButton"
 
 [node name="System" type="Control" parent="Control" unique_id=1702171481]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -392,7 +393,7 @@ offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/System" unique_id=1446913980]
+[node name="SoundSettings" type="VBoxContainer" parent="Control/System" unique_id=1446913980]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -404,23 +405,23 @@ offset_bottom = 275.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1645336934]
+[node name="HBoxContainerMargin" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=1645336934]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Header01" type="Label" parent="Control/System/VBoxContainer" unique_id=1050272366]
+[node name="Header01" type="Label" parent="Control/System/SoundSettings" unique_id=1050272366]
 layout_mode = 2
 text = "settingsHeader01"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1866273204]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=1866273204]
 layout_mode = 2
 
-[node name="AudioMusic" type="Label" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=779385703]
+[node name="AudioMusic" type="Label" parent="Control/System/SoundSettings/HBoxContainer2" unique_id=779385703]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "audioMusic"
 
-[node name="MusicSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=1494730097]
+[node name="MusicSlider" type="HSlider" parent="Control/System/SoundSettings/HBoxContainer2" unique_id=1494730097]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -429,15 +430,15 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=539681630]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=539681630]
 layout_mode = 2
 
-[node name="AudioSFX" type="Label" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1476186134]
+[node name="AudioSFX" type="Label" parent="Control/System/SoundSettings/HBoxContainer3" unique_id=1476186134]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "audioSFX"
 
-[node name="SFXSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=918782780]
+[node name="SFXSlider" type="HSlider" parent="Control/System/SoundSettings/HBoxContainer3" unique_id=918782780]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -446,15 +447,15 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=101654611]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=101654611]
 layout_mode = 2
 
-[node name="AudioUI" type="Label" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=1400655549]
+[node name="AudioUI" type="Label" parent="Control/System/SoundSettings/HBoxContainer4" unique_id=1400655549]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "audioUI"
 
-[node name="UISlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=865515632]
+[node name="UISlider" type="HSlider" parent="Control/System/SoundSettings/HBoxContainer4" unique_id=865515632]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -463,7 +464,7 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/System" unique_id=2059776309]
+[node name="MiscSettings" type="VBoxContainer" parent="Control/System" unique_id=2059776309]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -475,45 +476,54 @@ offset_bottom = 371.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=1733004313]
+[node name="HBoxContainerMargin" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=1733004313]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="miscHeader" type="Label" parent="Control/System/VBoxContainer2" unique_id=1188497496]
+[node name="miscHeader" type="Label" parent="Control/System/MiscSettings" unique_id=1188497496]
 layout_mode = 2
 text = "miscHeader"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer2" unique_id=667884325]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=667884325]
 layout_mode = 2
 
-[node name="FullscreenTitle" type="Label" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=1372185725]
+[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainer2" unique_id=1372185725]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "fullscreenTitle"
 
-[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/VBoxContainer2/HBoxContainer2" unique_id=561815959]
+[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainer2" unique_id=561815959]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 
-[node name="LanguageTitle" type="Label" parent="Control/System" unique_id=1875479886]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=1504011329]
+layout_mode = 2
+
+[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainer3" unique_id=931638164]
 custom_minimum_size = Vector2(100, 0)
-layout_mode = 0
-offset_left = 278.0
-offset_top = 375.0
-offset_right = 445.0
-offset_bottom = 394.0
+layout_mode = 2
+text = "rumbleTitle"
+
+[node name="RumbleCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainer3" unique_id=624503092]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=325257300]
+layout_mode = 2
+
+[node name="LanguageTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainer4" unique_id=1875479886]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = "languageTitle"
 
-[node name="LanguageOptionButton" type="OptionButton" parent="Control/System" unique_id=1125872548]
+[node name="LanguageOptionButton" type="OptionButton" parent="Control/System/MiscSettings/HBoxContainer4" unique_id=1125872548]
 custom_minimum_size = Vector2(50, 20)
-layout_mode = 0
-offset_left = 389.0
-offset_top = 371.0
-offset_right = 439.0
-offset_bottom = 391.0
+layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 alignment = 2
