@@ -471,8 +471,8 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -231.0
 offset_top = 256.0
-offset_right = 232.0
-offset_bottom = 371.0
+offset_right = 422.0
+offset_bottom = 463.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
@@ -484,44 +484,49 @@ size_flags_vertical = 8
 layout_mode = 2
 text = "miscHeader"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=667884325]
+[node name="HBoxContainerFullscreen" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=667884325]
 layout_mode = 2
 
-[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainer2" unique_id=1372185725]
+[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainerFullscreen" unique_id=1372185725]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "fullscreenTitle"
 
-[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainer2" unique_id=561815959]
+[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainerFullscreen" unique_id=561815959]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=1504011329]
+[node name="HBoxContainerController" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=1504011329]
 layout_mode = 2
 
-[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainer3" unique_id=931638164]
+[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=931638164]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "rumbleTitle"
 
-[node name="RumbleCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainer3" unique_id=624503092]
+[node name="RumbleCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=624503092]
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=325257300]
+[node name="FullscreenTitle2" type="Label" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=581756887]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "rumbleHint"
+
+[node name="HBoxContainerLanguage" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=325257300]
 layout_mode = 2
 
-[node name="LanguageTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainer4" unique_id=1875479886]
+[node name="LanguageTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainerLanguage" unique_id=1875479886]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "languageTitle"
 
-[node name="LanguageOptionButton" type="OptionButton" parent="Control/System/MiscSettings/HBoxContainer4" unique_id=1125872548]
+[node name="LanguageOptionButton" type="OptionButton" parent="Control/System/MiscSettings/HBoxContainerLanguage" unique_id=1125872548]
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")

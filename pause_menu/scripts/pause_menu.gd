@@ -13,7 +13,7 @@ class_name PauseMenu extends CanvasLayer
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var ui_slider: HSlider = %UISlider
 @onready var screen_check_button: CheckButton = %ScreenCheckButton
-@onready var rumble_check_button: CheckButton = $Control/System/MiscSettings/HBoxContainer3/RumbleCheckButton
+@onready var rumble_check_button: CheckButton = $Control/System/MiscSettings/HBoxContainerController/RumbleCheckButton
 #endregion
 
 const TEST_SOUND = preload("uid://c2s8ms1y15lvw") # freesound_community-positive-response-81640

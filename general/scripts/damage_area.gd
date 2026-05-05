@@ -5,8 +5,8 @@ signal damage_taken( attack_area )
 
 @export var audio : AudioStream
 
-func take_damage( attack_area : AttackArea ) -> void:
-	damage_taken.emit( attack_area )
+func take_damage( a : AttackArea ) -> void:
+	damage_taken.emit( a )
 	if audio:
 		AudioManager.play_spatial_sound( audio, global_position)
 	pass

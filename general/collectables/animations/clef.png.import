@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxqn6nafeyoxg"
-path="res://.godot/imported/attack_bird.png-5930355d76ed8c5b9bcc21536c2de5e8.ctex"
+uid="uid://b07y33akbmaag"
+path="res://.godot/imported/clef.png-b067358615aa5c6c19a25c7a13541608.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://birds/animations/attack_bird.png"
-dest_files=["res://.godot/imported/attack_bird.png-5930355d76ed8c5b9bcc21536c2de5e8.ctex"]
+source_file="res://general/collectables/animations/clef.png"
+dest_files=["res://.godot/imported/clef.png-b067358615aa5c6c19a25c7a13541608.ctex"]
 
 [params]
 

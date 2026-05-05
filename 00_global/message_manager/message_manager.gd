@@ -10,6 +10,9 @@ signal player_healed( amount : float )
 signal player_health_changed( hp : float, max_hp : float )
 
 @warning_ignore( "unused_signal" )
+signal player_collectable_changed( cp : float, max_cp : float )
+
+@warning_ignore( "unused_signal" )
 signal input_hint_changed( hint : String )
 
 @warning_ignore( "unused_signal" )

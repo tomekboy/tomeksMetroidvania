@@ -1,8 +1,11 @@
 extends CanvasLayer
 
 @export var audio : AudioStream
-@onready var hp_margin_container: MarginContainer = %HPMarginContainer
-@onready var hp_bar: TextureProgressBar = %HPBar
+@onready var collectable_bar: MarginContainer = %CollectableBar
+@onready var cp_bar: TextureProgressBar = $Control/CollectableBar/NinePatchRect/CPBar
+@onready var health_bar: MarginContainer = %HealthBar
+@onready var hp_bar: TextureProgressBar = $Control/HealthBar/NinePatchRect/HPBar
+
 
 @onready var game_over: Control = %GameOver
 @onready var load_button: Button = %LoadButton
@@ -13,6 +16,7 @@ extends CanvasLayer
 func _ready() -> void:
 	# connect to message bus
 	MessageManager.player_health_changed.connect( update_health_bar )
+	MessageManager.player_collectable_changed.connect( update_collectable_bar )
 	
 	game_over.visible = false
 	load_button.pressed.connect( _on_load_pressed )
@@ -23,7 +27,12 @@ func _ready() -> void:
 func update_health_bar( hp: float, max_hp: float ) -> void:
 	var value : float = ( hp / max_hp ) * 100
 	hp_bar.value = value
-	hp_margin_container.size.x = max_hp + 22
+pass
+
+
+func update_collectable_bar( cp: float, max_cp: float ) -> void:
+	var value : float = ( cp / max_cp ) * 250
+	cp_bar.value = value
 pass
 
 

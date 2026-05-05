@@ -149,7 +149,7 @@ metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 position = Vector2(8, 646)
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(1652, 119)
+position = Vector2(1610, 119)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)

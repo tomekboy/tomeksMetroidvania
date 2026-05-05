@@ -49,6 +49,16 @@ var max_hp : float = 20 :
 	set( value ):
 		max_hp = value
 		MessageManager.player_health_changed.emit( hp, max_hp )
+
+var cp : float = 0 :
+	set( value ):
+		cp = clampf( value, 0, max_cp )
+		MessageManager.player_collectable_changed.emit( cp, max_cp )
+
+var max_cp : float = 250 :
+	set( value ):
+		max_cp = value
+		MessageManager.player_collectable_changed.emit( cp, max_cp )
 #endregion
 
 #region /// standard variables

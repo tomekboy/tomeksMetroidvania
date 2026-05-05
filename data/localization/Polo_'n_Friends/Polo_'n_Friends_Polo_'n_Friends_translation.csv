@@ -35,3 +35,4 @@ abilityDash,Dash,sprinten,sprint,sprint,sprint
 abilitySlam,Ground Slam,Bodenstampfer,sabotage au sol,compattatore di terreno,sabotaje al sol
 abilityRoll,Roll,rollen,rouler,rotolo,ruleta
 rumbleTitle,Vibration,Vibration,vibration,vibrazione,vibración
+rumbleHint,( xBox Controller only! ),(nur xBox-Controller!),(Manettes Xbox uniquement !),(Solo con controller Xbox!),(¡Solo para mandos de Xbox!)

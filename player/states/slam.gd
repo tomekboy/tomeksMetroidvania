@@ -34,6 +34,8 @@ func enter() -> void:
 
 # what happens when we exit this state?
 func exit() -> void:
+	if PlayerHud.controller_rumble:
+			Input.start_joy_vibration(0, 1, 1, 0.2) # strong
 	VisualEffects.camera_shake( 10.0)
 	VisualEffects.land_dust( player.global_position )
 	VisualEffects.hit_dust( player.global_position )

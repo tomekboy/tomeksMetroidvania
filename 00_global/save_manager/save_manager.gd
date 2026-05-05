@@ -38,10 +38,12 @@ func create_new_game_save( slot : int ) -> void:
 	discovered_areas.append( new_game_scene )
 	save_data = {
 		"scene_path" : new_game_scene,
-		"x" : 1360,
+		"x" : 1610,
 		"y" : 120,
-		"hp" : 5,
+		"hp" : 20,
 		"max_hp" : 20,
+		"cp" : 0,
+		"max_cp" : 250,
 		"dash" : false,
 		"double_jump" : false,
 		"ground_slam" : false,
@@ -67,6 +69,8 @@ func save_game() -> void:
 		"y" : player.global_position.y,
 		"hp" : player.hp,
 		"max_hp" : player.max_hp,
+		"cp" : player.cp,
+		"max_cp" : player.max_cp,
 		"dash" : player.dash,
 		"double_jump" : player.double_jump,
 		"ground_slam" : player.ground_slam,

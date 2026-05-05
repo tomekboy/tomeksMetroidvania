@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://drv2tdkcwwm85"]
+
+[ext_resource type="Texture2D" uid="uid://bjaew5j4i3nr7" path="res://general/collectables/animations/note.png" id="1_fuced"]
+[ext_resource type="Script" uid="uid://dtxq263fnff0y" path="res://general/collectables/scripts/collectable_note.gd" id="2_0m5o8"]
+[ext_resource type="Script" uid="uid://c7extvtyyxtws" path="res://general/scripts/collect_area.gd" id="3_nng43"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt2pg"]
+atlas = ExtResource("1_fuced")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7dvs"]
+atlas = ExtResource("1_fuced")
+region = Rect2(35, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ivcl"]
+atlas = ExtResource("1_fuced")
+region = Rect2(70, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnnmt"]
+atlas = ExtResource("1_fuced")
+region = Rect2(105, 0, 35, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5avu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt2pg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7dvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ivcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnnmt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyp1l"]
+
+[node name="collectableNote" type="AnimatedSprite2D" unique_id=259999620 groups=["Note"]]
+sprite_frames = SubResource("SpriteFrames_v5avu")
+autoplay = "default"
+script = ExtResource("2_0m5o8")
+
+[node name="CollectArea" type="Area2D" parent="." unique_id=2112074233]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_nng43")
+metadata/_custom_type_script = "uid://c7extvtyyxtws"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea" unique_id=812699600]
+shape = SubResource("RectangleShape2D_fyp1l")
+
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]

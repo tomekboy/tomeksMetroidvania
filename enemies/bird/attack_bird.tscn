@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cf3m6ippuj8if"]
 
-[ext_resource type="Script" uid="uid://dw326ct084jf0" path="res://birds/scripts/attack_bird.gd" id="1_i6hqa"]
-[ext_resource type="Texture2D" uid="uid://cxqn6nafeyoxg" path="res://birds/animations/attack_bird.png" id="2_1o8st"]
+[ext_resource type="Script" uid="uid://dr6mo2lhnt514" path="res://enemies/bird/scripts/attack_bird_icon.gd" id="1_gnkah"]
+[ext_resource type="Script" uid="uid://dw326ct084jf0" path="res://enemies/bird/scripts/attack_bird.gd" id="1_i6hqa"]
+[ext_resource type="Texture2D" uid="uid://cxqn6nafeyoxg" path="res://enemies/bird/animations/attack_bird.png" id="2_1o8st"]
+[ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_6o1a3"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="4_g3eh4"]
 
 [sub_resource type="Curve2D" id="Curve2D_3ofv1"]
 _data = {
@@ -137,11 +140,13 @@ _data = {
 &"up_and_down": SubResource("Animation_g3cjd")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rvjvi"]
-radius = 28.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_g3eh4"]
 
-[node name="attackBird" type="Path2D" unique_id=604965980]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g3cjd"]
+
+[node name="Bird" type="Path2D" unique_id=604965980]
 curve = SubResource("Curve2D_3ofv1")
+script = ExtResource("1_gnkah")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1493943867]
 position = Vector2(2383, 152)
@@ -160,16 +165,32 @@ vframes = 2
 libraries/ = SubResource("AnimationLibrary_8jtjp")
 autoplay = &"fly"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PathFollow2D/Sprite2D" unique_id=1717376649]
-bus = &"SFX"
-
-[node name="Area2D" type="Area2D" parent="PathFollow2D/Sprite2D" unique_id=1035470918]
+[node name="HazardArea" type="Area2D" parent="PathFollow2D/Sprite2D" unique_id=1529868249]
+position = Vector2(4759.9937, 386.828)
+rotation = -3.1242032
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 16
+script = ExtResource("3_6o1a3")
+metadata/_custom_type_script = "uid://davkcy554f7pn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Sprite2D/Area2D" unique_id=639022200]
-position = Vector2(0.03477715, -1.9996977)
-shape = SubResource("CircleShape2D_rvjvi")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Sprite2D/HazardArea" unique_id=1732845938]
+position = Vector2(2384, 156)
+shape = SubResource("CircleShape2D_g3eh4")
+debug_color = Color(0.8509804, 0.34509805, 0.36078432, 0)
+
+[node name="DamageArea" type="Area2D" parent="PathFollow2D/Sprite2D" unique_id=316038920]
+position = Vector2(4759.9937, 386.828)
+rotation = -3.1242032
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("4_g3eh4")
+metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Sprite2D/DamageArea" unique_id=968672465]
+position = Vector2(2384, 156)
+shape = SubResource("CircleShape2D_g3cjd")
 
 [connection signal="animation_finished" from="PathFollow2D/Sprite2D/AnimationPlayer" to="PathFollow2D" method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="PathFollow2D/Sprite2D/Area2D" to="PathFollow2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="PathFollow2D/Sprite2D/HazardArea" to="PathFollow2D" method="_on_hazard_area_body_entered"]

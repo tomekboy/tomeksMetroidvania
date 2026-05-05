@@ -15,9 +15,9 @@ func _ready() -> void:
 	pass
 
 
-func _on_damage_taken( attack_area : AttackArea ) -> void:
+func _on_damage_taken( a : AttackArea ) -> void:
 	var dir : float = 1.0
-	if attack_area.global_position.x > global_position.x:
+	if a.global_position.x > global_position.x:
 		dir = -1
 	var pos : Vector2 = global_position + Vector2( 0, -30 )
 	for p in particles:

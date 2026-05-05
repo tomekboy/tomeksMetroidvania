@@ -36,5 +36,6 @@ namespace Localization {
 		abilitySlam,
 		abilityRoll,
 		rumbleTitle,
+		rumbleHint,
 	}
 }
