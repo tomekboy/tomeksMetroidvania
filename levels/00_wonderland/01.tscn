@@ -24,7 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://566yautd1jdh" path="res://birds/black_bird.tscn" id="21_8q51i"]
 [ext_resource type="PackedScene" uid="uid://cf3m6ippuj8if" path="res://enemies/bird/attack_bird.tscn" id="22_luqh8"]
 [ext_resource type="PackedScene" uid="uid://5gm8bpjsaa3w" path="res://birds/blue_bird.tscn" id="23_ni0tu"]
-[ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://general/collectables/collectable_note.tscn" id="25_ni0tu"]
+[ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="25_ni0tu"]
+[ext_resource type="PackedScene" uid="uid://cgdf74704dby7" path="res://collectables/collectable_clef.tscn" id="26_hgk4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l741y"]
 texture = ExtResource("6_2fxpy")
@@ -149,7 +150,7 @@ metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 position = Vector2(8, 646)
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(1652, 119)
+position = Vector2(316, 162)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)
@@ -250,36 +251,39 @@ texture = ExtResource("16_luqh8")
 position = Vector2(1874, 170)
 texture = ExtResource("16_luqh8")
 
-[node name="Probs" type="Node" parent="." unique_id=106196231]
+[node name="GreenBird" parent="Decorations" unique_id=212495007 instance=ExtResource("20_0ilro")]
+position = Vector2(-169, 1374)
 
-[node name="Cacti Spike" parent="Probs" unique_id=650663905 instance=ExtResource("16_236hw")]
-position = Vector2(364, 540)
-
-[node name="MushroomRed" parent="Probs" unique_id=1357307344 instance=ExtResource("17_jy5vy")]
-position = Vector2(1885, 532)
-
-[node name="Enemies" type="Node" parent="." unique_id=1333283937]
-
-[node name="SlimeBlood" parent="Enemies" unique_id=634296537 instance=ExtResource("15_l741y")]
-position = Vector2(564, 288)
-
-[node name="SlimeDark" parent="Enemies" unique_id=1470401610 instance=ExtResource("17_opi1y")]
-position = Vector2(2801, 192)
-
-[node name="Bird" parent="Enemies" unique_id=604965980 instance=ExtResource("22_luqh8")]
-
-[node name="Birds" type="Node" parent="." unique_id=1521811557]
-
-[node name="GreenBird" parent="Birds" unique_id=212495007 instance=ExtResource("20_0ilro")]
-
-[node name="BlackBird" parent="Birds" unique_id=802924843 instance=ExtResource("21_8q51i")]
+[node name="BlackBird" parent="Decorations" unique_id=802924843 instance=ExtResource("21_8q51i")]
+z_index = 1
 position = Vector2(947, 1370)
 
-[node name="BlueBird" parent="Birds" unique_id=562025372 instance=ExtResource("23_ni0tu")]
+[node name="BlueBird" parent="Decorations" unique_id=562025372 instance=ExtResource("23_ni0tu")]
+z_index = 1
 position = Vector2(1571.1715, 1127.0001)
 scale = Vector2(0.70840627, 1)
 
-[node name="Collectables" type="Node" parent="." unique_id=1043311970]
+[node name="StaticObjects" type="Node" parent="." unique_id=106196231]
 
-[node name="collectableNote" parent="Collectables" unique_id=259999620 instance=ExtResource("25_ni0tu")]
-position = Vector2(1595, 562)
+[node name="Cacti Spike" parent="StaticObjects" unique_id=650663905 instance=ExtResource("16_236hw")]
+position = Vector2(364, 540)
+
+[node name="MushroomRed" parent="StaticObjects" unique_id=1357307344 instance=ExtResource("17_jy5vy")]
+position = Vector2(1885, 532)
+
+[node name="Bird" parent="StaticObjects" unique_id=604965980 instance=ExtResource("22_luqh8")]
+position = Vector2(307, 411)
+
+[node name="DynamicObjects" type="Node" parent="." unique_id=1333283937]
+
+[node name="SlimeBlood" parent="DynamicObjects" unique_id=634296537 instance=ExtResource("15_l741y")]
+position = Vector2(854, 272)
+
+[node name="SlimeDark" parent="DynamicObjects" unique_id=1470401610 instance=ExtResource("17_opi1y")]
+position = Vector2(2801, 192)
+
+[node name="collectableNote" parent="DynamicObjects" unique_id=259999620 instance=ExtResource("25_ni0tu")]
+position = Vector2(1698, 555)
+
+[node name="collectableClef" parent="DynamicObjects" unique_id=605098476 instance=ExtResource("26_hgk4t")]
+position = Vector2(1547, 559)

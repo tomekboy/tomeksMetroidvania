@@ -73,8 +73,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="GreenBird" type="Path2D" unique_id=212495007 groups=["BirdGreen"]]
-position = Vector2(-94, 1063)
+[node name="GreenBird" type="Path2D" unique_id=212495007]
 curve = SubResource("Curve2D_8lhc0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=832937871]

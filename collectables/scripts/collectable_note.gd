@@ -4,7 +4,7 @@ extends AnimatedSprite2D
 const NOTE_SFX = preload("uid://b2xx28ud8iokm")
 
 var amount : float = 1
-
+var collected : bool = false
 var cp_pos
 
 func _on_collect_area_body_entered( body: Node2D ) -> void:
@@ -25,3 +25,26 @@ func get_viewport_corners():
 	var canvas_transform = viewport.get_canvas_transform()
 	var top_left = canvas_transform.affine_inverse().origin
 	return top_left
+
+
+func on_save_game( saved_data : Array[SavedData] ) -> void:
+	# don't do a contract
+	if collected:
+		return
+	# do a contract
+	var my_data = SavedData.new()
+	my_data.position = global_position
+	my_data.scene_path = scene_file_path
+	saved_data.append( my_data )
+	pass
+
+
+func on_before_load_game(  ) -> void:
+	get_parent().remove_child( self )
+	queue_free()
+	pass
+
+
+func on_load_game( saved_data : SavedData ) -> void:
+	global_position = saved_data.position
+pass

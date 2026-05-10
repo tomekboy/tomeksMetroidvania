@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cgdf74704dby7"]
 
-[ext_resource type="Texture2D" uid="uid://7tylcl35ijpp" path="res://scenes/99_universal/animations/clef.png" id="1_i3blo"]
-[ext_resource type="Script" uid="uid://dlhhbngyy3r7t" path="res://scenes/99_universal/scripts/collectable_clef.gd" id="2_w2qp7"]
+[ext_resource type="Texture2D" uid="uid://b07y33akbmaag" path="res://collectables/animations/clef.png" id="1_i3blo"]
+[ext_resource type="Script" uid="uid://cdx2udsfikeam" path="res://collectables/scripts/collectable_clef.gd" id="2_w2qp7"]
+[ext_resource type="Script" uid="uid://c7extvtyyxtws" path="res://general/scripts/collect_area.gd" id="3_6w3dt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2qp7"]
 atlas = ExtResource("1_i3blo")
@@ -42,17 +43,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2qp7"]
 radius = 8.0
 
-[node name="collectableClef" type="AnimatedSprite2D" groups=["Clef"]]
+[node name="collectableClef" type="AnimatedSprite2D" unique_id=605098476 groups=["DynamicObject"]]
 sprite_frames = SubResource("SpriteFrames_ldsoc")
 autoplay = "default"
 frame = 3
 frame_progress = 0.793027
 script = ExtResource("2_w2qp7")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollectArea" type="Area2D" parent="." unique_id=1742740818]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_6w3dt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea" unique_id=924450504]
 scale = Vector2(1.3600004, 1.7200009)
 shape = SubResource("CircleShape2D_w2qp7")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]

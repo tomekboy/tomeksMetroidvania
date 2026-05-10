@@ -125,6 +125,8 @@ func _on_screen_check_button_changed( toggled_on : bool ) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	# save to settings
+	SaveManager.save_configuration()
 	pass
 
 
@@ -133,4 +135,6 @@ func _on_rumble_check_button_changed( toggled_on : bool ) -> void:
 		PlayerHud.controller_rumble = true
 	else:
 		PlayerHud.controller_rumble = false
+	# save to settings
+	SaveManager.save_configuration()
 pass

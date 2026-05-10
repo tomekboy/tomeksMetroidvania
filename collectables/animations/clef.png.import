@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b07y33akbmaag"
-path="res://.godot/imported/clef.png-b067358615aa5c6c19a25c7a13541608.ctex"
+path="res://.godot/imported/clef.png-1f9543059dbff2d14d04a60ce992de92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://general/collectables/animations/clef.png"
-dest_files=["res://.godot/imported/clef.png-b067358615aa5c6c19a25c7a13541608.ctex"]
+source_file="res://collectables/animations/clef.png"
+dest_files=["res://.godot/imported/clef.png-1f9543059dbff2d14d04a60ce992de92.ctex"]
 
 [params]
 

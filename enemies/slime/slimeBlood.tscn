@@ -8,12 +8,14 @@
 [ext_resource type="AudioStream" uid="uid://crv4o3mmt7yik" path="res://assets/sfx/slurp.mp3" id="3_fkhe1"]
 [ext_resource type="AudioStream" uid="uid://bqji2d4hy27pm" path="res://assets/sfx/slimeWalk.mp3" id="3_yu0w3"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="4_ktkn8"]
-[ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="5_6oiw0"]
 [ext_resource type="Script" uid="uid://bq0ccyrwdhh07" path="res://enemies/scripts/sensors/edge_sensor.gd" id="6_26jtq"]
+[ext_resource type="Script" uid="uid://t607jrgiowm0" path="res://enemies/scripts/states/es_attack.gd" id="6_b68gs"]
 [ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="7_26jtq"]
+[ext_resource type="Script" uid="uid://j2ku8oi2gkhr" path="res://enemies/scripts/states/es_chase.gd" id="7_m2qjp"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="8_ktkn8"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="9_6oiw0"]
 [ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="10_m2vt8"]
+[ext_resource type="Script" uid="uid://b031dd4ulhcb" path="res://enemies/scripts/decision_engines/decision_engine_attack.gd" id="12_b68gs"]
 [ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="15_lwidv"]
 [ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="16_7qjln"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="17_vnm3b"]
@@ -415,8 +417,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_wubse"]
 resource_name = "spin"
-length = 0.33333334
+length = 0.26666668
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -463,7 +466,8 @@ _data = {
 script = ExtResource("17_vnm3b")
 metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
-[node name="SlimeBlood" type="CharacterBody2D" unique_id=634296537]
+[node name="SlimeBlood" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject"]]
+collision_layer = 3
 script = ExtResource("1_xe51p")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196]
@@ -491,22 +495,27 @@ bus = &"SFX"
 script = ExtResource("1_y6wwg")
 metadata/_custom_type_script = "uid://2dityed23bsq"
 
-[node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
-script = ExtResource("2_xe51p")
-metadata/_custom_type_script = "uid://vgbg018s6yet"
+[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=96065311]
+script = ExtResource("6_b68gs")
 
-[node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
-script = ExtResource("3_4y4rx")
-metadata/_custom_type_script = "uid://dhttlbv130mal"
+[node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=1020455113]
+script = ExtResource("7_m2qjp")
 
 [node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=83238501]
 script = ExtResource("4_ktkn8")
 death_audio = ExtResource("7_26jtq")
 metadata/_custom_type_script = "uid://dox0omjiybs3j"
 
-[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1990243804]
-script = ExtResource("5_6oiw0")
-metadata/_custom_type_script = "uid://bgk7nljgu1123"
+[node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
+script = ExtResource("3_4y4rx")
+metadata/_custom_type_script = "uid://dhttlbv130mal"
+
+[node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
+script = ExtResource("2_xe51p")
+metadata/_custom_type_script = "uid://vgbg018s6yet"
+
+[node name="DecisionEngineBasicAttack" type="Node" parent="." unique_id=396671906]
+script = ExtResource("12_b68gs")
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1118480072]
 visible = false

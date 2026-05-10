@@ -53,6 +53,7 @@ enabled=PackedStringArray("res://addons/localization_with_google_sheet/plugin.cf
 [global_group]
 
 Player=""
+DynamicObject=""
 
 [gui]
 

@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cf3m6ippuj8if"]
 
-[ext_resource type="Script" uid="uid://dr6mo2lhnt514" path="res://enemies/bird/scripts/attack_bird_icon.gd" id="1_gnkah"]
 [ext_resource type="Script" uid="uid://dw326ct084jf0" path="res://enemies/bird/scripts/attack_bird.gd" id="1_i6hqa"]
 [ext_resource type="Texture2D" uid="uid://cxqn6nafeyoxg" path="res://enemies/bird/animations/attack_bird.png" id="2_1o8st"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_6o1a3"]
@@ -146,7 +145,6 @@ _data = {
 
 [node name="Bird" type="Path2D" unique_id=604965980]
 curve = SubResource("Curve2D_3ofv1")
-script = ExtResource("1_gnkah")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1493943867]
 position = Vector2(2383, 152)

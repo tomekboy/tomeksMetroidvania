@@ -5,9 +5,7 @@ const SLOTS : Array[ String ] = [
 ]
 
 var current_slot : int = 0
-var save_data : Dictionary
 var discovered_areas : Array = []
-var persistent_data : Dictionary = {}
 
 func _ready() -> void:
 	load_configuration()
@@ -33,106 +31,159 @@ func _unhandled_input(event: InputEvent) -> void:
 func create_new_game_save( slot : int ) -> void:
 	current_slot = slot
 	discovered_areas.clear()
-	persistent_data.clear()
 	var new_game_scene : String = "uid://cfiuv8loi78a5" # 00_wonderland/01.tsn
 	discovered_areas.append( new_game_scene )
-	save_data = {
-		"scene_path" : new_game_scene,
-		"x" : 1610,
-		"y" : 120,
-		"hp" : 20,
-		"max_hp" : 20,
-		"cp" : 0,
-		"max_cp" : 250,
-		"dash" : false,
-		"double_jump" : false,
-		"ground_slam" : false,
-		"morph_roll" : false,
-		"lang" : TranslationServer.get_locale(),
-		"vibration" : false,
-		"discovered_areas" : discovered_areas,
-		"persistent_data" : persistent_data,
-	}
-	# save game data
-	var save_file = FileAccess.open( get_file_name( current_slot ), FileAccess.WRITE )
-	save_file.store_line( JSON.stringify( save_data ) )
-	save_file.close()
-	load_game( slot )
-	pass
-
-
-func save_game() -> void:
-	var player : Player = get_tree().get_first_node_in_group( "Player" )
-	save_data = {
-		"scene_path" : SceneManager.current_scene_uid,
-		"x" : player.global_position.x,
-		"y" : player.global_position.y,
-		"hp" : player.hp,
-		"max_hp" : player.max_hp,
-		"cp" : player.cp,
-		"max_cp" : player.max_cp,
-		"dash" : player.dash,
-		"double_jump" : player.double_jump,
-		"ground_slam" : player.ground_slam,
-		"morph_roll" : player.morph_roll,
-		"lang" : TranslationServer.get_locale(),
-		"vibration" : PlayerHud.controller_rumble,
-		"discovered_areas" : discovered_areas,
-		"persistent_data" : persistent_data,
-	}
-	# save game data
-	var save_file = FileAccess.open( get_file_name( current_slot ), FileAccess.WRITE )
-	save_file.store_line( JSON.stringify( save_data ) )
-	pass
-
-
-func load_game( slot : int ) -> void:
-	# get the settings for the slot
-	if not FileAccess.file_exists( get_file_name( current_slot ) ):
-		return
-	current_slot = slot
-	var save_file = FileAccess.open( get_file_name( current_slot ), FileAccess.READ )
-	save_data = JSON.parse_string( save_file.get_line() )
+	# set default values
+	var saved_game : SavedGame = SavedGame.new()
+	saved_game.scene_path = SceneManager.current_scene_uid
+	saved_game.player_position = Vector2(1610,120)
+	saved_game.player_hp = 20
+	saved_game.player_max_hp = 20
+	saved_game.player_cp = 0
+	saved_game.player_max_cp = 250
+	saved_game.player_dash = false
+	saved_game.player_double_jump = false
+	saved_game.player_ground_slam = false
+	saved_game.player_morph_roll = false
+	saved_game.game_lang = TranslationServer.get_locale()
+	saved_game.game_vibration = false
+	saved_game.game_discovered_areas = discovered_areas
 	
-	persistent_data = save_data.get("persistent_data", {} )
-	discovered_areas = save_data.get( "discovered_areas", {} )
-	var scene_path : String = save_data.get( "scene_path", "uid://cfiuv8loi78a5" )
-	SceneManager.transition_scene( scene_path, "", Vector2.ZERO, "up" )
+	#initialize first scene
+	SceneManager.transition_scene( new_game_scene, "", Vector2.ZERO, "up" )
 	await SceneManager.new_scene_ready
+	
+	# set the initial sound volumes
 	load_configuration()
-	setup_player()
-	PlayerHud.visible = true
-	TranslationServer.set_locale( save_data.get( "lang" ))
-	PlayerHud.controller_rumble = save_data.get( "vibration" )
-	pass
-
-
-func setup_player() -> void:
+	
+	# setup player
 	var player : Player = null
 	while not player:
 		player = get_tree().get_first_node_in_group( "Player" )
 		await get_tree().process_frame
+	
+	player.global_position = saved_game.player_position
+	player.hp = saved_game.player_hp
+	player.max_hp = saved_game.player_max_hp
+	player.cp = saved_game.player_cp
+	player.max_cp = saved_game.player_max_cp
+	player.dash = saved_game.player_dash
+	player.double_jump = saved_game.player_double_jump
+	player.ground_slam = saved_game.player_ground_slam
+	player.morph_roll = saved_game.player_morph_roll
+	
+	TranslationServer.set_locale( saved_game.game_lang )
+	PlayerHud.controller_rumble = saved_game.game_vibration
+	discovered_areas = saved_game.game_discovered_areas
+	
+	# show player hud
+	PlayerHud.visible = true
+	
+	# get the dynamic objects
+	var saved_data : Array[SavedData] = []
+	get_tree().call_group( "DynamicObject", "on_save_game", saved_data )
+	saved_game.saved_data = saved_data
+	
+	# save game data
+	ResourceSaver.save( saved_game, get_file_name( current_slot ) )
+	pass
+
+
+func save_game():
+	var player : Player = get_tree().get_first_node_in_group( "Player" )
+	
+	var saved_game : SavedGame = SavedGame.new()
+	saved_game.scene_path = SceneManager.current_scene_uid
+	# get the player & game values
+	saved_game.player_position = player.global_position
+	saved_game.player_hp = player.hp
+	saved_game.player_max_hp = player.max_hp
+	saved_game.player_cp = player.cp
+	saved_game.player_max_cp = player.max_cp
+	saved_game.player_dash = player.dash
+	saved_game.player_double_jump = player.double_jump
+	saved_game.player_ground_slam = player.ground_slam
+	saved_game.player_morph_roll = player.morph_roll
+	saved_game.game_lang = TranslationServer.get_locale()
+	saved_game.game_vibration = PlayerHud.controller_rumble
+	saved_game.game_discovered_areas = discovered_areas
+	
+
+	# get the dynamic objects
+	var saved_data : Array[SavedData] = []
+	get_tree().call_group( "DynamicObject", "on_save_game", saved_data )
+	saved_game.saved_data = saved_data
+	
+	# save the resource
+	ResourceSaver.save( saved_game, get_file_name( current_slot ) )
+	pass
+
+
+func load_game( slot : int ) -> void:
+	# called from title screen
+	var saved_game : SavedGame = load( get_file_name( slot ) )
+	SceneManager.transition_scene( saved_game.scene_path, "", Vector2.ZERO, "up" )
+	await SceneManager.new_scene_ready
+	
+	# set the initial sound volumes
+	load_configuration()
+	
+	# setup player
+	var player : Player = null
+	while not player:
+		player = get_tree().get_first_node_in_group( "Player" )
+		await get_tree().process_frame
+	# get game values
+	player.global_position = saved_game.player_position
+	player.hp = saved_game.player_hp
+	player.max_hp = saved_game.player_max_hp
+	player.cp = saved_game.player_cp
+	player.max_cp = saved_game.player_max_cp
+	player.dash = saved_game.player_dash
+	player.double_jump = saved_game.player_double_jump
+	player.ground_slam = saved_game.player_ground_slam
+	player.morph_roll = saved_game.player_morph_roll
+	TranslationServer.set_locale( saved_game.game_lang )
+	PlayerHud.controller_rumble = saved_game.game_vibration
+	discovered_areas = saved_game.game_discovered_areas
+	
+	# load dynamic objects
+	# resolve the variable scene node number
+	# get the uid of current scene and get the path
+	var scene_path : String = ResourceUID.uid_to_path(SceneManager.current_scene_uid)
+	# extract last 7 characters as they are always the same but scene number
+	var level_tscn : String = scene_path.right( 7 )
+	# extract the scene number only
+	var level : String = level_tscn.substr( 0, 2 )
+	# define dynamic_objects for getting the node
+	var dyn_obj_path : String = "../" + level + "/DynamicObjects"
+	# define dynamic_objects
+	var dynamic_objects = get_node_or_null( dyn_obj_path )
+	
+	if dynamic_objects:
+		get_tree().call_group( "DynamicObject", "on_before_load_game" )
 		
-	player.max_hp = save_data.get ("max_hp", 20 )
-	player.hp = save_data.get ("hp", 20 )
-	
-	player.dash = save_data.get ("dash", false )
-	player.double_jump = save_data.get ("double_jump", false )
-	player.ground_slam = save_data.get ("ground_slam", false )
-	player.morph_roll = save_data.get ("morph_roll", false )
-	
-	player.global_position = Vector2(
-		save_data.get( "x", 0 ),
-		save_data.get( "y", 0 )
-	)
+		if saved_game.scene_path == "uid://d12hmou2bfva3": # start screen
+			return
+		else:
+			for entity in saved_game.saved_data:
+				var scene = load( entity.scene_path ) as PackedScene
+				var restored_node = scene.instantiate()
+				dynamic_objects.add_child( restored_node )
+				
+				if restored_node.has_method( "on_load_game" ):
+					restored_node.on_load_game( entity )
+	# show player hud
+	PlayerHud.visible = true
 	pass
 
 
 func get_file_name( slot : int ) -> String:
-	return "user://" + SLOTS[ slot ] + ".sav"
+	return "user://" + SLOTS[ slot ] + ".tres"
 
 
 func save_file_exists( slot : int ) -> bool:
+	# called from title screen
 	return FileAccess.file_exists( get_file_name( slot ) )
 
 
@@ -154,13 +205,13 @@ func save_configuration() -> void:
 	config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
 	config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
 	config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
-	config.save( "user://settings_0"  + str(current_slot + 1) + ".cfg" )
+	config.save( "user://settings_0"  + str( current_slot + 1 ) + ".cfg" )
 	pass
 
 
 func load_configuration() -> void:
 	var config := ConfigFile.new()
-	var err = config.load( "user://settings_0"  + str(current_slot + 1) + ".cfg" )
+	var err = config.load( "user://settings_0"  + str( current_slot + 1 ) + ".cfg" )
 
 	if err != OK:
 		AudioServer.set_bus_volume_linear( 2, 0.099999994 )

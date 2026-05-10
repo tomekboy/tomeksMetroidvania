@@ -463,7 +463,7 @@ _data = {
 script = ExtResource("17_ifmx2")
 metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
-[node name="SlimeDark" type="CharacterBody2D" unique_id=634296537]
+[node name="SlimeDark" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject"]]
 script = ExtResource("1_t4cct")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196]

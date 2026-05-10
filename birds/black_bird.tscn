@@ -73,11 +73,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="BlackBird" type="Path2D" unique_id=1267585717 groups=["BirdGreen"]]
+[node name="BlackBird" type="Path2D" unique_id=1267585717]
 curve = SubResource("Curve2D_k6cno")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=305831024]
-position = Vector2(192, -848)
+position = Vector2(234, -803)
 rotation = 3.050933
 rotates = false
 loop = false

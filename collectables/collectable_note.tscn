@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://drv2tdkcwwm85"]
 
-[ext_resource type="Texture2D" uid="uid://bjaew5j4i3nr7" path="res://general/collectables/animations/note.png" id="1_fuced"]
-[ext_resource type="Script" uid="uid://dtxq263fnff0y" path="res://general/collectables/scripts/collectable_note.gd" id="2_0m5o8"]
+[ext_resource type="Texture2D" uid="uid://bjaew5j4i3nr7" path="res://collectables/animations/note.png" id="1_fuced"]
+[ext_resource type="Script" uid="uid://dtxq263fnff0y" path="res://collectables/scripts/collectable_note.gd" id="2_0m5o8"]
 [ext_resource type="Script" uid="uid://c7extvtyyxtws" path="res://general/scripts/collect_area.gd" id="3_nng43"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rt2pg"]
@@ -42,7 +42,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fyp1l"]
 
-[node name="collectableNote" type="AnimatedSprite2D" unique_id=259999620 groups=["Note"]]
+[node name="collectableNote" type="AnimatedSprite2D" unique_id=259999620 groups=["DynamicObject"]]
 sprite_frames = SubResource("SpriteFrames_v5avu")
 autoplay = "default"
 script = ExtResource("2_0m5o8")

@@ -73,17 +73,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="BlueBird" type="Path2D" groups=["BirdBlue"]]
+[node name="BlueBird" type="Path2D" unique_id=1515060178]
 curve = SubResource("Curve2D_p8deu")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="."]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1471100129]
 position = Vector2(-2352, -1048)
 rotation = 0.14189707
 rotates = false
 loop = false
 script = ExtResource("1_p8deu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D" unique_id=1253690943]
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_0u4a4")
 autoplay = "default"

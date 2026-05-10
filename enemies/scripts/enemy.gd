@@ -8,10 +8,10 @@ signal was_killed()
 
 @export var health : float = 3
 @export var affected_by_gravity : bool = true
-@export var face_left_on_start : bool = false:
+@export var face_left_on_start : bool = false :
 	set( value ):
 		face_left_on_start = value
-		update_face_left()
+		_update_face_left()
 
 var sprite : Sprite2D
 var animation : AnimationPlayer
@@ -22,6 +22,7 @@ var state_machine : EnemyStateMachine
 var decision_engine : DecisionEngine
 var blackboard : Blackboard
 
+var killed = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -60,7 +61,7 @@ func setup() -> void:
 	pass
 
 
-## physics process will move enemy, and call state_machine.physics_process
+##z physics process will move enemy, and call state_machine.physics_process
 func _physics_process( delta: float ) -> void:
 	blackboard.update_distance_to_target( global_position )
 	state_machine.change_state( decision_engine.decide() )
@@ -100,6 +101,7 @@ func _on_damage_taken( a : AttackArea ) -> void:
 		damage_area.queue_free()
 		hazard_area.queue_free()
 		was_killed.emit()
+		killed = true
 	was_hit.emit( a )
 	pass
 
@@ -124,10 +126,38 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 
-func update_face_left() -> void:
+func _update_face_left() -> void:
 	if not Engine.is_editor_hint():
 		return
 	for c in get_children():
 		if c is Sprite2D:
 			c.flip_h = face_left_on_start
 	pass
+	
+func on_save_game( saved_data : Array[SavedData] ) -> void:
+	# don't do a contract
+	if killed:
+		return
+	# do a contract
+	var my_data = SavedSlimeData.new()
+	my_data.position = global_position
+	my_data.scene_path = scene_file_path
+	my_data.direction = blackboard.dir
+	saved_data.append( my_data )
+	pass
+
+
+func on_before_load_game(  ) -> void:
+	get_parent().remove_child( self )
+	queue_free()
+	pass
+
+
+func on_load_game( saved_data : SavedData ) -> void:
+	global_position = saved_data.position
+	
+	# do we have specific data to load...
+	#if saved_data is SavedSlimeData:
+		#var my_data : SavedSlimeData = saved_data
+		#blackboard.dir = my_data.direction
+pass
