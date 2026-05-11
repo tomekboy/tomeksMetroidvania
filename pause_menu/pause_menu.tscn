@@ -276,7 +276,6 @@ text = "abilityRoll
 horizontal_alignment = 1
 
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
-visible = false
 anchors_preset = 0
 offset_left = 243.0
 offset_top = 61.0
@@ -508,12 +507,13 @@ layout_mode = 2
 text = "rumbleTitle"
 
 [node name="RumbleCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=624503092]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 
-[node name="FullscreenTitle2" type="Label" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=581756887]
+[node name="FullscreenLegend" type="Label" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=581756887]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "rumbleHint"
@@ -527,6 +527,7 @@ layout_mode = 2
 text = "languageTitle"
 
 [node name="LanguageOptionButton" type="OptionButton" parent="Control/System/MiscSettings/HBoxContainerLanguage" unique_id=1125872548]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
@@ -584,3 +585,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_sp6kg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aj446")
 theme_override_styles/focus = SubResource("StyleBoxFlat_y6n36")
 text = "pauseBackToTitle"
+
+[connection signal="item_selected" from="Control/System/MiscSettings/HBoxContainerLanguage/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]

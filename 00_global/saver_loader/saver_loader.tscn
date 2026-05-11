@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dm3c0as1u1syq"]
-
-[ext_resource type="Script" uid="uid://rl6dnqepsjuc" path="res://00_global/saver_loader/saver_loader.gd" id="1_x2w75"]
-
-[node name="SaverLoader" type="Node2D" unique_id=232882274]
-script = ExtResource("1_x2w75")

@@ -15,8 +15,6 @@ class_name SavedGame extends Resource
 @export var player_morph_roll : bool
 
 # game data
-@export var game_lang : String
-@export var game_vibration : bool
 @export var game_discovered_areas : Array = []
 
 # dynamic object data

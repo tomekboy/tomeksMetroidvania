@@ -1,11 +1,12 @@
 extends Node
 
 const SLOTS : Array[ String ] = [
-	"save_01", "save_02", "save_03"
+	"01", "02", "03"
 ]
 
 var current_slot : int = 0
 var discovered_areas : Array = []
+var saved_game : SavedGame
 
 func _ready() -> void:
 	load_configuration()
@@ -34,10 +35,10 @@ func create_new_game_save( slot : int ) -> void:
 	var new_game_scene : String = "uid://cfiuv8loi78a5" # 00_wonderland/01.tsn
 	discovered_areas.append( new_game_scene )
 	# set default values
-	var saved_game : SavedGame = SavedGame.new()
+	saved_game = SavedGame.new()
 	saved_game.scene_path = SceneManager.current_scene_uid
 	saved_game.player_position = Vector2(1610,120)
-	saved_game.player_hp = 20
+	saved_game.player_hp = 10
 	saved_game.player_max_hp = 20
 	saved_game.player_cp = 0
 	saved_game.player_max_cp = 250
@@ -45,15 +46,13 @@ func create_new_game_save( slot : int ) -> void:
 	saved_game.player_double_jump = false
 	saved_game.player_ground_slam = false
 	saved_game.player_morph_roll = false
-	saved_game.game_lang = TranslationServer.get_locale()
-	saved_game.game_vibration = false
 	saved_game.game_discovered_areas = discovered_areas
 	
 	#initialize first scene
 	SceneManager.transition_scene( new_game_scene, "", Vector2.ZERO, "up" )
 	await SceneManager.new_scene_ready
 	
-	# set the initial sound volumes
+	# get the initial game values
 	load_configuration()
 	
 	# setup player
@@ -71,9 +70,7 @@ func create_new_game_save( slot : int ) -> void:
 	player.double_jump = saved_game.player_double_jump
 	player.ground_slam = saved_game.player_ground_slam
 	player.morph_roll = saved_game.player_morph_roll
-	
-	TranslationServer.set_locale( saved_game.game_lang )
-	PlayerHud.controller_rumble = saved_game.game_vibration
+
 	discovered_areas = saved_game.game_discovered_areas
 	
 	# show player hud
@@ -86,13 +83,13 @@ func create_new_game_save( slot : int ) -> void:
 	
 	# save game data
 	ResourceSaver.save( saved_game, get_file_name( current_slot ) )
-	pass
+pass
 
 
 func save_game():
 	var player : Player = get_tree().get_first_node_in_group( "Player" )
 	
-	var saved_game : SavedGame = SavedGame.new()
+	saved_game = SavedGame.new()
 	saved_game.scene_path = SceneManager.current_scene_uid
 	# get the player & game values
 	saved_game.player_position = player.global_position
@@ -104,8 +101,6 @@ func save_game():
 	saved_game.player_double_jump = player.double_jump
 	saved_game.player_ground_slam = player.ground_slam
 	saved_game.player_morph_roll = player.morph_roll
-	saved_game.game_lang = TranslationServer.get_locale()
-	saved_game.game_vibration = PlayerHud.controller_rumble
 	saved_game.game_discovered_areas = discovered_areas
 	
 
@@ -114,18 +109,21 @@ func save_game():
 	get_tree().call_group( "DynamicObject", "on_save_game", saved_data )
 	saved_game.saved_data = saved_data
 	
-	# save the resource
+	# save game data
 	ResourceSaver.save( saved_game, get_file_name( current_slot ) )
 	pass
 
 
 func load_game( slot : int ) -> void:
 	# called from title screen
-	var saved_game : SavedGame = load( get_file_name( slot ) )
+	saved_game = load( get_file_name( slot ) )
+	
+	if saved_game.scene_path == "uid://d12hmou2bfva3" :
+		saved_game.scene_path = saved_game.game_discovered_areas[0]
 	SceneManager.transition_scene( saved_game.scene_path, "", Vector2.ZERO, "up" )
 	await SceneManager.new_scene_ready
 	
-	# set the initial sound volumes
+	# get the initial game settings
 	load_configuration()
 	
 	# setup player
@@ -143,8 +141,6 @@ func load_game( slot : int ) -> void:
 	player.double_jump = saved_game.player_double_jump
 	player.ground_slam = saved_game.player_ground_slam
 	player.morph_roll = saved_game.player_morph_roll
-	TranslationServer.set_locale( saved_game.game_lang )
-	PlayerHud.controller_rumble = saved_game.game_vibration
 	discovered_areas = saved_game.game_discovered_areas
 	
 	# load dynamic objects
@@ -179,7 +175,7 @@ func load_game( slot : int ) -> void:
 
 
 func get_file_name( slot : int ) -> String:
-	return "user://" + SLOTS[ slot ] + ".tres"
+	return "user://" + SLOTS[ slot ] + ".res"
 
 
 func save_file_exists( slot : int ) -> bool:
@@ -205,13 +201,17 @@ func save_configuration() -> void:
 	config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
 	config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
 	config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
-	config.save( "user://settings_0"  + str( current_slot + 1 ) + ".cfg" )
+	config.set_value( "game", "screen", DisplayServer.window_get_mode() )
+	config.set_value( "game", "controller", PlayerHud.controller_rumble )
+	config.set_value( "game", "language", TranslationServer.get_locale() )
+	
+	config.save( "user://0"  + str( current_slot + 1 ) + ".cfg" )
 	pass
 
 
 func load_configuration() -> void:
 	var config := ConfigFile.new()
-	var err = config.load( "user://settings_0"  + str( current_slot + 1 ) + ".cfg" )
+	var err = config.load( "user://0"  + str( current_slot + 1 ) + ".cfg" )
 
 	if err != OK:
 		AudioServer.set_bus_volume_linear( 2, 0.099999994 )
@@ -221,12 +221,15 @@ func load_configuration() -> void:
 		config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
 		config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
 		config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
-		config.save( "user://settings_00.cfg" )
+		config.save( "user://00.cfg" )
 		return
 	
 	AudioServer.set_bus_volume_linear( 2, config.get_value( "audio", "music", 0.8 ) )
 	AudioServer.set_bus_volume_linear( 3, config.get_value( "audio", "sfx", 1.0 ) )
 	AudioServer.set_bus_volume_linear( 4, config.get_value( "audio", "ui", 1.0 ) )
+	DisplayServer.window_set_mode( config.get_value( "game", "screen", 0 ) )
+	PlayerHud.controller_rumble = config.get_value( "game", "controller", false )
+	TranslationServer.set_locale( config.get_value( "game", "language", TranslationServer.get_locale() ) )
 	pass
 
 #endregion

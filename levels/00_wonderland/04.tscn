@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://dxyuffjk08u8a" path="res://levels/00_wonderland/images/bush.png" id="20_s1gjr"]
 [ext_resource type="Texture2D" uid="uid://dd28782i1kjxl" path="res://assets/materials_and_shaders/light_stream.jpg" id="21_0vwok"]
 [ext_resource type="Material" uid="uid://d0mwxqwvs8f7i" path="res://assets/materials_and_shaders/fog_fade_material.tres" id="22_23qe1"]
+[ext_resource type="PackedScene" uid="uid://dq7m36g8gkj17" path="res://enemies/slime/slimeNature.tscn" id="23_46dmu"]
+[ext_resource type="Script" uid="uid://dopkspryqgc2u" path="res://general/scripts/patrol_limit.gd" id="24_geymb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wfn48"]
 texture = ExtResource("8_i6u7h")
@@ -2657,3 +2659,20 @@ visibility_rect = Rect2(-1530, -200, 3060, 320)
 process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
 [node name="Decorations" type="Node" parent="." unique_id=1361011820]
+
+[node name="DynamicObjects" type="Node" parent="." unique_id=2058451056]
+
+[node name="SlimeNature" parent="DynamicObjects" unique_id=634296537 instance=ExtResource("23_46dmu")]
+z_index = 1
+position = Vector2(679, 614)
+
+[node name="PatrolLimitLeft" type="Node2D" parent="DynamicObjects/SlimeNature" unique_id=1804402933]
+position = Vector2(-39, -5)
+script = ExtResource("24_geymb")
+metadata/_custom_type_script = "uid://dopkspryqgc2u"
+
+[node name="PatrolLimitRight" type="Node2D" parent="DynamicObjects/SlimeNature" unique_id=906060756]
+position = Vector2(67, -1)
+script = ExtResource("24_geymb")
+side = 2
+metadata/_custom_type_script = "uid://dopkspryqgc2u"

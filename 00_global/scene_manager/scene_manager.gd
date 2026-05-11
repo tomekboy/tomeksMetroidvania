@@ -21,6 +21,36 @@ func _ready() -> void:
 
 func transition_scene( new_scene : String, target_area : String, player_offset : Vector2, dir : String ) -> void:
 
+	# ignore the 2 title screens nothing to save
+	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" :
+		# save or load the resource data if available
+		if ResourceLoader.exists( "user://0" + str( SaveManager.current_slot + 1 ) + "_" + current_scene_uid.substr(6) + ".res") :
+			# ResourceLoader.load( "user://0" + str( SaveManager.current_slot + 1 ) + "_" + current_scene_uid.substr(6) + ".res" )
+			SaveManager.saved_game = load( "user://0" + str( SaveManager.current_slot + 1 ) + "_" + current_scene_uid.substr(6) + ".res" )
+		else:
+			var player : Player = get_tree().get_first_node_in_group( "Player" )
+			
+			SaveManager.saved_game = SavedGame.new()
+			SaveManager.saved_game.scene_path = SceneManager.current_scene_uid
+			# get the player & game values
+			SaveManager.saved_game.player_position = player.global_position
+			SaveManager.saved_game.player_hp = player.hp
+			SaveManager.saved_game.player_max_hp = player.max_hp
+			SaveManager.saved_game.player_cp = player.cp
+			SaveManager.saved_game.player_max_cp = player.max_cp
+			SaveManager.saved_game.player_dash = player.dash
+			SaveManager.saved_game.player_double_jump = player.double_jump
+			SaveManager.saved_game.player_ground_slam = player.ground_slam
+			SaveManager.saved_game.player_morph_roll = player.morph_roll
+			SaveManager.saved_game.game_discovered_areas = SaveManager.discovered_areas
+			
+
+			# get the dynamic objects
+			var saved_data : Array[SavedData] = []
+			get_tree().call_group( "DynamicObject", "on_save_game", saved_data )
+			SaveManager.saved_game.saved_data = saved_data
+			ResourceSaver.save( SaveManager.saved_game, "user://0" + str( SaveManager.current_slot + 1 ) + "_" + current_scene_uid.substr(6) + ".res")
+		
 	get_tree().paused = true
 	
 	var fade_pos : Vector2 = get_fade_pos( dir )

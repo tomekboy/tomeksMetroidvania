@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://doresjk60xsm1" path="res://general/player_spawn/player_spawn.tscn" id="2_ogtcl"]
 [ext_resource type="PackedScene" uid="uid://c7inn7kul5kd5" path="res://general/level_transition/level_transiton.tscn" id="4_ogtcl"]
 [ext_resource type="PackedScene" uid="uid://dnic1j6w0qeau" path="res://general/death_area/death_area.tscn" id="4_wvxnh"]
+[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="5_32utd"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="5_c810p"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="6_2fxpy"]
 [ext_resource type="AudioStream" uid="uid://d3827l5dr6wwd" path="res://assets/music/fun-time-incredibox-without- FunComputer-sprunki-mix-385336.mp3" id="6_c810p"]
@@ -146,6 +147,9 @@ script = ExtResource("5_c810p")
 track = ExtResource("6_c810p")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
+[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("5_32utd")]
+position = Vector2(580, 311)
+
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("4_wvxnh")]
 position = Vector2(8, 646)
 
@@ -277,10 +281,10 @@ position = Vector2(307, 411)
 [node name="DynamicObjects" type="Node" parent="." unique_id=1333283937]
 
 [node name="SlimeBlood" parent="DynamicObjects" unique_id=634296537 instance=ExtResource("15_l741y")]
-position = Vector2(854, 272)
+position = Vector2(1758, 516)
 
 [node name="SlimeDark" parent="DynamicObjects" unique_id=1470401610 instance=ExtResource("17_opi1y")]
-position = Vector2(2801, 192)
+position = Vector2(852, 286)
 
 [node name="collectableNote" parent="DynamicObjects" unique_id=259999620 instance=ExtResource("25_ni0tu")]
 position = Vector2(1698, 555)

@@ -6,7 +6,6 @@ const SCREAM_SFX = preload("uid://dwunjjil02vrk")
 @onready var area_2d: Area2D = $Area2D
 @onready var player_spawn: PlayerSpawn = $"../PlayerSpawn"
 
-
 func _ready() -> void:
 	area_2d.body_entered.connect( _on_player_entered )
 	pass

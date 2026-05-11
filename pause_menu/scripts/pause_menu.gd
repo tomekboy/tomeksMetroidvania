@@ -137,4 +137,9 @@ func _on_rumble_check_button_changed( toggled_on : bool ) -> void:
 		PlayerHud.controller_rumble = false
 	# save to settings
 	SaveManager.save_configuration()
-pass
+	pass
+
+
+func _on_language_option_button_item_selected( _index: int ) -> void:
+	SaveManager.save_configuration()
+	pass
