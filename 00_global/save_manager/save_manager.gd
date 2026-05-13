@@ -36,7 +36,7 @@ func create_new_game_save( slot : int ) -> void:
 	discovered_areas.append( new_game_scene )
 	# set default values
 	saved_game = SavedGame.new()
-	saved_game.scene_path = SceneManager.current_scene_uid
+	saved_game.scene_path = new_game_scene
 	saved_game.player_position = Vector2(1610,120)
 	saved_game.player_hp = 10
 	saved_game.player_max_hp = 20
@@ -116,10 +116,7 @@ func save_game():
 
 func load_game( slot : int ) -> void:
 	# called from title screen
-	saved_game = load( get_file_name( slot ) )
-	
-	if saved_game.scene_path == "uid://d12hmou2bfva3" :
-		saved_game.scene_path = saved_game.game_discovered_areas[0]
+	saved_game = load( get_file_name( slot) )
 	SceneManager.transition_scene( saved_game.scene_path, "", Vector2.ZERO, "up" )
 	await SceneManager.new_scene_ready
 	
@@ -142,7 +139,7 @@ func load_game( slot : int ) -> void:
 	player.ground_slam = saved_game.player_ground_slam
 	player.morph_roll = saved_game.player_morph_roll
 	discovered_areas = saved_game.game_discovered_areas
-	
+
 	# load dynamic objects
 	# resolve the variable scene node number
 	# get the uid of current scene and get the path
@@ -158,25 +155,20 @@ func load_game( slot : int ) -> void:
 	
 	if dynamic_objects:
 		get_tree().call_group( "DynamicObject", "on_before_load_game" )
-		
-		if saved_game.scene_path == "uid://d12hmou2bfva3": # start screen
-			return
-		else:
-			for entity in saved_game.saved_data:
-				var scene = load( entity.scene_path ) as PackedScene
-				var restored_node = scene.instantiate()
-				dynamic_objects.add_child( restored_node )
-				
-				if restored_node.has_method( "on_load_game" ):
-					restored_node.on_load_game( entity )
+		for entity in saved_game.saved_data:
+			var scene = load( entity.scene_path ) as PackedScene
+			var restored_node = scene.instantiate()
+			dynamic_objects.add_child( restored_node )
+			#
+			if restored_node.has_method( "on_load_game" ):
+				restored_node.on_load_game( entity )
 	# show player hud
 	PlayerHud.visible = true
 	pass
 
 
 func get_file_name( slot : int ) -> String:
-	return "user://" + SLOTS[ slot ] + ".res"
-
+		return "user://" + SLOTS[ slot ] +  ".res"
 
 func save_file_exists( slot : int ) -> bool:
 	# called from title screen

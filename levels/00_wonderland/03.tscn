@@ -217,3 +217,5 @@ texture = ExtResource("15_w7xex")
 position = Vector2(488.00012, 482.19998)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("16_iwom2")
+
+[node name="DynamicObjects" type="Node" parent="." unique_id=116951692]

@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://doresjk60xsm1" path="res://general/player_spawn/player_spawn.tscn" id="2_ogtcl"]
 [ext_resource type="PackedScene" uid="uid://c7inn7kul5kd5" path="res://general/level_transition/level_transiton.tscn" id="4_ogtcl"]
 [ext_resource type="PackedScene" uid="uid://dnic1j6w0qeau" path="res://general/death_area/death_area.tscn" id="4_wvxnh"]
-[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="5_32utd"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="5_c810p"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="6_2fxpy"]
 [ext_resource type="AudioStream" uid="uid://d3827l5dr6wwd" path="res://assets/music/fun-time-incredibox-without- FunComputer-sprunki-mix-385336.mp3" id="6_c810p"]
@@ -147,14 +146,11 @@ script = ExtResource("5_c810p")
 track = ExtResource("6_c810p")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
-[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("5_32utd")]
-position = Vector2(580, 311)
-
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("4_wvxnh")]
 position = Vector2(8, 646)
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(316, 162)
+position = Vector2(2616, 250)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)
