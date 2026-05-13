@@ -21,11 +21,25 @@
 [ext_resource type="PackedScene" uid="uid://bf5kdupbjjnbc" path="res://general/props/mushroom_red.tscn" id="17_jy5vy"]
 [ext_resource type="PackedScene" uid="uid://bccya1y0waa32" path="res://enemies/slime/slimeDark.tscn" id="17_opi1y"]
 [ext_resource type="PackedScene" uid="uid://csl2t1yccpy2j" path="res://birds/green_bird.tscn" id="20_0ilro"]
+[ext_resource type="Texture2D" uid="uid://d2nrjwe4nl5pr" path="res://levels/00_wonderland/images/tree1.png" id="20_6nc6o"]
 [ext_resource type="PackedScene" uid="uid://566yautd1jdh" path="res://birds/black_bird.tscn" id="21_8q51i"]
+[ext_resource type="Texture2D" uid="uid://x54bn35ejlyk" path="res://levels/00_wonderland/images/tree2.png" id="21_qjb6h"]
 [ext_resource type="PackedScene" uid="uid://cf3m6ippuj8if" path="res://enemies/bird/attack_bird.tscn" id="22_luqh8"]
+[ext_resource type="Texture2D" uid="uid://c2dorhrxjgvg0" path="res://levels/00_wonderland/images/tree3.png" id="22_r10n2"]
+[ext_resource type="PackedScene" uid="uid://coehjncm627wr" path="res://general/props/cacti_.tscn" id="23_530yj"]
 [ext_resource type="PackedScene" uid="uid://5gm8bpjsaa3w" path="res://birds/blue_bird.tscn" id="23_ni0tu"]
+[ext_resource type="Texture2D" uid="uid://kakt4e82y100" path="res://levels/00_wonderland/images/tree4.png" id="23_qjb6h"]
+[ext_resource type="Texture2D" uid="uid://c5qmcvahkkev6" path="res://levels/00_wonderland/images/dead_shoots.png" id="24_drb8o"]
+[ext_resource type="Texture2D" uid="uid://c64qy4b37htcp" path="res://levels/00_wonderland/images/twigs.png" id="25_4akr2"]
 [ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="25_ni0tu"]
+[ext_resource type="PackedScene" uid="uid://b60cit3j38ctg" path="res://enemies/slime/slimeFire.tscn" id="26_evs2c"]
 [ext_resource type="PackedScene" uid="uid://cgdf74704dby7" path="res://collectables/collectable_clef.tscn" id="26_hgk4t"]
+[ext_resource type="PackedScene" uid="uid://b7p7lf5dujcfj" path="res://general/props/mushroom_yellow.tscn" id="27_drb8o"]
+[ext_resource type="PackedScene" uid="uid://bwkm7jftr10y" path="res://enemies/slime/slimePink.tscn" id="27_k03f5"]
+[ext_resource type="PackedScene" uid="uid://bmx5mv34t5m8q" path="res://enemies/slime/slimeWater.tscn" id="28_egyoc"]
+[ext_resource type="PackedScene" uid="uid://e35kcjij84qh" path="res://general/props/crate_wooden_loot.tscn" id="28_gnjy8"]
+[ext_resource type="PackedScene" uid="uid://bdygpwijtbo5s" path="res://collectables/collectable_bass.tscn" id="29_gnjy8"]
+[ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://general/props/barrel_wooden.tscn" id="33_egyoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l741y"]
 texture = ExtResource("6_2fxpy")
@@ -150,7 +164,7 @@ metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 position = Vector2(8, 646)
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_ogtcl")]
-position = Vector2(2616, 250)
+position = Vector2(400, 476)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)
@@ -263,6 +277,33 @@ z_index = 1
 position = Vector2(1571.1715, 1127.0001)
 scale = Vector2(0.70840627, 1)
 
+[node name="Tree1" type="Sprite2D" parent="Decorations" unique_id=286847758]
+position = Vector2(1637, 444)
+texture = ExtResource("20_6nc6o")
+
+[node name="Tree2" type="Sprite2D" parent="Decorations" unique_id=995459117]
+position = Vector2(1751, 444)
+texture = ExtResource("21_qjb6h")
+
+[node name="Tree3" type="Sprite2D" parent="Decorations" unique_id=221891936]
+position = Vector2(1529, 456)
+texture = ExtResource("22_r10n2")
+
+[node name="Tree4" type="Sprite2D" parent="Decorations" unique_id=1393972581]
+position = Vector2(1396, 213)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("23_qjb6h")
+
+[node name="DeadShoots" type="Sprite2D" parent="Decorations" unique_id=822607514]
+position = Vector2(564, 492)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("24_drb8o")
+
+[node name="Twigs" type="Sprite2D" parent="Decorations" unique_id=923711032]
+position = Vector2(181, 490)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("25_4akr2")
+
 [node name="StaticObjects" type="Node" parent="." unique_id=106196231]
 
 [node name="Cacti Spike" parent="StaticObjects" unique_id=650663905 instance=ExtResource("16_236hw")]
@@ -274,6 +315,13 @@ position = Vector2(1885, 532)
 [node name="Bird" parent="StaticObjects" unique_id=604965980 instance=ExtResource("22_luqh8")]
 position = Vector2(307, 411)
 
+[node name="Cacti" parent="StaticObjects" unique_id=1757637410 instance=ExtResource("23_530yj")]
+position = Vector2(2021, 417)
+
+[node name="MushroomYellow" parent="StaticObjects" unique_id=2013495118 instance=ExtResource("27_drb8o")]
+z_index = 1
+position = Vector2(241, 340)
+
 [node name="DynamicObjects" type="Node" parent="." unique_id=1333283937]
 
 [node name="SlimeBlood" parent="DynamicObjects" unique_id=634296537 instance=ExtResource("15_l741y")]
@@ -282,8 +330,27 @@ position = Vector2(1758, 516)
 [node name="SlimeDark" parent="DynamicObjects" unique_id=1470401610 instance=ExtResource("17_opi1y")]
 position = Vector2(852, 286)
 
+[node name="SlimeFire" parent="DynamicObjects" unique_id=1943015879 groups=["DynamicObject"] instance=ExtResource("26_evs2c")]
+position = Vector2(2652, 559)
+
+[node name="SlimePink" parent="DynamicObjects" unique_id=1111060941 groups=["DynamicObject"] instance=ExtResource("27_k03f5")]
+position = Vector2(2796, 207)
+
+[node name="SlimeWater" parent="DynamicObjects" unique_id=1414423719 groups=["DynamicObject"] instance=ExtResource("28_egyoc")]
+position = Vector2(402, 220)
+
 [node name="collectableNote" parent="DynamicObjects" unique_id=259999620 instance=ExtResource("25_ni0tu")]
-position = Vector2(1698, 555)
+position = Vector2(2326, 91)
 
 [node name="collectableClef" parent="DynamicObjects" unique_id=605098476 instance=ExtResource("26_hgk4t")]
 position = Vector2(1547, 559)
+
+[node name="collectableBass" parent="DynamicObjects" unique_id=242179076 instance=ExtResource("29_gnjy8")]
+position = Vector2(77, 94)
+scale = Vector2(0.5, 0.5)
+
+[node name="CrateAbilityDJ" parent="DynamicObjects" unique_id=1026468228 groups=["DynamicObject"] instance=ExtResource("28_gnjy8")]
+position = Vector2(2925, 556)
+
+[node name="Barrel" parent="DynamicObjects" unique_id=1079843842 groups=["DynamicObject"] instance=ExtResource("33_egyoc")]
+position = Vector2(738, 505)

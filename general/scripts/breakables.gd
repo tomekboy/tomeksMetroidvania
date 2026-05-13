@@ -19,6 +19,7 @@ signal damage_taken
 
 var velocity = Vector2.ZERO
 var gravity = 980
+var broken = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -55,6 +56,7 @@ func _on_damage_taken( attack_area : AttackArea ) -> void:
 		tween.tween_property( self, "modulate", Color( modulate, 0 ), 0.4 )
 		await tween.finished
 		queue_free()
+		broken = true
 	pass
 
 
@@ -77,3 +79,26 @@ func _check_for_damage_area() -> bool:
 		if c is DamageArea:
 			return true
 	return false
+
+
+func on_save_game( saved_data : Array[SavedData] ) -> void:
+	# don't do a contract
+	if broken:
+		return
+	# do a contract
+	var my_data = SavedData.new()
+	my_data.position = global_position
+	my_data.scene_path = scene_file_path
+	saved_data.append( my_data )
+	pass
+
+
+func on_before_load_game(  ) -> void:
+	get_parent().remove_child( self )
+	queue_free()
+	pass
+
+
+func on_load_game( saved_data : SavedData ) -> void:
+	global_position = saved_data.position
+pass

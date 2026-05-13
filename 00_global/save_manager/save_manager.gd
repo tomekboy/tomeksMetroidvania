@@ -6,6 +6,7 @@ const SLOTS : Array[ String ] = [
 
 var current_slot : int = 0
 var discovered_areas : Array = []
+var persistent_data : Dictionary = {}
 var saved_game : SavedGame
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func create_new_game_save( slot : int ) -> void:
 	current_slot = slot
 	discovered_areas.clear()
+	persistent_data.clear()
 	var new_game_scene : String = "uid://cfiuv8loi78a5" # 00_wonderland/01.tsn
 	discovered_areas.append( new_game_scene )
 	# set default values
@@ -47,6 +49,7 @@ func create_new_game_save( slot : int ) -> void:
 	saved_game.player_ground_slam = false
 	saved_game.player_morph_roll = false
 	saved_game.game_discovered_areas = discovered_areas
+	saved_game.game_persistent_data = persistent_data
 	
 	#initialize first scene
 	SceneManager.transition_scene( new_game_scene, "", Vector2.ZERO, "up" )
@@ -72,6 +75,7 @@ func create_new_game_save( slot : int ) -> void:
 	player.morph_roll = saved_game.player_morph_roll
 
 	discovered_areas = saved_game.game_discovered_areas
+	persistent_data = saved_game.game_persistent_data
 	
 	# show player hud
 	PlayerHud.visible = true
@@ -91,6 +95,7 @@ func save_game():
 	
 	saved_game = SavedGame.new()
 	saved_game.scene_path = SceneManager.current_scene_uid
+	
 	# get the player & game values
 	saved_game.player_position = player.global_position
 	saved_game.player_hp = player.hp
@@ -102,7 +107,7 @@ func save_game():
 	saved_game.player_ground_slam = player.ground_slam
 	saved_game.player_morph_roll = player.morph_roll
 	saved_game.game_discovered_areas = discovered_areas
-	
+	saved_game.game_persistent_data = persistent_data
 
 	# get the dynamic objects
 	var saved_data : Array[SavedData] = []
@@ -139,6 +144,7 @@ func load_game( slot : int ) -> void:
 	player.ground_slam = saved_game.player_ground_slam
 	player.morph_roll = saved_game.player_morph_roll
 	discovered_areas = saved_game.game_discovered_areas
+	persistent_data = saved_game.game_persistent_data
 
 	# load dynamic objects
 	# resolve the variable scene node number

@@ -19,9 +19,7 @@ size = Vector2(48, 56)
 
 [sub_resource type="Resource" id="Resource_grppk"]
 script = ExtResource("10_d60ds")
-item = "uid://d15uniaf1tmpx"
-minimum = 5
-maximum = 10
+item = "uid://domlydylyeco8"
 drop_chance = 1.0
 metadata/_custom_type_script = "uid://ccwrcw7gxorch"
 

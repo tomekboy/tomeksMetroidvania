@@ -202,7 +202,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AbilityDisplay" type="VBoxContainer" parent="Control/PauseScreen" unique_id=2123789897]
-visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 9

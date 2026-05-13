@@ -16,6 +16,7 @@ class_name SavedGame extends Resource
 
 # game data
 @export var game_discovered_areas : Array = []
+@export var game_persistent_data : Dictionary = {}
 
 # dynamic object data
 @export var saved_data : Array[SavedData] = []

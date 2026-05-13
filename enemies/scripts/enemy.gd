@@ -61,7 +61,7 @@ func setup() -> void:
 	pass
 
 
-##z physics process will move enemy, and call state_machine.physics_process
+# physics process will move enemy, and call state_machine.physics_process
 func _physics_process( delta: float ) -> void:
 	blackboard.update_distance_to_target( global_position )
 	state_machine.change_state( decision_engine.decide() )

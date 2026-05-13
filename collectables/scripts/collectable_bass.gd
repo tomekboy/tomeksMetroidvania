@@ -3,7 +3,7 @@ extends AnimatedSprite2D
 
 const NOTE_SFX = preload("uid://b2xx28ud8iokm")
 
-var amount : float = 3
+var amount : float = 5
 var collected : bool = false
 
 var cp_pos
