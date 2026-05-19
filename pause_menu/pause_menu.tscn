@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://hjb6vqoti27h" path="res://pause_menu/scripts/pause_menu.gd" id="1_5hbt6"]
 [ext_resource type="Script" uid="uid://dbk0pse1plg2h" path="res://pause_menu/scripts/ability_display.gd" id="2_b4s0c"]
 [ext_resource type="PackedScene" uid="uid://c2lm7qqyqmovl" path="res://pause_menu/map_node.tscn" id="2_rd7dy"]
-[ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://player/sprites/abilities.png" id="2_uwtdo"]
+[ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://general/ability_pickup/images/abilities.png" id="2_uwtdo"]
 [ext_resource type="Script" uid="uid://dsw35oh17dxad" path="res://addons/localization_with_google_sheet/ui/menu_language_option_button.gd" id="5_s1glv"]
 
 [sub_resource type="FontVariation" id="FontVariation_5hbt6"]
@@ -297,7 +297,7 @@ modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
 layout_mode = 0
 offset_left = 161.0
 offset_top = 184.0
-offset_right = 314.0
+offset_right = 262.0
 offset_bottom = 216.0
 linked_scene = "uid://bb7n5hh1ojdiy"
 entrances_bottom = Array[float]([19.35])

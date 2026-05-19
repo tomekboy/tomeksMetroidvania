@@ -11,7 +11,11 @@ func _ready() -> void:
 	pass
 
 
-func _on_player_entered( player : CharacterBody2D ) -> void:
-	AudioManager.play_spatial_sound( SCREAM_SFX, player.global_position )
-	player.global_position = player_spawn.global_position
+func _on_player_entered( body : CharacterBody2D ) -> void:
+	if body.is_in_group( "Player" ):
+		AudioManager.play_spatial_sound( SCREAM_SFX, body.global_position )
+		body.hp -= 1
+		body.global_position = player_spawn.global_position
+	elif body.is_in_group( "Enemy" ):
+		body.queue_free()
 	pass

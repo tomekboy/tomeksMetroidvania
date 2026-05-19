@@ -39,4 +39,5 @@ enum Friends_localization_key {
 	abilityRoll,
 	rumbleTitle,
 	rumbleHint,
+	caveSavePointHint,
 }

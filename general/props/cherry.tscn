@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dpum7ub2dff8m"]
+
+[ext_resource type="Script" uid="uid://dwa70fcclb88f" path="res://general/props/scripts/cherry.gd" id="1_0rk5q"]
+[ext_resource type="PackedScene" uid="uid://bfk5ake3euexv" path="res://general/props/cherry_explosion.tscn" id="2_4dfoc"]
+[ext_resource type="Texture2D" uid="uid://uxnojxkby4hj" path="res://general/props/tilesets/vegetation.png" id="3_g764t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uv8x0"]
+size = Vector2(32, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oy57c"]
+radius = 16.0
+
+[node name="Cherry" type="CharacterBody2D" unique_id=148854148 groups=["Cherry"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0rk5q")
+burstParticle = ExtResource("2_4dfoc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1996403481]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_g764t")
+hframes = 12
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=244626281]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_uv8x0")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1552453387]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=988722666]
+position = Vector2(0, 32)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CircleShape2D_oy57c")
+
+[node name="Timer" type="Timer" parent="." unique_id=2073412075]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

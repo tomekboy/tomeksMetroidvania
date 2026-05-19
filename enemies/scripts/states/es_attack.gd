@@ -10,7 +10,7 @@ var duration : float = 0
 var on_cooldown : bool = false
 
 func enter() -> void:
-	enemy.play_animation( animation_name if animation_name else "attack_right" )
+	enemy.play_animation( animation_name if animation_name else "bite" )
 	duration = enemy.animation.current_animation_length
 	timer = 0
 	blackboard.can_decide = false

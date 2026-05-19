@@ -3,7 +3,7 @@ class_name ESChase extends EnemyState
 @export var chase_speed : float = 100
 
 func enter() -> void:
-	enemy.play_animation( animation_name if animation_name else "attack_right" )
+	enemy.play_animation( animation_name if animation_name else "bite" )
 	pass
 
 

@@ -1,0 +1,268 @@
+[gd_scene format=3 uid="uid://epayxvrqdvet"]
+
+[ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_gbolw"]
+[ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="5_g1bii"]
+[ext_resource type="Script" uid="uid://t607jrgiowm0" path="res://enemies/scripts/states/es_attack.gd" id="6_e7ns3"]
+[ext_resource type="Script" uid="uid://j2ku8oi2gkhr" path="res://enemies/scripts/states/es_chase.gd" id="7_pq163"]
+[ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="8_xpkc0"]
+[ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="9_cunov"]
+[ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="10_dkjbq"]
+[ext_resource type="Script" uid="uid://b031dd4ulhcb" path="res://enemies/scripts/decision_engines/decision_engine_attack.gd" id="10_pmijd"]
+[ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="11_8g6l0"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="13_y0yfe"]
+[ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="14_ouyvt"]
+[ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="15_ijsce"]
+[ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="17_14b5e"]
+[ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="18_u4p3n"]
+[ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="19_hhr2n"]
+[ext_resource type="Resource" uid="uid://bhvlwe34vj0xe" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_red.tres" id="20_snke5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0avf7"]
+load_path = "res://.godot/imported/spider_black.png-5a9a1823fef72eab0dbcb5ff394b095f.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2c1x"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="Animation" id="Animation_pmijd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4r3pm"]
+resource_name = "base"
+length = 1.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_orsfy"]
+resource_name = "bite"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_fbfym"]
+resource_name = "die"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_rli3v"]
+resource_name = "hurt"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [22, 23, 24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_bata8"]
+resource_name = "idle"
+length = 0.9
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 33, 47]
+}
+
+[sub_resource type="Animation" id="Animation_pw2il"]
+resource_name = "move"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [48, 49, 50, 51, 52, 53, 54, 55]
+}
+
+[sub_resource type="Animation" id="Animation_qewxf"]
+resource_name = "squirt"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61, 62, 63, 64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orsfy"]
+_data = {
+&"RESET": SubResource("Animation_pmijd"),
+&"base": SubResource("Animation_4r3pm"),
+&"bite": SubResource("Animation_orsfy"),
+&"die": SubResource("Animation_fbfym"),
+&"hurt": SubResource("Animation_rli3v"),
+&"idle": SubResource("Animation_bata8"),
+&"move": SubResource("Animation_pw2il"),
+&"squirt": SubResource("Animation_qewxf")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6oiw0"]
+
+[sub_resource type="Resource" id="Resource_b68gs"]
+script = ExtResource("19_hhr2n")
+metadata/_custom_type_script = "uid://sxomxrc0lhoq"
+
+[node name="SpiderBlack" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject", "Enemy"]]
+collision_layer = 35
+script = ExtResource("1_gbolw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196]
+position = Vector2(4, -14)
+texture = SubResource("CompressedTexture2D_0avf7")
+hframes = 13
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2044560726]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_t2c1x")
+debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2060949078]
+libraries/ = SubResource("AnimationLibrary_orsfy")
+autoplay = &"idle_forward"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=288614171]
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=2020379810]
+script = ExtResource("5_g1bii")
+metadata/_custom_type_script = "uid://2dityed23bsq"
+
+[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=96065311]
+script = ExtResource("6_e7ns3")
+
+[node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=1020455113]
+script = ExtResource("7_pq163")
+
+[node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=83238501]
+script = ExtResource("8_xpkc0")
+death_audio = ExtResource("9_cunov")
+metadata/_custom_type_script = "uid://dox0omjiybs3j"
+
+[node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
+script = ExtResource("10_dkjbq")
+metadata/_custom_type_script = "uid://dhttlbv130mal"
+
+[node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
+script = ExtResource("11_8g6l0")
+metadata/_custom_type_script = "uid://vgbg018s6yet"
+
+[node name="DecisionEngineBasicAttack" type="Node" parent="." unique_id=1328176250]
+script = ExtResource("10_pmijd")
+metadata/_custom_type_script = "uid://b031dd4ulhcb"
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1118480072]
+visible = false
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("13_y0yfe")
+audio = ExtResource("14_ouyvt")
+metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1619679852]
+position = Vector2(1, -13)
+shape = SubResource("CapsuleShape2D_6oiw0")
+
+[node name="HazardArea" type="Area2D" parent="." unique_id=277420904]
+visible = false
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("15_ijsce")
+metadata/_custom_type_script = "uid://davkcy554f7pn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=1001908221]
+position = Vector2(1, -13)
+shape = SubResource("CapsuleShape2D_6oiw0")
+
+[node name="PlayerSensor" type="Area2D" parent="." unique_id=434396934]
+script = ExtResource("17_14b5e")
+use_audio_sensor = false
+metadata/_custom_type_script = "uid://cfui2lani3y65"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=642785591]
+position = Vector2(2, -12.999998)
+polygon = PackedVector2Array(0, 0, 150, -64, 150, 64)
+
+[node name="EnemyHitParticles" type="Marker2D" parent="." unique_id=1594474827]
+script = ExtResource("18_u4p3n")
+hit_particles = Array[ExtResource("19_hhr2n")]([ExtResource("20_snke5")])
+death_particles = Array[ExtResource("19_hhr2n")]([SubResource("Resource_b68gs")])
+metadata/_custom_type_script = "uid://bbswshx0f0q7o"

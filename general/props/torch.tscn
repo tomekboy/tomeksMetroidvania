@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://b3c1xq1cvkdkd"]
+
+[ext_resource type="Texture2D" uid="uid://qjnhj420ufya" path="res://levels/00_wonderland/images/tourch_empty.png" id="1_8rxn2"]
+[ext_resource type="Texture2D" uid="uid://vr4bsxyp8s0e" path="res://levels/00_wonderland/animations/torch.png" id="1_cxyc4"]
+[ext_resource type="Script" uid="uid://c2gqnlh34w840" path="res://general/props/scripts/light_flicker.gd" id="2_dnf12"]
+[ext_resource type="Script" uid="uid://dbrjrraixbt5o" path="res://general/props/scripts/torch.gd" id="3_xuera"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap2fa"]
+atlas = ExtResource("1_8rxn2")
+region = Rect2(0, 0, 377, 452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fggxw"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(0, 0, 377, 452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rxn2"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(377, 0, 377, 452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuera"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(754, 0, 377, 452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiuk0"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(1131, 0, 377, 452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhwgg"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(1508, 0, 377, 452)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cl4he"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap2fa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fggxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rxn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuera")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiuk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhwgg")
+}],
+"loop": true,
+"name": &"lid",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_fggxw"]
+offsets = PackedFloat32Array(0, 0.34666666, 0.73333335, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.76037925, 0, 1, 0.51357734, 0.07968958, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kkwqv"]
+gradient = SubResource("Gradient_fggxw")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dnf12"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_dnf12"]
+colors = PackedColorArray(1.353256, 1.0810534, 0, 1, 1.353256, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hl1ks"]
+gradient = SubResource("Gradient_dnf12")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dnf12"]
+particle_flag_disable_z = true
+direction = Vector3(0, -20, 0)
+spread = 66.0
+initial_velocity_min = 20.0
+initial_velocity_max = 300.0
+angular_velocity_min = -200.00002
+angular_velocity_max = 199.99998
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_hl1ks")
+turbulence_enabled = true
+turbulence_influence_max = 0.3
+turbulence_initial_displacement_min = -19.999998
+turbulence_initial_displacement_max = 20.000002
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8rxn2"]
+a = Vector2(0, 756)
+
+[node name="Torch" type="AnimatedSprite2D" unique_id=346538862]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_cl4he")
+autoplay = "default"
+offset = Vector2(0, -32)
+script = ExtResource("3_xuera")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=481387256]
+position = Vector2(0, -29)
+enabled = false
+energy = 0.5
+texture = SubResource("GradientTexture2D_kkwqv")
+script = ExtResource("2_dnf12")
+flicker_intensity = 0.2
+flicker_frequency = 0.1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=366285032]
+material = SubResource("CanvasItemMaterial_dnf12")
+position = Vector2(0, -33)
+emitting = false
+amount = 10
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dnf12")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=251046406]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1039082689]
+shape = SubResource("SegmentShape2D_8rxn2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

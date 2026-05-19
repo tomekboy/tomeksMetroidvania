@@ -15,6 +15,7 @@ signal damage_taken
 @onready var damage_area: DamageArea = %DamageArea
 @onready var wall_climb_raycast: RayCast2D = %WallClimbRaycast
 @onready var wall_climb_timer: Timer = $WallClimbTimer
+@onready var point_light_2d: PointLight2D = $PointLight2D
 #endregion
 
 #region /// export variables

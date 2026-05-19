@@ -15,7 +15,7 @@ size = Vector2(48, 45.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhkg8"]
 size = Vector2(48, 56)
 
-[node name="Barrel" type="Node2D" unique_id=1026468228]
+[node name="Barrel" type="Node2D" unique_id=1026468228 groups=["DynamicObject"]]
 script = ExtResource("1_rxcfk")
 hit_particles = Array[ExtResource("2_hah4q")]([ExtResource("3_vgj7x")])
 destroy_particles = Array[ExtResource("2_hah4q")]([ExtResource("4_68nwx"), ExtResource("3_vgj7x"), ExtResource("5_fxjlx")])

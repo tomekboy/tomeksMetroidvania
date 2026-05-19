@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b753h3af5djx2"]
+
+[ext_resource type="Texture2D" uid="uid://bvtamdp44073i" path="res://levels/00_wonderland/images/treeRoofPlatform.png" id="1_8j81o"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8j81o"]
+a = Vector2(-39, 0)
+b = Vector2(111, 0)
+
+[node name="TreeRoofPlatform" type="Sprite2D" unique_id=754870824]
+z_index = 1
+texture = ExtResource("1_8j81o")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1534021414]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=834100586]
+shape = SubResource("SegmentShape2D_8j81o")

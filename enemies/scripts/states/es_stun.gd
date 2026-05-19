@@ -6,7 +6,7 @@ var duration : float = 0
 var timer : float = 0
 
 func start() -> void:
-	var anim : String = animation_name if animation_name else "hurt_right"
+	var anim : String = animation_name if animation_name else "squirt"
 	if enemy.animation.current_animation == anim:
 		enemy.animation.seek( 0 )
 	else:

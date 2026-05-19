@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bfk5ake3euexv"]
+
+[sub_resource type="Curve" id="Curve_rj7vn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15730345), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4nxxi"]
+curve = SubResource("Curve_rj7vn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iit5c"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_4nxxi")
+color = Color(0.8666667, 0.07058824, 0.47058824, 1)
+
+[node name="Explosion" type="GPUParticles2D" unique_id=711500167]
+z_index = 1
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_iit5c")

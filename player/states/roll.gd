@@ -81,6 +81,12 @@ func process( _delta: float ) -> PlayerState:
 
 # what happens each physics process tick in this state?
 func physics_process( _delta: float ) -> PlayerState:
+	
+	if player.direction.x == -1:
+		player.animation_player.play_backwards()
+	else:
+		player.animation_player.play()
+		
 	player.velocity.x = player.direction.x * player.move_speed
 	
 	if on_floor:

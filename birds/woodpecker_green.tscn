@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://lqtfathuylnc"]
 
-[ext_resource type="Texture2D" uid="uid://b87uht3pw0pms" path="res://scenes/02_wonderLand/animations/birds/woodpeckerGreen.png" id="1_ikbxc"]
-[ext_resource type="Script" uid="uid://du66unj4ishp5" path="res://scenes/02_wonderLand/scripts/woodpecker.gd" id="2_fbsjk"]
-[ext_resource type="AudioStream" uid="uid://dy3s6lihu26xh" path="res://assets/sounds/woodpecker.mp3" id="3_qb3p8"]
+[ext_resource type="Texture2D" uid="uid://dwkn81ei035t8" path="res://general/props/animations/woodpeckerGreen.png" id="1_ikbxc"]
+[ext_resource type="Script" uid="uid://cjagl1prb6rfq" path="res://general/props/scripts/woodpecker.gd" id="2_fbsjk"]
 
 [sub_resource type="Animation" id="Animation_amjlr"]
 length = 0.001
@@ -34,21 +33,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [18, 28, 30, 29, 18, 18]
 }
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("3_qb3p8")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ue010"]
 _data = {
@@ -59,26 +43,26 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ceuga"]
 size = Vector2(128, 448)
 
-[node name="WoodpeckerGreen" type="Sprite2D"]
+[node name="WoodpeckerGreen" type="Sprite2D" unique_id=713955701]
+z_index = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_ikbxc")
+flip_h = true
 hframes = 12
 vframes = 3
 frame = 27
 script = ExtResource("2_fbsjk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ue010")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=35125517]
+libraries/ = SubResource("AnimationLibrary_ue010")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1394372590]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-60, 224)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1813995339]
+position = Vector2(64, 224)
 shape = SubResource("RectangleShape2D_ceuga")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

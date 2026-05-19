@@ -23,7 +23,7 @@ item = "uid://domlydylyeco8"
 drop_chance = 1.0
 metadata/_custom_type_script = "uid://ccwrcw7gxorch"
 
-[node name="Crate" type="Node2D" unique_id=1026468228]
+[node name="Crate" type="Node2D" unique_id=1026468228 groups=["DynamicObject"]]
 script = ExtResource("1_lgt8o")
 hit_particles = Array[ExtResource("2_yr8nv")]([ExtResource("3_m28ik")])
 destroy_particles = Array[ExtResource("2_yr8nv")]([ExtResource("4_d60ds"), ExtResource("3_m28ik"), ExtResource("5_grppk")])

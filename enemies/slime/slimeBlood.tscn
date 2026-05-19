@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_xe51p"]
 [ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="1_y6wwg"]
-[ext_resource type="Texture2D" uid="uid://bhfpki6ibnc7p" path="res://enemies/slime/animation/blood.png" id="2_6oiw0"]
+[ext_resource type="Texture2D" uid="uid://bhfpki6ibnc7p" path="res://enemies/slime/animations/blood.png" id="2_6oiw0"]
 [ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="2_xe51p"]
 [ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="3_4y4rx"]
 [ext_resource type="AudioStream" uid="uid://crv4o3mmt7yik" path="res://assets/sfx/slurp.mp3" id="3_fkhe1"]
@@ -89,7 +89,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_lwidv"]
-resource_name = "attack_right"
+resource_name = "bite"
 length = 0.4
 loop_mode = 1
 step = 0.1
@@ -201,22 +201,6 @@ tracks/0/keys = {
 "values": [63, 64, 65, 66]
 }
 
-[sub_resource type="Animation" id="Animation_m2qjp"]
-resource_name = "hurt_right"
-length = 0.13333334
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [67, 68, 69, 70]
-}
-
 [sub_resource type="Animation" id="Animation_qe02t"]
 resource_name = "idle_back"
 length = 0.76666665
@@ -316,6 +300,38 @@ tracks/0/keys = {
 "values": [181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192]
 }
 
+[sub_resource type="Animation" id="Animation_spdl6"]
+resource_name = "move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [223, 224, 225, 226, 227, 228, 229, 230, 231, 232]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_yu0w3")
+}],
+"times": PackedFloat32Array(0.06666666)
+}
+tracks/1/use_blend = true
+
 [sub_resource type="Animation" id="Animation_i24ft"]
 resource_name = "move_back"
 length = 0.4
@@ -367,38 +383,6 @@ tracks/0/keys = {
 "values": [213, 214, 215, 216, 217, 218, 219, 220, 221, 222]
 }
 
-[sub_resource type="Animation" id="Animation_spdl6"]
-resource_name = "move_right"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [223, 224, 225, 226, 227, 228, 229, 230, 231, 232]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("3_yu0w3")
-}],
-"times": PackedFloat32Array(0.06666666)
-}
-tracks/1/use_blend = true
-
 [sub_resource type="Animation" id="Animation_6hvn1"]
 resource_name = "shrink_to_floor"
 length = 0.26666668
@@ -433,31 +417,47 @@ tracks/0/keys = {
 "values": [239, 240, 241, 242, 243, 244, 245, 246]
 }
 
+[sub_resource type="Animation" id="Animation_m2qjp"]
+resource_name = "squirt"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [67, 68, 69, 70]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2vt8"]
 _data = {
 &"RESET": SubResource("Animation_6oiw0"),
 &"attack_back": SubResource("Animation_m2vt8"),
 &"attack_forward": SubResource("Animation_yu0w3"),
 &"attack_left": SubResource("Animation_fkhe1"),
-&"attack_right": SubResource("Animation_lwidv"),
+&"bite": SubResource("Animation_lwidv"),
 &"die": SubResource("Animation_2axkv"),
 &"grow_from_floor": SubResource("Animation_7qjln"),
 &"hurt_back": SubResource("Animation_vnm3b"),
 &"hurt_forward": SubResource("Animation_6nvyt"),
 &"hurt_left": SubResource("Animation_b68gs"),
-&"hurt_right": SubResource("Animation_m2qjp"),
 &"idle_back": SubResource("Animation_qe02t"),
 &"idle_forward": SubResource("Animation_26jtq"),
 &"idle_left": SubResource("Animation_xd7q4"),
 &"idle_right": SubResource("Animation_ouili"),
 &"in_floor_look_left_right": SubResource("Animation_bsh0o"),
 &"in_floor_move": SubResource("Animation_igy6l"),
+&"move": SubResource("Animation_spdl6"),
 &"move_back": SubResource("Animation_i24ft"),
 &"move_forward": SubResource("Animation_fe2ea"),
 &"move_left": SubResource("Animation_874pl"),
-&"move_right": SubResource("Animation_spdl6"),
 &"shrink_to_floor": SubResource("Animation_6hvn1"),
-&"spin": SubResource("Animation_wubse")
+&"spin": SubResource("Animation_wubse"),
+&"squirt": SubResource("Animation_m2qjp")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6oiw0"]
@@ -466,8 +466,8 @@ _data = {
 script = ExtResource("17_vnm3b")
 metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
-[node name="SlimeBlood" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject"]]
-collision_layer = 3
+[node name="SlimeBlood" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject", "Enemy"]]
+collision_layer = 35
 script = ExtResource("1_xe51p")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196]
@@ -514,7 +514,7 @@ metadata/_custom_type_script = "uid://dhttlbv130mal"
 script = ExtResource("2_xe51p")
 metadata/_custom_type_script = "uid://vgbg018s6yet"
 
-[node name="DecisionEngineBasic" type="Node" parent="." unique_id=484874120]
+[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1271758648]
 script = ExtResource("12_b68gs")
 metadata/_custom_type_script = "uid://bgk7nljgu1123"
 

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://domlydylyeco8"]
 
-[ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://player/sprites/abilities.png" id="1_1ggl3"]
+[ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://general/ability_pickup/images/abilities.png" id="1_1ggl3"]
 [ext_resource type="Script" uid="uid://caqnmv5nn1fb1" path="res://general/ability_pickup/ability_pickup.gd" id="1_xxigd"]
 [ext_resource type="Script" uid="uid://bidwccuhjkat6" path="res://general/scripts/breakables.gd" id="2_xxigd"]
-[ext_resource type="Texture2D" uid="uid://dxke7ve2lhx77" path="res://player/sprites/orb.png" id="3_dxffq"]
+[ext_resource type="Texture2D" uid="uid://dxke7ve2lhx77" path="res://general/ability_pickup/images/orb.png" id="3_dxffq"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="3_q7t65"]
 [ext_resource type="AudioStream" uid="uid://cckt7sjk32c5r" path="res://assets/sfx/ability_acquire.mp3" id="4_dxffq"]
 [ext_resource type="AudioStream" uid="uid://brpjh1amednex" path="res://assets/sfx/ability_crack.mp3" id="5_wvp8x"]

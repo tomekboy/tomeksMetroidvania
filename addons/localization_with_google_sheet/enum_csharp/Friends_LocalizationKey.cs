@@ -37,5 +37,6 @@ namespace Localization {
 		abilityRoll,
 		rumbleTitle,
 		rumbleHint,
+		caveSavePointHint,
 	}
 }

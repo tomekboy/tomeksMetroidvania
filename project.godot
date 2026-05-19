@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/localization_with_google_sheet/plugin.cf
 
 Player=""
 DynamicObject=""
+Enemy=""
 
 [gui]
 

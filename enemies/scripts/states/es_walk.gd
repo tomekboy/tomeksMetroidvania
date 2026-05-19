@@ -4,7 +4,7 @@ class_name ESWalk extends EnemyState
 
 var left_limit : float
 var right_limit : float
-
+var anim : String = animation_name
 
 func _ready() -> void:
 	_set_limits()
@@ -13,8 +13,13 @@ func _ready() -> void:
 
 func enter() -> void:
 	# What happens when we enter this state?
-	var anim : String = animation_name if animation_name else "move_right"
-	enemy.play_animation( anim )
+	if animation_name:
+		enemy.play_animation( anim )
+		
+	if owner.name == "SlimeNature":
+		enemy.play_animation( "in_floor_look_left_right" )
+	else:
+		enemy.play_animation( "move" )
 	pass
 
 

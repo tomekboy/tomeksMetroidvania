@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://co348tnyd85i1"]
+
+[ext_resource type="Script" uid="uid://bfh20byy65r43" path="res://general/props/scripts/citro.gd" id="1_35333"]
+[ext_resource type="PackedScene" uid="uid://c7ufaf537cg7i" path="res://general/props/citro_explosion.tscn" id="2_hoks2"]
+[ext_resource type="Texture2D" uid="uid://uxnojxkby4hj" path="res://general/props/tilesets/vegetation.png" id="3_8s36d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uv8x0"]
+size = Vector2(32, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oy57c"]
+radius = 16.0
+
+[node name="Citro" type="CharacterBody2D" unique_id=341973697 groups=["Citro"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_35333")
+burstParticle = ExtResource("2_hoks2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=456024624]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_8s36d")
+hframes = 12
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2001128530]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_uv8x0")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=108519912]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=706889009]
+position = Vector2(0, 32)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CircleShape2D_oy57c")
+
+[node name="Timer" type="Timer" parent="." unique_id=1011662834]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

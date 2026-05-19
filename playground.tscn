@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3yqy7notfn5c" path="res://general/props/barrel_wooden.tscn" id="6_4bqqs"]
 [ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="8_v7dth"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="14_f7pug"]
-[ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/player.tscn" id="14_jgc46"]
+[ext_resource type="PackedScene" uid="uid://bqptdqa3mpwhd" path="res://player/polo.tscn" id="14_jgc46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jgc46"]
 texture = ExtResource("2_wt17y")
