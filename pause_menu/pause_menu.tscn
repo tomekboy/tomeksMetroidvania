@@ -4,7 +4,15 @@
 [ext_resource type="Script" uid="uid://dbk0pse1plg2h" path="res://pause_menu/scripts/ability_display.gd" id="2_b4s0c"]
 [ext_resource type="PackedScene" uid="uid://c2lm7qqyqmovl" path="res://pause_menu/map_node.tscn" id="2_rd7dy"]
 [ext_resource type="Texture2D" uid="uid://bjhmd7dhh4o04" path="res://general/ability_pickup/images/abilities.png" id="2_uwtdo"]
+[ext_resource type="Texture2D" uid="uid://bw60328whjgnd" path="res://pause_menu/images/clukr.svg" id="5_1nv8k"]
+[ext_resource type="Texture2D" uid="uid://dug1up2xnvgkf" path="res://app/images/polo.png" id="5_b0obc"]
 [ext_resource type="Script" uid="uid://dsw35oh17dxad" path="res://addons/localization_with_google_sheet/ui/menu_language_option_button.gd" id="5_s1glv"]
+[ext_resource type="Texture2D" uid="uid://c5tduahd1160a" path="res://pause_menu/images/funbot.svg" id="6_qi88y"]
+[ext_resource type="Texture2D" uid="uid://bo1wu233x8uvl" path="res://pause_menu/images/oren.svg" id="7_ja1mc"]
+[ext_resource type="Texture2D" uid="uid://c13pth2vsd31i" path="res://pause_menu/images/raddy.svg" id="9_sp6kg"]
+[ext_resource type="Texture2D" uid="uid://cyfpqhem1asok" path="res://pause_menu/images/vineria.svg" id="10_aj446"]
+[ext_resource type="VideoStream" uid="uid://bqrnsiikvb1to" path="res://assets/videos/sprunkiStoryEN.ogv" id="11_qi88y"]
+[ext_resource type="FontFile" uid="uid://bir3r13v7fsx3" path="res://app/fonts/DroidSans.ttf" id="12_ja1mc"]
 
 [sub_resource type="FontVariation" id="FontVariation_5hbt6"]
 spacing_glyph = 6
@@ -193,6 +201,7 @@ vertical_alignment = 1
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,7 +210,26 @@ offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AbilitiesTitle" type="Label" parent="Control/PauseScreen" unique_id=1339802049]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 231.0
+offset_bottom = 38.0
+text = "abilitiesTitle"
+horizontal_alignment = 1
+
+[node name="MapTitle" type="Label" parent="Control/PauseScreen" unique_id=1345469492]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 19.0
+offset_right = 976.0
+offset_bottom = 41.436172
+text = "mapTitle"
+horizontal_alignment = 1
+
 [node name="AbilityDisplay" type="VBoxContainer" parent="Control/PauseScreen" unique_id=2123789897]
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 9
@@ -338,24 +366,6 @@ texture = SubResource("GradientTexture2D_uwtdo")
 libraries/ = SubResource("AnimationLibrary_wn31l")
 autoplay = &"default"
 
-[node name="AbilitiesTitle" type="Label" parent="Control/PauseScreen" unique_id=1339802049]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 19.0
-offset_right = 231.0
-offset_bottom = 38.0
-text = "abilitiesTitle"
-horizontal_alignment = 1
-
-[node name="MapTitle" type="Label" parent="Control/PauseScreen" unique_id=1345469492]
-layout_mode = 0
-offset_left = 243.0
-offset_top = 19.0
-offset_right = 976.0
-offset_bottom = 41.436172
-text = "mapTitle"
-horizontal_alignment = 1
-
 [node name="SettingsMenuButton" type="Button" parent="Control/PauseScreen" unique_id=914943227]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
@@ -365,10 +375,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -113.5
-offset_top = -40.0
-offset_right = 113.5
-offset_bottom = -20.0
+offset_left = -243.5
+offset_top = -42.0
+offset_right = -16.5
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -381,8 +391,145 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
 theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
 text = "pauseSettingsButton"
 
+[node name="SettingsStoryButton" type="Button" parent="Control/PauseScreen" unique_id=1101711093]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -42.0
+offset_right = 204.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nv8k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi88y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
+text = "pauseStoryButton"
+
+[node name="StoryScreen" type="Control" parent="Control" unique_id=1138792881]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterTitle" type="Label" parent="Control/StoryScreen" unique_id=1738370754]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 19.0
+offset_right = 325.0
+offset_bottom = 38.0
+text = "characterTitle"
+horizontal_alignment = 1
+
+[node name="VideoTitle" type="Label" parent="Control/StoryScreen" unique_id=1048279387]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 19.0
+offset_right = 808.0
+offset_bottom = 38.0
+text = "storyVideo"
+horizontal_alignment = 1
+
+[node name="CharacterCast" type="ItemList" parent="Control/StoryScreen" unique_id=1372971846]
+custom_minimum_size = Vector2(100, 320)
+layout_mode = 0
+offset_left = 52.0
+offset_top = 128.0
+offset_right = 176.0
+offset_bottom = 448.0
+allow_reselect = true
+allow_search = false
+wraparound_items = false
+scroll_hint_mode = 1
+item_count = 6
+fixed_column_width = 100
+icon_mode = 0
+icon_scale = 0.5
+item_0/text = "Polo"
+item_0/icon = ExtResource("5_b0obc")
+item_1/text = "clukr"
+item_1/icon = ExtResource("5_1nv8k")
+item_2/text = "fun Bot"
+item_2/icon = ExtResource("6_qi88y")
+item_3/text = "Oren"
+item_3/icon = ExtResource("7_ja1mc")
+item_4/text = "Raddy"
+item_4/icon = ExtResource("9_sp6kg")
+item_5/text = "Vineria"
+item_5/icon = ExtResource("10_aj446")
+
+[node name="VideoDisplay" type="Control" parent="Control/StoryScreen" unique_id=948202680]
+anchors_preset = 0
+offset_left = 508.0
+offset_top = 61.0
+offset_right = 999.0
+offset_bottom = 540.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control/StoryScreen/VideoDisplay" unique_id=1345591449]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 1280.0
+offset_bottom = 788.0
+scale = Vector2(0.35, 0.35)
+stream = ExtResource("11_qi88y")
+bus = &"UI"
+
+[node name="StoryBackButton" type="Button" parent="Control/StoryScreen" unique_id=1268489948]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -42.0
+offset_right = 82.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nv8k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi88y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
+text = "backButton"
+
+[node name="CharacterVita" type="RichTextLabel" parent="Control/StoryScreen" unique_id=1025863588]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 127.0
+offset_right = 466.0
+offset_bottom = 462.0
+theme_override_fonts/normal_font = ExtResource("12_ja1mc")
+theme_override_fonts/mono_font = ExtResource("12_ja1mc")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "characterVita"
+
 [node name="System" type="Control" parent="Control" unique_id=1702171481]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -585,4 +732,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_aj446")
 theme_override_styles/focus = SubResource("StyleBoxFlat_y6n36")
 text = "pauseBackToTitle"
 
+[connection signal="pressed" from="Control/PauseScreen/SettingsStoryButton" to="." method="_on_settings_story_button_pressed"]
+[connection signal="item_selected" from="Control/StoryScreen/CharacterCast" to="." method="_on_character_cast_item_selected"]
+[connection signal="pressed" from="Control/StoryScreen/StoryBackButton" to="." method="_on_settings_back_button_pressed"]
 [connection signal="item_selected" from="Control/System/MiscSettings/HBoxContainerLanguage/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="pressed" from="Control/System/BackToMapButton" to="." method="_on_back_to_map_button_pressed"]

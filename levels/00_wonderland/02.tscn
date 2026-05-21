@@ -230,9 +230,7 @@ target_level = "uid://cfiuv8loi78a5"
 target_area_name = "Cave"
 
 [node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("6_fhmyd")]
-z_index = 1
-position = Vector2(930, 608)
-rotation = 3.1415927
+position = Vector2(87, 637)
 
 [node name="Visuals" type="Node" parent="." unique_id=324392496]
 

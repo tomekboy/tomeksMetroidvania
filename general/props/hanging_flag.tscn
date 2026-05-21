@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://81l0730tojyr"]
 
 [ext_resource type="Texture2D" uid="uid://bvxpsj4455opq" path="res://levels/00_wonderland/images/hanging_flag.png" id="1_2pu21"]
-[ext_resource type="Texture2D" uid="uid://duywqnpy2e1uo" path="res://general/save_point/save_point.png" id="2_jfpql"]
 
 [node name="HangingFlag" type="Sprite2D" unique_id=1395326082]
 scale = Vector2(0.25, 0.25)
@@ -9,17 +8,12 @@ texture = ExtResource("1_2pu21")
 
 [node name="Label" type="Label" parent="." unique_id=1405129589]
 offset_left = -50.302734
-offset_top = 84.0
-offset_right = 150.69727
-offset_bottom = 183.95804
+offset_top = 117.950134
+offset_right = 184.6474
+offset_bottom = 217.90817
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 16
 text = "caveSavePointHint"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=367125359]
-position = Vector2(0, 128)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_jfpql")

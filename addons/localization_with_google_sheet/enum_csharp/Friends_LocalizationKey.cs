@@ -38,5 +38,16 @@ namespace Localization {
 		rumbleTitle,
 		rumbleHint,
 		caveSavePointHint,
+		pauseStoryButton,
+		characterTitle,
+		storyVideo,
+		characterVita,
+		characterVitaClukr,
+		characterVitaFunBot,
+		characterVitaOren,
+		characterVitaRaddy,
+		characterVitaVineria,
+		savePointLable,
+		changePlayerButton,
 	}
 }

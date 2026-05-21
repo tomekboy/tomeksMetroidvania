@@ -14,6 +14,12 @@ class_name PauseMenu extends CanvasLayer
 @onready var ui_slider: HSlider = %UISlider
 @onready var screen_check_button: CheckButton = %ScreenCheckButton
 @onready var rumble_check_button: CheckButton = $Control/System/MiscSettings/HBoxContainerController/RumbleCheckButton
+
+@onready var story: Control = %StoryScreen
+@onready var story_back_button: Button = $Control/StoryScreen/StoryBackButton
+@onready var character_cast: ItemList = $Control/StoryScreen/CharacterCast
+@onready var character_vita: RichTextLabel = $Control/StoryScreen/CharacterVita
+
 #endregion
 
 const TEST_SOUND = preload("uid://c2s8ms1y15lvw") # freesound_community-positive-response-81640
@@ -51,6 +57,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func show_pause_screen() -> void:
 	pause_screen.visible = true
 	system.visible = false
+	story.visible = false
 	system_menu_button.grab_focus()
 	pass
 
@@ -76,6 +83,8 @@ func setup_system_menu() -> void:
 	back_to_map_button.pressed.connect( show_pause_screen )
 	screen_check_button.toggled.connect( _on_screen_check_button_changed )
 	rumble_check_button.toggled.connect( _on_rumble_check_button_changed )
+	
+	story_back_button.pressed.connect( show_pause_screen )
 	
 	if PlayerHud.controller_rumble:
 		rumble_check_button.button_pressed = true
@@ -142,4 +151,57 @@ func _on_rumble_check_button_changed( toggled_on : bool ) -> void:
 
 func _on_language_option_button_item_selected( _index: int ) -> void:
 	SaveManager.save_configuration()
+	pass
+
+
+func _on_settings_story_button_pressed() -> void:
+	var active_player = get_tree().get_first_node_in_group( "Player" )
+	if active_player.name == "Polo":
+		character_cast.select( 0 )
+		character_vita.text = tr( "characterVita" )
+	elif active_player.name  == "Clukr":
+		character_cast.select( 1 )
+		character_vita.text = tr( "characterVitaClukr" )
+	elif active_player.name  == "funBot":
+		character_cast.select( 2 )
+		character_vita.text = tr( "characterVitaFunBot" )
+	elif active_player.name  == "Oren":
+		character_cast.select( 3 )
+		character_vita.text = tr( "characterVitaOren" )
+	elif active_player.name  == "Raddy":
+		character_cast.select( 4 )
+		character_vita.text = tr( "characterVitaRaddy" )
+	elif active_player.name  == "Vineria":
+		character_cast.select( 5 )
+		character_vita.text = tr( "characterVitaVineria" )
+	
+	character_cast.ensure_current_is_visible()
+	
+	pause_screen.visible = false
+	system.visible = false
+	story.visible = true
+	story_back_button.grab_focus()
+	pass
+
+
+func _on_back_to_map_button_pressed() -> void:
+	show_pause_screen()
+	pass
+
+
+func _on_character_cast_item_selected( index: int ) -> void:
+	if index == 0:
+		character_vita.text = tr( "characterVita" )
+	elif index == 1:
+		character_vita.text = tr( "characterVitaClukr" )
+	elif index == 2:
+		character_vita.text = tr( "characterVitaFunBot" )
+	elif index == 3:
+		character_vita.text = tr( "characterVitaOren" )
+	elif index == 4:
+		character_vita.text = tr( "characterVitaRaddy" )
+	elif index == 5:
+		character_vita.text = tr( "characterVitaVineria" )
+	else:
+		character_vita.text = "something went wrong ..."
 	pass

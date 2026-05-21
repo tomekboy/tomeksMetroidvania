@@ -127,7 +127,7 @@ width = 2028
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_gqedm")]
-position = Vector2(993, 319)
+position = Vector2(266, 539)
 
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("3_wfn48")]
 position = Vector2(-2, 734)

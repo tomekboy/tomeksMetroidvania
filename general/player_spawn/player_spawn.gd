@@ -13,11 +13,20 @@ func _ready() -> void:
 	print( owner.name )
 	# instantiate a new instance of our player
 	
-	var player : Player = load( "uid://bigvkd21y7h7o" ).instantiate() # oren
+
+	#var player : Player = load( "uid://bigvkd21y7h7o" ).instantiate() # clukr
+	#var player : Player = load( "uid://tv745ppshr4h" ).instantiate() # funBot
 	#var player : Player = load( "uid://bqkwwrgi782w5" ).instantiate() # polo
 	#var player : Player = load( "uid://hk8xg8lqmqs5" ).instantiate() # oren
+	var player : Player = load( "uid://rxde3cqs6i6v" ).instantiate() # raddy
+	#var player : Player = load( "uid://t4wj30fmmhcc" ).instantiate() # vineria
 
 	get_tree().root.add_child( player )
 	# position the player scene
 	player.global_position = self.global_position
+	pass
+
+
+func get_player() -> void:
+	
 	pass
