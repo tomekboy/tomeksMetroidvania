@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dl4g126v7r5k5" path="res://assets/music/u_thlvfy3fsc-birds-forrest-457845.mp3" id="5_a0r7a"]
 [ext_resource type="PackedScene" uid="uid://c7inn7kul5kd5" path="res://general/level_transition/level_transiton.tscn" id="6_yv6i0"]
 [ext_resource type="TileSet" uid="uid://bny2fy6hip8pe" path="res://levels/00_wonderland/tilesets/wonderland.tres" id="7_7snsa"]
+[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="7_g5hgj"]
 [ext_resource type="Texture2D" uid="uid://b4bm1r2wcwijr" path="res://general/props/tilesets/tree.png" id="8_46dmu"]
 [ext_resource type="Texture2D" uid="uid://ch58b4hrcr6t1" path="res://levels/00_wonderland/images/BackgroundLayer-3x1020.png" id="9_emin0"]
 [ext_resource type="PackedScene" uid="uid://b753h3af5djx2" path="res://general/props/tree_roof_platform.tscn" id="10_7snsa"]
@@ -27,8 +28,11 @@
 [ext_resource type="PackedScene" uid="uid://lqtfathuylnc" path="res://birds/woodpecker_green.tscn" id="23_geymb"]
 [ext_resource type="Texture2D" uid="uid://cgm0h72v2lw1m" path="res://levels/00_wonderland/images/nest.png" id="23_yv6i0"]
 [ext_resource type="PackedScene" uid="uid://cxoqnwu11vjxy" path="res://birds/woodpecker_black.tscn" id="24_a0r7a"]
+[ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="24_emin0"]
 [ext_resource type="Script" uid="uid://dopkspryqgc2u" path="res://general/scripts/patrol_limit.gd" id="24_geymb"]
 [ext_resource type="PackedScene" uid="uid://bq5nr25qdrtpm" path="res://general/props/barrel_wooden_loot.tscn" id="29_i6u7h"]
+[ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="31_bqpq4"]
+[ext_resource type="PackedScene" uid="uid://cgdf74704dby7" path="res://collectables/collectable_clef.tscn" id="32_g5hgj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_geymb"]
 texture = ExtResource("8_46dmu")
@@ -2205,7 +2209,7 @@ width = 3068
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_qhw6u")]
-position = Vector2(1108, 123)
+position = Vector2(2661, 480)
 
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("3_46dmu")]
 position = Vector2(0, 832)
@@ -2221,6 +2225,17 @@ size = 3
 location = 2
 target_level = "uid://bb7n5hh1ojdiy"
 target_area_name = "Forrest"
+
+[node name="Cavernland" parent="." unique_id=1818248849 instance=ExtResource("6_yv6i0")]
+position = Vector2(3070, 608)
+size = 5
+location = 1
+target_level = "uid://b2fadnlavov0j"
+target_area_name = "Cavernland"
+
+[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("7_g5hgj")]
+z_index = -1
+position = Vector2(2195, 608)
 
 [node name="Visuals" type="Node" parent="." unique_id=1360980119]
 
@@ -2739,6 +2754,11 @@ process_material = SubResource("ParticleProcessMaterial_j5ssd")
 position = Vector2(175, 118)
 texture = ExtResource("23_yv6i0")
 
+[node name="arrowRightCavernland" type="Sprite2D" parent="Decorations" unique_id=1378968347]
+position = Vector2(3048, 593)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("24_emin0")
+
 [node name="StaticObjects" type="Node" parent="." unique_id=1418818487]
 
 [node name="WoodpeckerGreen" parent="StaticObjects" unique_id=713955701 instance=ExtResource("23_geymb")]
@@ -2770,3 +2790,9 @@ metadata/_custom_type_script = "uid://dopkspryqgc2u"
 
 [node name="BarrelLootHealth" parent="DynamicObjects" unique_id=1026468228 instance=ExtResource("29_i6u7h")]
 position = Vector2(1216, 570)
+
+[node name="collectableNote" parent="DynamicObjects" unique_id=259999620 instance=ExtResource("31_bqpq4")]
+position = Vector2(1214, 519)
+
+[node name="collectableClef" parent="DynamicObjects" unique_id=605098476 instance=ExtResource("32_g5hgj")]
+position = Vector2(3014, 508)

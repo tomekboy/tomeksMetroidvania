@@ -51,4 +51,10 @@ enum Friends_localization_key {
 	characterVitaVineria,
 	savePointLable,
 	changePlayerButton,
+	newSlot01Analytics,
+	newSlot02Analytics,
+	newSlot03Analytics,
+	loadSlot01Analytics,
+	loadSlot02Analytics,
+	loadSlot03Analytics,
 }

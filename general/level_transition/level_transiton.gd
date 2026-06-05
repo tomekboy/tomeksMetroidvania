@@ -35,6 +35,11 @@ func _on_player_entered( _n : Node2D ) -> void:
 
 
 func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
+	# if player change 
+	if int( owner.name ) >= 5:
+		var player : Node = get_tree().get_first_node_in_group( "Player" )
+		if player:
+			player.queue_free()
 	# position player
 	if target_name == name:
 		var player : Node = get_tree().get_first_node_in_group( "Player" )

@@ -201,7 +201,6 @@ vertical_alignment = 1
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,7 +331,7 @@ entrances_bottom = Array[float]([19.35])
 entrances_left = Array[float]([7.3999996])
 
 [node name="MapNode3" parent="Control/PauseScreen/MapDisplay" unique_id=629937613 instance=ExtResource("2_rd7dy")]
-modulate = Color(0.4862745, 0.7607843, 0.25882354, 1)
+modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
 layout_mode = 0
 offset_left = 161.0
 offset_top = 219.0
@@ -340,6 +339,7 @@ offset_right = 314.0
 offset_bottom = 251.0
 linked_scene = "uid://bk7purnia7v6"
 entrances_top = Array[float]([19.35])
+entrances_right = Array[float]([27.0])
 
 [node name="MapNode4" parent="Control/PauseScreen/MapDisplay" unique_id=580727397 instance=ExtResource("2_rd7dy")]
 modulate = Color(1, 0.45490196, 0.6156863, 1)
@@ -350,6 +350,16 @@ offset_right = 150.0
 offset_bottom = 250.0
 linked_scene = "uid://dqrxb6w6r6ewe"
 entrances_top = Array[float]([41.05])
+
+[node name="MapNode5" parent="Control/PauseScreen/MapDisplay" unique_id=147424537 instance=ExtResource("2_rd7dy")]
+modulate = Color(0.54509807, 0.8745098, 0.4627451, 1)
+layout_mode = 0
+offset_left = 319.0
+offset_top = 219.0
+offset_right = 523.0
+offset_bottom = 251.0
+linked_scene = "uid://ckpnr3hlcgkrw"
+entrances_left = Array[float]([27.0])
 
 [node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]
 unique_name_in_owner = true

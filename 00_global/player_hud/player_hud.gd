@@ -67,13 +67,12 @@ func clear_game_over_screen() -> void:
 
 func _on_load_pressed () -> void:
 	SaveManager.load_game( SaveManager.current_slot )
-	# clear game over screen
 	clear_game_over_screen()
 	pass
 
 
 func _on_title_screen_pressed() -> void:
 	SceneManager.transition_scene( "res://title_screen/title_screen.tscn", "", Vector2.ZERO, "up" )
-	# clear game over screen
+	PlayerHud.visible = false
 	clear_game_over_screen()
 	pass

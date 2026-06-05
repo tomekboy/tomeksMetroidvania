@@ -1861,13 +1861,6 @@ hit_from_inside = true
 wait_time = 0.3
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1219678630]
-process_mode = 3
-visible = false
-position = Vector2(0, -45)
-zoom = Vector2(1.5, 1.5)
-script = ExtResource("33_8psju")
-
 [node name="InputHints" type="Node2D" parent="." unique_id=705519270]
 visible = false
 position = Vector2(0, -64)
@@ -1936,3 +1929,10 @@ position = Vector2(0, -29)
 enabled = false
 energy = 0.5
 texture = SubResource("GradientTexture2D_ge24q")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1776003877]
+process_mode = 3
+visible = false
+position = Vector2(0, -45)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("33_8psju")

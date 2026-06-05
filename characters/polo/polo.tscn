@@ -32,10 +32,10 @@
 [ext_resource type="Script" uid="uid://dop3dtlcsxeus" path="res://player/states/slam.gd" id="30_kq8aq"]
 [ext_resource type="Script" uid="uid://bet58k0i1yb60" path="res://player/states/roll.gd" id="31_lxbs3"]
 [ext_resource type="Script" uid="uid://dtdu6ygskkpwj" path="res://player/states/climb.gd" id="32_wowbj"]
-[ext_resource type="Script" uid="uid://d1j8qi5sxmpcy" path="res://player/camera_2d.gd" id="33_jvu14"]
 [ext_resource type="Script" uid="uid://b6y4fpo3emlgm" path="res://player/scripts/input_hints.gd" id="34_goexf"]
 [ext_resource type="Texture2D" uid="uid://c5uop7q6w1end" path="res://characters/polo/sprites/input_icons.png" id="35_dod5f"]
 [ext_resource type="Script" uid="uid://251458nsi4iq" path="res://general/scripts/attack_area.gd" id="36_7to3a"]
+[ext_resource type="Script" uid="uid://d1j8qi5sxmpcy" path="res://player/camera_2d.gd" id="37_5wb6j"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="37_tkuyo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjvpn"]
@@ -1837,13 +1837,6 @@ hit_from_inside = true
 wait_time = 0.3
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1219678630]
-process_mode = 3
-visible = false
-position = Vector2(0, -45)
-zoom = Vector2(1.5, 1.5)
-script = ExtResource("33_jvu14")
-
 [node name="InputHints" type="Node2D" parent="." unique_id=705519270]
 visible = false
 position = Vector2(0, -64)
@@ -1912,3 +1905,9 @@ position = Vector2(0, -29)
 enabled = false
 energy = 0.5
 texture = SubResource("GradientTexture2D_ge24q")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1399326120]
+process_mode = 3
+position = Vector2(0, -45)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("37_5wb6j")

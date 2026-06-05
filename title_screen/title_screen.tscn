@@ -221,6 +221,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "mainMenuExit"
 
 [node name="NewGameMenu" type="Panel" parent="." unique_id=2053982426]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -229,7 +230,7 @@ anchor_bottom = 0.5
 offset_left = -382.0
 offset_top = -256.0
 offset_right = 386.0
-offset_bottom = 256.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fv0o7")
@@ -258,6 +259,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "newSlot01"
 
+[node name="NewSlot1Analytics" type="Label" parent="NewGameMenu/NewGameMenu1" unique_id=809686051]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dxpbd")
+theme_override_font_sizes/font_size = 14
+text = "newSlot01Analytics"
+horizontal_alignment = 1
+
 [node name="NewGameMenu2" type="VBoxContainer" parent="NewGameMenu" unique_id=688692073]
 layout_mode = 0
 offset_left = 256.0
@@ -283,6 +292,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "newSlot02"
 
+[node name="NewSlot2Analytics" type="Label" parent="NewGameMenu/NewGameMenu2" unique_id=2045148427]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dxpbd")
+theme_override_font_sizes/font_size = 14
+text = "newSlot02Analytics"
+horizontal_alignment = 1
+
 [node name="NewGameMenu3" type="VBoxContainer" parent="NewGameMenu" unique_id=598090018]
 layout_mode = 0
 offset_left = 512.0
@@ -307,6 +324,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "newSlot03"
+
+[node name="NewSlot3Analytics" type="Label" parent="NewGameMenu/NewGameMenu3" unique_id=423297269]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dxpbd")
+theme_override_font_sizes/font_size = 14
+text = "newSlot03Analytics"
+horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="NewGameMenu" unique_id=1405256787]
 custom_minimum_size = Vector2(0, 20)
@@ -343,7 +368,7 @@ anchor_bottom = 0.5
 offset_left = -382.0
 offset_top = -256.0
 offset_right = 386.0
-offset_bottom = 256.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1oos5")
@@ -371,6 +396,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "loadSlot01"
 
+[node name="LoadSlot1Analytics" type="Label" parent="LoadGameMenu/LoadGame01" unique_id=693654916]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dxpbd")
+theme_override_font_sizes/font_size = 14
+text = "Slot1Analytics"
+horizontal_alignment = 1
+
 [node name="LoadGame02" type="VBoxContainer" parent="LoadGameMenu" unique_id=1948498901]
 layout_mode = 0
 offset_left = 256.0
@@ -396,6 +429,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "loadSlot02"
 
+[node name="LoadSlot2Analytics" type="Label" parent="LoadGameMenu/LoadGame02" unique_id=811979198]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dxpbd")
+theme_override_font_sizes/font_size = 14
+text = "Slot2Analytics"
+horizontal_alignment = 1
+
 [node name="LoadGame03" type="VBoxContainer" parent="LoadGameMenu" unique_id=1469666543]
 layout_mode = 0
 offset_left = 512.0
@@ -420,6 +461,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0m3ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fk0fn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oqrgu")
 text = "loadSlot03"
+
+[node name="LoadSlot3Analytics" type="Label" parent="LoadGameMenu/LoadGame03" unique_id=986762595]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dxpbd")
+theme_override_font_sizes/font_size = 14
+text = "Slot3Analytics"
+horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="LoadGameMenu" unique_id=1358171078]
 custom_minimum_size = Vector2(0, 20)

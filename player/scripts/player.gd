@@ -200,10 +200,12 @@ func can_dash() -> bool:
 		return false
 	return true
 
+
 func can_morph() -> bool:
 	if morph_roll == false:
 		return false
 	return true
+
 
 func can_wall_climb() -> bool:
 	return wall_climb_timer.is_stopped() and is_on_wall_only() and wall_climb_raycast.is_colliding()

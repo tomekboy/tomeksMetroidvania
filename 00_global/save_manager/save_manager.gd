@@ -231,3 +231,59 @@ func load_configuration() -> void:
 	pass
 
 #endregion
+
+
+func load_scene_objects( scene_uid ) -> void:
+	if ResourceLoader.exists( "user://0" + str(SaveManager.current_slot + 1) + "_" + scene_uid.substr(6) + ".res" ):
+		saved_game = load( "user://0" + str(SaveManager.current_slot + 1) + "_" + scene_uid.substr(6) + ".res" )
+			
+		# load dynamic objects
+		# resolve the variable scene node number
+		# get the uid of current scene and get the path
+		var scene_path : String = ResourceUID.uid_to_path(scene_uid)
+		# extract last 7 characters as they are always the same but scene number
+		var level_tscn : String = scene_path.right( 7 )
+		# extract the scene number only
+		var level : String = level_tscn.substr( 0, 2 )
+		# define dynamic_objects for getting the node
+		var dyn_obj_path : String = "../" + level + "/DynamicObjects"
+		# define dynamic_objects
+		var dynamic_objects = get_node_or_null( dyn_obj_path )
+		
+		if dynamic_objects:
+			get_tree().call_group( "DynamicObject", "on_before_load_game" )
+			for entity in saved_game.saved_data:
+				var scene = load( entity.scene_path ) as PackedScene
+				var restored_node = scene.instantiate()
+				dynamic_objects.add_child( restored_node )
+				#
+				if restored_node.has_method( "on_load_game" ):
+					restored_node.on_load_game( entity )
+	pass
+
+
+func save_scene_objects( scene_uid ) -> void:
+	saved_game = SavedGame.new()
+	saved_game.scene_path = SceneManager.current_scene_uid
+	var player : Node = get_tree().get_first_node_in_group( "Player" )
+	# get the player & game values
+	saved_game.player_position = player.global_position
+	saved_game.player_hp = player.hp
+	saved_game.player_max_hp = player.max_hp
+	saved_game.player_cp = player.cp
+	saved_game.player_max_cp = player.max_cp
+	saved_game.player_dash = player.dash
+	saved_game.player_double_jump = player.double_jump
+	saved_game.player_ground_slam = player.ground_slam
+	saved_game.player_morph_roll = player.morph_roll
+	saved_game.game_discovered_areas = discovered_areas
+	saved_game.game_persistent_data = persistent_data
+	
+	# get the dynamic objects
+	var saved_data : Array[SavedData] = []
+	get_tree().call_group( "DynamicObject", "on_save_game", saved_data )
+	saved_game.saved_data = saved_data
+	
+	# save game data
+	ResourceSaver.save( saved_game, "user://0" + str(SaveManager.current_slot + 1) + "_" + scene_uid.substr(6) + ".res" )
+	pass

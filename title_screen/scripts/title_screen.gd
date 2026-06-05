@@ -20,6 +20,14 @@ extends CanvasLayer
 @onready var load_slot_2: Button = %LoadSlot2
 @onready var load_slot_3: Button = %LoadSlot3
 
+# labels
+@onready var new_slot_1_analytics: Label = %NewSlot1Analytics
+@onready var new_slot_2_analytics: Label = %NewSlot2Analytics
+@onready var new_slot_3_analytics: Label = %NewSlot3Analytics
+@onready var load_slot_1_analytics: Label = %LoadSlot1Analytics
+@onready var load_slot_2_analytics: Label = %LoadSlot2Analytics
+@onready var load_slot_3_analytics: Label = %LoadSlot3Analytics
+
 # slider
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
@@ -33,6 +41,7 @@ extends CanvasLayer
 @onready var hello: VideoStreamPlayer = %Hello
 #endregion
 
+var saved_game : SavedGame
 const TEST_SOUND = preload("uid://c2s8ms1y15lvw") # freesound_community-positive-response-81640
 
 func _ready() -> void:
@@ -72,6 +81,9 @@ func _ready() -> void:
 	else:
 		screen_check_button.button_pressed = false
 	pass
+	
+	# get the already played statistics from the save point data
+	get_analytics()
 	
 	# show main menu
 	show_main_menu()
@@ -193,4 +205,34 @@ func exit_game() -> void:
 
 func _on_back_button_pressed() -> void:
 	show_main_menu()
+	# get the already played statistics from the save point data
+	get_analytics()
+	pass
+
+
+func get_analytics() -> void:
+	if FileAccess.file_exists( "user://01.res" ):
+		saved_game = load( "user://01.res" )
+		new_slot_1_analytics.text = tr("newSlot01Analytics") % saved_game.player_cp
+		load_slot_1_analytics.text = tr("loadSlot01Analytics") % saved_game.player_cp
+	else:
+		new_slot_1_analytics.text = ""
+		load_slot_1_analytics.text = ""
+		
+	if FileAccess.file_exists( "user://02.res" ):
+		saved_game = load( "user://02.res" )
+		new_slot_2_analytics.text = tr("newSlot02Analytics") % saved_game.player_cp
+		load_slot_2_analytics.text = tr("loadSlot2Analytics") % saved_game.player_cp
+	else:
+		new_slot_2_analytics.text = ""
+		load_slot_2_analytics.text = ""
+		
+	if FileAccess.file_exists( "user://03.res" ):
+		saved_game = load( "user://03.res" )
+		if not saved_game.player_cp == 0:
+			new_slot_3_analytics.text = tr("newSlot03Analytics") % saved_game.player_cp
+			load_slot_3_analytics.text = tr("loadSlot3Analytics") % saved_game.player_cp
+	else:
+		new_slot_3_analytics.text = ""
+		load_slot_3_analytics.text = ""
 	pass
