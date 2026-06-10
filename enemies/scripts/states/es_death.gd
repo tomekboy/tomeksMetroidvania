@@ -12,7 +12,7 @@ var duration : float = 0
 var timer : float = 0
 
 func enter() -> void:
-	enemy.play_animation( animation_name if animation_name else "die" )
+	enemy.play_animation( animation_name if animation_name else "death" )
 	AudioManager.play_spatial_sound( death_audio, enemy.global_position )
 	
 	duration = enemy.animation.current_animation_length

@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://bqji2d4hy27pm" path="res://assets/sfx/slimeWalk.mp3" id="3_yu0w3"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="4_ktkn8"]
 [ext_resource type="Script" uid="uid://bq0ccyrwdhh07" path="res://enemies/scripts/sensors/edge_sensor.gd" id="6_26jtq"]
-[ext_resource type="Script" uid="uid://t607jrgiowm0" path="res://enemies/scripts/states/es_attack.gd" id="6_b68gs"]
 [ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="7_26jtq"]
 [ext_resource type="Script" uid="uid://j2ku8oi2gkhr" path="res://enemies/scripts/states/es_chase.gd" id="7_m2qjp"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="8_ktkn8"]
@@ -494,9 +493,6 @@ bus = &"SFX"
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=2020379810]
 script = ExtResource("1_y6wwg")
 metadata/_custom_type_script = "uid://2dityed23bsq"
-
-[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=96065311]
-script = ExtResource("6_b68gs")
 
 [node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=1020455113]
 script = ExtResource("7_m2qjp")

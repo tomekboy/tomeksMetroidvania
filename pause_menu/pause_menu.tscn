@@ -356,9 +356,9 @@ modulate = Color(0.54509807, 0.8745098, 0.4627451, 1)
 layout_mode = 0
 offset_left = 319.0
 offset_top = 219.0
-offset_right = 523.0
+offset_right = 472.0
 offset_bottom = 251.0
-linked_scene = "uid://ckpnr3hlcgkrw"
+linked_scene = "uid://b2fadnlavov0j"
 entrances_left = Array[float]([27.0])
 
 [node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]

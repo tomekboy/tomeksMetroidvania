@@ -15,18 +15,20 @@ func _ready() -> void:
 	pass
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_F5:
-			save_game()
-		elif event.keycode == KEY_F7:
-			load_game( current_slot )
-		elif event.keycode == KEY_1:
-			current_slot = 0
-		elif event.keycode == KEY_2:
-			current_slot = 1
-		elif event.keycode == KEY_3:
-			current_slot = 2
+func _unhandled_key_input( event: InputEvent ) -> void:
+	# DEBUG
+	if OS.is_debug_build():
+		if event is InputEventKey and event.pressed:
+			if event.keycode == KEY_F5:
+				save_game()
+			elif event.keycode == KEY_F7:
+				load_game( current_slot )
+			elif event.keycode == KEY_1:
+				current_slot = 0
+			elif event.keycode == KEY_2:
+				current_slot = 1
+			elif event.keycode == KEY_3:
+				current_slot = 2
 	pass
 
 

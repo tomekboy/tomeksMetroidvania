@@ -22,6 +22,7 @@ signal damage_taken
 @export_category( "Movement" )
 @export var move_speed : float = 125.0
 @export var max_fall_velocity : float = 600.0
+@export var test_all_abilities : bool = false
 #endregion
 
 #region /// climb variables
@@ -88,6 +89,12 @@ func _ready() -> void:
 	MessageManager.back_to_title_screen.connect( queue_free )
 	damage_area.damage_taken.connect( _on_demage_taken )
 	hp = max_hp
+	if OS.is_debug_build():
+		if test_all_abilities:
+			dash = true
+			double_jump = true
+			morph_roll = true
+			ground_slam = true
 	pass
 
 
@@ -101,6 +108,21 @@ func _unhandled_input( event: InputEvent ) -> void:
 		var pause_menu : PauseMenu = load( "res://pause_menu/pause_menu.tscn" ).instantiate()
 		add_child( pause_menu )
 		return
+		
+		# DEBUG
+	if OS.is_debug_build():
+		if event is InputEventKey and event.pressed:
+			if event.keycode == KEY_MINUS:
+				if Input.is_key_pressed( KEY_SHIFT ):
+					max_hp -= 10
+				else:
+					hp -= 2
+			elif event.keycode == KEY_EQUAL:
+				if Input.is_key_pressed( KEY_SHIFT ):
+					max_hp += 10
+				else:
+					hp += 2
+	# end DEBUG
 		
 	change_state( current_state.handle_input( event ) )
 	pass

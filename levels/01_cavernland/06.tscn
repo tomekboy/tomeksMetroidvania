@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dmvfo1xle26xe"]
+
+[ext_resource type="Script" uid="uid://cbdfv5wlgti5s" path="res://general/scripts/level_bounds.gd" id="1_ljerb"]
+[ext_resource type="PackedScene" uid="uid://doresjk60xsm1" path="res://general/player_spawn/player_spawn.tscn" id="2_su7x7"]
+[ext_resource type="PackedScene" uid="uid://dnic1j6w0qeau" path="res://general/death_area/death_area.tscn" id="3_nrwf4"]
+[ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="4_ng4wf"]
+[ext_resource type="AudioStream" uid="uid://dl4g126v7r5k5" path="res://assets/music/u_thlvfy3fsc-birds-forrest-457845.mp3" id="5_hn7xb"]
+[ext_resource type="Texture2D" uid="uid://djwirku2wy4ks" path="res://levels/01_cavernland/images/backgrounds/Layer 0 - Deep Background.png" id="6_fka0v"]
+[ext_resource type="Texture2D" uid="uid://cx53urm600j1o" path="res://levels/01_cavernland/images/backgrounds/Layer 1 - Background.png" id="7_e24jq"]
+[ext_resource type="Texture2D" uid="uid://cxg8ur015nf0t" path="res://levels/01_cavernland/images/backgrounds/Layer 2 - Midground.png" id="8_v72cg"]
+[ext_resource type="Texture2D" uid="uid://bp5hiylqcj8hg" path="res://levels/01_cavernland/images/backgrounds/Layer 3 - Foreground.png" id="9_ljerb"]
+
+[node name="06" type="Node2D" unique_id=1770382212]
+
+[node name="LevelBounds" type="Node2D" parent="." unique_id=1070011468]
+z_index = 256
+script = ExtResource("1_ljerb")
+width = 3068
+metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
+
+[node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_su7x7")]
+position = Vector2(18, 582)
+
+[node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("3_nrwf4")]
+position = Vector2(0, 832)
+
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=709671600]
+script = ExtResource("4_ng4wf")
+track = ExtResource("5_hn7xb")
+metadata/_custom_type_script = "uid://dtbxdmecqneq1"
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1700976291]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1575498037]
+position = Vector2(1175, 317)
+texture = ExtResource("6_fka0v")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=19357633]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=1120273235]
+position = Vector2(1175, 317)
+texture = ExtResource("7_e24jq")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=2083682838]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=1137241983]
+position = Vector2(1175, 317)
+texture = ExtResource("8_v72cg")
+
+[node name="Parallax2D4" type="Parallax2D" parent="." unique_id=1131414094]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4" unique_id=1981632989]
+position = Vector2(1175, 317)
+texture = ExtResource("9_ljerb")

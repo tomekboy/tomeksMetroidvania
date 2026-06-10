@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4bo83i6owx62"
-path="res://.godot/imported/orenComingSoon.png-951ae40d86432fd1c5c2be7d023f3808.ctex"
+uid="uid://bp5hiylqcj8hg"
+path="res://.godot/imported/Layer 3 - Foreground.png-bbdae714468f7729a542d8ac16f48d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/01_cavernland/images/orenComingSoon.png"
-dest_files=["res://.godot/imported/orenComingSoon.png-951ae40d86432fd1c5c2be7d023f3808.ctex"]
+source_file="res://levels/01_cavernland/images/backgrounds/Layer 3 - Foreground.png"
+dest_files=["res://.godot/imported/Layer 3 - Foreground.png-bbdae714468f7729a542d8ac16f48d4b.ctex"]
 
 [params]
 

@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://dl4g126v7r5k5" path="res://assets/music/u_thlvfy3fsc-birds-forrest-457845.mp3" id="5_a0r7a"]
 [ext_resource type="PackedScene" uid="uid://c7inn7kul5kd5" path="res://general/level_transition/level_transiton.tscn" id="6_yv6i0"]
 [ext_resource type="TileSet" uid="uid://bny2fy6hip8pe" path="res://levels/00_wonderland/tilesets/wonderland.tres" id="7_7snsa"]
-[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="7_g5hgj"]
 [ext_resource type="Texture2D" uid="uid://b4bm1r2wcwijr" path="res://general/props/tilesets/tree.png" id="8_46dmu"]
 [ext_resource type="Texture2D" uid="uid://ch58b4hrcr6t1" path="res://levels/00_wonderland/images/BackgroundLayer-3x1020.png" id="9_emin0"]
 [ext_resource type="PackedScene" uid="uid://b753h3af5djx2" path="res://general/props/tree_roof_platform.tscn" id="10_7snsa"]
@@ -2227,15 +2226,11 @@ target_level = "uid://bb7n5hh1ojdiy"
 target_area_name = "Forrest"
 
 [node name="Cavernland" parent="." unique_id=1818248849 instance=ExtResource("6_yv6i0")]
-position = Vector2(3070, 608)
+position = Vector2(3070, 609)
 size = 5
 location = 1
 target_level = "uid://b2fadnlavov0j"
 target_area_name = "Cavernland"
-
-[node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("7_g5hgj")]
-z_index = -1
-position = Vector2(2195, 608)
 
 [node name="Visuals" type="Node" parent="." unique_id=1360980119]
 
