@@ -145,6 +145,8 @@ func show_load_game_menu() -> void:
 		load_slot_2.grab_focus()
 	elif !load_slot_3.disabled:
 		load_slot_3.grab_focus()
+	else:
+		$LoadGameMenu/BackButton.grab_focus()
 	pass
 
 

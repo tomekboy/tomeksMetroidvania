@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hgj6psn8crcf"
-path="res://.godot/imported/Mossy - TileSet.png-083d600b317ed7e7d53421682b7f830c.ctex"
+uid="uid://bx1p4rw2ey47a"
+path="res://.godot/imported/MossyGroundLeft.png-eb91f1cd650564aebb60b214a2ca692c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/01_cavernland/tilesets/Mossy - TileSet.png"
-dest_files=["res://.godot/imported/Mossy - TileSet.png-083d600b317ed7e7d53421682b7f830c.ctex"]
+source_file="res://levels/01_cavernland/images/MossyGroundLeft.png"
+dest_files=["res://.godot/imported/MossyGroundLeft.png-eb91f1cd650564aebb60b214a2ca692c.ctex"]
 
 [params]
 

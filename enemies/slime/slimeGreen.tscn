@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_glrom"]
 [ext_resource type="Texture2D" uid="uid://dltr67hvofeky" path="res://enemies/slime/animations/slimeGreen.png" id="2_glrom"]
+[ext_resource type="Script" uid="uid://t607jrgiowm0" path="res://enemies/scripts/states/es_attack.gd" id="4_h1wah"]
 [ext_resource type="Script" uid="uid://j2ku8oi2gkhr" path="res://enemies/scripts/states/es_chase.gd" id="4_xgua6"]
 [ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="5_7bbrj"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="8_nk44b"]
 [ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="9_v7r4j"]
+[ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="10_h1wah"]
 [ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="10_sg68k"]
 [ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="11_6uqex"]
-[ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="12_fk0tf"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="13_pnlrq"]
 [ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="14_ejy1v"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="15_pixlk"]
@@ -18,7 +19,7 @@
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="19_2p1rk"]
 [ext_resource type="Resource" uid="uid://bhvlwe34vj0xe" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_red.tres" id="20_41shv"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2c1x"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40s0c"]
 radius = 7.0
 height = 28.0
 
@@ -53,7 +54,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_h1wah"]
-resource_name = "Death"
+resource_name = "die"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -132,7 +133,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_a521h"),
 &"bite": SubResource("Animation_glrom"),
-&"death": SubResource("Animation_h1wah"),
+&"die": SubResource("Animation_h1wah"),
 &"move": SubResource("Animation_ld3vx"),
 &"squirt": SubResource("Animation_ix0qx"),
 &"stun": SubResource("Animation_40s0c"),
@@ -154,6 +155,7 @@ metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 [node name="SlimeGreen" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject", "Enemy"]]
 collision_layer = 35
 script = ExtResource("1_glrom")
+affected_by_gravity = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196]
 position = Vector2(4, -14)
@@ -161,10 +163,9 @@ texture = ExtResource("2_glrom")
 hframes = 10
 vframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2044560726]
-visible = false
-position = Vector2(0, -12)
-shape = SubResource("CapsuleShape2D_t2c1x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1304574263]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_40s0c")
 debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2060949078]
@@ -179,24 +180,33 @@ bus = &"SFX"
 script = ExtResource("5_7bbrj")
 metadata/_custom_type_script = "uid://2dityed23bsq"
 
+[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=549454210]
+unique_name_in_owner = true
+script = ExtResource("4_h1wah")
+metadata/_custom_type_script = "uid://t607jrgiowm0"
+
 [node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=75512004]
+unique_name_in_owner = true
 script = ExtResource("4_xgua6")
 
 [node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=83238501]
+unique_name_in_owner = true
 script = ExtResource("8_nk44b")
 death_audio = ExtResource("9_v7r4j")
 metadata/_custom_type_script = "uid://dox0omjiybs3j"
 
 [node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
+unique_name_in_owner = true
 script = ExtResource("10_sg68k")
 metadata/_custom_type_script = "uid://dhttlbv130mal"
 
 [node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
+unique_name_in_owner = true
 script = ExtResource("11_6uqex")
 metadata/_custom_type_script = "uid://vgbg018s6yet"
 
-[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1271758648]
-script = ExtResource("12_fk0tf")
+[node name="DecisionEngineBasic" type="Node" parent="." unique_id=660831440]
+script = ExtResource("10_h1wah")
 metadata/_custom_type_script = "uid://bgk7nljgu1123"
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1118480072]
@@ -228,18 +238,17 @@ target_position = Vector2(0, 8)
 script = ExtResource("16_akwub")
 metadata/_custom_type_script = "uid://bq0ccyrwdhh07"
 
-[node name="PlayerSensor" type="Area2D" parent="." unique_id=434396934]
-script = ExtResource("17_w8grt")
-use_audio_sensor = false
-metadata/_custom_type_script = "uid://cfui2lani3y65"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=642785591]
-position = Vector2(2, -12.999998)
-polygon = PackedVector2Array(0, 0, 150, -64, 150, 64)
-
 [node name="EnemyHitParticles" type="Marker2D" parent="." unique_id=1594474827]
 position = Vector2(1, -14)
 script = ExtResource("18_052f4")
 hit_particles = Array[ExtResource("19_2p1rk")]([ExtResource("20_41shv")])
 death_particles = Array[ExtResource("19_2p1rk")]([SubResource("Resource_b68gs")])
 metadata/_custom_type_script = "uid://bbswshx0f0q7o"
+
+[node name="PlayerSensor" type="Area2D" parent="." unique_id=880708096]
+script = ExtResource("17_w8grt")
+metadata/_custom_type_script = "uid://cfui2lani3y65"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=21079158]
+position = Vector2(2, -12.999998)
+polygon = PackedVector2Array(0, 0, 150, -64, 150, 64)

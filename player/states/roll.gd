@@ -37,6 +37,7 @@ func enter() -> void:
 # what happens when we exit this state?
 func exit() -> void:
 	player.animation_player.speed_scale = 1
+	player.sprite.rotation = 0.0
 	
 	var shape : CapsuleShape2D = player.collision_stand.get_shape() as CapsuleShape2D
 	shape.radius = 7.0

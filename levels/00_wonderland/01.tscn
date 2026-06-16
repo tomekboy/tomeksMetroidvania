@@ -362,5 +362,5 @@ position = Vector2(2929, 564)
 scale = Vector2(0.75, 0.75)
 
 [node name="Barrel" parent="DynamicObjects" unique_id=1079843842 instance=ExtResource("33_egyoc")]
-position = Vector2(747, 516)
+position = Vector2(747, 517)
 scale = Vector2(0.5, 0.5)

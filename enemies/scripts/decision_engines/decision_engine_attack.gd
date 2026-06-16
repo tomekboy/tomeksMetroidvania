@@ -5,11 +5,11 @@ class_name DecisionEngineBasicAttack extends DecisionEngine
 # var current_state : EnemyState
 # var blackboard : Blackboard
 
-@onready var es_attack: ESAttack = $"../EnemyStateMachine/ESAttack"
-@onready var es_chase: ESChase = $"../EnemyStateMachine/ESChase"
-@onready var es_death: ESDeath = $"../EnemyStateMachine/ESDeath"
-@onready var es_stun: ESStun = $"../EnemyStateMachine/ESStun"
-@onready var es_walk: ESWalk = $"../EnemyStateMachine/ESWalk"
+@onready var es_attack: ESAttack = %ESAttack
+@onready var es_chase: ESChase = %ESChase
+@onready var es_death: ESDeath = %ESDeath
+@onready var es_stun: ESStun = %ESStun
+@onready var es_walk: ESWalk = %ESWalk
 
 func _ready() -> void:
 	await super() # Maintains important setup code & timing

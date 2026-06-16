@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _unhandled_key_input( event: InputEvent ) -> void:
 	# DEBUG
-	if OS.is_debug_build():
+	if OS.is_debug_build():    
 		if event is InputEventKey and event.pressed:
 			if event.keycode == KEY_F5:
 				save_game()

@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://cytyr1lw6aytd" path="res://enemies/scripts/enemy.gd" id="1_7gou3"]
 [ext_resource type="Texture2D" uid="uid://cj6egvb5hki75" path="res://enemies/slime/animations/slimeOrange.png" id="2_7gou3"]
 [ext_resource type="Script" uid="uid://2dityed23bsq" path="res://enemies/scripts/enemy_state_machine.gd" id="3_85a31"]
+[ext_resource type="Script" uid="uid://t607jrgiowm0" path="res://enemies/scripts/states/es_attack.gd" id="4_660r0"]
 [ext_resource type="Script" uid="uid://j2ku8oi2gkhr" path="res://enemies/scripts/states/es_chase.gd" id="4_r1id0"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="5_660r0"]
 [ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="6_j3sow"]
 [ext_resource type="Script" uid="uid://dhttlbv130mal" path="res://enemies/scripts/states/es_stun.gd" id="7_y06ku"]
 [ext_resource type="Script" uid="uid://vgbg018s6yet" path="res://enemies/scripts/states/es_walk.gd" id="8_p5t3w"]
-[ext_resource type="Script" uid="uid://bgk7nljgu1123" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="9_4uwp2"]
+[ext_resource type="Script" uid="uid://b031dd4ulhcb" path="res://enemies/scripts/decision_engines/decision_engine_attack.gd" id="9_85a31"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="10_jhuiq"]
 [ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="11_l4cfb"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="12_wq1he"]
@@ -17,6 +18,8 @@
 [ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="15_0cx7l"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="16_5027r"]
 [ext_resource type="Resource" uid="uid://bhvlwe34vj0xe" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_red.tres" id="17_q7577"]
+[ext_resource type="Script" uid="uid://tab2vbd55b4w" path="res://general/scripts/loot_dropper.gd" id="18_85a31"]
+[ext_resource type="Script" uid="uid://ccwrcw7gxorch" path="res://general/scripts/loot_data.gd" id="19_r1id0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2c1x"]
 radius = 7.0
@@ -53,7 +56,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_h1wah"]
-resource_name = "Death"
+resource_name = "die"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -132,7 +135,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_a521h"),
 &"bite": SubResource("Animation_glrom"),
-&"death": SubResource("Animation_h1wah"),
+&"die": SubResource("Animation_h1wah"),
 &"move": SubResource("Animation_ld3vx"),
 &"squirt": SubResource("Animation_ix0qx"),
 &"stun": SubResource("Animation_40s0c"),
@@ -151,6 +154,13 @@ height = 62.0
 script = ExtResource("16_5027r")
 metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 
+[sub_resource type="Resource" id="Resource_660r0"]
+script = ExtResource("19_r1id0")
+item = "uid://d15uniaf1tmpx"
+maximum = 2
+drop_chance = 1.0
+metadata/_custom_type_script = "uid://ccwrcw7gxorch"
+
 [node name="SlimeOrange" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject", "Enemy"]]
 collision_layer = 35
 script = ExtResource("1_7gou3")
@@ -162,7 +172,6 @@ hframes = 15
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2044560726]
-visible = false
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_t2c1x")
 debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
@@ -179,25 +188,34 @@ bus = &"SFX"
 script = ExtResource("3_85a31")
 metadata/_custom_type_script = "uid://2dityed23bsq"
 
+[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=821712649]
+unique_name_in_owner = true
+script = ExtResource("4_660r0")
+metadata/_custom_type_script = "uid://t607jrgiowm0"
+
 [node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=75512004]
+unique_name_in_owner = true
 script = ExtResource("4_r1id0")
 
 [node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=83238501]
+unique_name_in_owner = true
 script = ExtResource("5_660r0")
 death_audio = ExtResource("6_j3sow")
 metadata/_custom_type_script = "uid://dox0omjiybs3j"
 
 [node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
+unique_name_in_owner = true
 script = ExtResource("7_y06ku")
 metadata/_custom_type_script = "uid://dhttlbv130mal"
 
 [node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
+unique_name_in_owner = true
 script = ExtResource("8_p5t3w")
 metadata/_custom_type_script = "uid://vgbg018s6yet"
 
-[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1271758648]
-script = ExtResource("9_4uwp2")
-metadata/_custom_type_script = "uid://bgk7nljgu1123"
+[node name="DecisionEngineBasicAttack" type="Node" parent="." unique_id=1548088920]
+script = ExtResource("9_85a31")
+metadata/_custom_type_script = "uid://b031dd4ulhcb"
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1118480072]
 collision_layer = 32
@@ -243,3 +261,8 @@ script = ExtResource("15_0cx7l")
 hit_particles = Array[ExtResource("16_5027r")]([ExtResource("17_q7577")])
 death_particles = Array[ExtResource("16_5027r")]([SubResource("Resource_b68gs")])
 metadata/_custom_type_script = "uid://bbswshx0f0q7o"
+
+[node name="LootDropper" type="Marker2D" parent="." unique_id=1680544190]
+script = ExtResource("18_85a31")
+items = Array[ExtResource("19_r1id0")]([SubResource("Resource_660r0")])
+metadata/_custom_type_script = "uid://tab2vbd55b4w"

@@ -494,21 +494,26 @@ script = ExtResource("5_8hy0x")
 metadata/_custom_type_script = "uid://2dityed23bsq"
 
 [node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=158186286]
+unique_name_in_owner = true
 script = ExtResource("6_kl63a")
 
 [node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=32968590]
+unique_name_in_owner = true
 script = ExtResource("7_ym0en")
 
 [node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=83238501]
+unique_name_in_owner = true
 script = ExtResource("8_i61lu")
 death_audio = ExtResource("9_pvane")
 metadata/_custom_type_script = "uid://dox0omjiybs3j"
 
 [node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=60217799]
+unique_name_in_owner = true
 script = ExtResource("7_n48oc")
 metadata/_custom_type_script = "uid://dhttlbv130mal"
 
 [node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=1435529266]
+unique_name_in_owner = true
 script = ExtResource("6_a2fl5")
 metadata/_custom_type_script = "uid://vgbg018s6yet"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx53urm600j1o"
-path="res://.godot/imported/Layer 1 - Background.png-7212d89fe4919f3152e4f8aceb10acc7.ctex"
+uid="uid://d1ikw5jvhqad1"
+path="res://.godot/imported/water.png-a99d69ed5d60e4bfce78b65310904cfc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/01_cavernland/images/backgrounds/Layer 1 - Background.png"
-dest_files=["res://.godot/imported/Layer 1 - Background.png-7212d89fe4919f3152e4f8aceb10acc7.ctex"]
+source_file="res://levels/01_cavernland/images/water.png"
+dest_files=["res://.godot/imported/water.png-a99d69ed5d60e4bfce78b65310904cfc.ctex"]
 
 [params]
 

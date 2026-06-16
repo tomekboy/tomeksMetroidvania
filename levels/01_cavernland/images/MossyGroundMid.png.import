@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djwirku2wy4ks"
-path="res://.godot/imported/Layer 0 - Deep Background.png-afa8d016b50106ef8c027290adf240c7.ctex"
+uid="uid://cusb22nvcr15v"
+path="res://.godot/imported/MossyGroundMid.png-e323bac0fdcf1a888dd74269a200c6ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/01_cavernland/images/backgrounds/Layer 0 - Deep Background.png"
-dest_files=["res://.godot/imported/Layer 0 - Deep Background.png-afa8d016b50106ef8c027290adf240c7.ctex"]
+source_file="res://levels/01_cavernland/images/MossyGroundMid.png"
+dest_files=["res://.godot/imported/MossyGroundMid.png-e323bac0fdcf1a888dd74269a200c6ec.ctex"]
 
 [params]
 

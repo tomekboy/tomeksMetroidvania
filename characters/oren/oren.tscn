@@ -1702,6 +1702,7 @@ collision_layer = 16
 collision_mask = 3
 safe_margin = 0.14
 script = ExtResource("1_a24e2")
+test_all_abilities = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1654504326]
 material = SubResource("ShaderMaterial_bjvpn")
