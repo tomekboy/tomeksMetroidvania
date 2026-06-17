@@ -21,7 +21,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		return
+		return	
 	apply_area_settings()
 	SceneManager.new_scene_ready.connect( _on_new_scene_ready )
 	SceneManager.load_scene_finished.connect( _on_load_scene_finished )
@@ -35,10 +35,11 @@ func _on_player_entered( _n : Node2D ) -> void:
 
 
 func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
-	# position player
+	# queue free player
 	if target_name == name:
 		var player : Node = get_tree().get_first_node_in_group( "Player" )
-		player.global_position = global_position + offset
+		PlayerHud.player_position = global_position + offset
+		player.queue_free()
 	pass
 
 
@@ -76,13 +77,13 @@ func get_offset( player : Node2D ) -> Vector2:
 	if location == SIDE.LEFT or location == SIDE.RIGHT:
 		offset.y = player_position.y - self.global_position.y
 		if location == SIDE.LEFT:
-			offset.x = -6
+			offset.x = -10
 		else:
-			offset.x = 6
+			offset.x = 10
 	else:
 		offset.x = player_position.x - self.global_position.x
 		if location == SIDE.TOP:
-			offset.y = -2
+			offset.y = -59
 		else:
 			offset.y = 59
 	return offset

@@ -16,10 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bnvr2m4ihnjvk" path="res://levels/01_cavernland/tilesets/Mossy - Hanging Plants.png" id="13_yobuj"]
 [ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="14_ms62t"]
 [ext_resource type="Texture2D" uid="uid://dbpaqt2bxem40" path="res://levels/01_cavernland/tilesets/Mossy - MossyHills.png" id="15_eimct"]
-[ext_resource type="PackedScene" uid="uid://2gagpm8gk4eg" path="res://enemies/slime/slimeGreen.tscn" id="15_u7vlo"]
-[ext_resource type="Script" uid="uid://dopkspryqgc2u" path="res://general/scripts/patrol_limit.gd" id="16_pnmad"]
 [ext_resource type="Texture2D" uid="uid://dfq1k67sncas7" path="res://levels/01_cavernland/tilesets/Mossy - Decorations&Hazards.png" id="17_1ggqn"]
-[ext_resource type="PackedScene" uid="uid://qso80te5wlti" path="res://enemies/slime/slimeOrange.tscn" id="17_kcapn"]
 [ext_resource type="PackedScene" uid="uid://bdygpwijtbo5s" path="res://collectables/collectable_bass.tscn" id="18_ap3v0"]
 [ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="19_kikqp"]
 
@@ -3851,35 +3848,6 @@ texture = ExtResource("14_ms62t")
 flip_h = true
 
 [node name="DynamicObjects" type="Node" parent="." unique_id=739117372]
-
-[node name="SlimeGreen" parent="DynamicObjects" unique_id=634296537 instance=ExtResource("15_u7vlo")]
-position = Vector2(632, 603)
-face_left_on_start = true
-
-[node name="PatrolLimitLeft" type="Node2D" parent="DynamicObjects/SlimeGreen" unique_id=875584601]
-position = Vector2(-139, -33)
-script = ExtResource("16_pnmad")
-metadata/_custom_type_script = "uid://dopkspryqgc2u"
-
-[node name="PatrolLimitRight" type="Node2D" parent="DynamicObjects/SlimeGreen" unique_id=1518636531]
-position = Vector2(441, -38)
-script = ExtResource("16_pnmad")
-side = 2
-metadata/_custom_type_script = "uid://dopkspryqgc2u"
-
-[node name="SlimeOrange" parent="DynamicObjects" unique_id=670707270 instance=ExtResource("17_kcapn")]
-position = Vector2(1867, 556)
-
-[node name="PatrolLimitLeft" type="Node2D" parent="DynamicObjects/SlimeOrange" unique_id=950156873]
-position = Vector2(-139, -33)
-script = ExtResource("16_pnmad")
-metadata/_custom_type_script = "uid://dopkspryqgc2u"
-
-[node name="PatrolLimitRight" type="Node2D" parent="DynamicObjects/SlimeOrange" unique_id=1093930119]
-position = Vector2(441, -38)
-script = ExtResource("16_pnmad")
-side = 2
-metadata/_custom_type_script = "uid://dopkspryqgc2u"
 
 [node name="collectableBass" parent="DynamicObjects" unique_id=605098476 instance=ExtResource("18_ap3v0")]
 position = Vector2(3047, 528)

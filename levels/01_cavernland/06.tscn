@@ -222,7 +222,7 @@ physics_layer_1/collision_mask = 0
 sources/4 = SubResource("TileSetAtlasSource_ljerb")
 sources/1 = SubResource("TileSetAtlasSource_v72cg")
 
-[node name="05" type="Node2D" unique_id=1770382212]
+[node name="06" type="Node2D" unique_id=1770382212]
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=1070011468]
 z_index = 256

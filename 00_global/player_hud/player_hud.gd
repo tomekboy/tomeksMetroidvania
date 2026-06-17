@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var title_screen_button: Button = %TitleScreenButton
 
 @export var controller_rumble : bool = false
+@export var player_position : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	# connect to message bus
