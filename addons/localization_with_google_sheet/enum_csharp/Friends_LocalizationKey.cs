@@ -30,7 +30,6 @@ namespace Localization {
 		pauseSettingsButton,
 		pauseBackToTitle,
 		hudTitle,
-		hudAgain,
 		abilityDoubleJump,
 		abilityDash,
 		abilitySlam,

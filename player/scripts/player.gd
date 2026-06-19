@@ -2,7 +2,6 @@ class_name Player extends CharacterBody2D
 
 signal damage_taken
 
-#region /// on ready variables
 @onready var sprite: PlayerSprite = $Sprite2D
 @onready var attack_sprite: Sprite2D = %AttackSprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
@@ -16,33 +15,23 @@ signal damage_taken
 @onready var wall_climb_raycast: RayCast2D = %WallClimbRaycast
 @onready var wall_climb_timer: Timer = $WallClimbTimer
 @onready var point_light_2d: PointLight2D = $PointLight2D
-#endregion
 
-#region /// export variables
-@export_category( "Movement" )
 @export var move_speed : float = 125.0
 @export var max_fall_velocity : float = 600.0
-@export var test_all_abilities : bool = false
-#endregion
 
-#region /// climb variables
-@export_category( "Wall Jump / Climb" )
 @export var wall_slide_velocity : float = 20
 @export var wall_x_force : float = 200.0
 @export var wall_y_force : float = -550.0
-var is_wall_jumping = false
-#endregion
 
-#region /// state machine variables
+#state machine variables
 var states : Array[ PlayerState ]
 var current_state : PlayerState :
 	get : return states.front()
 var previous_state : PlayerState :
 	get : return states[ 1 ]
-#endregion
 
-#region /// player stats 
-var hp : float = 20 :
+#player stats 
+var hp : float = 0 :
 	set( value ):
 		hp = clampf( value, 0, max_hp )
 		MessageManager.player_health_changed.emit( hp, max_hp )
@@ -61,16 +50,13 @@ var max_cp : float = 250 :
 	set( value ):
 		max_cp = value
 		MessageManager.player_collectable_changed.emit( cp, max_cp )
-#endregion
 
-#region /// standard variables
+#standard variables
 var direction : Vector2 = Vector2.ZERO
 var gravity : float = 980
 var gravity_multiplier : float = 1.0
 var wall_direction : Vector2 = Vector2.ZERO
-#endregion
 
-#region /// abilities
 var dash : bool = false
 var dash_count : int = 0
 var double_jump : bool = false
@@ -78,7 +64,8 @@ var jump_count : int = 0
 var ground_slam : bool = false
 var morph_roll : bool = false
 var can_interact : bool = false
-#endregion
+
+var is_wall_jumping = false
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group( "Player" ) != self:
@@ -87,15 +74,8 @@ func _ready() -> void:
 	self.call_deferred( "reparent", get_tree().root )
 	MessageManager.player_healed.connect( _on_player_healed )
 	MessageManager.back_to_title_screen.connect( queue_free )
+	MessageManager.input_hint_changed.connect( _on_input_hint_changed )
 	damage_area.damage_taken.connect( _on_demage_taken )
-	hp = max_hp
-	
-	if OS.is_debug_build():
-		if test_all_abilities:
-			dash = true
-			double_jump = true
-			morph_roll = true
-			ground_slam = true
 	pass
 
 
@@ -218,6 +198,15 @@ func _on_demage_taken( a : AttackArea ) -> void:
 	pass
 
 
+
+func _on_input_hint_changed( prompt_name : String ) -> void:
+	if prompt_name == "interact":
+		can_interact = true
+	else:
+		can_interact = false
+	pass
+
+
 func can_dash() -> bool:
 	if dash == false or dash_count > 0:
 		return false
@@ -225,7 +214,7 @@ func can_dash() -> bool:
 
 
 func can_morph() -> bool:
-	if morph_roll == false:
+	if morph_roll == false or can_interact == true:
 		return false
 	return true
 

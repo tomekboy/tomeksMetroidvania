@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _on_player_entered( _n : Node2D ) -> void:
 	# transition the attached level
-	SceneManager.transition_scene( target_level, target_area_name, get_offset( _n ), get_transition_direction() )
+	SceneManager.transition_scene( target_level, target_area_name, get_offset( _n ), get_transition_direction(), true )
 	pass
 
 
@@ -39,6 +39,8 @@ func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
 	if target_name == name:
 		var player : Node = get_tree().get_first_node_in_group( "Player" )
 		PlayerHud.player_position = global_position + offset
+		PlayerHud.player_hp = player.hp
+		PlayerHud.player_cp = player.cp
 		player.queue_free()
 	pass
 

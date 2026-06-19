@@ -30,5 +30,5 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	SceneManager.transition_scene( "uid://d12hmou2bfva3", "", Vector2.ZERO, "right" )
+	SceneManager.transition_scene( "uid://d12hmou2bfva3", "", Vector2.ZERO, "right", false )
 	pass

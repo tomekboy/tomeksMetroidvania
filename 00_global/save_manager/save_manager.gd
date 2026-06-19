@@ -54,7 +54,7 @@ func create_new_game_save( slot : int ) -> void:
 	saved_game.game_persistent_data = persistent_data
 	
 	#initialize first scene
-	SceneManager.transition_scene( new_game_scene, "", Vector2.ZERO, "up" )
+	SceneManager.transition_scene( new_game_scene, "", Vector2.ZERO, "up", false )
 	await SceneManager.new_scene_ready
 	
 	# get the initial game values
@@ -124,7 +124,7 @@ func save_game():
 func load_game( slot : int ) -> void:
 	# called from title screen
 	saved_game = load( get_file_name( slot) )
-	SceneManager.transition_scene( saved_game.scene_path, "", Vector2.ZERO, "up" )
+	SceneManager.transition_scene( saved_game.scene_path, "", Vector2.ZERO, "up", false )
 	await SceneManager.new_scene_ready
 	
 	# get the initial game settings
@@ -235,7 +235,7 @@ func load_configuration() -> void:
 #endregion
 
 
-func load_scene_objects( scene_uid ) -> void:
+func load_scene( scene_uid ) -> void:
 	if ResourceLoader.exists( "user://0" + str(SaveManager.current_slot + 1) + "_" + scene_uid.substr(6) + ".res" ):
 		saved_game = load( "user://0" + str(SaveManager.current_slot + 1) + "_" + scene_uid.substr(6) + ".res" )
 			
@@ -264,22 +264,9 @@ func load_scene_objects( scene_uid ) -> void:
 	pass
 
 
-func save_scene_objects( scene_uid ) -> void:
+func save_scene( scene_uid ) -> void:
 	saved_game = SavedGame.new()
 	saved_game.scene_path = SceneManager.current_scene_uid
-	var player : Node = get_tree().get_first_node_in_group( "Player" )
-	# get the player & game values
-	saved_game.player_position = player.global_position
-	saved_game.player_hp = player.hp
-	saved_game.player_max_hp = player.max_hp
-	saved_game.player_cp = player.cp
-	saved_game.player_max_cp = player.max_cp
-	saved_game.player_dash = player.dash
-	saved_game.player_double_jump = player.double_jump
-	saved_game.player_ground_slam = player.ground_slam
-	saved_game.player_morph_roll = player.morph_roll
-	saved_game.game_discovered_areas = discovered_areas
-	saved_game.game_persistent_data = persistent_data
 	
 	# get the dynamic objects
 	var saved_data : Array[SavedData] = []

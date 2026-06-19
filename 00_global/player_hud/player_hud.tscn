@@ -135,7 +135,6 @@ texture_progress = SubResource("GradientTexture2D_4jtec")
 
 [node name="GameOver" type="Control" parent="Control" unique_id=1683530314]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,20 +183,7 @@ offset_right = 306.5
 offset_bottom = -102.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="LoadButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=2088248725]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 40)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_4jtec")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_maesk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_u06p2")
-theme_override_styles/focus = SubResource("StyleBoxFlat_tmqe5")
-text = "hudAgain"
+alignment = 1
 
 [node name="TitleScreenButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=1854083858]
 unique_name_in_owner = true
@@ -213,6 +199,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_u06p2")
 theme_override_styles/focus = SubResource("StyleBoxFlat_tmqe5")
 text = "pauseBackToTitle"
 
-[node name="Game04" type="Sprite2D" parent="Control/GameOver" unique_id=628942192]
+[node name="Astronaut" type="Sprite2D" parent="Control/GameOver" unique_id=628942192]
 position = Vector2(510, 328)
 texture = ExtResource("4_tdgrf")

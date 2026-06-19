@@ -230,7 +230,7 @@ unique_name_in_owner = true
 script = ExtResource("11_8g6l0")
 metadata/_custom_type_script = "uid://vgbg018s6yet"
 
-[node name="DecisionEngineBasicAttack" type="Node" parent="EnemyStateMachine" unique_id=1328176250]
+[node name="DecisionEngineBasicAttack" type="Node" parent="." unique_id=1328176250]
 script = ExtResource("10_pmijd")
 metadata/_custom_type_script = "uid://b031dd4ulhcb"
 

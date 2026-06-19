@@ -32,7 +32,6 @@ enum Friends_localization_key {
 	pauseSettingsButton,
 	pauseBackToTitle,
 	hudTitle,
-	hudAgain,
 	abilityDoubleJump,
 	abilityDash,
 	abilitySlam,

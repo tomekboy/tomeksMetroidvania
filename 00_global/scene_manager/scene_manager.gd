@@ -23,12 +23,11 @@ func _ready() -> void:
 	pass
 
 
-func transition_scene( new_scene : String, target_area : String, player_offset : Vector2, dir : String ) -> void:
-	# save dynamic objects from scene
+func transition_scene( new_scene : String, target_area : String, player_offset : Vector2, dir : String, level_transition : bool ) -> void:
 	# check for title & boot screen - do not do anythimg
-	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7":
+	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" and level_transition == true:
 		# save dynamic objects from current_scene (coming from...)
-		SaveManager.save_scene_objects( current_scene_uid )
+		SaveManager.save_scene( current_scene_uid )
 	
 	get_tree().paused = true
 	var fade_pos : Vector2 = get_fade_pos( dir )
@@ -46,10 +45,11 @@ func transition_scene( new_scene : String, target_area : String, player_offset :
 	new_scene_ready.emit( target_area, player_offset )
 	
 	await get_tree().process_frame
-	await fade_screen( Vector2.ZERO, -fade_pos )
+
+	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" and level_transition == true:
+		SaveManager.load_scene( new_scene )
 	
-	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7":
-		SaveManager.load_scene_objects( new_scene )
+	await fade_screen( Vector2.ZERO, -fade_pos )
 	
 	fade.visible = false
 	get_tree().paused = false

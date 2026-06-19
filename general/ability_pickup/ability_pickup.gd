@@ -47,12 +47,16 @@ func _reward_ability() -> void:
 	match type:
 		Type.DOUBLE_JUMP:
 			player.double_jump = true
+			PlayerHud.double_jump = true
 		Type.DASH:
 			player.dash = true
+			PlayerHud.dash = true
 		Type.SLAM:
 			player.ground_slam = true
+			PlayerHud.ground_slam = true
 		Type.ROLL:
 			player.morph_roll = true
+			PlayerHud.morph_roll = true
 	pass
 
 
