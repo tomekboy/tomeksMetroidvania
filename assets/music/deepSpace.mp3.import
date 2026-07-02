@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/deepSpace.mp3-35a53ee3094fd73915dd2e35c37ede9
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

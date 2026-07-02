@@ -2,24 +2,31 @@ class_name PauseMenu extends CanvasLayer
 
 #region /// onready variables
 @onready var pause_screen: Control = %PauseScreen
-@onready var system: Control = %System
+@onready var story_screen: Control = %StoryScreen
+@onready var settings_screen: Control = %SettingsScreen
 
 @onready var system_menu_button: Button = %SettingsMenuButton
 
 @onready var back_to_map_button: Button = %BackToMapButton
 @onready var back_to_title_button: Button = %BackToTitleButton
+@onready var back_to_settings_button: Button = %BackToSettingsButton
+
+@onready var start_video: Button = %startVideo
+@onready var toggle_video: Button = %toggleVideo
+@onready var stop_video: Button = %stopVideo
 
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var ui_slider: HSlider = %UISlider
 @onready var screen_check_button: CheckButton = %ScreenCheckButton
-@onready var rumble_check_button: CheckButton = $Control/System/MiscSettings/HBoxContainerController/RumbleCheckButton
+@onready var rumble_check_button: CheckButton = $Control/SettingsScreen/MiscSettings/HBoxContainerController/RumbleCheckButton
 
-@onready var story: Control = %StoryScreen
-@onready var story_back_button: Button = $Control/StoryScreen/StoryBackButton
 @onready var character_cast: ItemList = $Control/StoryScreen/CharacterCast
 @onready var character_vita: RichTextLabel = $Control/StoryScreen/CharacterVita
 
+@onready var video_display: Control = $Control/StoryScreen/VideoDisplay
+@onready var video_stream_player: VideoStreamPlayer = %VideoStreamPlayer
+@onready var video_thumbnail: TextureRect = $Control/StoryScreen/VideoDisplay/VideoThumbnail
 #endregion
 
 const TEST_SOUND = preload("uid://c2s8ms1y15lvw") # freesound_community-positive-response-81640
@@ -29,7 +36,7 @@ var player_position : Vector2
 func _ready() -> void:
 	show_pause_screen()
 	PlayerHud.visible = false
-	system_menu_button.pressed.connect( show_system_menu )
+	system_menu_button.pressed.connect( _show_system_menu )
 	# audio
 	AudioManager.setup_button_audio( self )
 	# setup system
@@ -54,21 +61,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 
 
-func show_pause_screen() -> void:
-	pause_screen.visible = true
-	system.visible = false
-	story.visible = false
-	system_menu_button.grab_focus()
-	pass
-
-
-func show_system_menu() -> void:
-	pause_screen.visible = false
-	system.visible = true
-	back_to_map_button.grab_focus()
-	pass
-
-
 func setup_system_menu() -> void:
 	#setup the sliders
 	music_slider.value = AudioServer.get_bus_volume_linear( 2 )
@@ -84,7 +76,7 @@ func setup_system_menu() -> void:
 	screen_check_button.toggled.connect( _on_screen_check_button_changed )
 	rumble_check_button.toggled.connect( _on_rumble_check_button_changed )
 	
-	story_back_button.pressed.connect( show_pause_screen )
+	#story_back_button.pressed.connect( show_pause_screen )
 	
 	if PlayerHud.controller_rumble:
 		rumble_check_button.button_pressed = true
@@ -98,8 +90,23 @@ func setup_system_menu() -> void:
 	pass
 
 
+func show_pause_screen() -> void:
+	pause_screen.visible = true
+	settings_screen.visible = false
+	story_screen.visible = false
+	system_menu_button.grab_focus()
+	pass
+
+
+func _show_system_menu() -> void:
+	pause_screen.visible = false
+	settings_screen.visible = true
+	back_to_map_button.grab_focus()
+	pass
+
+
 func  _on_back_to_title_pressed() -> void:
-	SceneManager.transition_scene( "res://title_screen/title_screen.tscn", "", Vector2.ZERO, "down" )
+	SceneManager.transition_scene( "res://title_screen/title_screen.tscn", "", Vector2.ZERO, "down", false )
 	get_tree().paused = false
 	MessageManager.back_to_title_screen.emit()
 	queue_free()
@@ -178,13 +185,22 @@ func _on_settings_story_button_pressed() -> void:
 	character_cast.ensure_current_is_visible()
 	
 	pause_screen.visible = false
-	system.visible = false
-	story.visible = true
-	story_back_button.grab_focus()
+	settings_screen.visible = false
+	story_screen.visible = true
+	back_to_map_button.grab_focus()
 	pass
 
 
 func _on_back_to_map_button_pressed() -> void:
+	show_pause_screen()
+	pass
+
+
+func _on_back_to_settings_button_pressed() -> void:
+	video_stream_player.stop()
+	video_thumbnail.visible = true
+	AudioManager.music_1.stream_paused = false
+	AudioManager.music_2.stream_paused = false
 	show_pause_screen()
 	pass
 
@@ -204,4 +220,30 @@ func _on_character_cast_item_selected( index: int ) -> void:
 		character_vita.text = tr( "characterVitaVineria" )
 	else:
 		character_vita.text = "something went wrong ..."
+	pass
+
+
+func _on_start_video_pressed() -> void:
+	AudioManager.music_1.stream_paused = true
+	AudioManager.music_2.stream_paused = true
+	video_thumbnail.visible = false
+	video_stream_player.paused = false
+	video_stream_player.play()
+	pass
+
+
+func _on_stop_video_pressed() -> void:
+	video_stream_player.stop()
+	video_thumbnail.visible = true
+	AudioManager.music_1.stream_paused = false
+	AudioManager.music_2.stream_paused = false
+	pass
+
+
+func _on_toggle_video_pressed() -> void:
+	print( "toggle pressed" )
+	if video_stream_player.paused == false:
+		video_stream_player.paused = true
+	else:
+		video_stream_player.paused = false
 	pass

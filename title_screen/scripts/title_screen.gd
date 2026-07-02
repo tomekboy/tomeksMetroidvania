@@ -224,7 +224,7 @@ func get_analytics() -> void:
 	if FileAccess.file_exists( "user://02.res" ):
 		saved_game = load( "user://02.res" )
 		new_slot_2_analytics.text = tr("newSlot02Analytics") % saved_game.player_cp
-		load_slot_2_analytics.text = tr("loadSlot2Analytics") % saved_game.player_cp
+		load_slot_2_analytics.text = tr("loadSlot02Analytics") % saved_game.player_cp
 	else:
 		new_slot_2_analytics.text = ""
 		load_slot_2_analytics.text = ""
@@ -233,7 +233,7 @@ func get_analytics() -> void:
 		saved_game = load( "user://03.res" )
 		if not saved_game.player_cp == 0:
 			new_slot_3_analytics.text = tr("newSlot03Analytics") % saved_game.player_cp
-			load_slot_3_analytics.text = tr("loadSlot3Analytics") % saved_game.player_cp
+			load_slot_3_analytics.text = tr("loadSlot03Analytics") % saved_game.player_cp
 	else:
 		new_slot_3_analytics.text = ""
 		load_slot_3_analytics.text = ""

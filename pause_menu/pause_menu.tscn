@@ -11,8 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://bo1wu233x8uvl" path="res://pause_menu/images/oren.svg" id="7_ja1mc"]
 [ext_resource type="Texture2D" uid="uid://c13pth2vsd31i" path="res://pause_menu/images/raddy.svg" id="9_sp6kg"]
 [ext_resource type="Texture2D" uid="uid://cyfpqhem1asok" path="res://pause_menu/images/vineria.svg" id="10_aj446"]
-[ext_resource type="VideoStream" uid="uid://bqrnsiikvb1to" path="res://assets/videos/sprunkiStoryEN.ogv" id="11_qi88y"]
+[ext_resource type="Texture2D" uid="uid://bt07012fiiun6" path="res://pause_menu/images/play_button.png" id="11_ja1mc"]
+[ext_resource type="Texture2D" uid="uid://lujtjsytel43" path="res://boot/images/bootSplash.png" id="11_y6n36"]
 [ext_resource type="FontFile" uid="uid://bir3r13v7fsx3" path="res://app/fonts/DroidSans.ttf" id="12_ja1mc"]
+[ext_resource type="VideoStream" uid="uid://dfonfiugyiybl" path="res://assets/videos/storyVideoENx1020.ogv" id="12_y6n36"]
+[ext_resource type="Texture2D" uid="uid://brb4khvv2lvrm" path="res://pause_menu/images/stop_button.png" id="14_y6n36"]
+[ext_resource type="Texture2D" uid="uid://pli7v485p8fb" path="res://pause_menu/images/pause_button.png" id="15_xvc88"]
 
 [sub_resource type="FontVariation" id="FontVariation_5hbt6"]
 spacing_glyph = 6
@@ -228,7 +232,6 @@ text = "mapTitle"
 horizontal_alignment = 1
 
 [node name="AbilityDisplay" type="VBoxContainer" parent="Control/PauseScreen" unique_id=2123789897]
-visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 9
@@ -359,6 +362,7 @@ offset_top = 219.0
 offset_right = 472.0
 offset_bottom = 251.0
 linked_scene = "uid://b2fadnlavov0j"
+entrances_bottom = Array[float]([47.2])
 entrances_left = Array[float]([27.0])
 
 [node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]
@@ -483,22 +487,117 @@ item_5/text = "Vineria"
 item_5/icon = ExtResource("10_aj446")
 
 [node name="VideoDisplay" type="Control" parent="Control/StoryScreen" unique_id=948202680]
-anchors_preset = 0
-offset_left = 508.0
-offset_top = 61.0
-offset_right = 999.0
-offset_bottom = 540.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -491.0
+offset_top = 67.0
+offset_bottom = 546.0
+grow_horizontal = 0
+
+[node name="VideoThumbnail" type="TextureRect" parent="Control/StoryScreen/VideoDisplay" unique_id=1043027814]
+z_index = 1
+layout_mode = 0
+offset_top = 70.0
+offset_right = 1020.0
+offset_bottom = 710.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_y6n36")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control/StoryScreen/VideoDisplay" unique_id=1345591449]
+unique_name_in_owner = true
 layout_mode = 0
-offset_top = 68.0
-offset_right = 1280.0
-offset_bottom = 788.0
-scale = Vector2(0.35, 0.35)
-stream = ExtResource("11_qi88y")
+offset_top = 70.0
+offset_right = 1020.0
+offset_bottom = 710.0
+scale = Vector2(0.4, 0.4)
+stream = ExtResource("12_y6n36")
 bus = &"UI"
 
-[node name="StoryBackButton" type="Button" parent="Control/StoryScreen" unique_id=1268489948]
+[node name="startVideo" type="Button" parent="Control/StoryScreen/VideoDisplay" unique_id=1963607517]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -101.5
+offset_top = -145.0
+offset_right = 94.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nv8k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi88y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
+icon = ExtResource("11_ja1mc")
+flat = true
+
+[node name="toggleVideo" type="Button" parent="Control/StoryScreen/VideoDisplay" unique_id=1711304445]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.5
+offset_top = -145.0
+offset_right = 137.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nv8k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi88y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
+icon = ExtResource("15_xvc88")
+flat = true
+
+[node name="stopVideo" type="Button" parent="Control/StoryScreen/VideoDisplay" unique_id=1340874608]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.5
+offset_top = -145.0
+offset_right = 179.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nv8k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi88y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ja1mc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2oqmc")
+icon = ExtResource("14_y6n36")
+flat = true
+
+[node name="BackToSettingsButton" type="Button" parent="Control/StoryScreen" unique_id=1268489948]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
 anchors_preset = 7
@@ -537,7 +636,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "characterVita"
 
-[node name="System" type="Control" parent="Control" unique_id=1702171481]
+[node name="SettingsScreen" type="Control" parent="Control" unique_id=1702171481]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -548,7 +647,7 @@ offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SoundSettings" type="VBoxContainer" parent="Control/System" unique_id=1446913980]
+[node name="SoundSettings" type="VBoxContainer" parent="Control/SettingsScreen" unique_id=1446913980]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -560,23 +659,23 @@ offset_bottom = 275.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainerMargin" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=1645336934]
+[node name="HBoxContainerMargin" type="HBoxContainer" parent="Control/SettingsScreen/SoundSettings" unique_id=1645336934]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Header01" type="Label" parent="Control/System/SoundSettings" unique_id=1050272366]
+[node name="Header01" type="Label" parent="Control/SettingsScreen/SoundSettings" unique_id=1050272366]
 layout_mode = 2
 text = "settingsHeader01"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=1866273204]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/SettingsScreen/SoundSettings" unique_id=1866273204]
 layout_mode = 2
 
-[node name="AudioMusic" type="Label" parent="Control/System/SoundSettings/HBoxContainer2" unique_id=779385703]
+[node name="AudioMusic" type="Label" parent="Control/SettingsScreen/SoundSettings/HBoxContainer2" unique_id=779385703]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "audioMusic"
 
-[node name="MusicSlider" type="HSlider" parent="Control/System/SoundSettings/HBoxContainer2" unique_id=1494730097]
+[node name="MusicSlider" type="HSlider" parent="Control/SettingsScreen/SoundSettings/HBoxContainer2" unique_id=1494730097]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -585,15 +684,15 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=539681630]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/SettingsScreen/SoundSettings" unique_id=539681630]
 layout_mode = 2
 
-[node name="AudioSFX" type="Label" parent="Control/System/SoundSettings/HBoxContainer3" unique_id=1476186134]
+[node name="AudioSFX" type="Label" parent="Control/SettingsScreen/SoundSettings/HBoxContainer3" unique_id=1476186134]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "audioSFX"
 
-[node name="SFXSlider" type="HSlider" parent="Control/System/SoundSettings/HBoxContainer3" unique_id=918782780]
+[node name="SFXSlider" type="HSlider" parent="Control/SettingsScreen/SoundSettings/HBoxContainer3" unique_id=918782780]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -602,15 +701,15 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/SoundSettings" unique_id=101654611]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/SettingsScreen/SoundSettings" unique_id=101654611]
 layout_mode = 2
 
-[node name="AudioUI" type="Label" parent="Control/System/SoundSettings/HBoxContainer4" unique_id=1400655549]
+[node name="AudioUI" type="Label" parent="Control/SettingsScreen/SoundSettings/HBoxContainer4" unique_id=1400655549]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "audioUI"
 
-[node name="UISlider" type="HSlider" parent="Control/System/SoundSettings/HBoxContainer4" unique_id=865515632]
+[node name="UISlider" type="HSlider" parent="Control/SettingsScreen/SoundSettings/HBoxContainer4" unique_id=865515632]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -619,7 +718,7 @@ max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="MiscSettings" type="VBoxContainer" parent="Control/System" unique_id=2059776309]
+[node name="MiscSettings" type="VBoxContainer" parent="Control/SettingsScreen" unique_id=2059776309]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -631,58 +730,58 @@ offset_bottom = 463.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainerMargin" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=1733004313]
+[node name="HBoxContainerMargin" type="HBoxContainer" parent="Control/SettingsScreen/MiscSettings" unique_id=1733004313]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="miscHeader" type="Label" parent="Control/System/MiscSettings" unique_id=1188497496]
+[node name="miscHeader" type="Label" parent="Control/SettingsScreen/MiscSettings" unique_id=1188497496]
 layout_mode = 2
 text = "miscHeader"
 
-[node name="HBoxContainerFullscreen" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=667884325]
+[node name="HBoxContainerFullscreen" type="HBoxContainer" parent="Control/SettingsScreen/MiscSettings" unique_id=667884325]
 layout_mode = 2
 
-[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainerFullscreen" unique_id=1372185725]
+[node name="FullscreenTitle" type="Label" parent="Control/SettingsScreen/MiscSettings/HBoxContainerFullscreen" unique_id=1372185725]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "fullscreenTitle"
 
-[node name="ScreenCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainerFullscreen" unique_id=561815959]
+[node name="ScreenCheckButton" type="CheckButton" parent="Control/SettingsScreen/MiscSettings/HBoxContainerFullscreen" unique_id=561815959]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 
-[node name="HBoxContainerController" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=1504011329]
+[node name="HBoxContainerController" type="HBoxContainer" parent="Control/SettingsScreen/MiscSettings" unique_id=1504011329]
 layout_mode = 2
 
-[node name="FullscreenTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=931638164]
+[node name="FullscreenTitle" type="Label" parent="Control/SettingsScreen/MiscSettings/HBoxContainerController" unique_id=931638164]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "rumbleTitle"
 
-[node name="RumbleCheckButton" type="CheckButton" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=624503092]
+[node name="RumbleCheckButton" type="CheckButton" parent="Control/SettingsScreen/MiscSettings/HBoxContainerController" unique_id=624503092]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_teyq6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p6csp")
 
-[node name="FullscreenLegend" type="Label" parent="Control/System/MiscSettings/HBoxContainerController" unique_id=581756887]
+[node name="FullscreenLegend" type="Label" parent="Control/SettingsScreen/MiscSettings/HBoxContainerController" unique_id=581756887]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "rumbleHint"
 
-[node name="HBoxContainerLanguage" type="HBoxContainer" parent="Control/System/MiscSettings" unique_id=325257300]
+[node name="HBoxContainerLanguage" type="HBoxContainer" parent="Control/SettingsScreen/MiscSettings" unique_id=325257300]
 layout_mode = 2
 
-[node name="LanguageTitle" type="Label" parent="Control/System/MiscSettings/HBoxContainerLanguage" unique_id=1875479886]
+[node name="LanguageTitle" type="Label" parent="Control/SettingsScreen/MiscSettings/HBoxContainerLanguage" unique_id=1875479886]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "languageTitle"
 
-[node name="LanguageOptionButton" type="OptionButton" parent="Control/System/MiscSettings/HBoxContainerLanguage" unique_id=1125872548]
+[node name="LanguageOptionButton" type="OptionButton" parent="Control/SettingsScreen/MiscSettings/HBoxContainerLanguage" unique_id=1125872548]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
@@ -692,7 +791,7 @@ alignment = 2
 allow_reselect = true
 script = ExtResource("5_s1glv")
 
-[node name="BackToMapButton" type="Button" parent="Control/System" unique_id=1767098203]
+[node name="BackToMapButton" type="Button" parent="Control/SettingsScreen" unique_id=1767098203]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
@@ -715,9 +814,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_s1glv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sp6kg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aj446")
 theme_override_styles/focus = SubResource("StyleBoxFlat_y6n36")
-text = "mapTitle"
+text = "backButton"
 
-[node name="BackToTitleButton" type="Button" parent="Control/System" unique_id=2004295943]
+[node name="BackToTitleButton" type="Button" parent="Control/SettingsScreen" unique_id=2004295943]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
@@ -744,6 +843,9 @@ text = "pauseBackToTitle"
 
 [connection signal="pressed" from="Control/PauseScreen/SettingsStoryButton" to="." method="_on_settings_story_button_pressed"]
 [connection signal="item_selected" from="Control/StoryScreen/CharacterCast" to="." method="_on_character_cast_item_selected"]
-[connection signal="pressed" from="Control/StoryScreen/StoryBackButton" to="." method="_on_settings_back_button_pressed"]
-[connection signal="item_selected" from="Control/System/MiscSettings/HBoxContainerLanguage/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
-[connection signal="pressed" from="Control/System/BackToMapButton" to="." method="_on_back_to_map_button_pressed"]
+[connection signal="pressed" from="Control/StoryScreen/VideoDisplay/startVideo" to="." method="_on_start_video_pressed"]
+[connection signal="pressed" from="Control/StoryScreen/VideoDisplay/toggleVideo" to="." method="_on_toggle_video_pressed"]
+[connection signal="pressed" from="Control/StoryScreen/VideoDisplay/stopVideo" to="." method="_on_stop_video_pressed"]
+[connection signal="pressed" from="Control/StoryScreen/BackToSettingsButton" to="." method="_on_back_to_settings_button_pressed"]
+[connection signal="item_selected" from="Control/SettingsScreen/MiscSettings/HBoxContainerLanguage/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="pressed" from="Control/SettingsScreen/BackToMapButton" to="." method="_on_back_to_map_button_pressed"]

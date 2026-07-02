@@ -11,6 +11,7 @@ func _ready() -> void:
 		
 	# we do not have a player!
 	# instantiate a new instance of our player scene
+	# change character to the appropriate defined scene range
 	if int(owner.name) <= 4:
 		player = load("uid://bqkwwrgi782w5").instantiate() # polo
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	get_tree().root.add_child( player )
 	SaveManager.load_scene( current_scene_uid )
 	
+	#load the player related data as we want to keep it coherent over scene changes
 	player.global_position = PlayerHud.player_position
 	player.hp = PlayerHud.player_hp
 	player.cp = PlayerHud.player_cp
