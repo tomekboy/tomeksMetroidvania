@@ -23,9 +23,9 @@ func _ready() -> void:
 	pass
 
 
-func transition_scene( new_scene : String, target_area : String, player_offset : Vector2, dir : String, level_transition : bool ) -> void:
+func transition_scene( new_scene : String, target_area : String, player_offset : Vector2, dir : String, scene_transition : bool ) -> void:
 	# check for title & boot screen - do not do anythimg
-	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" and level_transition == true:
+	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" and scene_transition == true:
 		# save dynamic objects from current_scene (coming from...)
 		SaveManager.save_scene( current_scene_uid )
 	
@@ -46,7 +46,7 @@ func transition_scene( new_scene : String, target_area : String, player_offset :
 	
 	await get_tree().process_frame
 
-	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" and level_transition == true:
+	if not current_scene_uid == "uid://d12hmou2bfva3" and not current_scene_uid == "uid://cwxtcj2bqchg7" and scene_transition == true:
 		SaveManager.load_scene( new_scene )
 	
 	await fade_screen( Vector2.ZERO, -fade_pos )

@@ -212,7 +212,7 @@ func save_configuration() -> void:
 func load_configuration() -> void:
 	# check for should play story video
 	if !FileAccess.file_exists( "user://00.cfg" ):
-		PlayerHud.intitial_start = true
+		PlayerHud.initial_start = true
 	
 	var config := ConfigFile.new()
 	var err = config.load( "user://0"  + str( current_slot + 1 ) + ".cfg" )

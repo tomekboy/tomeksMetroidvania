@@ -19,7 +19,7 @@ config/name_localized={
 "de_DE": ""
 }
 run/main_scene="uid://cwxtcj2bqchg7"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/image="uid://lujtjsytel43"
 config/icon="uid://odtgxibia6p5"
 config/macos_native_icon="res://app/images/orenMAC.icns"

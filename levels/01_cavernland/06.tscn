@@ -242,7 +242,7 @@ track = ExtResource("5_hhmqa")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
 [node name="Thorny" parent="." unique_id=1818248849 instance=ExtResource("6_su7x7")]
-position = Vector2(944, 0)
+position = Vector2(892, 0)
 size = 3
 location = 2
 target_level = "uid://b2fadnlavov0j"

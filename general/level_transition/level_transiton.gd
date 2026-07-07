@@ -22,6 +22,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return	
+	
 	apply_area_settings()
 	SceneManager.new_scene_ready.connect( _on_new_scene_ready )
 	SceneManager.load_scene_finished.connect( _on_load_scene_finished )
@@ -29,7 +30,7 @@ func _ready() -> void:
 
 
 func _on_player_entered( _n : Node2D ) -> void:
-	# transition the attached level
+	# transition the attached scene
 	SceneManager.transition_scene( target_level, target_area_name, get_offset( _n ), get_transition_direction(), true )
 	pass
 

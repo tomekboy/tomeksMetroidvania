@@ -76,8 +76,6 @@ func setup_system_menu() -> void:
 	screen_check_button.toggled.connect( _on_screen_check_button_changed )
 	rumble_check_button.toggled.connect( _on_rumble_check_button_changed )
 	
-	#story_back_button.pressed.connect( show_pause_screen )
-	
 	if PlayerHud.controller_rumble:
 		rumble_check_button.button_pressed = true
 	else:

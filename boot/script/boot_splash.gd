@@ -21,6 +21,9 @@ func _ready() -> void:
 	# initialize player HUD
 	PlayerHud.visible = false
 	
+	# set the debug mode to false
+	PlayerHud.debug_mode = false
+	
 	# let the earth rotate
 	var tween = create_tween()
 	tween.set_loops()
@@ -31,7 +34,7 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	if PlayerHud.intitial_start == true:
+	if PlayerHud.initial_start == true:
 		var tween = create_tween()
 		video_stream_player.play()
 		tween.tween_property(video_stream_player, "modulate:a", 1.0, 2.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)

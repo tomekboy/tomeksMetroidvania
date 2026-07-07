@@ -25,6 +25,7 @@ namespace Localization {
 		languageTitle,
 		backButton,
 		pauseHeader,
+		mapTitle,
 		abilitiesTitle,
 		pauseSettingsButton,
 		pauseBackToTitle,
