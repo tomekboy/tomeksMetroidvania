@@ -144,7 +144,7 @@ pause={
 [internationalization]
 
 locale/translation_remaps={
-"res://assets/videos/storyVideoENx1020.ogv": PackedStringArray("res://assets/videos/storyVideoDEx1020.ogv:de", "res://assets/videos/storyVideoESx1020.ogv:es", "res://assets/videos/storyVideoFRx1020.ogv:fr", "res://assets/videos/storyVideoITx1020.ogv:it")
+"res://assets/videos/sprunkiStoryEN720p.ogv": PackedStringArray("res://assets/videos/sprunkiStoryDE720p.ogv:de", "res://assets/videos/sprunkiStoryES720p.ogv:es", "res://assets/videos/sprunkiStoryFR720p.ogv:fr", "res://assets/videos/sprunkiStoryIT720p.ogv:it")
 }
 locale/translations=["res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.en.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.de.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.fr.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.it.translation", "res://data/localization/Polo_'n_Friends/Polo_'n_Friends_Polo_'n_Friends_translation.es.translation"]
 locale/locale_filter_mode=1

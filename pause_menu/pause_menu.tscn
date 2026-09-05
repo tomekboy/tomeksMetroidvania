@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bt07012fiiun6" path="res://pause_menu/images/play_button.png" id="11_ja1mc"]
 [ext_resource type="Texture2D" uid="uid://lujtjsytel43" path="res://boot/images/bootSplash.png" id="11_y6n36"]
 [ext_resource type="FontFile" uid="uid://bir3r13v7fsx3" path="res://app/fonts/DroidSans.ttf" id="12_ja1mc"]
-[ext_resource type="VideoStream" uid="uid://dfonfiugyiybl" path="res://assets/videos/storyVideoENx1020.ogv" id="12_y6n36"]
+[ext_resource type="VideoStream" uid="uid://cxoeyuaerbhmd" path="res://assets/videos/sprunkiStoryEN720p.ogv" id="12_y6n36"]
 [ext_resource type="Texture2D" uid="uid://brb4khvv2lvrm" path="res://pause_menu/images/stop_button.png" id="14_y6n36"]
 [ext_resource type="Texture2D" uid="uid://pli7v485p8fb" path="res://pause_menu/images/pause_button.png" id="15_xvc88"]
 
@@ -218,6 +218,7 @@ vertical_alignment = 1
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -461,7 +462,6 @@ text = "pauseStoryButton"
 
 [node name="StoryScreen" type="Control" parent="Control" unique_id=1138792881]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -523,6 +523,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -491.0
 offset_top = 67.0
+offset_right = -81.0
 offset_bottom = 546.0
 grow_horizontal = 0
 
@@ -539,9 +540,9 @@ texture = ExtResource("11_y6n36")
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 70.0
-offset_right = 1020.0
-offset_bottom = 710.0
-scale = Vector2(0.4, 0.4)
+offset_right = 1280.0
+offset_bottom = 790.0
+scale = Vector2(0.32, 0.36)
 stream = ExtResource("12_y6n36")
 bus = &"UI"
 
@@ -554,9 +555,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -101.5
+offset_left = -67.5
 offset_top = -145.0
-offset_right = 94.5
+offset_right = 128.5
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -581,9 +582,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -58.5
+offset_left = -24.5
 offset_top = -145.0
-offset_right = 137.5
+offset_right = 171.5
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -608,9 +609,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -16.5
+offset_left = 17.5
 offset_top = -145.0
-offset_right = 179.5
+offset_right = 213.5
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0

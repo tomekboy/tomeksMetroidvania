@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var godot_logo: Sprite2D = %godotLogo
 @onready var imagination: Label = %Imagination
+#@onready var video_stream_player: VideoStreamPlayer = $AspectRatioContainer/VideoStreamPlayer
 @onready var video_stream_player: VideoStreamPlayer = $VideoStreamPlayer
 
 func _ready() -> void:
