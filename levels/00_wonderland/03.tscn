@@ -123,7 +123,7 @@ fill_to = Vector2(0.5043478, 0.8086957)
 [node name="LevelBounds" type="Node2D" parent="." unique_id=1070011468]
 z_index = 256
 script = ExtResource("1_or2f5")
-width = 2028
+width = 2044
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_gqedm")]
@@ -139,7 +139,7 @@ metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("3_or2f5")]
 position = Vector2(0, 208)
-size = 10
+size = 6
 target_level = "uid://cfiuv8loi78a5"
 target_area_name = "Town"
 

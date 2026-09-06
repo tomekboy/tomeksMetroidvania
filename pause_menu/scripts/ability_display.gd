@@ -1,9 +1,9 @@
 extends Node
 
-@onready var ability_double_jump: TextureRect = %AbilityDoubleJump
-@onready var ability_dash: TextureRect = %AbilityDash
-@onready var ability_slam: TextureRect = %AbilitySlam
-@onready var ability_roll: TextureRect = %AbilityRoll
+@onready var ability_double_jump: VBoxContainer = %AbilityDoubleJump
+@onready var ability_dash: VBoxContainer = %AbilityDash
+@onready var ability_slam: VBoxContainer = %AbilitySlam
+@onready var ability_roll: VBoxContainer = %AbilityRoll
 
 func _ready() -> void:
 	var player : Player = get_tree().get_first_node_in_group( "Player" )

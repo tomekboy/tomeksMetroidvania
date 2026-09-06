@@ -168,7 +168,7 @@ position = Vector2(1607, 138)
 
 [node name="Town" parent="." unique_id=388100454 instance=ExtResource("4_ogtcl")]
 position = Vector2(3064, 208)
-size = 10
+size = 6
 location = 1
 target_level = "uid://bb7n5hh1ojdiy"
 target_area_name = "Town"

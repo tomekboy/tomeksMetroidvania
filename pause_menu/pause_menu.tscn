@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bw60328whjgnd" path="res://pause_menu/images/clukr.svg" id="5_1nv8k"]
 [ext_resource type="Texture2D" uid="uid://dug1up2xnvgkf" path="res://app/images/polo.png" id="5_b0obc"]
 [ext_resource type="Script" uid="uid://dsw35oh17dxad" path="res://addons/localization_with_google_sheet/ui/menu_language_option_button.gd" id="5_s1glv"]
-[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/pausePortal.tscn" id="5_xvc88"]
+[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/bossPortal.tscn" id="5_xvc88"]
 [ext_resource type="Texture2D" uid="uid://c5tduahd1160a" path="res://pause_menu/images/funbot.svg" id="6_qi88y"]
 [ext_resource type="Texture2D" uid="uid://bo1wu233x8uvl" path="res://pause_menu/images/oren.svg" id="7_ja1mc"]
 [ext_resource type="Texture2D" uid="uid://c13pth2vsd31i" path="res://pause_menu/images/raddy.svg" id="9_sp6kg"]
@@ -218,7 +218,6 @@ vertical_alignment = 1
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=662664090]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -258,73 +257,70 @@ offset_bottom = -60.0
 grow_vertical = 2
 script = ExtResource("2_b4s0c")
 
-[node name="AbilityDoubleJump" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1863112169]
+[node name="AbilityDoubleJump" type="VBoxContainer" parent="Control/PauseScreen/AbilityDisplay" unique_id=931559275]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AbilityDoubleJump" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay/AbilityDoubleJump" unique_id=1863112169]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b4s0c")
 stretch_mode = 3
 
 [node name="DoubleJump" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilityDoubleJump" unique_id=1552167908]
-layout_mode = 0
-offset_top = 68.0
-offset_right = 209.0
-offset_bottom = 87.0
+layout_mode = 2
 text = "abilityDoubleJump"
 horizontal_alignment = 1
 
-[node name="AbilityDash" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=1161395774]
+[node name="AbilityDash" type="VBoxContainer" parent="Control/PauseScreen/AbilityDisplay" unique_id=1182520690]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AbilityDash" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay/AbilityDash" unique_id=1161395774]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 texture = SubResource("AtlasTexture_s1glv")
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="Dash" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilityDash" unique_id=575161524]
-layout_mode = 0
-offset_top = 68.0
-offset_right = 209.0
-offset_bottom = 109.0
-text = "abilityDash
-"
+layout_mode = 2
+text = "abilityDash"
 horizontal_alignment = 1
 
-[node name="AbilitySlam" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=2101041452]
+[node name="AbilitySlam" type="VBoxContainer" parent="Control/PauseScreen/AbilityDisplay" unique_id=788325779]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AbilitySlam" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay/AbilitySlam" unique_id=2101041452]
 layout_mode = 2
 texture = SubResource("AtlasTexture_wn31l")
 stretch_mode = 3
 
 [node name="Slam" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilitySlam" unique_id=2007642130]
-layout_mode = 0
-offset_top = 68.0
-offset_right = 209.0
-offset_bottom = 109.0
-text = "abilitySlam
-"
+layout_mode = 2
+text = "abilitySlam"
 horizontal_alignment = 1
 
-[node name="AbilityRoll" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay" unique_id=407154104]
+[node name="AbilityRoll" type="VBoxContainer" parent="Control/PauseScreen/AbilityDisplay" unique_id=629833555]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AbilityRoll" type="TextureRect" parent="Control/PauseScreen/AbilityDisplay/AbilityRoll" unique_id=407154104]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b0obc")
 stretch_mode = 3
 
 [node name="Roll" type="Label" parent="Control/PauseScreen/AbilityDisplay/AbilityRoll" unique_id=991390482]
-layout_mode = 0
-offset_top = 68.0
-offset_right = 209.0
-offset_bottom = 109.0
-text = "abilityRoll
-"
+layout_mode = 2
+text = "abilityRoll"
 horizontal_alignment = 1
 
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
 anchors_preset = 0
-offset_left = 243.0
-offset_top = 61.0
-offset_right = 999.0
-offset_bottom = 540.0
+offset_left = 277.0
+offset_top = 70.0
+offset_right = 1033.0
+offset_bottom = 549.0
 
 [node name="MapNode1" parent="Control/PauseScreen/MapDisplay" unique_id=153464035 instance=ExtResource("2_rd7dy")]
 modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
@@ -338,7 +334,7 @@ entrances_right = Array[float]([7.3999996])
 entrances_bottom = Array[float]([138.0])
 
 [node name="MapNode2" parent="Control/PauseScreen/MapDisplay" unique_id=580727397 instance=ExtResource("2_rd7dy")]
-modulate = Color(1, 0.45490196, 0.6156863, 1)
+modulate = Color(0.88235295, 0.78039217, 0, 1)
 layout_mode = 0
 offset_left = 99.0
 offset_top = 218.0
@@ -350,9 +346,9 @@ entrances_top = Array[float]([41.05])
 [node name="MapNode3" parent="Control/PauseScreen/MapDisplay" unique_id=949127578 instance=ExtResource("2_rd7dy")]
 modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
 layout_mode = 0
-offset_left = 161.0
+offset_left = 157.0
 offset_top = 184.0
-offset_right = 262.0
+offset_right = 258.0
 offset_bottom = 216.0
 linked_scene = "uid://bb7n5hh1ojdiy"
 entrances_bottom = Array[float]([19.35])
@@ -361,32 +357,23 @@ entrances_left = Array[float]([7.3999996])
 [node name="MapNode4" parent="Control/PauseScreen/MapDisplay" unique_id=629937613 instance=ExtResource("2_rd7dy")]
 modulate = Color(0.54509807, 0.8745098, 0.4627451, 1)
 layout_mode = 0
-offset_left = 161.0
-offset_top = 219.0
-offset_right = 314.0
-offset_bottom = 251.0
+offset_left = 157.0
+offset_top = 218.0
+offset_right = 258.0
+offset_bottom = 250.0
 linked_scene = "uid://bk7purnia7v6"
 entrances_top = Array[float]([19.35])
+entrances_right = Array[float]([26.0])
 
-[node name="MapNode5" parent="Control/PauseScreen/MapDisplay" unique_id=147424537 instance=ExtResource("2_rd7dy")]
-modulate = Color(0.16470589, 0.47058824, 0.52156866, 1)
+[node name="MapNode5" parent="Control/PauseScreen/MapDisplay" unique_id=1488057013 instance=ExtResource("2_rd7dy")]
+modulate = Color(1, 0.45490196, 0.6156863, 1)
 layout_mode = 0
-offset_left = 161.0
-offset_top = 297.0
-offset_right = 314.0
-offset_bottom = 329.0
-linked_scene = "uid://b2fadnlavov0j"
-entrances_bottom = Array[float]([47.2])
-
-[node name="MapNode6" parent="Control/PauseScreen/MapDisplay" unique_id=1205522374 instance=ExtResource("2_rd7dy")]
-modulate = Color(0.16470589, 0.47058824, 0.52156866, 1)
-layout_mode = 0
-offset_left = 162.0
-offset_top = 334.0
-offset_right = 213.0
-offset_bottom = 436.0
-linked_scene = "uid://dmvfo1xle26xe"
-entrances_top = Array[float]([44.6])
+offset_left = 260.0
+offset_top = 218.0
+offset_right = 311.0
+offset_bottom = 250.0
+linked_scene = "uid://ycro72736wy2"
+entrances_left = Array[float]([26.0])
 
 [node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]
 unique_name_in_owner = true
@@ -462,6 +449,7 @@ text = "pauseStoryButton"
 
 [node name="StoryScreen" type="Control" parent="Control" unique_id=1138792881]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

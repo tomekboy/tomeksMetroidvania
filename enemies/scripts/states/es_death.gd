@@ -24,6 +24,9 @@ func enter() -> void:
 	
 	await enemy.animation.animation_finished
 	enemy.queue_free()
+	
+	var player : Player = get_tree().get_first_node_in_group( "Player" )
+	player.hp += .5
 	pass
 
 
