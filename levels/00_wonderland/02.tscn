@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="4_p2gmb"]
 [ext_resource type="AudioStream" uid="uid://du4o1uiaxv8xe" path="res://assets/music/sci-fi-cave-ambience-444358.mp3" id="4_u2cm7"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="5_lral5"]
-[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/save_point.tscn" id="6_fhmyd"]
+[ext_resource type="PackedScene" uid="uid://buwoj5h61s3kb" path="res://general/save_point/shrine_save_point.tscn" id="6_fhmyd"]
 [ext_resource type="Texture2D" uid="uid://b4gc6fi3b683y" path="res://levels/00_wonderland/images/cave_background.png" id="7_luhyr"]
 [ext_resource type="Texture2D" uid="uid://d3r8y1og53rx2" path="res://levels/00_wonderland/tilesets/sprites/castle_tiles_type_01_64px_by_64px.png" id="9_1lvs7"]
 [ext_resource type="PackedScene" uid="uid://b3c1xq1cvkdkd" path="res://general/props/torch.tscn" id="9_fhmyd"]
@@ -15,14 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://s5t826glcjwq" path="res://levels/00_wonderland/images/armour_01.png" id="13_8a74c"]
 [ext_resource type="Texture2D" uid="uid://dqfqudvjwtwxd" path="res://levels/00_wonderland/images/armour_02.png" id="14_0syak"]
 [ext_resource type="Texture2D" uid="uid://b3gl5cco1l54q" path="res://levels/00_wonderland/images/window_06.png" id="15_p2gmb"]
+[ext_resource type="Texture2D" uid="uid://b0buivkhvx58a" path="res://levels/00_wonderland/images/armour_03.png" id="15_p2jwy"]
 [ext_resource type="Texture2D" uid="uid://4td0a0150hay" path="res://levels/00_wonderland/images/window_05.png" id="17_hbhr5"]
 [ext_resource type="Texture2D" uid="uid://qbddwwy0cmil" path="res://levels/00_wonderland/images/wall_plaque.png" id="19_qnk7v"]
 [ext_resource type="Texture2D" uid="uid://dfpk0wsawtkf4" path="res://levels/00_wonderland/images/wall_ring_dark.png" id="20_et2oj"]
 [ext_resource type="Texture2D" uid="uid://b6eellc5xsjcq" path="res://levels/00_wonderland/images/full_web.png" id="22_die8k"]
 [ext_resource type="Texture2D" uid="uid://b0brov7lqxrax" path="res://levels/00_wonderland/images/corner_web_2.png" id="22_q2kmc"]
 [ext_resource type="PackedScene" uid="uid://2jxkwfeoois0" path="res://general/props/spider_on_web.tscn" id="23_q2kmc"]
-[ext_resource type="PackedScene" uid="uid://cqk8jjksn2n4w" path="res://enemies/spider/spider_purple.tscn" id="24_p2jwy"]
-[ext_resource type="PackedScene" uid="uid://epayxvrqdvet" path="res://enemies/spider/spider_black.tscn" id="24_xhlki"]
+[ext_resource type="PackedScene" uid="uid://cqk8jjksn2n4w" path="res://enemies/spider/spiderBasic/spider_purple.tscn" id="24_p2jwy"]
+[ext_resource type="PackedScene" uid="uid://epayxvrqdvet" path="res://enemies/spider/spiderAdvanced/spider_black.tscn" id="24_xhlki"]
 [ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="25_r48iq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cf83"]
@@ -230,7 +231,8 @@ target_level = "uid://cfiuv8loi78a5"
 target_area_name = "Cave"
 
 [node name="SavePoint" parent="." unique_id=1215992094 instance=ExtResource("6_fhmyd")]
-position = Vector2(87, 637)
+z_index = 1
+position = Vector2(87, 644)
 
 [node name="Visuals" type="Node" parent="." unique_id=324392496]
 
@@ -289,9 +291,14 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("13_8a74c")
 
 [node name="Armour02" type="Sprite2D" parent="Decorations" unique_id=1572851804]
-position = Vector2(409.00003, 538)
+position = Vector2(89, 537)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("14_0syak")
+
+[node name="Armour03" type="Sprite2D" parent="Decorations" unique_id=128956549]
+position = Vector2(409, 539)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_p2jwy")
 
 [node name="Window06" type="Sprite2D" parent="Decorations" unique_id=696469917]
 position = Vector2(162.00005, 195.00003)
@@ -324,7 +331,7 @@ scale = Vector2(0.15, 0.15)
 texture = ExtResource("20_et2oj")
 
 [node name="WallRingDark4" type="Sprite2D" parent="Decorations" unique_id=1067802022]
-position = Vector2(87.000015, 578)
+position = Vector2(149.00002, 578)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("20_et2oj")
 

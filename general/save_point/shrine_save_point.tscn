@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://buwoj5h61s3kb"]
 
-[ext_resource type="Texture2D" uid="uid://duywqnpy2e1uo" path="res://general/save_point/save_point.png" id="1_a0gwv"]
 [ext_resource type="Script" uid="uid://y485m4x8qmj1" path="res://general/save_point/save_point.gd" id="1_f82ql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0gwv"]
@@ -104,14 +103,8 @@ _data = {
 &"game_saved": SubResource("Animation_f82ql")
 }
 
-[node name="SavePoint" type="Node2D" unique_id=1215992094]
+[node name="shrineSavePoint" type="Node2D" unique_id=1215992094]
 script = ExtResource("1_f82ql")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1778449510]
-position = Vector2(0, -16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_a0gwv")
-flip_v = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=154218003]
 collision_layer = 0

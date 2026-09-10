@@ -1,5 +1,10 @@
 class_name ESStun extends EnemyState
 
+# EnemyState class will inherit the following variables:
+# @export var animation_name : String = "idle"
+# var state_machine : EnemyStateMachine
+# var enemy : Enemy
+# var blackboard : Blackboard
 @export var knockback_strength : float = 100
 var vel_x : float = 0
 var duration : float = 0

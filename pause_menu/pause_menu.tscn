@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bw60328whjgnd" path="res://pause_menu/images/clukr.svg" id="5_1nv8k"]
 [ext_resource type="Texture2D" uid="uid://dug1up2xnvgkf" path="res://app/images/polo.png" id="5_b0obc"]
 [ext_resource type="Script" uid="uid://dsw35oh17dxad" path="res://addons/localization_with_google_sheet/ui/menu_language_option_button.gd" id="5_s1glv"]
-[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/bossPortal.tscn" id="5_xvc88"]
+[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/magicPortal.tscn" id="5_xvc88"]
 [ext_resource type="Texture2D" uid="uid://c5tduahd1160a" path="res://pause_menu/images/funbot.svg" id="6_qi88y"]
 [ext_resource type="Texture2D" uid="uid://bo1wu233x8uvl" path="res://pause_menu/images/oren.svg" id="7_ja1mc"]
 [ext_resource type="Texture2D" uid="uid://c13pth2vsd31i" path="res://pause_menu/images/raddy.svg" id="9_sp6kg"]
@@ -348,7 +348,7 @@ modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
 layout_mode = 0
 offset_left = 157.0
 offset_top = 184.0
-offset_right = 258.0
+offset_right = 259.0
 offset_bottom = 216.0
 linked_scene = "uid://bb7n5hh1ojdiy"
 entrances_bottom = Array[float]([19.35])

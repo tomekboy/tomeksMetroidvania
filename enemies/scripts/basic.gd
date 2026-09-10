@@ -8,6 +8,7 @@ class_name Slime extends CharacterBody2D
 
 var dir : float = 1.0
 var move_tween : Tween
+var killed = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -62,6 +63,7 @@ func _on_damage_taken( attack_area : AttackArea ) -> void:
 		AudioManager.play_spatial_sound( death_sound, global_position )
 		damage_area.queue_free()
 		hazard_area.queue_free()
+		killed = true
 	pass
 
 
@@ -92,3 +94,31 @@ func _on_animation_finished( anim_name : String ) -> void:
 	else:
 		queue_free()
 	pass
+
+func on_save_game( saved_data : Array[SavedData] ) -> void:
+	# don't do a contract
+	if killed:
+		return
+	# do a contract
+	var my_data = SavedSlimeData.new()
+	my_data.position = global_position
+	my_data.scene_path = scene_file_path
+	my_data.direction = dir
+	saved_data.append( my_data )
+	pass
+
+
+func on_before_load_game(  ) -> void:
+	get_parent().remove_child( self )
+	queue_free()
+	pass
+
+
+func on_load_game( saved_data : SavedData ) -> void:
+	global_position = saved_data.position
+	
+	# do we have specific data to load...
+	#if saved_data is SavedSlimeData:
+		#var my_data : SavedSlimeData = saved_data
+		#blackboard.dir = my_data.direction
+pass
