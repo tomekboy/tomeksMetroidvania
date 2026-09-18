@@ -7,6 +7,7 @@ class_name ESDeath extends EnemyState
 # var blackboard : Blackboard
 @export var knockback_strength : float = 100
 @export var death_audio : AudioStream
+
 var vel_x : float = 0
 var duration : float = 0
 var timer : float = 0
@@ -54,3 +55,4 @@ func _calc_velocity( a : AttackArea ) -> void:
 		vel_x = -1
 	vel_x *= knockback_strength
 	pass
+	

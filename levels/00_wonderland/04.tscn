@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dxyuffjk08u8a" path="res://levels/00_wonderland/images/bush.png" id="20_s1gjr"]
 [ext_resource type="Texture2D" uid="uid://dd28782i1kjxl" path="res://assets/materials_and_shaders/light_stream.jpg" id="21_0vwok"]
 [ext_resource type="Material" uid="uid://d0mwxqwvs8f7i" path="res://assets/materials_and_shaders/fog_fade_material.tres" id="22_23qe1"]
-[ext_resource type="PackedScene" uid="uid://dq7m36g8gkj17" path="res://enemies/slime/slimeAdvanced/slimeNature.tscn" id="23_46dmu"]
+[ext_resource type="PackedScene" uid="uid://dq7m36g8gkj17" path="res://enemies/slime/slimeEnemy/slimeNature.tscn" id="23_46dmu"]
 [ext_resource type="PackedScene" uid="uid://lqtfathuylnc" path="res://birds/woodpecker_green.tscn" id="23_geymb"]
 [ext_resource type="Texture2D" uid="uid://cgm0h72v2lw1m" path="res://levels/00_wonderland/images/nest.png" id="23_yv6i0"]
 [ext_resource type="PackedScene" uid="uid://cxoqnwu11vjxy" path="res://birds/woodpecker_black.tscn" id="24_a0r7a"]
@@ -2207,7 +2207,7 @@ width = 2012
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_qhw6u")]
-position = Vector2(271, 529)
+position = Vector2(1454, 586)
 
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("3_46dmu")]
 position = Vector2(0, 832)

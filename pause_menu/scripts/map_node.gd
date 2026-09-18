@@ -30,6 +30,10 @@ func _ready() -> void:
 			visible = false
 		elif SceneManager.current_scene_uid == linked_scene:
 			display_player_location()
+		if not SaveManager.persistent_data.get( "uid://ycro72736wy2/04Boss/BossBattleOrchestrator", "" ) == "defeated":
+			visible = false
+		elif SceneManager.current_scene_uid == linked_scene:
+			display_portal_location()
 	pass
 
 
@@ -58,7 +62,6 @@ func update_node() -> void:
 						pass
 					elif c is LevelTransition:
 						transitions.append( c )
-						
 						pass
 			instance.queue_free()
 			pass
@@ -160,7 +163,19 @@ func display_player_location() -> void:
 	var i : Control = %PlayerIndicator
 	var pos : Vector2 = position
 	pos += (( player.global_position - indicator_offset ) / SCALE_FACTOR )
-	var clamp_vector : Vector2 = Vector2( 3, 3 )
+	var clamp_vector : Vector2 = Vector2( 15, 15 )
 	pos = pos.clamp( position + clamp_vector, position + size - clamp_vector )
 	i.position = pos
+	pass
+
+
+func display_portal_location() -> void:
+	#var player : Player = get_tree().get_first_node_in_group( "Player" )
+	#var i : Control = %PlayerIndicator
+	#var pos : Vector2 = position
+	#pos += (( player.global_position - indicator_offset ) / SCALE_FACTOR )
+	#var clamp_vector : Vector2 = Vector2( 15, 15 )
+	#pos = pos.clamp( position + clamp_vector, position + size - clamp_vector )
+	#i.position = pos
+	print( "juhufaldera" )
 	pass

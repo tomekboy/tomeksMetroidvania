@@ -22,8 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://b6eellc5xsjcq" path="res://levels/00_wonderland/images/full_web.png" id="22_die8k"]
 [ext_resource type="Texture2D" uid="uid://b0brov7lqxrax" path="res://levels/00_wonderland/images/corner_web_2.png" id="22_q2kmc"]
 [ext_resource type="PackedScene" uid="uid://2jxkwfeoois0" path="res://general/props/spider_on_web.tscn" id="23_q2kmc"]
-[ext_resource type="PackedScene" uid="uid://cqk8jjksn2n4w" path="res://enemies/spider/spiderBasic/spider_purple.tscn" id="24_p2jwy"]
-[ext_resource type="PackedScene" uid="uid://epayxvrqdvet" path="res://enemies/spider/spiderAdvanced/spider_black.tscn" id="24_xhlki"]
+[ext_resource type="PackedScene" uid="uid://cqk8jjksn2n4w" path="res://enemies/spider/spiderSlime/spider_purple.tscn" id="24_p2jwy"]
+[ext_resource type="PackedScene" uid="uid://epayxvrqdvet" path="res://enemies/spider/spiderEnemy/spider_black.tscn" id="24_xhlki"]
 [ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="25_r48iq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cf83"]

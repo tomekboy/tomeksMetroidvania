@@ -54,5 +54,7 @@ namespace Localization {
 		loadSlot01Analytics,
 		loadSlot02Analytics,
 		loadSlot03Analytics,
+		bossAwakend,
+		bossRhino,
 	}
 }

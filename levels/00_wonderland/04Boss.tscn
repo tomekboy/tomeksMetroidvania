@@ -24,10 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://dd28782i1kjxl" path="res://assets/materials_and_shaders/light_stream.jpg" id="21_cgxbu"]
 [ext_resource type="Material" uid="uid://d0mwxqwvs8f7i" path="res://assets/materials_and_shaders/fog_fade_material.tres" id="22_wq3wc"]
 [ext_resource type="Script" uid="uid://jevkrmftvmf3" path="res://bosses/scripts/boss_battle_orchestrator.gd" id="23_kussq"]
-[ext_resource type="PackedScene" uid="uid://epayxvrqdvet" path="res://enemies/spider/spiderAdvanced/spider_black.tscn" id="24_kussq"]
 [ext_resource type="AudioStream" uid="uid://duj80ijeavtft" path="res://assets/music/rhinoBossBackground.mp3" id="24_nd32s"]
+[ext_resource type="PackedScene" uid="uid://2xxmeniw5kh4" path="res://general/portal/portal.tscn" id="25_k3ir7"]
 [ext_resource type="Script" uid="uid://di70anarsc214" path="res://levels/00_wonderland/scripts/tree_left.gd" id="27_fp7xv"]
-[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/magicPortal.tscn" id="28_k3ir7"]
+[ext_resource type="PackedScene" uid="uid://bclmuh5ll5hn1" path="res://bosses/rhino/rhino.tscn" id="28_k3ir7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmynt"]
 texture = ExtResource("8_ck5ju")
@@ -2196,7 +2196,7 @@ turbulence_enabled = true
 turbulence_influence_max = 0.19000001
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0cjl"]
-size = Vector2(90, 620)
+size = Vector2(28, 620)
 
 [node name="04Boss" type="Node2D" unique_id=1770382212]
 
@@ -2481,22 +2481,23 @@ process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
 [node name="StaticObjects" type="Node" parent="." unique_id=1418818487]
 
-[node name="magicPortal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("28_k3ir7")]
-position = Vector2(789, 553)
+[node name="Portal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("25_k3ir7")]
+visible = false
+position = Vector2(786, 553)
 
 [node name="DynamicObjects" type="Node" parent="." unique_id=2058451056]
 
 [node name="BossBattleOrchestrator" type="Node" parent="." unique_id=1077930871 node_paths=PackedStringArray("boss", "trigger_area", "reward")]
 script = ExtResource("23_kussq")
-boss = NodePath("SpiderBlack")
+boss = NodePath("Rhino")
+boss_name = "bossRhino"
 trigger_area = NodePath("BossBattleArea2D")
-reward = NodePath("../StaticObjects/magicPortal")
+reward = NodePath("../StaticObjects/Portal")
 fight_track = ExtResource("24_nd32s")
 metadata/_custom_type_script = "uid://jevkrmftvmf3"
 
-[node name="SpiderBlack" parent="BossBattleOrchestrator" unique_id=634296537 instance=ExtResource("24_kussq")]
-position = Vector2(552, 603)
-face_left_on_start = true
+[node name="Rhino" parent="BossBattleOrchestrator" unique_id=634296537 instance=ExtResource("28_k3ir7")]
+position = Vector2(649, 610)
 
 [node name="BossBattleArea2D" type="Area2D" parent="BossBattleOrchestrator" unique_id=2009439446]
 visibility_layer = 17
@@ -2505,5 +2506,5 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBattleOrchestrator/BossBattleArea2D" unique_id=460388404]
-position = Vector2(35, 300)
+position = Vector2(4, 300)
 shape = SubResource("RectangleShape2D_u0cjl")

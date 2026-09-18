@@ -381,6 +381,7 @@ layout_mode = 1
 anchors_preset = 0
 
 [node name="TextureRect" type="TextureRect" parent="Control/PauseScreen/MapDisplay/PlayerIndicator" unique_id=1501680612]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
 offset_right = 6.0
 offset_bottom = 6.0
@@ -393,8 +394,7 @@ autoplay = &"default"
 [node name="Portals" type="Node" parent="Control/PauseScreen/MapDisplay" unique_id=1064213637]
 
 [node name="PausePortal01" parent="Control/PauseScreen/MapDisplay/Portals" unique_id=497439735 instance=ExtResource("5_xvc88")]
-visible = false
-position = Vector2(475, 376)
+position = Vector2(321, 120)
 scale = Vector2(0.25, 0.25)
 
 [node name="SettingsMenuButton" type="Button" parent="Control/PauseScreen" unique_id=914943227]

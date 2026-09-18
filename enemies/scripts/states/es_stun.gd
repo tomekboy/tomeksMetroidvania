@@ -11,11 +11,15 @@ var duration : float = 0
 var timer : float = 0
 
 func start() -> void:
-	var anim : String = animation_name if animation_name else "squirt"
-	if enemy.animation.current_animation == anim:
-		enemy.animation.seek( 0 )
+	if owner.name == "Rhino":
+		enemy.play_animation( "defend" )
 	else:
-		enemy.play_animation( anim )
+		var anim : String = animation_name if animation_name else "squirt"
+		if enemy.animation.current_animation == anim:
+			enemy.animation.seek( 0 )
+		else:
+			enemy.play_animation( anim )
+		
 	duration = enemy.animation.current_animation_length
 	timer = 0
 	_calc_velocity( blackboard.damage_source )
@@ -53,3 +57,4 @@ func _calc_velocity( a : AttackArea ) -> void:
 		vel_x = -1
 	vel_x *= knockback_strength
 	pass
+	

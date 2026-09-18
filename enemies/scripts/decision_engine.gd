@@ -3,6 +3,7 @@ class_name DecisionEngine extends Node
 
 var enemy : Enemy
 var current_state : EnemyState
+
 var blackboard : Blackboard
 
 func _ready() -> void:

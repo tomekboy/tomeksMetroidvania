@@ -1,0 +1,53 @@
+class_name RHAttack extends RhinoState
+
+@export var attack_range : float = 100
+@export var move_speed : float = 88
+@export var cooldown : float = 2.0
+@export var attack_area : AttackArea
+
+var timer : float = 0
+var duration : float = 0
+var on_cooldown : bool = false
+
+func enter() -> void:
+	boss.play_animation( animation_name if animation_name else "stab" )
+	
+	duration = boss.animation.current_animation_length
+	timer = 0
+	blackboard.can_decide = false
+	on_cooldown = true
+	boss.velocity.x = move_speed * blackboard.dir
+	if attack_area:
+		attack_area.flip( blackboard.dir )
+	pass
+
+
+func re_enter() -> void:
+	# What happens if the state is called again?
+	pass
+
+
+func exit() -> void:
+	blackboard.can_decide = true
+	run_cooldown()
+	pass
+
+
+func physics_update( _delta : float ) -> void:
+	timer += _delta
+	if timer >= duration:
+		blackboard.can_decide = true
+	pass
+
+
+func can_attack() -> bool:
+	if blackboard.distance_to_target <= attack_range and not on_cooldown:
+		return true
+	return false
+
+
+func run_cooldown() -> void:
+	await get_tree().create_timer( cooldown ).timeout
+	on_cooldown = false
+	pass
+	

@@ -8,6 +8,7 @@ signal battle_started
 signal battle_ended
 
 @export var boss : Node
+@export var boss_name : String = "bossName"
 @export var trigger_area : Area2D
 @export var reward : Node2D
 
@@ -52,11 +53,13 @@ func start_boss_battle() -> void:
 	
 	AudioServer.set_bus_volume_db(bus_idx, current_db + 5.0)
 	AudioManager.play_music( fight_track )
+	PlayerHud.show_boss_hp( boss_name )
 	
 	if boss:
 		boss.process_mode = Node.PROCESS_MODE_INHERIT
 		boss.tree_exiting.connect( end_boss_battle )
-
+		if boss is Enemy:
+			boss.was_hit.connect( _on_boss_enemy_hit )
 	pass
 
 
@@ -78,6 +81,7 @@ func end_boss_battle() -> void:
 	AudioManager.play_spatial_sound( YOU_WIN, Vector2.ZERO)
 	AudioManager.play_music( post_fight_track )
 	AudioServer.set_bus_volume_db(bus_idx, current_db - 5.0)
+	PlayerHud.hide_boss_hp()
 	
 	queue_free()
 	pass
@@ -99,4 +103,12 @@ func _on_body_entered( body : Node2D) -> void:
 func unique_name() -> String:
 	var u_name : String = ResourceUID.path_to_uid( owner.scene_file_path )
 	u_name += "/" + get_parent().name + "/" + name
+	#needed for player hud decision on boss awakening
+	#print( u_name )
 	return u_name
+
+
+func _on_boss_enemy_hit( _a : AttackArea ) -> void:
+	if boss is Enemy:
+		PlayerHud.update_boss_hp( boss.blackboard.health, boss.health )
+	pass

@@ -56,4 +56,6 @@ enum Friends_localization_key {
 	loadSlot01Analytics,
 	loadSlot02Analytics,
 	loadSlot03Analytics,
+	bossAwakend,
+	bossRhino,
 }

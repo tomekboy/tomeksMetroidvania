@@ -1,15 +1,21 @@
 extends CanvasLayer
 
-@export var audio : AudioStream
 @onready var collectable_bar: MarginContainer = %CollectableBar
 @onready var cp_bar: TextureProgressBar = $Control/CollectableBar/NinePatchRect/CPBar
 @onready var health_bar: MarginContainer = %HealthBar
 @onready var hp_bar: TextureProgressBar = $Control/HealthBar/NinePatchRect/HPBar
-
-
 @onready var game_over: Control = %GameOver
 @onready var title_screen_button: Button = %TitleScreenButton
 
+@onready var rhino_awakening : PackedScene = preload("uid://bjveu8w6m1rar")
+
+@onready var boss_hp: Control = %BossHP
+@onready var boss_hp_bar: ProgressBar = %BossHPBar
+@onready var boss_hp_highlight: ProgressBar = %BossHPHighlight
+@onready var boss_name: Label = %BossName
+@onready var boss_hp_animation_player: AnimationPlayer = %BossHPAnimationPlayer
+
+@export var audio : AudioStream
 @export var controller_rumble : bool = false
 @export var initial_start : bool = false
 @export var debug_mode : bool = true
@@ -22,11 +28,13 @@ extends CanvasLayer
 @export var ground_slam : bool = false
 @export var morph_roll : bool = false
 
+var boss_hp_tween : Tween
+
 func _ready() -> void:
 	# connect to message bus
 	MessageManager.player_health_changed.connect( update_health_bar )
 	MessageManager.player_collectable_changed.connect( update_collectable_bar )
-	
+	boss_hp.visible = false
 	game_over.visible = false
 	title_screen_button.pressed.connect( _on_title_screen_pressed )
 	pass
@@ -39,6 +47,9 @@ pass
 
 
 func update_collectable_bar( cp: float, max_cp: float ) -> void:
+	# check for boss awakening cutscene
+	if cp >= 25:
+		releaseBoss( cp )
 	var value : float = ( cp / max_cp ) * 250
 	cp_bar.value = value
 pass
@@ -74,4 +85,46 @@ func _on_title_screen_pressed() -> void:
 	SceneManager.transition_scene( "res://title_screen/title_screen.tscn", "", Vector2.ZERO, "up", false )
 	PlayerHud.visible = false
 	clear_game_over_screen()
+	pass
+
+
+func releaseBoss( cp : float):
+	if cp >= 25 and !SaveManager.persistent_data.get( "uid://ycro72736wy2/04Boss/BossBattleOrchestrator", "" ) == "defeated":
+		var scene_root = get_tree().current_scene
+		var rhino_temp = rhino_awakening.instantiate()
+		rhino_temp.position = player_position
+		scene_root.add_child(rhino_temp)
+	else:
+		return
+
+
+func show_boss_hp( _n : String ) -> void:
+	boss_hp_bar.value = 1.0
+	boss_hp_highlight.value = 1.0
+	boss_name.text = _n
+	boss_hp_animation_player.play( "show" )
+	pass
+
+
+func update_boss_hp( hp : float, max_hp : float ) ->void:
+	var new_value : float = hp /max_hp
+	boss_hp_bar.value = new_value
+	tween_hp_highlight( new_value )
+	pass
+
+
+func tween_hp_highlight( target_value : float ) -> void:
+	if boss_hp_tween:
+		boss_hp_tween.kill()
+		
+	boss_hp_tween = create_tween()
+	boss_hp_tween.set_ease( Tween.EASE_OUT )
+	boss_hp_tween.set_trans( Tween.TRANS_EXPO )
+	boss_hp_tween.tween_interval( 0.5 )
+	boss_hp_tween.tween_property( boss_hp_highlight, "value", target_value, 0.5 )
+	pass
+
+
+func hide_boss_hp() -> void:
+	boss_hp_animation_player.play( "hide" )
 	pass

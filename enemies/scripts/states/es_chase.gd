@@ -3,7 +3,14 @@ class_name ESChase extends EnemyState
 @export var chase_speed : float = 100
 
 func enter() -> void:
-	enemy.play_animation( animation_name if animation_name else "bite" )
+	if owner.name == "Rhino":
+		enemy.play_animation( "defend" )
+	else:
+		var anim : String = animation_name if animation_name else "bite"
+		if enemy.animation.current_animation == anim:
+			enemy.animation.seek( 0 )
+		else:
+			enemy.play_animation( anim )
 	pass
 
 
@@ -22,3 +29,4 @@ func physics_update( _delta : float ) -> void:
 	enemy.change_dir( dir )
 	enemy.velocity.x = dir * chase_speed
 	pass
+	

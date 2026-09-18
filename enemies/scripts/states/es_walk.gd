@@ -18,6 +18,8 @@ func enter() -> void:
 		
 	if owner.name == "SlimeNature":
 		enemy.play_animation( "in_floor_look_left_right" )
+	elif owner.name == "Rhino":
+		enemy.play_animation( "walk" )
 	else:
 		enemy.play_animation( "move" )
 	pass
@@ -55,3 +57,4 @@ func _set_limits() -> void:
 			else:
 				right_limit = c.global_position.x
 	pass
+	

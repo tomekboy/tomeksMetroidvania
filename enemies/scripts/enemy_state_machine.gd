@@ -45,7 +45,7 @@ func change_state( new_state : EnemyState ) -> void:
 
 
 ## Called from enemies _physics_process
-func physics_update( _delta : float ) -> void:
+func physics_update( delta : float ) -> void:
 	if current_state:
-		current_state.physics_update( _delta )
+		current_state.physics_update( delta )
 	pass

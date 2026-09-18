@@ -1,7 +1,7 @@
 extends TileMapLayer
 
 @export var slide_duration: float = 0.6
-@export var camera: Camera2D # Drag your Camera2D here in the Inspector
+@export var camera: Camera2D
 @export var shake_force: float = 15.0
 
 var target_position: Vector2
@@ -23,7 +23,7 @@ func trigger_slide() -> void:
 		.set_ease(Tween.EASE_OUT)
 	
 	# Connect to the "finished" signal of the tween to shake the camera
-	tween.finished.connect(_on_slide_finished)
+	tween.finished.connect( _on_slide_finished )
 
 
 func _on_slide_finished() -> void:
