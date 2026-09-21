@@ -6,7 +6,7 @@ extends Node2D
 @onready var label: Label = $Cloud/Label
 
 func _ready() -> void:
-	animation_player.play( "first_slam" )
+	animation_player.play( "fist_slam" )
 	await animation_player.animation_finished
 	
 	var tween = create_tween()
@@ -15,4 +15,3 @@ func _ready() -> void:
 	tween.parallel().tween_property(label, "modulate:a", 0.0, 1.5)
 	tween.finished.connect(queue_free)
 	pass
-	

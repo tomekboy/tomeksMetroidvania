@@ -17,6 +17,7 @@ extends CanvasLayer
 
 @export var audio : AudioStream
 @export var controller_rumble : bool = false
+@export var rhino_awakening_shown : bool = false
 @export var initial_start : bool = false
 @export var debug_mode : bool = true
 
@@ -49,8 +50,7 @@ pass
 
 func update_collectable_bar( cp: float, max_cp: float ) -> void:
 	# check for boss awakening cutscene
-	if cp >= 25:
-		releaseBoss( cp )
+	releaseBoss( cp )
 	var value : float = ( cp / max_cp ) * 250
 	cp_bar.value = value
 pass
@@ -90,11 +90,25 @@ func _on_title_screen_pressed() -> void:
 
 
 func releaseBoss( cp : float):
-	if cp >= 25 and !SaveManager.persistent_data.get( "bossName" ) == "defeated":
+	if  cp >= 2 and !SaveManager.persistent_data.get( "rhino", "0" ) == "defeated" and rhino_awakening_shown == false:
+		# 1. Get the current active scene root
 		var scene_root = get_tree().current_scene
-		var rhino_temp = rhino_awakening.instantiate()
-		rhino_temp.position = player_position
-		scene_root.add_child(rhino_temp)
+
+		# 2. Get the active camera to find where the player is looking
+		var camera = get_viewport().get_camera_2d()
+
+		if camera:
+			# 3. Calculate the exact world coordinate of the viewport center
+			var viewport_center_world = camera.get_screen_center_position()
+			
+			# 4. Instantiate and configure the rhino
+			var rhino_temp = rhino_awakening.instantiate()
+			
+			# 5. Add to scene root first, then set the GLOBAL position
+			scene_root.add_child(rhino_temp)
+			rhino_temp.global_position = viewport_center_world
+		
+		rhino_awakening_shown = true
 	else:
 		return
 
