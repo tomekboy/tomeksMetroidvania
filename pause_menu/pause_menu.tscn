@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bw60328whjgnd" path="res://pause_menu/images/clukr.svg" id="5_1nv8k"]
 [ext_resource type="Texture2D" uid="uid://dug1up2xnvgkf" path="res://app/images/polo.png" id="5_b0obc"]
 [ext_resource type="Script" uid="uid://dsw35oh17dxad" path="res://addons/localization_with_google_sheet/ui/menu_language_option_button.gd" id="5_s1glv"]
-[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/magicPortal.tscn" id="5_xvc88"]
 [ext_resource type="Texture2D" uid="uid://c5tduahd1160a" path="res://pause_menu/images/funbot.svg" id="6_qi88y"]
 [ext_resource type="Texture2D" uid="uid://bo1wu233x8uvl" path="res://pause_menu/images/oren.svg" id="7_ja1mc"]
 [ext_resource type="Texture2D" uid="uid://c13pth2vsd31i" path="res://pause_menu/images/raddy.svg" id="9_sp6kg"]
@@ -21,18 +20,6 @@
 
 [sub_resource type="FontVariation" id="FontVariation_5hbt6"]
 spacing_glyph = 6
-
-[sub_resource type="GDScript" id="GDScript_0v28v"]
-script/source = "extends Control
-
-@onready var pause_portal_01: Node2D = $MapDisplay/Portals/PausePortal01
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if SceneManager.current_scene.contains(\"01_cavernland\"):
-		pause_portal_01.visible = true
-	pass
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4s0c"]
 atlas = ExtResource("2_uwtdo")
@@ -225,7 +212,6 @@ anchor_bottom = 1.0
 offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_0v28v")
 
 [node name="AbilitiesTitle" type="Label" parent="Control/PauseScreen" unique_id=1339802049]
 layout_mode = 0
@@ -318,9 +304,9 @@ horizontal_alignment = 1
 [node name="MapDisplay" type="Control" parent="Control/PauseScreen" unique_id=512747636]
 anchors_preset = 0
 offset_left = 277.0
-offset_top = 70.0
-offset_right = 1033.0
-offset_bottom = 549.0
+offset_top = 71.0
+offset_right = 1008.0
+offset_bottom = 550.0
 
 [node name="MapNode1" parent="Control/PauseScreen/MapDisplay" unique_id=153464035 instance=ExtResource("2_rd7dy")]
 modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
@@ -355,7 +341,7 @@ entrances_bottom = Array[float]([19.35])
 entrances_left = Array[float]([7.3999996])
 
 [node name="MapNode4" parent="Control/PauseScreen/MapDisplay" unique_id=629937613 instance=ExtResource("2_rd7dy")]
-modulate = Color(0.54509807, 0.8745098, 0.4627451, 1)
+modulate = Color(0.44313726, 0.83137256, 0.9411765, 1)
 layout_mode = 0
 offset_left = 157.0
 offset_top = 218.0
@@ -365,14 +351,25 @@ linked_scene = "uid://bk7purnia7v6"
 entrances_top = Array[float]([19.35])
 entrances_right = Array[float]([26.0])
 
-[node name="MapNode5" parent="Control/PauseScreen/MapDisplay" unique_id=1488057013 instance=ExtResource("2_rd7dy")]
-modulate = Color(1, 0.45490196, 0.6156863, 1)
+[node name="MapNode5" parent="Control/PauseScreen/MapDisplay" unique_id=1637829858 instance=ExtResource("2_rd7dy")]
+modulate = Color(0.99215686, 0.15686275, 0.29411766, 1)
 layout_mode = 0
-offset_left = 260.0
+offset_left = 261.0
 offset_top = 218.0
-offset_right = 311.0
+offset_right = 312.0
 offset_bottom = 250.0
 linked_scene = "uid://ycro72736wy2"
+entrances_right = Array[float]([26.0])
+entrances_left = Array[float]([26.0])
+
+[node name="MapNode6" parent="Control/PauseScreen/MapDisplay" unique_id=1130519851 instance=ExtResource("2_rd7dy")]
+modulate = Color(0.36862746, 0.89411765, 0.23137255, 1)
+layout_mode = 0
+offset_left = 315.0
+offset_top = 218.0
+offset_right = 366.0
+offset_bottom = 314.0
+linked_scene = "uid://dmvfo1xle26xe"
 entrances_left = Array[float]([26.0])
 
 [node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/MapDisplay" unique_id=933974353]
@@ -390,12 +387,6 @@ texture = SubResource("GradientTexture2D_uwtdo")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PauseScreen/MapDisplay/PlayerIndicator" unique_id=319789417]
 libraries/ = SubResource("AnimationLibrary_wn31l")
 autoplay = &"default"
-
-[node name="Portals" type="Node" parent="Control/PauseScreen/MapDisplay" unique_id=1064213637]
-
-[node name="PausePortal01" parent="Control/PauseScreen/MapDisplay/Portals" unique_id=497439735 instance=ExtResource("5_xvc88")]
-position = Vector2(321, 120)
-scale = Vector2(0.25, 0.25)
 
 [node name="SettingsMenuButton" type="Button" parent="Control/PauseScreen" unique_id=914943227]
 unique_name_in_owner = true

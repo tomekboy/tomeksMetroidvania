@@ -2,7 +2,10 @@
 class_name BossBattleOrchestrator extends Node
 
 @onready var tree_left: TileMapLayer = $"../Visuals/TreeLeft"
+@onready var tree_right: TileMapLayer = $"../Visuals/TreeRight"
 @onready var audio_stream_player: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
+@onready var fireworks: Node2D = $Fireworks
+@onready var rhino_portal: Node2D = $"../StaticObjects/RhinoPortal"
 
 signal battle_started
 signal battle_ended
@@ -14,15 +17,14 @@ signal battle_ended
 
 @export_category( "Boss Music" )
 @export var fight_track : AudioStream
-@export var post_fight_track : AudioStream
 
 @export_category( "Camera Bounds" )
 @export var boss_level_bounds : LevelBounds
 @export var original_level_bounds : LevelBounds
 
-var bus_idx = AudioServer.get_bus_index("Music")
-var current_db = AudioServer.get_bus_volume_db(bus_idx)
-const YOU_WIN = preload("uid://5g6lbdcgwp8b")
+const FIREWORKS_SFX = preload("uid://v5t44cwklho5")
+const SUCCESS_SFX = preload("uid://dhgm0n54jgsex")
+const SPELL_SFX = preload("uid://d1w20jmhofrti")
 
 func _ready() -> void:
 	if boss:
@@ -35,24 +37,17 @@ func _ready() -> void:
 	if reward:
 		reward.process_mode = Node.PROCESS_MODE_DISABLED
 		reward.visible = false
-		
-	if SaveManager.persistent_data.get_or_add( unique_name(), "" ) == "defeated":
-		queue_free()
-		var magic_portal_scene = preload( "uid://bbktiy3mf8gp8" )
-		var portal = magic_portal_scene.instantiate()
-		portal.position = Vector2(789, 553)
-		get_tree().get_root().get_node( "04Boss/StaticObjects" ).add_child( portal )
 	pass
 
 
 func start_boss_battle() -> void:
 	battle_started.emit()
 	
+	rhino_portal.visible = false
+	
 	if boss_level_bounds:
 		boss_level_bounds.set_camera_bounds()
 	
-	AudioServer.set_bus_volume_db(bus_idx, current_db + 5.0)
-	AudioManager.play_music( fight_track )
 	PlayerHud.show_boss_hp( boss_name )
 	
 	if boss:
@@ -66,11 +61,15 @@ func start_boss_battle() -> void:
 func end_boss_battle() -> void:
 	battle_ended.emit()
 	
-	SaveManager.persistent_data[ unique_name() ] = "defeated"
+	AudioManager.play_spatial_sound( FIREWORKS_SFX, Vector2.ZERO )
+	fireworks.visible = true
+	
+	AudioManager.play_spatial_sound( SUCCESS_SFX, Vector2.ZERO )
+	rhino_portal.visible = true
 	
 	if tree_left:
 		tree_left.queue_free()
-	
+		
 	if reward:
 		reward.process_mode = Node.PROCESS_MODE_INHERIT
 		reward.visible = true
@@ -78,10 +77,13 @@ func end_boss_battle() -> void:
 	if original_level_bounds:
 		original_level_bounds.set_camera_bounds()
 		
-	AudioManager.play_spatial_sound( YOU_WIN, Vector2.ZERO)
-	AudioManager.play_music( post_fight_track )
-	AudioServer.set_bus_volume_db(bus_idx, current_db - 5.0)
 	PlayerHud.hide_boss_hp()
+	await get_tree().create_timer(2.0).timeout
+	
+	AudioManager.play_spatial_sound( SPELL_SFX, Vector2.ZERO )
+	
+	if tree_right:
+		tree_right.queue_free()
 	
 	queue_free()
 	pass
@@ -92,20 +94,16 @@ func _on_body_entered( body : Node2D) -> void:
 		if tree_left and tree_left.has_method("trigger_slide"):
 			tree_left.trigger_slide()
 			audio_stream_player.play()
-			VisualEffects.camera_shake( 25.0 )
+			VisualEffects.camera_shake( 50.0 )
 			await audio_stream_player.finished
+			
+		if tree_right and tree_right.has_method("trigger_slide"):
+			tree_right.trigger_slide()
+			
 		start_boss_battle()
 		trigger_area.body_entered.disconnect( _on_body_entered )
 		pass
 	pass
-
-
-func unique_name() -> String:
-	var u_name : String = ResourceUID.path_to_uid( owner.scene_file_path )
-	u_name += "/" + get_parent().name + "/" + name
-	#needed for player hud decision on boss awakening
-	#print( u_name )
-	return u_name
 
 
 func _on_boss_enemy_hit( _a : AttackArea ) -> void:

@@ -104,10 +104,10 @@ func save_game():
 	saved_game.player_max_hp = player.max_hp
 	saved_game.player_cp = player.cp
 	saved_game.player_max_cp = player.max_cp
-	saved_game.player_dash = player.dash
-	saved_game.player_double_jump = player.double_jump
-	saved_game.player_ground_slam = player.ground_slam
-	saved_game.player_morph_roll = player.morph_roll
+	saved_game.player_dash = PlayerHud.player_dash
+	saved_game.player_double_jump = PlayerHud.double_jump
+	saved_game.player_ground_slam = PlayerHud.ground_slam
+	saved_game.player_morph_roll = PlayerHud.morph_roll
 	saved_game.game_discovered_areas = discovered_areas
 	saved_game.game_persistent_data = persistent_data
 
@@ -172,6 +172,7 @@ func load_game( slot : int ) -> void:
 				restored_node.on_load_game( entity )
 	# show player hud
 	PlayerHud.visible = true
+	
 	pass
 
 
@@ -265,6 +266,33 @@ func load_scene( scene_uid ) -> void:
 				#
 				if restored_node.has_method( "on_load_game" ):
 					restored_node.on_load_game( entity )
+					
+		# persistent data
+		persistent_data = saved_game.game_persistent_data
+		
+		## check for persistent
+		var player = get_tree().get_first_node_in_group("Player")
+
+		if player:
+			if persistent_data.get("double_jump") == "acquired":
+				player.double_jump = true
+				PlayerHud.double_jump = true
+				
+			if persistent_data.get("dash") == "acquired":
+				player.dash = true
+				PlayerHud.player_dash = true
+				
+			if persistent_data.get("ground_slam") == "acquired":
+				player.ground_slam = true
+				PlayerHud.ground_slam = true
+				
+			if persistent_data.get("morph_roll") == "acquired":
+				player.morph_roll = true
+				PlayerHud.morph_roll = true
+
+		if persistent_data.get("rhino") == "defeated":
+			PlayerHud.rhino = true
+
 	pass
 
 
@@ -276,6 +304,9 @@ func save_scene( scene_uid ) -> void:
 	var saved_data : Array[SavedData] = []
 	get_tree().call_group( "DynamicObject", "on_save_game", saved_data )
 	saved_game.saved_data = saved_data
+
+	# get the persistent objects
+	saved_game.game_persistent_data = persistent_data
 	
 	# save game data
 	ResourceSaver.save( saved_game, "user://0" + str(SaveManager.current_slot + 1) + "_" + scene_uid.substr(6) + ".res" )

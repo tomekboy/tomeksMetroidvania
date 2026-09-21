@@ -72,9 +72,9 @@ func knockback( a_pos : Vector2 ) -> void:
 	var from : float = dir
 	var to : float = dir
 	if a_pos.x < global_position.x:
-		from += 2
+		from += 10
 	else:
-		from -= 2
+		from -= 10
 	
 	if move_tween:
 		move_tween.kill()

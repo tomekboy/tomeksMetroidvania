@@ -12,7 +12,6 @@ func _ready() -> void:
 		# change character to the appropriate defined scene range
 	if int(owner.name) <= 4:
 		player = load("uid://bqkwwrgi782w5").instantiate() # polo
-
 	elif int(owner.name) >= 5:
 		player = load("uid://hk8xg8lqmqs5").instantiate() # oren
 		

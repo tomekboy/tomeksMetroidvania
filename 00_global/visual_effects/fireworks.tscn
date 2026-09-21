@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cxhxroxxw01iq"]
+
+[ext_resource type="Shader" uid="uid://dyws0nju0224d" path="res://assets/materials_and_shaders/fireworks.gdshader" id="1_o1xhb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0cjl"]
+shader = ExtResource("1_o1xhb")
+shader_parameter/resolution = Vector2(600, 400)
+shader_parameter/firework_count = 5.0
+shader_parameter/particle_count = 50.0
+shader_parameter/size = 2.0
+shader_parameter/sharpen = 1.5
+shader_parameter/speed = 2.0
+shader_parameter/gravity = 0.9
+shader_parameter/lifetime = 7.0
+
+[node name="Fireworks" type="Node2D" unique_id=1264666840]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1995760352]
+modulate = Color(1, 1, 1, 0.0627451)
+material = SubResource("ShaderMaterial_u0cjl")
+offset_right = 1020.0
+offset_bottom = 640.0
+color = Color(1, 1, 1, 0.019607844)

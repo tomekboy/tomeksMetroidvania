@@ -5,8 +5,13 @@ class_name RHDeath extends RhinoState
 # var state_machine : EnemyStateMachine
 # var boss : Rhino
 # var blackboard : Blackboard
+
 @export var knockback_strength : float = 100
 @export var death_audio : AudioStream
+@export var post_fight_track : AudioStream
+
+var bus_idx = AudioServer.get_bus_index("Music")
+var current_db = AudioServer.get_bus_volume_db(bus_idx)
 
 var vel_x : float = 0
 var duration : float = 0
@@ -22,12 +27,13 @@ func enter() -> void:
 	_calc_velocity( blackboard.damage_source )
 	blackboard.damage_source = null
 	blackboard.can_decide = false
-	
+
 	await boss.animation.animation_finished
-	boss.queue_free()
+
+	AudioManager.play_music( post_fight_track )
+	AudioServer.set_bus_volume_db(bus_idx, current_db - 5.0)
 	
-	var player : Player = get_tree().get_first_node_in_group( "Player" )
-	player.hp += .5
+	boss.queue_free()
 	pass
 
 

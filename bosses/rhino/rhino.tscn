@@ -1,21 +1,53 @@
 [gd_scene format=3 uid="uid://bclmuh5ll5hn1"]
 
 [ext_resource type="Script" uid="uid://d0gqhi8r5e801" path="res://bosses/scripts/rhino.gd" id="1_lyyuu"]
+[ext_resource type="Shader" uid="uid://c2y84aq84nq0" path="res://assets/materials_and_shaders/pixelate_dissolve.gdshader" id="2_8quhf"]
 [ext_resource type="Texture2D" uid="uid://cx40mlo4gqbm6" path="res://bosses/rhino/animations/allRhinoBlue256Right.png" id="2_oa7tt"]
 [ext_resource type="Script" uid="uid://b3x1lo3y3dwtk" path="res://bosses/scripts/rhino_state_machine.gd" id="3_0q5ex"]
 [ext_resource type="Script" uid="uid://tcdgv86krye2" path="res://bosses/scripts/states/rh_attack.gd" id="4_iis5k"]
 [ext_resource type="Script" uid="uid://bbryqo8k0dcej" path="res://bosses/scripts/states/rh_chase.gd" id="5_8quhf"]
 [ext_resource type="Script" uid="uid://7mjw5weplyks" path="res://bosses/scripts/states/rh_death.gd" id="6_4mqdv"]
 [ext_resource type="Script" uid="uid://df7ccdmx6npce" path="res://bosses/scripts/states/rh_stun.gd" id="7_xgjy8"]
+[ext_resource type="AudioStream" uid="uid://bp3hk7k7dw3t6" path="res://assets/sfx/death.mp3" id="8_4mqdv"]
 [ext_resource type="Script" uid="uid://b2jta7iayara7" path="res://bosses/scripts/states/rh_walk.gd" id="8_qvbg7"]
 [ext_resource type="Script" uid="uid://b2p55fjvemws4" path="res://bosses/scripts/decision_engines/decision_engine_rhino_fight.gd" id="9_jlh68"]
 [ext_resource type="AudioStream" uid="uid://xaekpfxbiagu" path="res://assets/sfx/grunt.mp3" id="12_xgjy8"]
 [ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="13_vqfln"]
+[ext_resource type="Script" uid="uid://ctmnettscu54g" path="res://bosses/scripts/rhino_hit_particles.gd" id="14_oa7tt"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="15_3i84q"]
-[ext_resource type="Script" uid="uid://bbswshx0f0q7o" path="res://enemies/scripts/enemy_hit_particles.gd" id="18_b43yk"]
+[ext_resource type="Resource" uid="uid://g4hhr6wj22tf" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_blue.tres" id="16_8quhf"]
+[ext_resource type="Resource" uid="uid://bhvlwe34vj0xe" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_red.tres" id="17_4mqdv"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="19_nvxkv"]
-[ext_resource type="Resource" uid="uid://cggqyb2cet8c0" path="res://00_global/visual_effects/hit_particles_settings/hit_magic_green.tres" id="20_7kn0p"]
-[ext_resource type="Script" uid="uid://bfib2t1n3gxbc" path="res://general/scripts/damage_modulate.gd" id="21_i7rmc"]
+
+[sub_resource type="Shader" id="Shader_8quhf"]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0, 1);
+uniform float block_size = 1;
+
+float random(vec2 uv) {
+    return fract(sin(dot(uv, vec2(12.9898, 78.233))) * 438.5453);
+}
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	vec2 uv_snapped = floor(UV / TEXTURE_PIXEL_SIZE / vec2(block_size));
+	color.a *= step(progress, random(uv_snapped));
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8quhf"]
+resource_local_to_scene = true
+shader = SubResource("Shader_8quhf")
+shader_parameter/progress = 0.0
+shader_parameter/block_size = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3ir7"]
+resource_local_to_scene = true
+shader = ExtResource("2_8quhf")
+shader_parameter/progress = 0.0
+shader_parameter/block_size = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2c1x"]
 radius = 30.0
@@ -37,6 +69,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_t2a2w"]
@@ -91,7 +135,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_lsna1"]
 resource_name = "die"
-length = 1.1
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -100,10 +144,22 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4, 0.5, 0.59999996, 0.7, 0.8, 0.9, 1.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [23, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33]
+"values": [23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 33]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_stn58"]
@@ -393,15 +449,13 @@ _data = {
 radius = 50.0
 height = 116.0
 
-[sub_resource type="Resource" id="Resource_b68gs"]
-script = ExtResource("19_nvxkv")
-metadata/_custom_type_script = "uid://sxomxrc0lhoq"
-
 [node name="Rhino" type="CharacterBody2D" unique_id=634296537 groups=["Boss", "DynamicObject", "Enemy"]]
+material = SubResource("ShaderMaterial_8quhf")
 script = ExtResource("1_lyyuu")
 face_left_on_start = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1340272144]
+material = SubResource("ShaderMaterial_k3ir7")
 texture = ExtResource("2_oa7tt")
 offset = Vector2(0, -97)
 flip_h = true
@@ -440,6 +494,8 @@ metadata/_custom_type_script = "uid://bbryqo8k0dcej"
 [node name="RHDeath" type="Node" parent="RhinoStateMachine" unique_id=1641196677]
 unique_name_in_owner = true
 script = ExtResource("6_4mqdv")
+knockback_strength = 150.0
+death_audio = ExtResource("8_4mqdv")
 metadata/_custom_type_script = "uid://7mjw5weplyks"
 
 [node name="RHStun" type="Node" parent="RhinoStateMachine" unique_id=1043836698]
@@ -479,12 +535,9 @@ metadata/_custom_type_script = "uid://davkcy554f7pn"
 position = Vector2(1, -13)
 shape = SubResource("CapsuleShape2D_6oiw0")
 
-[node name="EnemyHitParticles" type="Marker2D" parent="." unique_id=1594474827]
-script = ExtResource("18_b43yk")
-hit_particles = Array[ExtResource("19_nvxkv")]([ExtResource("20_7kn0p")])
-death_particles = Array[ExtResource("19_nvxkv")]([SubResource("Resource_b68gs")])
-metadata/_custom_type_script = "uid://bbswshx0f0q7o"
-
-[node name="DamageModulate" type="Node" parent="." unique_id=1924065661]
-script = ExtResource("21_i7rmc")
-metadata/_custom_type_script = "uid://bfib2t1n3gxbc"
+[node name="RhinoHitParticles" type="Marker2D" parent="." unique_id=688182932]
+position = Vector2(0, -61)
+script = ExtResource("14_oa7tt")
+hit_particles = Array[ExtResource("19_nvxkv")]([ExtResource("16_8quhf")])
+death_particles = Array[ExtResource("19_nvxkv")]([ExtResource("17_4mqdv")])
+metadata/_custom_type_script = "uid://ctmnettscu54g"

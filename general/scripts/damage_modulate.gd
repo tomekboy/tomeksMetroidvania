@@ -4,7 +4,6 @@ class_name DamageModulate extends Node
 
 var tween : Tween
 
-
 func _ready() -> void:
 	if owner is Enemy:
 		owner.was_hit.connect( _modulate_node )

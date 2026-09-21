@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dvp824l48077d" path="res://assets/sfx/timber-tree-falling.mp3" id="7_k3ir7"]
 [ext_resource type="Texture2D" uid="uid://b4bm1r2wcwijr" path="res://general/props/tilesets/tree.png" id="8_ck5ju"]
 [ext_resource type="Texture2D" uid="uid://ch58b4hrcr6t1" path="res://levels/00_wonderland/images/BackgroundLayer-3x1020.png" id="9_1megj"]
+[ext_resource type="Script" uid="uid://8e2ug871ho1x" path="res://levels/00_wonderland/scripts/tree_right.gd" id="10_4lskm"]
 [ext_resource type="Texture2D" uid="uid://tdjh7hofajak" path="res://levels/00_wonderland/images/BackgroundLayer-2x1020.png" id="10_c1ntn"]
 [ext_resource type="Texture2D" uid="uid://ufu84jysnj0n" path="res://levels/00_wonderland/images/BackgroundLayer-1x1020.png" id="11_hfufo"]
 [ext_resource type="PackedScene" uid="uid://cnucw4hpn1j2f" path="res://levels/00_wonderland/scenes/grass.tscn" id="12_eqn3o"]
@@ -25,9 +26,10 @@
 [ext_resource type="Material" uid="uid://d0mwxqwvs8f7i" path="res://assets/materials_and_shaders/fog_fade_material.tres" id="22_wq3wc"]
 [ext_resource type="Script" uid="uid://jevkrmftvmf3" path="res://bosses/scripts/boss_battle_orchestrator.gd" id="23_kussq"]
 [ext_resource type="AudioStream" uid="uid://duj80ijeavtft" path="res://assets/music/rhinoBossBackground.mp3" id="24_nd32s"]
-[ext_resource type="PackedScene" uid="uid://2xxmeniw5kh4" path="res://general/portal/portal.tscn" id="25_k3ir7"]
 [ext_resource type="Script" uid="uid://di70anarsc214" path="res://levels/00_wonderland/scripts/tree_left.gd" id="27_fp7xv"]
+[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/rhino_portal.tscn" id="27_fr70b"]
 [ext_resource type="PackedScene" uid="uid://bclmuh5ll5hn1" path="res://bosses/rhino/rhino.tscn" id="28_k3ir7"]
+[ext_resource type="PackedScene" uid="uid://cxhxroxxw01iq" path="res://00_global/visual_effects/fireworks.tscn" id="29_4lskm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmynt"]
 texture = ExtResource("8_ck5ju")
@@ -2195,6 +2197,30 @@ hue_variation_max = 0.049999975
 turbulence_enabled = true
 turbulence_influence_max = 0.19000001
 
+[sub_resource type="Shader" id="Shader_8quhf"]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0, 1);
+uniform float block_size = 1;
+
+float random(vec2 uv) {
+    return fract(sin(dot(uv, vec2(12.9898, 78.233))) * 438.5453);
+}
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	vec2 uv_snapped = floor(UV / TEXTURE_PIXEL_SIZE / vec2(block_size));
+	color.a *= step(progress, random(uv_snapped));
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr70b"]
+resource_local_to_scene = true
+shader = SubResource("Shader_8quhf")
+shader_parameter/progress = 0.0
+shader_parameter/block_size = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0cjl"]
 size = Vector2(28, 620)
 
@@ -2216,11 +2242,18 @@ script = ExtResource("4_n070j")
 track = ExtResource("5_5rgmg")
 metadata/_custom_type_script = "uid://dtbxdmecqneq1"
 
-[node name="bossForrest" parent="." unique_id=54807102 instance=ExtResource("6_lxt3s")]
+[node name="bossForrest" parent="." unique_id=388100454 instance=ExtResource("6_lxt3s")]
 position = Vector2(0, 580)
 size = 7
 target_level = "uid://bk7purnia7v6"
 target_area_name = "bossForrest"
+
+[node name="cavernLand" parent="." unique_id=879717258 instance=ExtResource("6_lxt3s")]
+position = Vector2(1020, 580)
+size = 7
+location = 1
+target_level = "uid://dmvfo1xle26xe"
+target_area_name = "cavernLand"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=780320359]
 stream = ExtResource("7_k3ir7")
@@ -2233,12 +2266,13 @@ tile_set = ExtResource("7_fppgx")
 
 [node name="TreeRight" type="TileMapLayer" parent="Visuals" unique_id=1453675197]
 position = Vector2(-2, -30)
-tile_map_data = PackedByteArray("AAAdAAgAAAACAAYAABAdAAsAAAACAAkAABAdAA8AAAACAA0AABAeAAgAAAABAAYAABAeAAkAAAABAAcAABAeAAsAAAABAAkAABAeAAwAAAABAAoAABAeAA8AAAABAA0AABAeABAAAAABAA4AABAfAAUAAAAAAAMAABAfAAYAAAAAAAQAABAfAAcAAAAAAAUAABAfAAgAAAAAAAYAABAfAAkAAAAAAAcAABAfAAoAAAAAAAgAABAfAAsAAAAAAAkAABAfAAwAAAAAAAoAABAfAA0AAAAAAAsAABAfAA4AAAAAAAwAABAfAA8AAAAAAA0AABAfABAAAAAAAA4AABAfABEAAAABAAAAABAfABIAAAABAAEAABAfABMAAAABAAIAABA=")
+tile_map_data = PackedByteArray("AAAdAAgAAAACAAYAABAdAAsAAAACAAkAABAdAA8AAAACAA0AABAeAAgAAAABAAYAABAeAAkAAAABAAcAABAeAAsAAAABAAkAABAeAAwAAAABAAoAABAeAA8AAAABAA0AABAeABAAAAABAA4AABAfAAUAAAAAAAMAABAfAAYAAAAAAAQAABAfAAcAAAAAAAUAABAfAAgAAAAAAAYAABAfAAkAAAAAAAcAABAfAAoAAAAAAAgAABAfAAsAAAAAAAkAABAfAAwAAAAAAAoAABAfAA0AAAAAAAsAABAfAA4AAAAAAAwAABAfAA8AAAAAAA0AABAfABAAAAAAAA4AABAfABEAAAABAAAAABAfABIAAAABAAEAABAfABMAAAABAAIAABAfAAEAAAAAAAgAABAfAAIAAAAAAAkAABAeAAIAAAABAAkAABAdAAIAAAACAAkAABAfAAMAAAAAAAoAABAeAAMAAAABAAoAABAfAAQAAAAAAAsAABA=")
 tile_set = SubResource("TileSet_kussq")
+script = ExtResource("10_4lskm")
 
 [node name="TreeLeft" type="TileMapLayer" parent="Visuals" unique_id=1151159210]
 position = Vector2(-2, -30)
-tile_map_data = PackedByteArray("AAD//wgAAAACAAYAABD//wsAAAACAAkAABD//w8AAAACAA0AABAAAAgAAAABAAYAABAAAAkAAAABAAcAABAAAAsAAAABAAkAABAAAAwAAAABAAoAABAAAA8AAAABAA0AABAAABAAAAABAA4AABABAAUAAAAAAAcAAAABAAYAAAAAAAgAAAABAAcAAAAAAAUAABABAAgAAAAAAAYAABABAAkAAAAAAAcAABABAAoAAAAAAAgAABABAAsAAAAAAAkAABABAAwAAAAAAAoAABABAA0AAAAAAAsAABABAA4AAAAAAAwAABABAA8AAAAAAA0AABABABAAAAAAAA4AABABABEAAAABAAAAABABABIAAAABAAEAABABABMAAAABAAIAABABAAEAAAAAAAMAAAABAAIAAAAAAAQAAAABAAMAAAAAAAUAAAABAAQAAAAAAAYAAAACAAQAAAABAAYAAAACAAUAAAABAAcAAAAfAAEAAAAAAAMAABAfAAIAAAAAAAQAABAfAAMAAAAAAAUAABAfAAQAAAAAAAYAABAfAAUAAAAAAAcAABAfAAYAAAAAAAgAABAgAAQAAAABAAYAAAAgAAUAAAABAAcAAAAeAAQAAAABAAYAABAeAAUAAAABAAcAABA=")
+tile_map_data = PackedByteArray("AAD//wgAAAACAAYAABD//wsAAAACAAkAABD//w8AAAACAA0AABAAAAgAAAABAAYAABAAAAkAAAABAAcAABAAAAsAAAABAAkAABAAAAwAAAABAAoAABAAAA8AAAABAA0AABAAABAAAAABAA4AABABAAUAAAAAAAcAAAABAAYAAAAAAAgAAAABAAcAAAAAAAUAABABAAgAAAAAAAYAABABAAkAAAAAAAcAABABAAoAAAAAAAgAABABAAsAAAAAAAkAABABAAwAAAAAAAoAABABAA0AAAAAAAsAABABAA4AAAAAAAwAABABAA8AAAAAAA0AABABABAAAAAAAA4AABABABEAAAABAAAAABABABIAAAABAAEAABABABMAAAABAAIAABABAAEAAAAAAAMAAAABAAIAAAAAAAQAAAABAAMAAAAAAAUAAAABAAQAAAAAAAYAAAACAAQAAAABAAYAAAACAAUAAAABAAcAAAAgAAUAAAABAAcAAAAeAAQAAAABAAYAABAeAAUAAAABAAcAABA=")
 tile_set = SubResource("TileSet_kussq")
 script = ExtResource("27_fp7xv")
 slide_duration = 2.5
@@ -2418,30 +2452,33 @@ texture = ExtResource("20_iy6jc")
 
 [node name="Lighting" type="Node" parent="Ambiance" unique_id=674772003]
 
-[node name="PointLight2D" type="PointLight2D" parent="Ambiance/Lighting" unique_id=1115380978]
-position = Vector2(350, 373)
-rotation = 0.21816616
-color = Color(1, 0.7647059, 0.32156864, 1)
-texture = ExtResource("21_cgxbu")
-texture_scale = 2.0
-
 [node name="SunBeam" type="Sprite2D" parent="Ambiance/Lighting" unique_id=866570142]
 modulate = Color(1.1638972, 0.9554805, 0.3664772, 0.25490198)
 z_index = 5
 material = SubResource("CanvasItemMaterial_ulnwb")
-position = Vector2(1072, -16)
+position = Vector2(238.00012, -40.99998)
 rotation = 0.21816616
-scale = Vector2(1, 1.4341543)
+scale = Vector2(0.6043768, 1.4341543)
 texture = ExtResource("21_cgxbu")
 offset = Vector2(0, 256)
 
-[node name="SunBeam2" type="Sprite2D" parent="Ambiance/Lighting" unique_id=453708907]
+[node name="SunBeam2" type="Sprite2D" parent="Ambiance/Lighting" unique_id=1874546674]
 modulate = Color(1.1638972, 0.9554805, 0.3664772, 0.25490198)
 z_index = 5
 material = SubResource("CanvasItemMaterial_ulnwb")
-position = Vector2(1815.0001, -16)
+position = Vector2(577.0001, -38.99998)
 rotation = 0.21816616
-scale = Vector2(1, 1.4341543)
+scale = Vector2(0.6043768, 1.4341543)
+texture = ExtResource("21_cgxbu")
+offset = Vector2(0, 256)
+
+[node name="SunBeam3" type="Sprite2D" parent="Ambiance/Lighting" unique_id=1733227408]
+modulate = Color(1.1638972, 0.9554805, 0.3664772, 0.25490198)
+z_index = 5
+material = SubResource("CanvasItemMaterial_ulnwb")
+position = Vector2(909.56067, -26.960453)
+rotation = 0.21816616
+scale = Vector2(0.6043768, 1.4341543)
 texture = ExtResource("21_cgxbu")
 offset = Vector2(0, 256)
 
@@ -2479,24 +2516,26 @@ process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
 [node name="Decorations" type="Node" parent="." unique_id=1361011820]
 
+[node name="Fireworks" parent="Decorations" unique_id=1264666840 instance=ExtResource("29_4lskm")]
+visible = false
+
 [node name="StaticObjects" type="Node" parent="." unique_id=1418818487]
 
-[node name="Portal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("25_k3ir7")]
-visible = false
-position = Vector2(786, 553)
+[node name="RhinoPortal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("27_fr70b")]
+position = Vector2(1005, 562)
 
 [node name="DynamicObjects" type="Node" parent="." unique_id=2058451056]
 
-[node name="BossBattleOrchestrator" type="Node" parent="." unique_id=1077930871 node_paths=PackedStringArray("boss", "trigger_area", "reward")]
+[node name="BossBattleOrchestrator" type="Node" parent="." unique_id=1077930871 node_paths=PackedStringArray("boss", "trigger_area")]
 script = ExtResource("23_kussq")
 boss = NodePath("Rhino")
 boss_name = "bossRhino"
 trigger_area = NodePath("BossBattleArea2D")
-reward = NodePath("../StaticObjects/Portal")
 fight_track = ExtResource("24_nd32s")
 metadata/_custom_type_script = "uid://jevkrmftvmf3"
 
 [node name="Rhino" parent="BossBattleOrchestrator" unique_id=634296537 instance=ExtResource("28_k3ir7")]
+material = SubResource("ShaderMaterial_fr70b")
 position = Vector2(649, 610)
 
 [node name="BossBattleArea2D" type="Area2D" parent="BossBattleOrchestrator" unique_id=2009439446]
@@ -2508,3 +2547,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBattleOrchestrator/BossBattleArea2D" unique_id=460388404]
 position = Vector2(4, 300)
 shape = SubResource("RectangleShape2D_u0cjl")
+
+[node name="Fireworks" parent="BossBattleOrchestrator" unique_id=1742555248 instance=ExtResource("29_4lskm")]
+visible = false

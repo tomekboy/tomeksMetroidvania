@@ -27,6 +27,7 @@ extends CanvasLayer
 @export var double_jump : bool = false
 @export var ground_slam : bool = false
 @export var morph_roll : bool = false
+@export var rhino : bool = false
 
 var boss_hp_tween : Tween
 
@@ -89,7 +90,7 @@ func _on_title_screen_pressed() -> void:
 
 
 func releaseBoss( cp : float):
-	if cp >= 25 and !SaveManager.persistent_data.get( "uid://ycro72736wy2/04Boss/BossBattleOrchestrator", "" ) == "defeated":
+	if cp >= 25 and !SaveManager.persistent_data.get( "bossName" ) == "defeated":
 		var scene_root = get_tree().current_scene
 		var rhino_temp = rhino_awakening.instantiate()
 		rhino_temp.position = player_position
