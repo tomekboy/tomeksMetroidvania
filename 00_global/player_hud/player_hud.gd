@@ -91,24 +91,16 @@ func _on_title_screen_pressed() -> void:
 
 func releaseBoss( cp : float):
 	if  cp >= 2 and !SaveManager.persistent_data.get( "rhino", "0" ) == "defeated" and rhino_awakening_shown == false:
-		# 1. Get the current active scene root
+
+		var player : Player = get_tree().get_first_node_in_group( "Player" )
 		var scene_root = get_tree().current_scene
-
-		# 2. Get the active camera to find where the player is looking
-		var camera = get_viewport().get_camera_2d()
-
-		if camera:
-			# 3. Calculate the exact world coordinate of the viewport center
-			var viewport_center_world = camera.get_screen_center_position()
-			
-			# 4. Instantiate and configure the rhino
-			var rhino_temp = rhino_awakening.instantiate()
-			
-			# 5. Add to scene root first, then set the GLOBAL position
-			scene_root.add_child(rhino_temp)
-			rhino_temp.global_position = viewport_center_world
-		
+		var rhino_temp = rhino_awakening.instantiate()
+		var top_middle = player.global_position - Vector2(0, 300 / 2.0)
+		var target_position = top_middle + Vector2(0, -30)
+		scene_root.add_child(rhino_temp)
+		rhino_temp.global_position = target_position
 		rhino_awakening_shown = true
+		
 	else:
 		return
 
