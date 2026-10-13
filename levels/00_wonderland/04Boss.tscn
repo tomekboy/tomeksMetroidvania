@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/rhino_portal.tscn" id="27_fr70b"]
 [ext_resource type="PackedScene" uid="uid://bclmuh5ll5hn1" path="res://bosses/rhino/rhino.tscn" id="28_k3ir7"]
 [ext_resource type="PackedScene" uid="uid://cxhxroxxw01iq" path="res://00_global/visual_effects/fireworks.tscn" id="29_4lskm"]
+[ext_resource type="Script" uid="uid://dopkspryqgc2u" path="res://general/scripts/patrol_limit.gd" id="31_smtsq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmynt"]
 texture = ExtResource("8_ck5ju")
@@ -2215,7 +2216,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr70b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smtsq"]
 resource_local_to_scene = true
 shader = SubResource("Shader_8quhf")
 shader_parameter/progress = 0.0
@@ -2232,7 +2233,7 @@ script = ExtResource("1_2tfqu")
 metadata/_custom_type_script = "uid://cbdfv5wlgti5s"
 
 [node name="PlayerSpawn" parent="." unique_id=673890801 instance=ExtResource("2_uvf31")]
-position = Vector2(94, 606)
+position = Vector2(61, 606)
 
 [node name="DeathArea" parent="." unique_id=22993606 instance=ExtResource("3_4rwv4")]
 position = Vector2(0, 832)
@@ -2250,7 +2251,6 @@ target_area_name = "bossForrest"
 
 [node name="cavernLand" parent="." unique_id=879717258 instance=ExtResource("6_lxt3s")]
 position = Vector2(1020, 580)
-size = 7
 location = 1
 target_level = "uid://dmvfo1xle26xe"
 target_area_name = "cavernLand"
@@ -2514,11 +2514,6 @@ randomness = 0.83
 visibility_rect = Rect2(-1530, -200, 3060, 320)
 process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
-[node name="Decorations" type="Node" parent="." unique_id=1361011820]
-
-[node name="Fireworks" parent="Decorations" unique_id=1264666840 instance=ExtResource("29_4lskm")]
-visible = false
-
 [node name="StaticObjects" type="Node" parent="." unique_id=1418818487]
 
 [node name="RhinoPortal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("27_fr70b")]
@@ -2526,21 +2521,33 @@ position = Vector2(1005, 562)
 
 [node name="DynamicObjects" type="Node" parent="." unique_id=2058451056]
 
-[node name="BossBattleOrchestrator" type="Node" parent="." unique_id=1077930871 node_paths=PackedStringArray("boss", "trigger_area")]
+[node name="BossBattleOrchestrator" type="Node" parent="." unique_id=1077930871 node_paths=PackedStringArray("boss", "trigger_area", "reward")]
 script = ExtResource("23_kussq")
 boss = NodePath("Rhino")
 boss_name = "bossRhino"
 trigger_area = NodePath("BossBattleArea2D")
+reward = NodePath("../StaticObjects/RhinoPortal")
 fight_track = ExtResource("24_nd32s")
 metadata/_custom_type_script = "uid://jevkrmftvmf3"
 
 [node name="Rhino" parent="BossBattleOrchestrator" unique_id=634296537 instance=ExtResource("28_k3ir7")]
-material = SubResource("ShaderMaterial_fr70b")
-position = Vector2(649, 610)
+material = SubResource("ShaderMaterial_smtsq")
+position = Vector2(587, 609)
+
+[node name="PatrolLimitLeft" type="Node2D" parent="BossBattleOrchestrator/Rhino" unique_id=519828208]
+position = Vector2(-328, -37)
+script = ExtResource("31_smtsq")
+metadata/_custom_type_script = "uid://dopkspryqgc2u"
+
+[node name="PatrolLimitRight" type="Node2D" parent="BossBattleOrchestrator/Rhino" unique_id=296684240]
+position = Vector2(220, -34)
+script = ExtResource("31_smtsq")
+side = 2
+metadata/_custom_type_script = "uid://dopkspryqgc2u"
 
 [node name="BossBattleArea2D" type="Area2D" parent="BossBattleOrchestrator" unique_id=2009439446]
 visibility_layer = 17
-position = Vector2(153, 18)
+position = Vector2(97, 18)
 collision_layer = 0
 collision_mask = 16
 

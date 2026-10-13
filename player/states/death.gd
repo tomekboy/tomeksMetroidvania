@@ -1,5 +1,7 @@
 class_name PlayerStateDeath extends PlayerState
 
+@onready var sprite_2d: PlayerSprite = $"../../Sprite2D"
+
 const DEATH_SFX = preload("uid://dvibfaw5tbft0")
 
 # what happens when we enter this state?
@@ -16,3 +18,7 @@ func enter() -> void:
 func physics_process( _delta: float ) -> PlayerState:
 	player.velocity.x = 0
 	return null
+	
+func set_death_material() -> void:
+	sprite_2d.material.set_shader_parameter("enabled", true)
+	pass

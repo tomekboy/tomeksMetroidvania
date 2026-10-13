@@ -47,7 +47,9 @@ func handle_input( event : InputEvent) -> PlayerState:
 			return slam
 		return attack
 	if event.is_action_released( "jump" ):
-		return fall
+		if player.jump_count == 1:
+			player.velocity.y *= 0.5
+			return fall
 	if event.is_action_pressed( "action") and player.can_morph():
 		return roll
 	return next_state
@@ -73,10 +75,13 @@ func physics_process( _delta: float ) -> PlayerState:
 
 func do_jump() -> void:
 	if player.jump_count > 0:
+		player.animation_player.play( "double_jump" )
+		
 		if player.double_jump == false:
 			return
 		elif player.jump_count > 1:
 			return
+			
 	player.jump_count += 1
 	player.velocity.y = -jump_velocity
 	AudioManager.play_spatial_sound( JUMP_SFX, player.global_position, false, true, 0.25 )

@@ -7,7 +7,7 @@ class_name RhinoHitParticles extends Marker2D
 var rhino_was_killed : bool = false
 
 func _ready() -> void:
-	if owner is Rhino:
+	if owner is Enemy:
 		owner.was_hit.connect( _on_hit )
 		owner.was_killed.connect( _on_killed )
 	else:

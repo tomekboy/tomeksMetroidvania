@@ -182,7 +182,7 @@ metadata/_custom_type_script = "uid://sxomxrc0lhoq"
 [node name="SpiderBlack" type="CharacterBody2D" unique_id=634296537 groups=["DynamicObject", "Enemy"]]
 collision_layer = 35
 script = ExtResource("1_rfuav")
-health = 15.0
+health = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=922477196 groups=["DynamicObject", "Enemy"]]
 position = Vector2(4, -14)
@@ -207,9 +207,10 @@ bus = &"SFX"
 script = ExtResource("2_nwtab")
 metadata/_custom_type_script = "uid://2dityed23bsq"
 
-[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=96065311]
+[node name="ESAttack" type="Node" parent="EnemyStateMachine" unique_id=96065311 node_paths=PackedStringArray("attack_area")]
 unique_name_in_owner = true
 script = ExtResource("3_06dao")
+attack_area = NodePath("../../HazardArea")
 
 [node name="ESChase" type="Node" parent="EnemyStateMachine" unique_id=1020455113]
 unique_name_in_owner = true

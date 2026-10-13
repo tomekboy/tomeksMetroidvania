@@ -5,7 +5,8 @@ class_name ESDeath extends EnemyState
 # var state_machine : EnemyStateMachine
 # var enemy : Enemy
 # var blackboard : Blackboard
-@export var knockback_strength : float = 100
+
+@export var knockback_strength : float = 50
 @export var death_audio : AudioStream
 
 var vel_x : float = 0

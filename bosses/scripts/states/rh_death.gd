@@ -1,14 +1,18 @@
-class_name RHDeath extends RhinoState
+class_name RHDeath extends EnemyState
 
 # EnemyState class will inherit the following variables:
 # @export var animation_name : String = "idle"
 # var state_machine : EnemyStateMachine
-# var boss : Rhino
+# var enemy : Rhino
 # var blackboard : Blackboard
 
-@export var knockback_strength : float = 100
+@onready var fireworks: Node2D = $"../../../Fireworks"
+
+@export var knockback_strength : float = 25
 @export var death_audio : AudioStream
 @export var post_fight_track : AudioStream
+
+const FIREWORKS_SFX = preload("uid://v5t44cwklho5")
 
 var bus_idx = AudioServer.get_bus_index("Music")
 var current_db = AudioServer.get_bus_volume_db(bus_idx)
@@ -18,22 +22,25 @@ var duration : float = 0
 var timer : float = 0
 
 func enter() -> void:
-	boss.play_animation( animation_name if animation_name else "die" )
-	AudioManager.play_spatial_sound( death_audio, boss.global_position )
+	enemy.play_animation( animation_name if animation_name else "die" )
+	AudioManager.play_spatial_sound( death_audio, enemy.global_position )
 	
-	duration = boss.animation.current_animation_length
+	duration = enemy.animation.current_animation_length
 	timer = 0
 	
 	_calc_velocity( blackboard.damage_source )
 	blackboard.damage_source = null
 	blackboard.can_decide = false
-
-	await boss.animation.animation_finished
-
+	
+	AudioManager.play_spatial_sound( FIREWORKS_SFX, Vector2.ZERO )
+	fireworks.visible = true
+	
+	await enemy.animation.animation_finished
+	
 	AudioManager.play_music( post_fight_track )
 	AudioServer.set_bus_volume_db(bus_idx, current_db - 5.0)
 	
-	boss.queue_free()
+	enemy.queue_free()
 	pass
 
 
@@ -49,7 +56,7 @@ func exit() -> void:
 
 func physics_update( delta : float ) -> void:
 	timer += delta
-	boss.velocity.x = vel_x * ( 1 - timer / duration )
+	enemy.velocity.x = vel_x * ( 1 - timer / duration )
 	if timer >= duration:
 		blackboard.can_decide = true
 	pass
@@ -57,7 +64,7 @@ func physics_update( delta : float ) -> void:
 
 func _calc_velocity( a : AttackArea ) -> void:
 	vel_x = 1
-	if a.global_position.x > boss.global_position.x:
+	if a.global_position.x > enemy.global_position.x:
 		vel_x = -1
 	vel_x *= knockback_strength
 	pass

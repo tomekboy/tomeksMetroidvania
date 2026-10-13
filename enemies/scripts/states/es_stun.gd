@@ -5,7 +5,7 @@ class_name ESStun extends EnemyState
 # var state_machine : EnemyStateMachine
 # var enemy : Enemy
 # var blackboard : Blackboard
-@export var knockback_strength : float = 100
+@export var knockback_strength : float = 50
 var vel_x : float = 0
 var duration : float = 0
 var timer : float = 0

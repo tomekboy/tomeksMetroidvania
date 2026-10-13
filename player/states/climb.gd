@@ -7,7 +7,13 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
-	player.animation_player.play( "climb" )
+	var collision = player.get_slide_collision(0)
+	var wall_collider = collision.get_collider()
+	
+	if wall_collider and "tree" in wall_collider.name.to_lower() and "platform" in wall_collider.name.to_lower():
+		player.animation_player.play( "wall_climb" )
+	else:
+		player.animation_player.play( "idle" )
 	pass
 
 
@@ -36,13 +42,18 @@ func physics_process( _delta: float ) -> PlayerState:
 			var collision = player.get_slide_collision(i)
 			var wall_collider = collision.get_collider()
 			if wall_collider.name == "Platform":
-				player.animation_player.play( "slide_platform" )
+				player.animation_player.play( "wall_slide" )
+			elif wall_collider and "tree" in wall_collider.name.to_lower():
+				player.animation_player.play( "tree_slide" )
 			else:
-				player.animation_player.play( "slide_tree" )
-		if not player.wall_climb_raycast.is_colliding():
-			return fall
-		if Input.is_action_just_pressed( "jump" ):
+				player.animation_player.play( "idle" )
+				return
+	
+	if not player.wall_climb_raycast.is_colliding():
+		return fall
+	elif Input.is_action_just_pressed( "jump" ):
 			if player.wall_climb_raycast.is_colliding():
 				player.velocity = Vector2( player.wall_x_force, player.wall_y_force )
 				return jump
+
 	return next_state

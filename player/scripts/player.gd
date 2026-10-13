@@ -56,6 +56,7 @@ var direction : Vector2 = Vector2.ZERO
 var gravity : float = 980
 var gravity_multiplier : float = 1.0
 var wall_direction : Vector2 = Vector2.ZERO
+var recoil : Vector2 = Vector2.ZERO
 
 var dash : bool = false
 var dash_count : int = 0
@@ -72,10 +73,12 @@ func _ready() -> void:
 		self.queue_free()
 	initialize_states()
 	self.call_deferred( "reparent", get_tree().root )
+	
 	MessageManager.player_healed.connect( _on_player_healed )
 	MessageManager.back_to_title_screen.connect( queue_free )
 	MessageManager.input_hint_changed.connect( _on_input_hint_changed )
 	damage_area.damage_taken.connect( _on_demage_taken )
+	attack_area.damage_dealt.connect( _on_damage_dealt )
 	pass
 
 
@@ -89,22 +92,6 @@ func _unhandled_input( event: InputEvent ) -> void:
 		var pause_menu : PauseMenu = load( "res://pause_menu/pause_menu.tscn" ).instantiate()
 		add_child( pause_menu )
 		return
-		
-		# DEBUG
-	if OS.is_debug_build():
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_MINUS:
-				if Input.is_key_pressed( KEY_SHIFT ):
-					max_hp -= 10
-				else:
-					hp -= 2
-			elif event.keycode == KEY_PLUS:
-				if Input.is_key_pressed( KEY_SHIFT ):
-					max_hp += 10
-				else:
-					hp += 2
-	# end DEBUG
-		
 	change_state( current_state.handle_input( event ) )
 	pass
 
@@ -120,6 +107,10 @@ func _physics_process( delta: float ) -> void:
 	velocity.y = clampf( velocity.y, -1000, max_fall_velocity )
 	move_and_slide()
 	change_state( current_state.physics_process( delta ) )
+	# add recoil velocity
+	velocity += recoil
+	#reduce recoil velocity
+	recoil = recoil.lerp( Vector2.ZERO, 1.0 - exp( delta * -50 ) )
 	pass
 
 
@@ -197,6 +188,10 @@ func _on_demage_taken( a : AttackArea ) -> void:
 	damage_taken.emit()
 	pass
 
+
+func _on_damage_dealt( dir : Vector2 ) -> void:
+	recoil = dir.normalized() * Vector2( 2000, 0 ) * -1
+	pass
 
 
 func _on_input_hint_changed( prompt_name : String ) -> void:

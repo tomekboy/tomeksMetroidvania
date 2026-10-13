@@ -1,22 +1,25 @@
-class_name RHAttack extends RhinoState
+class_name RHAttack extends EnemyState
 
+@export var attack_area : AttackArea
 @export var attack_range : float = 100
 @export var move_speed : float = 88
 @export var cooldown : float = 2.0
-@export var attack_area : AttackArea
 
 var timer : float = 0
 var duration : float = 0
 var on_cooldown : bool = false
 
 func enter() -> void:
-	boss.play_animation( animation_name if animation_name else "stab" )
-	
-	duration = boss.animation.current_animation_length
+	if blackboard.target:
+		var dir : float = sign( blackboard.target.global_position.x - enemy.global_position.x )
+		enemy.change_dir( dir )
+		
+	enemy.play_animation( animation_name if animation_name else "stab" )
+	duration = enemy.animation.current_animation_length
 	timer = 0
 	blackboard.can_decide = false
 	on_cooldown = true
-	boss.velocity.x = move_speed * blackboard.dir
+	enemy.velocity.x = move_speed * blackboard.dir
 	if attack_area:
 		attack_area.flip( blackboard.dir )
 	pass
@@ -50,4 +53,3 @@ func run_cooldown() -> void:
 	await get_tree().create_timer( cooldown ).timeout
 	on_cooldown = false
 	pass
-	

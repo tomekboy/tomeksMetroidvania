@@ -1772,13 +1772,11 @@ shape = SubResource("CapsuleShape2D_2ieo8")
 debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
 
 [node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=757853158]
-visible = false
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_ebec5")
 debug_color = Color(0.63468015, 0.70196074, 0, 0.25490198)
 
 [node name="OneWayPlatformShapeCast" type="ShapeCast2D" parent="." unique_id=1885084600]
-visible = false
 position = Vector2(0, -3)
 enabled = false
 shape = SubResource("RectangleShape2D_q28gw")
@@ -1787,7 +1785,6 @@ max_results = 12
 collision_mask = 2
 
 [node name="GroundSlamShapeCast" type="ShapeCast2D" parent="." unique_id=1253893173]
-visible = false
 enabled = false
 shape = SubResource("RectangleShape2D_5ejfk")
 target_position = Vector2(0, 18)
@@ -1797,12 +1794,10 @@ collide_with_areas = true
 
 [node name="WallClimbRaycast" type="RayCast2D" parent="." unique_id=728338091]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -25)
 target_position = Vector2(15, 0)
 
 [node name="RollRaycasts" type="Node2D" parent="." unique_id=247603277]
-visible = false
 
 [node name="RollTop" type="RayCast2D" parent="RollRaycasts" unique_id=596360466]
 unique_name_in_owner = true

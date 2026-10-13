@@ -1,0 +1,713 @@
+{
+	"textures": [
+		{
+			"image": "funBotWallClimb128.png",
+			"size": {
+				"w": 2688,
+				"h": 256
+			},
+			"sprites": [
+				{
+					"filename": "funBotWallClimb_001.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_002.png",
+					"region": {
+						"x": 128,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_003.png",
+					"region": {
+						"x": 256,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_004.png",
+					"region": {
+						"x": 384,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_005.png",
+					"region": {
+						"x": 512,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_006.png",
+					"region": {
+						"x": 640,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_007.png",
+					"region": {
+						"x": 768,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_008.png",
+					"region": {
+						"x": 896,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_009.png",
+					"region": {
+						"x": 1024,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_010.png",
+					"region": {
+						"x": 1152,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_011.png",
+					"region": {
+						"x": 1280,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_012.png",
+					"region": {
+						"x": 1408,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_013.png",
+					"region": {
+						"x": 1536,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_014.png",
+					"region": {
+						"x": 1664,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_015.png",
+					"region": {
+						"x": 1792,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_016.png",
+					"region": {
+						"x": 1920,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_017.png",
+					"region": {
+						"x": 2048,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_018.png",
+					"region": {
+						"x": 2176,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_019.png",
+					"region": {
+						"x": 1536,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_020.png",
+					"region": {
+						"x": 2304,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_021.png",
+					"region": {
+						"x": 2432,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_022.png",
+					"region": {
+						"x": 2560,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_023.png",
+					"region": {
+						"x": 0,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_024.png",
+					"region": {
+						"x": 128,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_025.png",
+					"region": {
+						"x": 256,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_026.png",
+					"region": {
+						"x": 384,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_027.png",
+					"region": {
+						"x": 512,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_028.png",
+					"region": {
+						"x": 640,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_029.png",
+					"region": {
+						"x": 768,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_030.png",
+					"region": {
+						"x": 896,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_031.png",
+					"region": {
+						"x": 1024,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_032.png",
+					"region": {
+						"x": 1152,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_033.png",
+					"region": {
+						"x": 1280,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_034.png",
+					"region": {
+						"x": 1408,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_035.png",
+					"region": {
+						"x": 1536,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_036.png",
+					"region": {
+						"x": 1664,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_037.png",
+					"region": {
+						"x": 1792,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_038.png",
+					"region": {
+						"x": 1920,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_039.png",
+					"region": {
+						"x": 2048,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_040.png",
+					"region": {
+						"x": 2176,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_041.png",
+					"region": {
+						"x": 2304,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_042.png",
+					"region": {
+						"x": 2432,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "funBotWallClimb_043.png",
+					"region": {
+						"x": 2560,
+						"y": 128,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"animations": [
+		{
+			"name": "funBotWallClimb",
+			"frames": [
+				"funBotWallClimb_001.png",
+				"funBotWallClimb_002.png",
+				"funBotWallClimb_003.png",
+				"funBotWallClimb_004.png",
+				"funBotWallClimb_005.png",
+				"funBotWallClimb_006.png",
+				"funBotWallClimb_007.png",
+				"funBotWallClimb_008.png",
+				"funBotWallClimb_009.png",
+				"funBotWallClimb_010.png",
+				"funBotWallClimb_011.png",
+				"funBotWallClimb_012.png",
+				"funBotWallClimb_013.png",
+				"funBotWallClimb_014.png",
+				"funBotWallClimb_015.png",
+				"funBotWallClimb_016.png",
+				"funBotWallClimb_017.png",
+				"funBotWallClimb_018.png",
+				"funBotWallClimb_019.png",
+				"funBotWallClimb_020.png",
+				"funBotWallClimb_021.png",
+				"funBotWallClimb_022.png",
+				"funBotWallClimb_023.png",
+				"funBotWallClimb_024.png",
+				"funBotWallClimb_025.png",
+				"funBotWallClimb_026.png",
+				"funBotWallClimb_027.png",
+				"funBotWallClimb_028.png",
+				"funBotWallClimb_029.png",
+				"funBotWallClimb_030.png",
+				"funBotWallClimb_031.png",
+				"funBotWallClimb_032.png",
+				"funBotWallClimb_033.png",
+				"funBotWallClimb_034.png",
+				"funBotWallClimb_035.png",
+				"funBotWallClimb_036.png",
+				"funBotWallClimb_037.png",
+				"funBotWallClimb_038.png",
+				"funBotWallClimb_039.png",
+				"funBotWallClimb_040.png",
+				"funBotWallClimb_041.png",
+				"funBotWallClimb_042.png",
+				"funBotWallClimb_043.png"
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.1",
+		"smartupdate": "$TexturePacker:SmartUpdate:6635cc362f4af33a6962956e7810291d:598de871126e989ba4be01768f7eaa0d:ace6aefebfd30965f78ba0004ba42ad6$"
+	}
+}

@@ -13,7 +13,7 @@ func _ready() -> void:
 	if int(owner.name) <= 4:
 		player = load("uid://bqkwwrgi782w5").instantiate() # polo
 	elif int(owner.name) >= 5:
-		player = load("uid://hk8xg8lqmqs5").instantiate() # oren
+		player = load("uid://dhsiv2ug564gc").instantiate() # oren
 		
 	get_tree().root.add_child( player )
 		

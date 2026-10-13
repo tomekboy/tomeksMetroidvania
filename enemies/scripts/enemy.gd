@@ -6,6 +6,7 @@ signal direction_changed( new_dir )
 signal was_hit( a : AttackArea )
 signal was_killed()
 
+
 @export var health : float = 3
 @export var affected_by_gravity : bool = true
 @export var face_left_on_start : bool = false :
@@ -23,6 +24,9 @@ var decision_engine : DecisionEngine
 var blackboard : Blackboard
 
 var killed = false
+
+var bomb_scene = preload("uid://3jk8gfdks1yh")
+var throw_speed: Vector2 = Vector2( 300, -200 )
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -115,7 +119,6 @@ func _on_damage_taken( a : AttackArea ) -> void:
 ## configuration warnings for all critical nodes
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings : PackedStringArray = []
-	
 	if not find_children( "*", "AnimationPlayer", false ):
 		warnings.append( "Requires an AnimationPlayer!" )
 	if not find_children( "*", "Sprite2D", false ):
@@ -128,7 +131,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append( "Requires an EnemyStateMachine node!" )
 	if not find_children( "*", "DecisionEngine", false ):
 		warnings.append( "Requires a DecisionEngine node!" )
-	
 	return warnings
 
 
@@ -138,6 +140,31 @@ func _update_face_left() -> void:
 	for c in get_children():
 		if c is Sprite2D:
 			c.flip_h = face_left_on_start
+	pass
+
+
+func throw_bomb():
+	var player = get_tree().get_first_node_in_group("Player")
+	var bomb = bomb_scene.instantiate()
+	#var direction
+	var direction = 1 if not $Sprite2D.flip_h else -1
+	var impulse_vector = Vector2(throw_speed.x * direction, throw_speed.y)
+		
+	
+	
+	get_tree().get_current_scene().add_child(bomb)
+	if global_position <= player.global_position:
+		bomb.position = Vector2(global_position.x + 125, global_position.y - 5)
+		direction = Vector2(1, 0.5).normalized()
+		
+		bomb.apply_central_impulse(impulse_vector)
+		
+		#bomb.apply_impulse(direction * 250)
+	else:
+		bomb.position = Vector2(global_position.x - 125, global_position.y + 5)
+		direction = Vector2(-1, 0.5).normalized()
+		#bomb.apply_impulse(direction * 250)
+		bomb.apply_central_impulse(impulse_vector)
 	pass
 
 

@@ -4,6 +4,7 @@ class_name ESWalk extends EnemyState
 
 var left_limit : float
 var right_limit : float
+
 var anim : String = animation_name
 
 func _ready() -> void:

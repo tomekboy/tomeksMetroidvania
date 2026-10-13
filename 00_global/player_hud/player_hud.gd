@@ -90,8 +90,7 @@ func _on_title_screen_pressed() -> void:
 
 
 func releaseBoss( cp : float):
-	if  cp >= 2 and !SaveManager.persistent_data.get( "rhino", "0" ) == "defeated" and rhino_awakening_shown == false:
-
+	if  cp >= 25 and !SaveManager.persistent_data.get( "rhino", "0" ) == "defeated" and rhino_awakening_shown == false:
 		var player : Player = get_tree().get_first_node_in_group( "Player" )
 		var scene_root = get_tree().current_scene
 		var rhino_temp = rhino_awakening.instantiate()
@@ -100,7 +99,6 @@ func releaseBoss( cp : float):
 		scene_root.add_child(rhino_temp)
 		rhino_temp.global_position = target_position
 		rhino_awakening_shown = true
-		
 	else:
 		return
 

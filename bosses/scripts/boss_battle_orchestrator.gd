@@ -1,6 +1,9 @@
 @icon( "res://general/icons/boss_orchestrator.svg" )
 class_name BossBattleOrchestrator extends Node
 
+@onready var boss_battle_orchestrator: BossBattleOrchestrator = $"."
+@onready var rhino: Enemy = $Rhino
+
 @onready var tree_left: TileMapLayer = $"../Visuals/TreeLeft"
 @onready var tree_right: TileMapLayer = $"../Visuals/TreeRight"
 @onready var audio_stream_player: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
@@ -22,11 +25,19 @@ signal battle_ended
 @export var boss_level_bounds : LevelBounds
 @export var original_level_bounds : LevelBounds
 
-const FIREWORKS_SFX = preload("uid://v5t44cwklho5")
 const SUCCESS_SFX = preload("uid://dhgm0n54jgsex")
 const SPELL_SFX = preload("uid://d1w20jmhofrti")
 
 func _ready() -> void:
+	await SceneManager.load_scene_finished
+
+	var defeated = SaveManager.persistent_data.get("rhino", "false")
+	if defeated == "defeated":
+		queue_free()
+		return
+	else:
+		rhino.visible = true
+	
 	if boss:
 		boss.process_mode = Node.PROCESS_MODE_DISABLED
 		
@@ -60,16 +71,16 @@ func start_boss_battle() -> void:
 
 func end_boss_battle() -> void:
 	battle_ended.emit()
-	
-	AudioManager.play_spatial_sound( FIREWORKS_SFX, Vector2.ZERO )
-	fireworks.visible = true
-	
+	SaveManager.persistent_data[ "rhino" ] = "defeated"
 	AudioManager.play_spatial_sound( SUCCESS_SFX, Vector2.ZERO )
 	rhino_portal.visible = true
 	
 	if tree_left:
 		tree_left.queue_free()
 		
+	if tree_right:
+		tree_right.queue_free()
+	
 	if reward:
 		reward.process_mode = Node.PROCESS_MODE_INHERIT
 		reward.visible = true
@@ -78,13 +89,8 @@ func end_boss_battle() -> void:
 		original_level_bounds.set_camera_bounds()
 		
 	PlayerHud.hide_boss_hp()
-	await get_tree().create_timer(2.0).timeout
-	
+	await get_tree().create_timer(1.0).timeout
 	AudioManager.play_spatial_sound( SPELL_SFX, Vector2.ZERO )
-	
-	if tree_right:
-		tree_right.queue_free()
-	
 	queue_free()
 	pass
 
@@ -110,3 +116,10 @@ func _on_boss_enemy_hit( _a : AttackArea ) -> void:
 	if boss is Enemy:
 		PlayerHud.update_boss_hp( boss.blackboard.health, boss.health )
 	pass
+
+
+func _scene_loaded() -> void:
+	var defeated = SaveManager.persistent_data.get("rhino", "false")
+	print( defeated )
+	pass
+	

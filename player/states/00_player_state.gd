@@ -5,19 +5,18 @@ var player : Player
 var next_state : PlayerState
 
 #region /// state references
-@onready var idle: PlayerStateIdle = %Idle
-@onready var walk: PlayerStateWalk = %Walk
-@onready var jump: PlayerStateJump = %Jump
-@onready var fall: PlayerStateFall = %Fall
-@onready var crouch: PlayerStateCrouch = %Crouch
 @onready var attack: PlayerStateAttack = %Attack
-@onready var stun: PlayerStateStun = %Stun
-@onready var death: PlayerStateDeath = %Death
-@onready var dash: PlayerStateDash = %Dash
-@onready var slam: PlayerStateSlam = %Slam
-@onready var roll: PlayerStateRoll = %Roll
 @onready var climb: PlayerStateClimb = %Climb
-
+@onready var crouch: PlayerStateCrouch = %Crouch
+@onready var dash: PlayerStateDash = %Dash
+@onready var death: PlayerStateDeath = %Death
+@onready var fall: PlayerStateFall = %Fall
+@onready var idle: PlayerStateIdle = %Idle
+@onready var jump: PlayerStateJump = %Jump
+@onready var roll: PlayerStateRoll = %Roll
+@onready var stun: PlayerStateStun = %Stun
+@onready var slam: PlayerStateSlam = %Slam
+@onready var walk: PlayerStateWalk = %Walk
 #endregion
 
 # what happens when this state is initialized?

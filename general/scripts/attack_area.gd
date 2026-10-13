@@ -1,6 +1,8 @@
 @icon( "res://general/icons/attack_area.svg" ) 
 class_name AttackArea extends Area2D
 
+signal damage_dealt( direction :Vector2 )
+
 @export var damage : float = 1
 
 func _ready() -> void:
@@ -19,6 +21,8 @@ func _on_body_entered( body : Node2D ) -> void:
 		var pos : Vector2 = global_position
 		pos.x = body.global_position.x
 		VisualEffects.hit_dust( pos )
+		var _dir : Vector2 = global_position.direction_to( body.global_position )
+		damage_dealt.emit( _dir )
 		pass
 	pass
 

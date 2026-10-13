@@ -1,26 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://3jk8gfdks1yh"]
+[gd_scene format=3 uid="uid://3jk8gfdks1yh"]
 
 [ext_resource type="Texture2D" uid="uid://cmxh4j01oxro7" path="res://enemies/bomb/animations/tomeks_black_explode.png" id="1_1ndma"]
 [ext_resource type="Script" uid="uid://bqqtdq0vnx5ts" path="res://enemies/bomb/scripts/bomb.gd" id="1_8fk6h"]
+[ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_shfi7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8fk6h"]
 radius = 10.049875
 
-[node name="Bomb" type="RigidBody2D" groups=["Enemy"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8t83k"]
+
+[node name="Bomb" type="RigidBody2D" unique_id=1697849821 groups=["Enemy"]]
 script = ExtResource("1_8fk6h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=248453647]
+visible = false
+position = Vector2(-0.99999994, 3.9999998)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CircleShape2D_8fk6h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=96275103]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_1ndma")
 hframes = 5
 vframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 4)
-shape = SubResource("CircleShape2D_8fk6h")
-
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=651208564]
 wait_time = 2.0
 autostart = true
 
+[node name="HazardArea" type="Area2D" parent="." unique_id=3229444]
+collision_mask = 17
+script = ExtResource("3_shfi7")
+metadata/_custom_type_script = "uid://davkcy554f7pn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=2000814701]
+position = Vector2(-1, 4)
+shape = SubResource("CircleShape2D_8t83k")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HazardArea" to="." method="_on_hazard_area_body_entered"]

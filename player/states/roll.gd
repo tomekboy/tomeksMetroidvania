@@ -9,8 +9,9 @@ const LAND_SFX = preload("uid://bxwdus3pl21so")
 
 var on_floor : bool = true
 
-@onready var roll_top: RayCast2D = %RollTop
-@onready var roll_bottom: RayCast2D = %RollBottom
+@onready var roll_ray_up: RayCast2D = %RollRayUp
+@onready var roll_ray_down: RayCast2D = %RollRayDown
+
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -30,14 +31,12 @@ func enter() -> void:
 	
 	player.velocity.y -= 100
 	AudioManager.play_spatial_sound( MORPH_SFX, player.global_position, false, true, 0.5 )
-	
 	pass
 
 
 # what happens when we exit this state?
 func exit() -> void:
 	player.animation_player.speed_scale = 1
-	player.sprite.rotation = 0.0
 	
 	var shape : CapsuleShape2D = player.collision_stand.get_shape() as CapsuleShape2D
 	shape.radius = 7.0
@@ -101,8 +100,8 @@ func physics_process( _delta: float ) -> PlayerState:
 	return next_state
 
 func _can_stand() -> bool:
-	roll_top.force_raycast_update()
-	roll_bottom.force_raycast_update()
-	if roll_bottom.is_colliding() and roll_top.is_colliding():
+	roll_ray_up.force_raycast_update()
+	roll_ray_down.force_raycast_update()
+	if roll_ray_down.is_colliding() and roll_ray_up.is_colliding():
 		return false
 	return true

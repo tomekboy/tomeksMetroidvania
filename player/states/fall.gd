@@ -17,6 +17,11 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
+	
+	player.animation_player.stop()
+	player.animation_player.speed_scale = 1.0
+	player.animation_player.play("fall")
+	
 	if player.can_wall_climb():
 		return
 	player.animation_player.play( "fall" )
@@ -54,8 +59,8 @@ func handle_input( event : InputEvent) -> PlayerState:
 		if player.ground_slam and Input.is_action_pressed( "down" ):
 			return slam
 		return attack
-	if event.is_action_pressed( "jump" ):
-		if coyote_timer > 0:
+	if event.is_action_pressed( "jump" ) and player.jump_count < 2:
+		if coyote_timer > 0:  
 			player.jump_count = 0
 			return jump
 		elif player.jump_count <= 1 and player.double_jump:
@@ -71,7 +76,6 @@ func handle_input( event : InputEvent) -> PlayerState:
 func process( delta: float ) -> PlayerState:
 	coyote_timer -= delta
 	buffer_timer -= delta
-	set_jump_frame()
 	return next_state
 
 
@@ -89,10 +93,16 @@ func physics_process( _delta: float ) -> PlayerState:
 			return jump
 		return idle
 	player.velocity.x = player.direction.x * player.move_speed
+	
+	if player.jump_count >= 2 and Input.is_action_pressed("jump"):
+		player.velocity.y = min(player.velocity.y, 50.0)
+		
+		if player.animation_player.current_animation != "float":
+			player.animation_player.play("float")
+	else:
+		if player.animation_player.current_animation != "fall" and player.animation_player.current_animation != "fall":
+			player.animation_player.play("fall")
+		elif player.animation_player.current_animation == "float":
+			player.animation_player.play("fall")
+			
 	return next_state
-
-
-func set_jump_frame() -> void:
-	var frame : float = remap( player.velocity.y, 0.0, player.max_fall_velocity, 0.0, 0.75 )
-	player.animation_player.seek( frame, true )
-	pass

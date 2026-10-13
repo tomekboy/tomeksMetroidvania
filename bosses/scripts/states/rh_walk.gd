@@ -1,4 +1,4 @@
-class_name RHWalk extends RhinoState
+class_name RHWalk extends EnemyState
 
 @export var walk_speed : float = 50
 
@@ -13,10 +13,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	# What happens when we enter this state?
-	if animation_name:
-		boss.play_animation( anim )
-	else:
-		boss.play_animation( "walk" )
+	enemy.play_animation( animation_name if animation_name else "walk" )
 	pass
 
 
@@ -32,13 +29,13 @@ func exit() -> void:
 
 func physics_update( _delta : float ) -> void:
 	# What physics do we need to influence while in this state?
-	if boss.is_on_wall():
-		boss.change_dir( -blackboard.dir )
-	elif boss.global_position.x <= left_limit and blackboard.dir < 0:
-		boss.change_dir( 1.0 )
-	elif boss.global_position.x >= right_limit and blackboard.dir > 0:
-		boss.change_dir( -1.0 )
-	boss.velocity.x = walk_speed * blackboard.dir
+	if enemy.is_on_wall():
+		enemy.change_dir( -blackboard.dir )
+	elif enemy.global_position.x <= left_limit and blackboard.dir < 0:
+		enemy.change_dir( 1.0 )
+	elif enemy.global_position.x >= right_limit and blackboard.dir > 0:
+		enemy.change_dir( -1.0 )
+	enemy.velocity.x = walk_speed * blackboard.dir
 	pass
 
 
@@ -52,4 +49,3 @@ func _set_limits() -> void:
 			else:
 				right_limit = c.global_position.x
 	pass
-	

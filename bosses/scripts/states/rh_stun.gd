@@ -1,9 +1,9 @@
-class_name RHStun extends RhinoState
+class_name RHStun extends EnemyState
 
 # EnemyState class will inherit the following variables:
 # @export var animation_name : String = "idle"
 # var state_machine : EnemyStateMachine
-# var boss : Rhino
+# var enemy : Rhino
 # var blackboard : Blackboard
 
 @export var knockback_strength : float = 100
@@ -12,13 +12,13 @@ var duration : float = 0
 var timer : float = 0
 
 func start() -> void:
-	var anim : String = animation_name if animation_name else "defend"
-	if boss.animation.current_animation == anim:
-		boss.animation.seek( 0 )
+	var anim : String = animation_name if animation_name else "whacked"
+	if enemy.animation.current_animation == anim:
+		enemy.animation.seek( 0 )
 	else:
-		boss.play_animation( anim )
+		enemy.play_animation( anim )
 		
-	duration = boss.animation.current_animation_length
+	duration = enemy.animation.current_animation_length
 	timer = 0
 	_calc_velocity( blackboard.damage_source )
 	blackboard.damage_source = null
@@ -43,7 +43,7 @@ func exit() -> void:
 
 func physics_update( delta : float ) -> void:
 	timer += delta
-	boss.velocity.x = vel_x * ( 1 - timer / duration )
+	enemy.velocity.x = vel_x * ( 1 - timer / duration )
 	if timer >= duration:
 		blackboard.can_decide = true
 	pass
@@ -51,7 +51,7 @@ func physics_update( delta : float ) -> void:
 
 func _calc_velocity( a : AttackArea ) -> void:
 	vel_x = 1
-	if a.global_position.x > boss.global_position.x:
+	if a.global_position.x > enemy.global_position.x:
 		vel_x = -1
 	vel_x *= knockback_strength
 	pass

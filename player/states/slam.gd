@@ -65,7 +65,7 @@ func process( delta: float ) -> PlayerState:
 func physics_process( delta: float ) -> PlayerState:
 	player.velocity = Vector2( 0, velocity )
 	if player.is_on_floor():
-		if not check_collisions( delta ):	
+		if not check_collisions( delta ):
 			return idle
 	return next_state
 
