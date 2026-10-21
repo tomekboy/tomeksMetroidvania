@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3jk8gfdks1yh"]
 
-[ext_resource type="Texture2D" uid="uid://cmxh4j01oxro7" path="res://enemies/bomb/animations/tomeks_black_explode.png" id="1_1ndma"]
+[ext_resource type="Texture2D" uid="uid://cmxh4j01oxro7" path="res://enemies/bomb/animations/black_explode.png" id="1_1ndma"]
 [ext_resource type="Script" uid="uid://bqqtdq0vnx5ts" path="res://enemies/bomb/scripts/bomb.gd" id="1_8fk6h"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_shfi7"]
 
@@ -8,6 +8,7 @@
 radius = 10.049875
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8t83k"]
+radius = 20.0
 
 [node name="Bomb" type="RigidBody2D" unique_id=1697849821 groups=["Enemy"]]
 script = ExtResource("1_8fk6h")
@@ -34,7 +35,6 @@ script = ExtResource("3_shfi7")
 metadata/_custom_type_script = "uid://davkcy554f7pn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=2000814701]
-position = Vector2(-1, 4)
 shape = SubResource("CircleShape2D_8t83k")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

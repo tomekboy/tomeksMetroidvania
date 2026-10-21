@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cugy6m25hal3t" path="res://enemies/scripts/slime.gd" id="1_t1av3"]
 [ext_resource type="Texture2D" uid="uid://bhfpki6ibnc7p" path="res://enemies/slime/animations/blood.png" id="2_6oiw0"]
 [ext_resource type="AudioStream" uid="uid://nxvjmghuof41" path="res://assets/sfx/enemy_death.wav" id="2_aa682"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="8_ktkn8"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area_player.gd" id="8_ktkn8"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="9_6oiw0"]
 [ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="10_m2vt8"]
 [ext_resource type="Script" uid="uid://bba5yv81fsrgv" path="res://enemies/scripts/edge_detector.gd" id="11_t1av3"]

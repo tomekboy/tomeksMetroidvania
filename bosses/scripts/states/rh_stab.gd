@@ -1,18 +1,15 @@
 class_name RHStab extends EnemyState
 
 @export var attack_area : AttackArea
-@export var attack_range : float = 100
-@export var move_speed : float = 88
-@export var cooldown : float = 2.0
+@export var attack_range : float = 150
+@export var move_speed : float = 75
+@export var cooldown : float = 1.0
 
 var timer : float = 0
 var duration : float = 0
 var on_cooldown : bool = false
 
 func enter() -> void:
-	
-	print( "stab" )
-	
 	if blackboard.target:
 		var dir : float = sign( blackboard.target.global_position.x - enemy.global_position.x )
 		enemy.change_dir( dir )
@@ -47,7 +44,7 @@ func physics_update( _delta : float ) -> void:
 
 
 func can_attack() -> bool:
-	if blackboard.distance_to_target <= attack_range and not on_cooldown:
+	if blackboard.distance_to_target <= attack_range and blackboard.executed_attacks == 0 and not on_cooldown:
 		return true
 	return false
 
@@ -56,4 +53,3 @@ func run_cooldown() -> void:
 	await get_tree().create_timer( cooldown ).timeout
 	on_cooldown = false
 	pass
-	

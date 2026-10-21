@@ -3,7 +3,7 @@ class_name RHAttack extends EnemyState
 @export var attack_area : AttackArea
 @export var attack_range : float = 100
 @export var move_speed : float = 88
-@export var cooldown : float = 2.0
+@export var cooldown : float = 1.0
 
 var timer : float = 0
 var duration : float = 0
@@ -14,7 +14,7 @@ func enter() -> void:
 		var dir : float = sign( blackboard.target.global_position.x - enemy.global_position.x )
 		enemy.change_dir( dir )
 		
-	enemy.play_animation( animation_name if animation_name else "stab" )
+	enemy.play_animation( animation_name if animation_name else "throw" )
 	duration = enemy.animation.current_animation_length
 	timer = 0
 	blackboard.can_decide = false

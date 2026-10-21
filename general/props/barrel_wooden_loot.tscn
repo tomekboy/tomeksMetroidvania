@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bnfjc1g7xt1fo" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_medium.tres" id="3_32af8"]
 [ext_resource type="Resource" uid="uid://d7nm8pwi1pv4" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_small.tres" id="4_cdxry"]
 [ext_resource type="Resource" uid="uid://dwosvte46udf7" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_large.tres" id="5_5ntwe"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="6_lmr3h"]
+[ext_resource type="Script" uid="uid://d4a87jllv70j5" path="res://general/scripts/damage_area.gd" id="6_lmr3h"]
 [ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="7_q88qc"]
 [ext_resource type="Texture2D" uid="uid://q4d45mnwrqbc" path="res://general/props/images/woodenBarrel.png" id="8_t6rnp"]
 [ext_resource type="Script" uid="uid://tab2vbd55b4w" path="res://general/scripts/loot_dropper.gd" id="9_32af8"]
@@ -36,7 +36,6 @@ collision_layer = 64
 collision_mask = 0
 script = ExtResource("6_lmr3h")
 audio = ExtResource("7_q88qc")
-metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1960897022]
 position = Vector2(0, 4)

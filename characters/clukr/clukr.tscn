@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://b6y4fpo3emlgm" path="res://player/scripts/input_hints.gd" id="24_d4b33"]
 [ext_resource type="Texture2D" uid="uid://cub35eaopunf2" path="res://characters/images/input_icons.png" id="25_28rqv"]
 [ext_resource type="Script" uid="uid://251458nsi4iq" path="res://general/scripts/attack_area.gd" id="26_w0sbp"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="27_0gwfb"]
+[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area_player.gd" id="27_0gwfb"]
 [ext_resource type="Script" uid="uid://d1j8qi5sxmpcy" path="res://player/camera_2d.gd" id="28_k1fab"]
 [ext_resource type="Script" uid="uid://b7th5x4mwleed" path="res://00_global/visual_effects/hit_particles.gd" id="29_ov8y2"]
 

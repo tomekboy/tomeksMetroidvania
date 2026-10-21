@@ -14,6 +14,8 @@ func _ready() -> void:
 func enter() -> void:
 	# What happens when we enter this state?
 	enemy.play_animation( animation_name if animation_name else "walk" )
+	if blackboard.executed_attacks >= 3:
+		blackboard.executed_attacks = 0
 	pass
 
 

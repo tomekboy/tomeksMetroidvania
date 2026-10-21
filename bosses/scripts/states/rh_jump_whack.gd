@@ -1,36 +1,30 @@
 class_name RHJumpWhack extends EnemyState
 
-@export var jump_strength : float = 300
-@export var move_speed : float = 200
-@export var cooldown : float = 5.0
+@export var jump_strength : float = 500
+@export var move_speed : float = 75
+@export var cooldown : float = 1.0
+
+@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 var dir : float = 1.0
 var on_cooldown : bool = false
 var do_jump : bool = false
 
-@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-
 func enter() -> void:
 	blackboard.can_decide = false
 	on_cooldown = true
-	
 	enemy.velocity.x = 0
-	
-	animation_player.play( "fist_slam" )
-	
+	animation_player.play( "jump_whack" )
 	await animation_player.animation_finished
-	
 	do_jump = true
-	
 	dir = 1.0
 	if enemy.sprite.flip_h == true:
 		dir = -1.0
-	
 	animation_player.play( "jump" )
 	animation_player.pause()
-	
 	enemy.velocity.y = -jump_strength
-	
+	animation_player.play()
+	await animation_player.animation_finished
 	pass
 
 
@@ -49,13 +43,17 @@ func exit() -> void:
 func physics_update( _delta : float ) -> void:
 	if not do_jump:
 		return
-	
+		
 	enemy.velocity.x = dir * move_speed
 	
-	set_jump_frame()
-	
 	if enemy.is_on_floor() and enemy.velocity.y > 0:
+		animation_player.play( "fist_slam" )
+		await animation_player.animation_finished
 		blackboard.can_decide = true
+		
+	if enemy.is_on_wall():
+		enemy.change_dir( -blackboard.dir )
+		enemy.velocity.x = move_speed * blackboard.dir
 	pass
 
 
@@ -69,9 +67,3 @@ func can_jump() -> bool:
 	if not on_cooldown:
 		return true
 	return false
-
-
-func set_jump_frame() -> void:
-	var frame : float = remap( enemy.velocity.y, -jump_strength, 0.0, 0.0, 0.5 )
-	animation_player.seek( frame, true )
-	pass

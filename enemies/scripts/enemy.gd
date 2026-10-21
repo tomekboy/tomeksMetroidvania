@@ -6,7 +6,6 @@ signal direction_changed( new_dir )
 signal was_hit( a : AttackArea )
 signal was_killed()
 
-
 @export var health : float = 3
 @export var affected_by_gravity : bool = true
 @export var face_left_on_start : bool = false :
@@ -28,6 +27,7 @@ var killed = false
 var bomb_scene = preload("uid://3jk8gfdks1yh")
 var throw_speed: Vector2 = Vector2( 300, -200 )
 
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		set_physics_process( false )
@@ -40,11 +40,6 @@ func setup() -> void:
 	blackboard = Blackboard.new()
 	blackboard.health = health
 	
-	if face_left_on_start:
-		blackboard.dir = -1
-	else:
-		blackboard.dir = +1 
-		
 	for c in get_children():
 		if c is AnimationPlayer and not animation:
 			animation = c
@@ -70,12 +65,20 @@ func setup() -> void:
 	pass
 
 
-# physics process will move enemy, and call state_machine.physics_process
+## physics process will move enemy, and call state_machine.physics_process
 func _physics_process( delta: float ) -> void:
 	blackboard.update_distance_to_target( global_position )
-	state_machine.change_state( decision_engine.decide() )
+	
+	# 1. Get the decided state
+	var next_state = decision_engine.decide()
+	
+	# 2. ONLY change state if a valid state was returned
+	if next_state != null:
+		state_machine.change_state( next_state )
+		
 	if affected_by_gravity:
 		velocity += get_gravity() * delta
+		
 	state_machine.physics_update( delta )
 	move_and_slide()
 	pass
@@ -93,6 +96,7 @@ func change_dir( new_dir : float ) -> void:
 	pass
 
 
+
 ## play_animation - plays the animation, after verifying it exists
 func play_animation( anim_name : String ) -> void:
 	if animation.has_animation( anim_name ):
@@ -106,12 +110,10 @@ func play_animation( anim_name : String ) -> void:
 func _on_damage_taken( a : AttackArea ) -> void:
 	blackboard.damage_source = a
 	blackboard.health -= a.damage
-	
 	if blackboard.health <= 0:
 		damage_area.queue_free()
 		hazard_area.queue_free()
 		was_killed.emit()
-		killed = true
 	was_hit.emit( a )
 	pass
 
@@ -119,6 +121,7 @@ func _on_damage_taken( a : AttackArea ) -> void:
 ## configuration warnings for all critical nodes
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings : PackedStringArray = []
+	
 	if not find_children( "*", "AnimationPlayer", false ):
 		warnings.append( "Requires an AnimationPlayer!" )
 	if not find_children( "*", "Sprite2D", false ):
@@ -131,6 +134,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append( "Requires an EnemyStateMachine node!" )
 	if not find_children( "*", "DecisionEngine", false ):
 		warnings.append( "Requires a DecisionEngine node!" )
+	
 	return warnings
 
 
@@ -143,27 +147,27 @@ func _update_face_left() -> void:
 	pass
 
 
+func play_audio( audio : AudioStream ) -> void:
+	AudioManager.play_spatial_sound( audio, global_position )
+	pass
+
+
 func throw_bomb():
 	var player = get_tree().get_first_node_in_group("Player")
 	var bomb = bomb_scene.instantiate()
-	#var direction
 	var direction = 1 if not $Sprite2D.flip_h else -1
 	var impulse_vector = Vector2(throw_speed.x * direction, throw_speed.y)
 		
-	
-	
 	get_tree().get_current_scene().add_child(bomb)
 	if global_position <= player.global_position:
 		bomb.position = Vector2(global_position.x + 125, global_position.y - 5)
 		direction = Vector2(1, 0.5).normalized()
-		
 		bomb.apply_central_impulse(impulse_vector)
-		
-		#bomb.apply_impulse(direction * 250)
+		bomb.apply_impulse(direction * 250)
 	else:
 		bomb.position = Vector2(global_position.x - 125, global_position.y + 5)
 		direction = Vector2(-1, 0.5).normalized()
-		#bomb.apply_impulse(direction * 250)
+		bomb.apply_impulse(direction * 250)
 		bomb.apply_central_impulse(impulse_vector)
 	pass
 

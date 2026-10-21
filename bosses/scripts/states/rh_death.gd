@@ -1,11 +1,5 @@
 class_name RHDeath extends EnemyState
 
-# EnemyState class will inherit the following variables:
-# @export var animation_name : String = "idle"
-# var state_machine : EnemyStateMachine
-# var enemy : Rhino
-# var blackboard : Blackboard
-
 @onready var fireworks: Node2D = $"../../../Fireworks"
 
 @export var knockback_strength : float = 25

@@ -1,12 +1,10 @@
 class_name RHStun extends EnemyState
 
-# EnemyState class will inherit the following variables:
-# @export var animation_name : String = "idle"
-# var state_machine : EnemyStateMachine
-# var enemy : Rhino
-# var blackboard : Blackboard
+@onready var damage_area: DamageArea = $"../../DamageArea"
 
 @export var knockback_strength : float = 100
+@export var invulnerable_duration : float = 1.6
+
 var vel_x : float = 0
 var duration : float = 0
 var timer : float = 0
@@ -21,8 +19,12 @@ func start() -> void:
 	duration = enemy.animation.current_animation_length
 	timer = 0
 	_calc_velocity( blackboard.damage_source )
+	
+	damage_area.make_invulnerable( invulnerable_duration )
+	
 	blackboard.damage_source = null
 	blackboard.can_decide = false
+	blackboard.hits_received += 1
 	pass
 
 

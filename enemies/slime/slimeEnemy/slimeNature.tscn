@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://j2ku8oi2gkhr" path="res://enemies/scripts/states/es_chase.gd" id="7_ym0en"]
 [ext_resource type="Script" uid="uid://dox0omjiybs3j" path="res://enemies/scripts/states/es_death.gd" id="8_i61lu"]
 [ext_resource type="AudioStream" uid="uid://cwjspkm2b13rh" path="res://assets/sfx/slimeSquelchyImpact.mp3" id="9_pvane"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="11_8ouio"]
+[ext_resource type="Script" uid="uid://d4a87jllv70j5" path="res://general/scripts/damage_area.gd" id="11_8ouio"]
 [ext_resource type="Script" uid="uid://b031dd4ulhcb" path="res://enemies/scripts/decision_engines/decision_engine_advanced.gd" id="12_8hy0x"]
 [ext_resource type="AudioStream" uid="uid://p4t7parh02kt" path="res://assets/sfx/slimeSquish.mp3" id="12_x0enl"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="13_vt8ou"]

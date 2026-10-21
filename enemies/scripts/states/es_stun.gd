@@ -1,24 +1,16 @@
 class_name ESStun extends EnemyState
 
-# EnemyState class will inherit the following variables:
-# @export var animation_name : String = "idle"
-# var state_machine : EnemyStateMachine
-# var enemy : Enemy
-# var blackboard : Blackboard
 @export var knockback_strength : float = 50
 var vel_x : float = 0
 var duration : float = 0
 var timer : float = 0
 
 func start() -> void:
-	if owner.name == "Rhino":
-		enemy.play_animation( "defend" )
+	var anim : String = animation_name if animation_name else "squirt"
+	if enemy.animation.current_animation == anim:
+		enemy.animation.seek( 0 )
 	else:
-		var anim : String = animation_name if animation_name else "squirt"
-		if enemy.animation.current_animation == anim:
-			enemy.animation.seek( 0 )
-		else:
-			enemy.play_animation( anim )
+		enemy.play_animation( anim )
 		
 	duration = enemy.animation.current_animation_length
 	timer = 0

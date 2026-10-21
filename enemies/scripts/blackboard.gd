@@ -7,6 +7,8 @@ var can_decide : bool = true
 var edge_detected : bool = false
 var damage_source : AttackArea = null
 var dir : float = 1.0
+var executed_attacks : int = 0
+var hits_received : int = 0
 
 
 func update_distance_to_target( pos : Vector2 ) -> void:

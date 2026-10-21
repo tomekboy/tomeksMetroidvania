@@ -8,7 +8,7 @@ class_name BossBattleOrchestrator extends Node
 @onready var tree_right: TileMapLayer = $"../Visuals/TreeRight"
 @onready var audio_stream_player: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 @onready var fireworks: Node2D = $Fireworks
-@onready var rhino_portal: Node2D = $"../StaticObjects/RhinoPortal"
+@onready var boss_portal: Node2D = $"../StaticObjects/BossPortal"
 
 signal battle_started
 signal battle_ended
@@ -54,7 +54,7 @@ func _ready() -> void:
 func start_boss_battle() -> void:
 	battle_started.emit()
 	
-	rhino_portal.visible = false
+	boss_portal.visible = false
 	
 	if boss_level_bounds:
 		boss_level_bounds.set_camera_bounds()
@@ -73,7 +73,7 @@ func end_boss_battle() -> void:
 	battle_ended.emit()
 	SaveManager.persistent_data[ "rhino" ] = "defeated"
 	AudioManager.play_spatial_sound( SUCCESS_SFX, Vector2.ZERO )
-	rhino_portal.visible = true
+	boss_portal.visible = true
 	
 	if tree_left:
 		tree_left.queue_free()
@@ -101,7 +101,6 @@ func _on_body_entered( body : Node2D) -> void:
 			tree_left.trigger_slide()
 			audio_stream_player.play()
 			VisualEffects.camera_shake( 50.0 )
-			await audio_stream_player.finished
 			
 		if tree_right and tree_right.has_method("trigger_slide"):
 			tree_right.trigger_slide()

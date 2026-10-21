@@ -3,14 +3,11 @@ class_name ESChase extends EnemyState
 @export var chase_speed : float = 100
 
 func enter() -> void:
-	if owner.name == "Rhino":
-		enemy.play_animation( "defend" )
+	var anim : String = animation_name if animation_name else "bite"
+	if enemy.animation.current_animation == anim:
+		enemy.animation.seek( 0 )
 	else:
-		var anim : String = animation_name if animation_name else "bite"
-		if enemy.animation.current_animation == anim:
-			enemy.animation.seek( 0 )
-		else:
-			enemy.play_animation( anim )
+		enemy.play_animation( anim )
 	pass
 
 

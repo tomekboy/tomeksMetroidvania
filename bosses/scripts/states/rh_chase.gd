@@ -37,10 +37,7 @@ func physics_update( delta : float ) -> void:
 			enemy.change_dir( 1.0 )
 		elif enemy.global_position.x >= right_limit and blackboard.dir > 0:
 			enemy.change_dir( -1.0 )
-		
-		
-		
-		
+			
 		dir = sign( blackboard.target.global_position.x - enemy.global_position.x )
 			
 		enemy.velocity.x = dir * chase_speed

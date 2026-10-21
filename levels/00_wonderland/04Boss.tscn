@@ -27,10 +27,11 @@
 [ext_resource type="Script" uid="uid://jevkrmftvmf3" path="res://bosses/scripts/boss_battle_orchestrator.gd" id="23_kussq"]
 [ext_resource type="AudioStream" uid="uid://duj80ijeavtft" path="res://assets/music/rhinoBossBackground.mp3" id="24_nd32s"]
 [ext_resource type="Script" uid="uid://di70anarsc214" path="res://levels/00_wonderland/scripts/tree_left.gd" id="27_fp7xv"]
-[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/rhino_portal.tscn" id="27_fr70b"]
+[ext_resource type="PackedScene" uid="uid://bbktiy3mf8gp8" path="res://general/portal/boss_portal.tscn" id="27_fr70b"]
 [ext_resource type="PackedScene" uid="uid://bclmuh5ll5hn1" path="res://bosses/rhino/rhino.tscn" id="28_k3ir7"]
 [ext_resource type="PackedScene" uid="uid://cxhxroxxw01iq" path="res://00_global/visual_effects/fireworks.tscn" id="29_4lskm"]
-[ext_resource type="Script" uid="uid://dopkspryqgc2u" path="res://general/scripts/patrol_limit.gd" id="31_smtsq"]
+[ext_resource type="Shader" uid="uid://dfa1p7cncshcs" path="res://assets/materials_and_shaders/shockwave.gdshader" id="31_smtsq"]
+[ext_resource type="Script" uid="uid://d1lxuo8rpwouy" path="res://levels/00_wonderland/scripts/shockwave_controller.gd" id="32_2tfqu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmynt"]
 texture = ExtResource("8_ck5ju")
@@ -2216,7 +2217,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_smtsq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tfqu"]
 resource_local_to_scene = true
 shader = SubResource("Shader_8quhf")
 shader_parameter/progress = 0.0
@@ -2224,6 +2225,13 @@ shader_parameter/block_size = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0cjl"]
 size = Vector2(28, 620)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvf31"]
+shader = ExtResource("31_smtsq")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/size = 0.0
+shader_parameter/force = 0.06
+shader_parameter/thickness = 0.05
 
 [node name="04Boss" type="Node2D" unique_id=1770382212]
 
@@ -2516,7 +2524,7 @@ process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
 [node name="StaticObjects" type="Node" parent="." unique_id=1418818487]
 
-[node name="RhinoPortal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("27_fr70b")]
+[node name="BossPortal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("27_fr70b")]
 position = Vector2(1005, 562)
 
 [node name="DynamicObjects" type="Node" parent="." unique_id=2058451056]
@@ -2526,24 +2534,13 @@ script = ExtResource("23_kussq")
 boss = NodePath("Rhino")
 boss_name = "bossRhino"
 trigger_area = NodePath("BossBattleArea2D")
-reward = NodePath("../StaticObjects/RhinoPortal")
+reward = NodePath("../StaticObjects/BossPortal")
 fight_track = ExtResource("24_nd32s")
 metadata/_custom_type_script = "uid://jevkrmftvmf3"
 
 [node name="Rhino" parent="BossBattleOrchestrator" unique_id=634296537 instance=ExtResource("28_k3ir7")]
-material = SubResource("ShaderMaterial_smtsq")
-position = Vector2(587, 609)
-
-[node name="PatrolLimitLeft" type="Node2D" parent="BossBattleOrchestrator/Rhino" unique_id=519828208]
-position = Vector2(-328, -37)
-script = ExtResource("31_smtsq")
-metadata/_custom_type_script = "uid://dopkspryqgc2u"
-
-[node name="PatrolLimitRight" type="Node2D" parent="BossBattleOrchestrator/Rhino" unique_id=296684240]
-position = Vector2(220, -34)
-script = ExtResource("31_smtsq")
-side = 2
-metadata/_custom_type_script = "uid://dopkspryqgc2u"
+material = SubResource("ShaderMaterial_2tfqu")
+position = Vector2(548, 612)
 
 [node name="BossBattleArea2D" type="Area2D" parent="BossBattleOrchestrator" unique_id=2009439446]
 visibility_layer = 17
@@ -2557,3 +2554,15 @@ shape = SubResource("RectangleShape2D_u0cjl")
 
 [node name="Fireworks" parent="BossBattleOrchestrator" unique_id=1742555248 instance=ExtResource("29_4lskm")]
 visible = false
+
+[node name="ShockwaveLayer" type="CanvasLayer" parent="BossBattleOrchestrator" unique_id=225313511]
+layer = 100
+
+[node name="ShockwaveRect" type="ColorRect" parent="BossBattleOrchestrator/ShockwaveLayer" unique_id=430750783]
+material = SubResource("ShaderMaterial_uvf31")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("32_2tfqu")

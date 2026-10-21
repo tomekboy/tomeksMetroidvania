@@ -23,13 +23,13 @@
 [ext_resource type="Script" uid="uid://de43kj1f2cjq" path="res://player/states/death.gd" id="28_hhopm"]
 [ext_resource type="Script" uid="uid://b7th5x4mwleed" path="res://00_global/visual_effects/hit_particles.gd" id="29_1mfmd"]
 [ext_resource type="Script" uid="uid://dpnp3bc6spl5v" path="res://player/states/dash.gd" id="29_3nad7"]
+[ext_resource type="Script" uid="uid://d4a87jllv70j5" path="res://general/scripts/damage_area.gd" id="30_8trw6"]
 [ext_resource type="Script" uid="uid://dop3dtlcsxeus" path="res://player/states/slam.gd" id="30_kq8aq"]
 [ext_resource type="Script" uid="uid://bet58k0i1yb60" path="res://player/states/roll.gd" id="31_lxbs3"]
 [ext_resource type="Script" uid="uid://dtdu6ygskkpwj" path="res://player/states/climb.gd" id="32_wowbj"]
 [ext_resource type="Script" uid="uid://b6y4fpo3emlgm" path="res://player/scripts/input_hints.gd" id="34_goexf"]
 [ext_resource type="Script" uid="uid://251458nsi4iq" path="res://general/scripts/attack_area.gd" id="36_7to3a"]
 [ext_resource type="Script" uid="uid://d1j8qi5sxmpcy" path="res://player/camera_2d.gd" id="37_5wb6j"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area.gd" id="37_tkuyo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aor1j"]
 shader = ExtResource("2_gawt6")
@@ -638,6 +638,14 @@ gravity = Vector3(0, 98, 0)
 scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_uiuae")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uiuae"]
+radius = 7.0
+height = 56.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srfhv"]
+radius = 3.5
+height = 7.0
+
 [node name="Polo" type="CharacterBody2D" unique_id=1981200209 groups=["Player"]]
 z_index = 1
 collision_layer = 16
@@ -821,28 +829,6 @@ position = Vector2(-3, -2.5)
 shape = SubResource("RectangleShape2D_jd2rm")
 debug_color = Color(1, 0, 0.050980393, 0.41960785)
 
-[node name="DamageArea" type="Area2D" parent="." unique_id=1759394466]
-unique_name_in_owner = true
-visible = false
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("37_tkuyo")
-metadata/_custom_type_script = "uid://c7fq8i2wavdpj"
-
-[node name="DAStand" type="CollisionShape2D" parent="DamageArea" unique_id=1812670723]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, -26)
-shape = SubResource("CapsuleShape2D_2ieo8")
-debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
-
-[node name="DACrouch" type="CollisionShape2D" parent="DamageArea" unique_id=1189545680]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_ebec5")
-debug_color = Color(0.63468015, 0.70196074, 0, 0.25490198)
-
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=2123413361]
 unique_name_in_owner = true
 position = Vector2(0, -29)
@@ -867,3 +853,24 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8trw6")
 script = ExtResource("29_1mfmd")
 metadata/_custom_type_script = "uid://b7th5x4mwleed"
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1529693138]
+unique_name_in_owner = true
+visible = false
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("30_8trw6")
+
+[node name="DAStand" type="CollisionShape2D" parent="DamageArea" unique_id=875722475]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -26)
+shape = SubResource("CapsuleShape2D_uiuae")
+debug_color = Color(0, 0.6, 0.7019608, 0.25490198)
+
+[node name="DACrouch" type="CollisionShape2D" parent="DamageArea" unique_id=546889737]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_srfhv")
+debug_color = Color(0.63468015, 0.70196074, 0, 0.25490198)

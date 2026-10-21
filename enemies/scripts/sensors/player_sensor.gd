@@ -5,7 +5,7 @@ signal player_entered
 signal player_exited
 signal started_searching
 
-@export var search_duration : float = 2
+@export var search_duration : float = 1
 @export var use_audio_sensor : bool = true
 @export var audio_detect_dist : float = 450
 @export var min_audio_sense : float = 0.2
@@ -39,7 +39,6 @@ func _physics_process( delta: float ) -> void:
 
 func _on_body_entered( n : Node2D ) -> void:
 	player_entered.emit()
-	print( "player sensor in" )
 	can_see_player = true
 	enemy.blackboard.target = n
 	pass
@@ -47,7 +46,6 @@ func _on_body_entered( n : Node2D ) -> void:
 
 func _on_body_exited( _n : Node2D ) -> void:
 	started_searching.emit()
-	print( "player sensor out" )
 	can_see_player = false
 	timer = search_duration
 	pass

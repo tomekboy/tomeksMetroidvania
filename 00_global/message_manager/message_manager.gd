@@ -17,3 +17,6 @@ signal input_hint_changed( hint : String )
 
 @warning_ignore( "unused_signal" )
 signal back_to_title_screen()
+
+@warning_ignore( "unused_signal" )
+signal shockwave_requested(global_position: Vector2)
