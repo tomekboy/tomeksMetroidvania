@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://csbox7indv60l" path="res://general/props/scripts/interact_probs.gd" id="1_8h12v"]
 [ext_resource type="Texture2D" uid="uid://7ae0v35vovs3" path="res://general/props/images/MushroomYellowBody.png" id="2_ip2o3"]
 [ext_resource type="Texture2D" uid="uid://dntuawkg63t85" path="res://general/props/images/MushroomRoot.png" id="3_8ejnh"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area_player.gd" id="3_ip2o3"]
+[ext_resource type="Script" uid="uid://d4a87jllv70j5" path="res://general/scripts/damage_area.gd" id="3_ip2o3"]
 [ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="4_1dkhy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b888s"]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://3edshi6tkkj7"]
+
+[ext_resource type="Script" uid="uid://bqs4s4c14m65j" path="res://general/scripts/crouch_hint_zone.gd" id="1_8gv4a"]
+[ext_resource type="Texture2D" uid="uid://sux3jrp5lx57" path="res://00_global/player_hud/star.svg" id="1_msbex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t83k"]
+
+[node name="CrouchHintZone" type="Area2D" unique_id=548603166]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_8gv4a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1591356248]
+shape = SubResource("RectangleShape2D_8t83k")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1027464204]
+texture = ExtResource("1_msbex")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1268504860]
+
+[node name="ControlPrompt" type="Label" parent="CanvasLayer" unique_id=162997906]
+offset_right = 40.0
+offset_bottom = 19.0

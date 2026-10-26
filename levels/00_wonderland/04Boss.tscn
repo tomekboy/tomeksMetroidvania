@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://bclmuh5ll5hn1" path="res://bosses/rhino/rhino.tscn" id="28_k3ir7"]
 [ext_resource type="PackedScene" uid="uid://cxhxroxxw01iq" path="res://00_global/visual_effects/fireworks.tscn" id="29_4lskm"]
 [ext_resource type="Shader" uid="uid://dfa1p7cncshcs" path="res://assets/materials_and_shaders/shockwave.gdshader" id="31_smtsq"]
-[ext_resource type="Script" uid="uid://d1lxuo8rpwouy" path="res://levels/00_wonderland/scripts/shockwave_controller.gd" id="32_2tfqu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmynt"]
 texture = ExtResource("8_ck5ju")
@@ -2199,6 +2198,16 @@ hue_variation_max = 0.049999975
 turbulence_enabled = true
 turbulence_influence_max = 0.19000001
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvf31"]
+shader = ExtResource("31_smtsq")
+shader_parameter/center_uv = Vector2(0.5, 0.5)
+shader_parameter/current_radius = 0.0
+shader_parameter/wave_thickness = 0.03
+shader_parameter/distortion_force = 0.02
+shader_parameter/wave_height_uv = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t83k"]
+
 [sub_resource type="Shader" id="Shader_8quhf"]
 code = "shader_type canvas_item;
 
@@ -2217,7 +2226,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tfqu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smtsq"]
 resource_local_to_scene = true
 shader = SubResource("Shader_8quhf")
 shader_parameter/progress = 0.0
@@ -2225,13 +2234,6 @@ shader_parameter/block_size = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0cjl"]
 size = Vector2(28, 620)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvf31"]
-shader = ExtResource("31_smtsq")
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/size = 0.0
-shader_parameter/force = 0.06
-shader_parameter/thickness = 0.05
 
 [node name="04Boss" type="Node2D" unique_id=1770382212]
 
@@ -2522,6 +2524,28 @@ randomness = 0.83
 visibility_rect = Rect2(-1530, -200, 3060, 320)
 process_material = SubResource("ParticleProcessMaterial_j5ssd")
 
+[node name="Shockwave" type="Node" parent="Ambiance" unique_id=434318962]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Ambiance/Shockwave" unique_id=837688701]
+
+[node name="ShockwaveColorRect" type="ColorRect" parent="Ambiance/Shockwave/CanvasLayer" unique_id=430750783]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_uvf31")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ShockwaveArea2D" type="Area2D" parent="Ambiance/Shockwave/CanvasLayer/ShockwaveColorRect" unique_id=36458517]
+unique_name_in_owner = true
+
+[node name="ShockwaveCollisionShape2D" type="CollisionShape2D" parent="Ambiance/Shockwave/CanvasLayer/ShockwaveColorRect/ShockwaveArea2D" unique_id=1562764053]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_8t83k")
+
 [node name="StaticObjects" type="Node" parent="." unique_id=1418818487]
 
 [node name="BossPortal" parent="StaticObjects" unique_id=497439735 instance=ExtResource("27_fr70b")]
@@ -2539,8 +2563,10 @@ fight_track = ExtResource("24_nd32s")
 metadata/_custom_type_script = "uid://jevkrmftvmf3"
 
 [node name="Rhino" parent="BossBattleOrchestrator" unique_id=634296537 instance=ExtResource("28_k3ir7")]
-material = SubResource("ShaderMaterial_2tfqu")
+visible = true
+material = SubResource("ShaderMaterial_smtsq")
 position = Vector2(548, 612)
+health = 25.0
 
 [node name="BossBattleArea2D" type="Area2D" parent="BossBattleOrchestrator" unique_id=2009439446]
 visibility_layer = 17
@@ -2554,15 +2580,3 @@ shape = SubResource("RectangleShape2D_u0cjl")
 
 [node name="Fireworks" parent="BossBattleOrchestrator" unique_id=1742555248 instance=ExtResource("29_4lskm")]
 visible = false
-
-[node name="ShockwaveLayer" type="CanvasLayer" parent="BossBattleOrchestrator" unique_id=225313511]
-layer = 100
-
-[node name="ShockwaveRect" type="ColorRect" parent="BossBattleOrchestrator/ShockwaveLayer" unique_id=430750783]
-material = SubResource("ShaderMaterial_uvf31")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("32_2tfqu")

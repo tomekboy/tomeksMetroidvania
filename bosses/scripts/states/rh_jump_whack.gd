@@ -46,14 +46,14 @@ func physics_update( _delta : float ) -> void:
 		
 	enemy.velocity.x = dir * move_speed
 	
+	if enemy.is_on_wall():
+		enemy.change_dir( -blackboard.dir )
+		enemy.velocity.x = move_speed * blackboard.dir
+		
 	if enemy.is_on_floor() and enemy.velocity.y > 0:
 		animation_player.play( "fist_slam" )
 		await animation_player.animation_finished
 		blackboard.can_decide = true
-		
-	if enemy.is_on_wall():
-		enemy.change_dir( -blackboard.dir )
-		enemy.velocity.x = move_speed * blackboard.dir
 	pass
 
 

@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bnfjc1g7xt1fo" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_medium.tres" id="3_vgj7x"]
 [ext_resource type="Resource" uid="uid://d7nm8pwi1pv4" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_small.tres" id="4_68nwx"]
 [ext_resource type="Resource" uid="uid://dwosvte46udf7" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_large.tres" id="5_fxjlx"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area_player.gd" id="6_yv756"]
+[ext_resource type="Script" uid="uid://d4a87jllv70j5" path="res://general/scripts/damage_area.gd" id="6_yv756"]
 [ext_resource type="AudioStream" uid="uid://b30ojcmn8wmwd" path="res://assets/sfx/punch.mp3" id="7_jewg8"]
 [ext_resource type="Texture2D" uid="uid://q4d45mnwrqbc" path="res://general/props/images/woodenBarrel.png" id="8_rxcfk"]
 

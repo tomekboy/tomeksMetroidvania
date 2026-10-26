@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dw326ct084jf0" path="res://enemies/bird/scripts/attack_bird.gd" id="1_i6hqa"]
 [ext_resource type="Texture2D" uid="uid://cxqn6nafeyoxg" path="res://enemies/bird/animations/attack_bird.png" id="2_1o8st"]
 [ext_resource type="Script" uid="uid://davkcy554f7pn" path="res://general/scripts/hazard_area.gd" id="3_6o1a3"]
-[ext_resource type="Script" uid="uid://c7fq8i2wavdpj" path="res://general/scripts/damage_area_player.gd" id="4_g3eh4"]
+[ext_resource type="Script" uid="uid://d4a87jllv70j5" path="res://general/scripts/damage_area.gd" id="4_g3eh4"]
 
 [sub_resource type="Curve2D" id="Curve2D_3ofv1"]
 _data = {

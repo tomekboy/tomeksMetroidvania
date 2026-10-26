@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnic1j6w0qeau" path="res://general/death_area/death_area.tscn" id="3_wfn48"]
 [ext_resource type="Script" uid="uid://dtbxdmecqneq1" path="res://00_global/audio_manager/music_auto_trigger.gd" id="4_sd75o"]
 [ext_resource type="AudioStream" uid="uid://hbdwtsxs5vxj" path="res://assets/music/sprunki-prom-380199.mp3" id="5_w166s"]
+[ext_resource type="PackedScene" uid="uid://3edshi6tkkj7" path="res://general/ambience/crouch_hint_zone.tscn" id="7_qmtr8"]
 [ext_resource type="Texture2D" uid="uid://7g2j6xyhssub" path="res://levels/00_wonderland/tilesets/sprites/platform.png" id="7_x57yk"]
 [ext_resource type="Texture2D" uid="uid://bf5kcy6eyt2ge" path="res://levels/00_wonderland/tilesets/sprites/platformTreeBridge.png" id="8_i2jkp"]
 [ext_resource type="Texture2D" uid="uid://bktrtjf167oec" path="res://levels/00_wonderland/images/villageBackground.png" id="10_l4mrs"]
@@ -149,6 +150,11 @@ size = 3
 location = 3
 target_level = "uid://bk7purnia7v6"
 target_area_name = "Forrest"
+
+[node name="Ambiance" type="Node" parent="." unique_id=889523079]
+
+[node name="CrouchHintZone" parent="Ambiance" unique_id=548603166 instance=ExtResource("7_qmtr8")]
+position = Vector2(429, 588)
 
 [node name="Visuals" type="Node" parent="." unique_id=1963126814]
 

@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://t2m8btdnadbt" path="res://levels/00_wonderland/images/signArrowRight.png" id="14_ms62t"]
 [ext_resource type="Texture2D" uid="uid://dbpaqt2bxem40" path="res://levels/01_cavernland/tilesets/Mossy - MossyHills.png" id="15_eimct"]
 [ext_resource type="Texture2D" uid="uid://dfq1k67sncas7" path="res://levels/01_cavernland/tilesets/Mossy - Decorations&Hazards.png" id="17_1ggqn"]
+[ext_resource type="PackedScene" uid="uid://3edshi6tkkj7" path="res://general/ambience/crouch_hint_zone.tscn" id="17_gqruv"]
 [ext_resource type="PackedScene" uid="uid://bdygpwijtbo5s" path="res://collectables/collectable_bass.tscn" id="18_ap3v0"]
 [ext_resource type="PackedScene" uid="uid://drv2tdkcwwm85" path="res://collectables/collectable_note.tscn" id="19_kikqp"]
 
@@ -3832,6 +3833,9 @@ lifetime = 5.0
 randomness = 0.83
 visibility_rect = Rect2(-2560, 100, 5120, 200)
 process_material = SubResource("ParticleProcessMaterial_yobuj")
+
+[node name="CrouchHintZone" parent="Ambiance" unique_id=548603166 instance=ExtResource("17_gqruv")]
+position = Vector2(994, 550)
 
 [node name="Decorations" type="Node" parent="." unique_id=1592410904]
 

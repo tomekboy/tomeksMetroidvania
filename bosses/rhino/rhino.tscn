@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://dovmpc33ftcss" path="res://bosses/scripts/states/rh_throw.gd" id="18_g3m2f"]
 [ext_resource type="Script" uid="uid://sxomxrc0lhoq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="19_nvxkv"]
 [ext_resource type="Script" uid="uid://cfui2lani3y65" path="res://enemies/scripts/sensors/player_sensor.gd" id="19_xgjy8"]
+[ext_resource type="Script" uid="uid://cndlxa2a0n3i0" path="res://bosses/scripts/states/rh_shockwave.gd" id="21_2hgi1"]
 [ext_resource type="Resource" uid="uid://dwosvte46udf7" path="res://00_global/visual_effects/hit_particles_settings/hit_wood_large.tres" id="24_7mx0c"]
 
 [sub_resource type="Shader" id="Shader_8quhf"]
@@ -724,7 +725,7 @@ debug_color = Color(0.6989655, 0.49295974, 0.025323706, 0.41960785)
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=277420904]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("15_3i84q")
 metadata/_custom_type_script = "uid://davkcy554f7pn"
 
@@ -763,6 +764,11 @@ script = ExtResource("13_38f3t")
 attack_area = NodePath("../../HazardArea")
 animation_name = "punch"
 metadata/_custom_type_script = "uid://c3056a55n07xl"
+
+[node name="RHShockwave" type="Node" parent="EnemyStateMachine" unique_id=2086823061]
+unique_name_in_owner = true
+script = ExtResource("21_2hgi1")
+metadata/_custom_type_script = "uid://cndlxa2a0n3i0"
 
 [node name="RHStun" type="Node" parent="EnemyStateMachine" unique_id=1803619174]
 unique_name_in_owner = true
